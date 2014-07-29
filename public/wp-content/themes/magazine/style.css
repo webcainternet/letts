@@ -206,7 +206,7 @@ STRUCTURE
 /* content top space */
 #contentwrap,
 #sidebar {
-        padding-top: 5%;
+        padding-top: 10px;
 }
 
 /* sidebar1 (sidebar right) */
@@ -369,7 +369,7 @@ HEADER WIDGET
 ================================================ */
 .header-widget {
 	text-align: center;
-	margin: 45px auto;
+	margin: 0px auto;
 }
 
 /*
