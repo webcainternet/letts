@@ -1,3 +1,4 @@
+DirectoryIndex index_.php index.php
 
 # BEGIN WordPress
 <IfModule mod_rewrite.c>

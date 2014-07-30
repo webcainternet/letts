@@ -32,7 +32,7 @@ global $themify; ?>
 					border: 2px #ff8920 solid; 
 					width: 180px; 
 					height: 180px; 
-					margin-top: 275px; 
+					margin-top: 280px; 
 					background-image: url('http://letts.com.br/wp-content/uploads/2014/07/1098357_10200930179274639_1691402653_n.jpg'); 
 					background-size: 180px; 
 					background-position:center; ">

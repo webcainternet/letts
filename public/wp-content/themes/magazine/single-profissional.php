@@ -21,38 +21,31 @@ global $themify; ?>
 
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
-	<div>
+	<div style="border-top: 5px #ff8920 solid; 
+				background-size: 1064px; 
+				background-position:center; ">
 
 		<div style="float: left;
-					margin-left: 30px; 
+					margin-left: 5px; 
 					border: 2px #ff8920 solid; 
-					width: 180px; 
-					height: 180px; 
+					width: 80px; 
+					height: 80px; 
+					margin-top: 5px; 
 					background-image: url('http://letts.com.br/wp-content/uploads/2014/07/1098357_10200930179274639_1691402653_n.jpg'); 
-					background-size: 180px; 
+					background-size: 80px; 
 					background-position:center; ">
 			&nbsp;
 		</div>
 
-		<div style="float: right;
-					margin-left: 25px;
-					margin-right: -25px;
-					width: 180px;
-					margin-top: 373px;
-					color: #FFFFFF;
-					background-size: 180px;
-					background-position: center;">
-			Skatista profissional
-		</div>
 	</div>
 	<div style="border-top: 0px #ff8920 solid; 
-				background-color: #DCDCDC; 
+				background-color: #ECECEC; 
 				background-size: 1064px; 
 				background-position:center; 
-				height: 90px;">
+				height: 94px;">
 
 		<div style="float: right; 
-					margin-top: 65px;
+					margin-top: 69px;
 					border-bottom: 2px #ff8920 solid;
 					text-align: center;
 					padding-left: 2px;
@@ -65,7 +58,7 @@ global $themify; ?>
 		</div>
 
 		<div style="float: right; 
-					margin-top: 65px;
+					margin-top: 69px;
 					border-bottom: 2px #ff8920 solid;
 					text-align: center;
 					padding-left: 2px;
@@ -78,7 +71,7 @@ global $themify; ?>
 		</div>
 
 		<div style="float: right; 
-					margin-top: 65px;
+					margin-top: 69px;
 					border-bottom: 2px #ff8920 solid;
 					text-align: center;
 					padding-left: 2px;
@@ -91,7 +84,7 @@ global $themify; ?>
 		</div>
 
 		<div style="float: right; 
-					margin-top: 65px;
+					margin-top: 69px;
 					border-bottom: 2px #ff8920 solid;
 					text-align: center;
 					padding-left: 2px;
