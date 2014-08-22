@@ -20,7 +20,7 @@ global $themify; ?>
 
 		<?php themify_content_before(); // hook ?>
 		<!-- content -->
-		<div id="content" class="clearfix">
+		<div id="content" class="clearfix" style="margin-top: 10px;">
 			<?php themify_content_start(); // hook ?>
 
 			<?php
