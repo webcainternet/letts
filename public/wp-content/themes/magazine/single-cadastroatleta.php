@@ -43,10 +43,10 @@ global $themify; ?>
 				<?php comments_template(); ?>
 			<?php endif; */ ?>
 
-			<?php themify_content_end(); // hook ?>
+			<?php /* themify_content_end(); // hook ?>
 		</div>
 		<!-- /content -->
-		<?php themify_content_after(); // hook ?>
+		<?php themify_content_after(); // hook */ ?>
 
 	<?php endwhile; ?>
 
@@ -57,7 +57,7 @@ global $themify; ?>
 	/////////////////////////////////////////////
 	// Sidebar
 	/////////////////////////////////////////////
-	if ($themify->layout != "sidebar-none"): get_sidebar(); endif; ?>
+	// if ($themify->layout != "sidebar-none"): get_sidebar(); endif; ?>
 
 </div>
 <!-- /layout-container -->
