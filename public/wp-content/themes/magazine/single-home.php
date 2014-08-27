@@ -49,7 +49,7 @@ global $themify; ?>
 
 			<div style="float: left; width: 674px; padding-top: 10px;">
 			<h1 class="post-title entry-title" itemprop="name"><a href="#" title="Lançamento do website">Notícias</a></h1>
-				<div class="related-posts" style="float: left; width: 674px;">
+				<div class="related-posts" style="float: left; width: 674px; margin-bottom: 10px;">
 					<img src="http://letts.com.br/wp-content/uploads/2014/08/jay-adams-um-dos-originais-z-boys-em-1978-1381539953889_615x300.jpg" width="674" style="width: 674px; border-radius: 5px;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
