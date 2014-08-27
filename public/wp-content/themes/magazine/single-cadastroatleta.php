@@ -65,6 +65,7 @@ global $themify; ?>
 			<?php themify_after_post_image(); // Hook ?>
 
 	<?php endif; // hide image */?>
+</div>
 
 	<div class="post-content">
 
