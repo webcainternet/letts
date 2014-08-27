@@ -49,15 +49,15 @@ global $themify; ?>
 
 			<div style="float: left; width: 674px; padding-top: 10px;">
 			<h1 class="post-title entry-title" itemprop="name"><a href="#" title="Lançamento do website">Notícias</a></h1>
-				<div class="related-posts" style="float: left; width: 600px; background-color: red;">
+				<div class="related-posts" style="float: left; width: 674px;">
 					<img src="http://letts.com.br/wp-content/uploads/2014/08/18042014-alemao-usa-ilusao-de-otica-e-cria-fotos-surreais-de-esportes-radicais-1397830703348_300x420.jpg" width="312" style="width: 312px; border-radius: 5px;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
 							<p class="post-meta">
-								<span class="post-category"><a href="#">Alemão usa ilusão de ótica e cria fotos surreais de esportes radicais</a> / </span>
+								<span class="post-category"><a href="#">Morre skatista Jay Adams um dos mais influentes da história</a> / </span>
 							</p>
 							<h1 class="post-title">
-								<a href="#" title="Lançamento do website">Parece, mas não é. A habilidade em criar universos</a>
+								<a href="#" title="Lançamento do website">Jay Adams, skatista mericano considerado um dos mais</a>
 							</h1>
 						</div>
 					</article>
