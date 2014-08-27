@@ -23,7 +23,7 @@ global $themify; ?>
 		<?php themify_content_before(); // hook ?>
 		<!-- content -->
 		<div id="content" class="list-post">
-			<?php /* themify_content_start(); // hook ?>
+			<?php themify_content_start(); // hook ?>
 
 			<?php get_template_part( 'includes/loop' , 'single'); ?>
 
@@ -31,9 +31,9 @@ global $themify; ?>
 
 			<?php get_template_part( 'includes/author-box', 'single'); ?>
 
-			<?php get_template_part( 'includes/after-content-widget' ); */ ?>
+			<?php get_template_part( 'includes/after-content-widget' ); ?>
 			
-			<?php if( 'no' != themify_get('setting-related_posts') ) : ?>
+			<?php /* if( 'no' != themify_get('setting-related_posts') ) : ?>
 				<?php get_template_part( 'includes/related-posts'); ?>
 			<?php endif; ?>
 
@@ -41,7 +41,7 @@ global $themify; ?>
 
 			<?php if( ! themify_check( 'setting-comments_posts' ) ): ?>
 				<?php comments_template(); ?>
-			<?php endif; ?>
+			<?php endif; */ ?>
 
 			<?php themify_content_end(); // hook ?>
 		</div>
