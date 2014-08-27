@@ -23,7 +23,7 @@ global $themify; ?>
 		<?php themify_content_before(); // hook ?>
 		<!-- content -->
 		<div id="content" class="list-post">
-			<?php // themify_content_start(); // hook ?>
+			<?php /* // themify_content_start(); // hook ?>
 
 			
 <?php if(!is_single()){ global $more; $more = 0; } //enable more link ?>
@@ -33,7 +33,7 @@ global $themify; ?>
 
 <article itemscope itemtype="http://schema.org/Article" id="post-<?php the_ID(); ?>" <?php post_class("post clearfix " . $themify->get_categories_as_classes(get_the_ID())); ?>>
 	
-	<?php /* themify_post_start(); // hook ?>
+	<?php themify_post_start(); // hook ?>
 	
 	<?php if ( $themify->hide_image != 'yes' ) : ?>
 
@@ -68,7 +68,9 @@ global $themify; ?>
 
 	<div class="post-content">
 
-		<?php if( $themify->hide_meta != 'yes' ): ?>
+	<?php the_content(themify_check('setting-default_more_text')? themify_get('setting-default_more_text') : __('More &rarr;', 'themify')); ?>
+
+		<?php /* if( $themify->hide_meta != 'yes' ): ?>
 			<p class="post-meta entry-meta">
 				<?php if($themify->hide_meta_category != 'yes'): ?>
 					<span class="post-category"><?php the_category('/ ') ?></span>
@@ -146,7 +148,7 @@ global $themify; ?>
 </article>
 <!-- /.post -->
 
-<?php themify_post_after(); // hook ?>
+<?php themify_post_after(); // hook */ ?>
 
 
 			<?php // wp_link_pages(array('before' => '<p><strong>' . __('Pages:', 'themify') . ' </strong>', 'after' => '</p>', 'next_or_number' => 'number')); ?>
