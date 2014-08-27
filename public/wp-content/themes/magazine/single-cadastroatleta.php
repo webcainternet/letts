@@ -33,7 +33,7 @@ global $themify; ?>
 
 <article itemscope itemtype="http://schema.org/Article" id="post-<?php the_ID(); ?>" <?php post_class("post clearfix " . $themify->get_categories_as_classes(get_the_ID())); ?>>
 	
-	<?php themify_post_start(); // hook ?>
+	<?php /* themify_post_start(); // hook ?>
 	
 	<?php if ( $themify->hide_image != 'yes' ) : ?>
 
@@ -64,7 +64,7 @@ global $themify; ?>
 
 			<?php themify_after_post_image(); // Hook ?>
 
-	<?php endif; // hide image ?>
+	<?php endif; // hide image */?>
 
 	<div class="post-content">
 
