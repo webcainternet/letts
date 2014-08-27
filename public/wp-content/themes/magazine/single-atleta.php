@@ -22,7 +22,7 @@ global $themify; ?>
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
 	<div style="border-top: 5px #ff8920 solid; 
-				background-image: url('http://letts.com.br/wp-content/uploads/2014/07/10518313_10203231840894741_1752361656284860759_o.jpg'); 
+				background-image: url('<?php print_custom_field('atletaimagembackground'); ?>'); 
 				background-size: 1064px; 
 				background-position:center; 
 				height: 400px;">
