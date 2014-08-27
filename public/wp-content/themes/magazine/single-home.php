@@ -51,28 +51,28 @@ global $themify; ?>
 			<h1 class="post-title entry-title" itemprop="name"><a href="#" title="Lançamento do website">Notícias</a></h1>
 
 				<div class="related-posts" style="float: left; width: 312px;">
-					<img src="http://waves.terra.com.br/img/286395_205x150.jpg" width="312" style="width: 312px; border-radius: 5px;">
+					<img src="http://letts.com.br/wp-content/uploads/2014/08/18042014-alemao-usa-ilusao-de-otica-e-cria-fotos-surreais-de-esportes-radicais-1397830703348_300x420.jpg" width="312" style="width: 312px; border-radius: 5px;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
 							<p class="post-meta">
-								<span class="post-category"><a href="#">Lançamento do website</a> / </span>
+								<span class="post-category"><a href="#">Alemão usa ilusão de ótica e cria fotos surreais de esportes radicais</a> / </span>
 							</p>
 							<h1 class="post-title">
-								<a href="#" title="Lançamento do website">Lorem Ipsum é simplesmente uma simulação de texto</a>
+								<a href="#" title="Lançamento do website">Parece, mas não é. A habilidade em criar universos</a>
 							</h1>
 						</div>
 					</article>
 				</div>
 
 				<div class="related-posts" style="float: left; width: 312px; margin-left: 50px;">
-					<img src="http://waves.terra.com.br/img/286417_205x150.jpg" width="312" style="width: 312px; border-radius: 5px;">
+					<img src="http://letts.com.br/wp-content/uploads/2014/08/kelly-slater-headsapce-900x521.jpg" width="312" style="width: 312px; border-radius: 5px;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
 							<p class="post-meta">
-								<span class="post-category"><a href="#">Novas funcionalidades no site</a> / </span>
+								<span class="post-category"><a href="#">Kelly Slater sai da Quiksilver depois de 23 anos e cria sua propria marca</a> / </span>
 							</p>
 							<h1 class="post-title">
-								<a href="#" title="Lançamento do website">É um fato conhecido de todos que um leitor se</a>
+								<a href="#" title="Lançamento do website">De acordo com uma notícia publicada recentemente pelo</a>
 							</h1>
 						</div>
 					</article>
