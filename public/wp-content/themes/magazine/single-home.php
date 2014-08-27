@@ -50,7 +50,7 @@ global $themify; ?>
 			<div style="float: left; width: 674px; padding-top: 10px;">
 			<h1 class="post-title entry-title" itemprop="name"><a href="#" title="Lançamento do website">Notícias</a></h1>
 				<div class="related-posts" style="float: left; width: 674px;">
-					<img src="http://letts.com.br/wp-content/uploads/2014/08/18042014-alemao-usa-ilusao-de-otica-e-cria-fotos-surreais-de-esportes-radicais-1397830703348_300x420.jpg" width="312" style="width: 312px; border-radius: 5px;">
+					<img src="http://letts.com.br/wp-content/uploads/2014/08/jay-adams-um-dos-originais-z-boys-em-1978-1381539953889_615x300.jpg" width="674" style="width: 674px; border-radius: 5px;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
 							<p class="post-meta">
