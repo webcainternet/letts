@@ -28,7 +28,6 @@ global $themify; ?>
 			
 <?php if(!is_single()){ global $more; $more = 0; } //enable more link ?>
 
-<?php 
 
 <?php themify_post_before(); // hook ?>
 
