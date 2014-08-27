@@ -33,7 +33,7 @@ global $themify; ?>
 					width: 180px; 
 					height: 180px; 
 					margin-top: 280px; 
-					background-image: url('http://letts.com.br/wp-content/uploads/2014/07/1098357_10200930179274639_1691402653_n.jpg'); 
+					background-image: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>'); 
 					background-size: 180px; 
 					background-position:center; ">
 			&nbsp;
