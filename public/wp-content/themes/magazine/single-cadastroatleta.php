@@ -23,11 +23,11 @@ global $themify; ?>
 		<?php themify_content_before(); // hook ?>
 		<!-- content -->
 		<div id="content" class="list-post">
-			<?php themify_content_start(); // hook ?>
+			<?php // themify_content_start(); // hook ?>
 
 			<?php get_template_part( 'includes/loop' , 'single'); ?>
 
-			<?php wp_link_pages(array('before' => '<p><strong>' . __('Pages:', 'themify') . ' </strong>', 'after' => '</p>', 'next_or_number' => 'number')); ?>
+			<?php // wp_link_pages(array('before' => '<p><strong>' . __('Pages:', 'themify') . ' </strong>', 'after' => '</p>', 'next_or_number' => 'number')); ?>
 
 			<?php /* get_template_part( 'includes/author-box', 'single'); ?>
 
