@@ -31,7 +31,7 @@ global $themify; ?>
 					width: 80px; 
 					height: 80px; 
 					margin-top: 5px; 
-					background-image: url('http://letts.com.br/wp-content/uploads/2014/07/1098357_10200930179274639_1691402653_n.jpg'); 
+					background-image: url('http://lettsglobal.com/wp-content/uploads/2014/07/1098357_10200930179274639_1691402653_n.jpg'); 
 					background-size: 80px; 
 					background-position:center; ">
 			&nbsp;

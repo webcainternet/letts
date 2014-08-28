@@ -13,10 +13,10 @@
 		alert('Area não liberada!');
 	}
 	function goatleta() {
-		window.location = "http://letts.com.br/nenhum-atleta-cadastrado/";
+		window.location = "http://lettsglobal.com/nenhum-atleta-cadastrado/";
 	}
 	function goprofissional() {
-		window.location = "http://letts.com.br/nenhum-profissional-cadastrado/";
+		window.location = "http://lettsglobal.com/nenhum-profissional-cadastrado/";
 	}	
 </script>
 
@@ -50,7 +50,7 @@ global $themify; ?>
 			<div style="float: left; width: 674px; padding-top: 10px;">
 			<h1 class="post-title entry-title" itemprop="name"><a href="#" title="Lançamento do website">Notícias</a></h1>
 				<div class="related-posts" style="float: left; width: 674px; margin-bottom: 30px;">
-					<img src="http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg" width="674" style="width: 674px; border-radius: 5px;">
+					<img src="http://lettsglobal.com/wp-content/uploads/2014/08/JayAdams1.jpg" width="674" style="width: 674px; border-radius: 5px;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
 							<p class="post-meta">
@@ -64,7 +64,7 @@ global $themify; ?>
 				</div>
 
 				<div class="related-posts" style="float: left; width: 312px;">
-					<img src="http://letts.com.br/wp-content/uploads/2014/08/18042014-alemao-usa-ilusao-de-otica-e-cria-fotos-surreais-de-esportes-radicais-1397830703348_300x420.jpg" width="312" style="width: 312px; border-radius: 5px;">
+					<img src="http://lettsglobal.com/wp-content/uploads/2014/08/18042014-alemao-usa-ilusao-de-otica-e-cria-fotos-surreais-de-esportes-radicais-1397830703348_300x420.jpg" width="312" style="width: 312px; border-radius: 5px;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
 							<p class="post-meta">
@@ -78,7 +78,7 @@ global $themify; ?>
 				</div>
 
 				<div class="related-posts" style="float: left; width: 312px; margin-left: 50px;">
-					<img src="http://letts.com.br/wp-content/uploads/2014/08/kelly-slater-headsapce-900x521.jpg" width="312" style="width: 312px; border-radius: 5px;">
+					<img src="http://lettsglobal.com/wp-content/uploads/2014/08/kelly-slater-headsapce-900x521.jpg" width="312" style="width: 312px; border-radius: 5px;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
 							<p class="post-meta">
@@ -97,7 +97,7 @@ global $themify; ?>
 					<h4 class="related-title" style="border: 0px;margin-left: 25px;margin-top: 10px;">Acesso</h4>
 
 					<div style="text-align: center; margin-top: 10px;">
-						<a href="#" onclick="nowblock()"><img src="http://letts.com.br/wp-content/uploads/2014/08/facebook-login-button.png"></a>
+						<a href="#" onclick="nowblock()"><img src="http://lettsglobal.com/wp-content/uploads/2014/08/facebook-login-button.png"></a>
 					</div>
 					<br />
 					<article class="post type-post clearfix">
@@ -274,27 +274,27 @@ global $themify; ?>
 						<div class="post-content">
 							
 							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/ripcurl-logo-1.png">
+								<img class="wcsimglogos" src="http://lettsglobal.com/wp-content/uploads/2014/08/ripcurl-logo-1.png">
 							</div>
 
 							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/nike-logo-sfo6hqef.jpg">
+								<img class="wcsimglogos" src="http://lettsglobal.com/wp-content/uploads/2014/08/nike-logo-sfo6hqef.jpg">
 							</div>
 
 							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/adidas-logo.jpg">
+								<img class="wcsimglogos" src="http://lettsglobal.com/wp-content/uploads/2014/08/adidas-logo.jpg">
 							</div>
 
 							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/ripcurl-logo-1.png">
+								<img class="wcsimglogos" src="http://lettsglobal.com/wp-content/uploads/2014/08/ripcurl-logo-1.png">
 							</div>
 
 							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/adidas-logo.jpg">
+								<img class="wcsimglogos" src="http://lettsglobal.com/wp-content/uploads/2014/08/adidas-logo.jpg">
 							</div>
 
 							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/ripcurl-logo-1.png">
+								<img class="wcsimglogos" src="http://lettsglobal.com/wp-content/uploads/2014/08/ripcurl-logo-1.png">
 							</div>
 
 
