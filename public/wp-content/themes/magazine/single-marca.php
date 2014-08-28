@@ -24,7 +24,7 @@ global $themify; ?>
 
 	
 		
-	<img src="http://lettsglobal.com/wp-content/uploads/2014/07/nike-ronalod-orange-mercurial-vapor-c_1600x1200_83114.jpg" width="100%">
+	<img src="http://letts.com.br/wp-content/uploads/2014/07/nike-ronalod-orange-mercurial-vapor-c_1600x1200_83114.jpg" width="100%">
 
 <div style="float: left;
 				margin: 15px;
@@ -48,7 +48,7 @@ global $themify; ?>
 <br />
 
 <div style="text-align: center; width: 100%;">
-	<img src="http://lettsglobal.com/wp-content/uploads/2014/07/demo001.png">
+	<img src="http://letts.com.br/wp-content/uploads/2014/07/demo001.png">
 </div>
 <br />
 
