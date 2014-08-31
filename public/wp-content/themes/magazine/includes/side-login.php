@@ -1,6 +1,6 @@
 <div style="float: right; width: 340px; margin-left: 50px; background-color: #FAFAFA;">
 					<div class="related-posts">
-						<h4 class="related-title" style="border: 0px;margin-left: 25px;margin-top: 10px;">Acesso</h4>
+						<h4 class="related-title" style="border: 0px;margin-left: 25px;margin-top: 10px;">Minha conta</h4>
 
 						<div style="text-align: center; margin-top: 10px;">
 							<a href="#" onclick="nowblock()"><img src="http://letts.com.br/wp-content/uploads/2014/08/facebook-login-button.png"></a>
