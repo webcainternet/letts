@@ -105,3 +105,62 @@
 	<div id="body" class="clearfix">
 
     <?php themify_layout_before(); //hook ?>
+
+
+    
+<script type="text/javascript">
+	function nowblock() {
+		alert('Area não liberada!');
+	}
+	function goatleta() {
+		window.location = "http://letts.com.br/nenhum-atleta-cadastrado/";
+	}
+	function goprofissional() {
+		window.location = "http://letts.com.br/nenhum-profissional-cadastrado/";
+	}	
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#criar").click(function(){
+    $("#divLogin").fadeOut(1000);
+
+    $("#divNovo").delay(1000).fadeIn(1000);
+  });
+});
+</script>
+
+<style type="text/css">
+	.wcalogos {
+		width: 15%;
+		float: left;
+		margin: 5px;
+		text-align: center;
+	}
+	.wcsimglogos {
+		width: 125px;
+		text-align: center;
+	}
+	.novoperf {
+		border: solid 3px #C0C0C0;
+		border-radius: 5px;
+	}
+
+	.novoperf:hover {
+		border: solid 3px #ff8920;
+		border-radius: 5px;
+	}
+
+	.imgnoticias {
+		border: solid 3px #FFFFFF;
+		border-radius: 5px;
+	}
+
+	.imgnoticias:hover {
+		border: solid 3px #ff8920;
+		border-radius: 5px;
+	}
+
+
+</style>
