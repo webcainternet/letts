@@ -1125,13 +1125,13 @@ class Themify_Social_Links extends WP_Widget {
 		///////////////////////////////////////////
 		function Themify_Twitter() {
 			/* Widget settings. */
-			$widget_ops = array( 'classname' => 'twitter', 'description' => __('A list of latest tweets', 'themify') );
+			$widget_ops = array( 'classname' => 'twitter', 'description' => __('A list of latest tweets', 'letts') );
 	
 			/* Widget control settings. */
 			$control_ops = array( 'id_base' => 'themify-twitter' );
 	
 			/* Create the widget. */
-			$this->WP_Widget( 'themify-twitter', __('Themify - Twitter', 'themify'), $widget_ops, $control_ops );
+			$this->WP_Widget( 'themify-twitter', __('Themify - Twitter', 'letts'), $widget_ops, $control_ops );
 		}
 		
 		///////////////////////////////////////////
@@ -1203,12 +1203,12 @@ class Themify_Social_Links extends WP_Widget {
 	
 			/* Set up some default widget settings. */
 			$defaults = array(
-				'title' => __('Latest Tweets', 'themify'),
+				'title' => __('Últimos Tweets', 'letts'),
 				'username' => '',
 				'show_count' => 5,
 				'hide_timestamp' => false,
 				'show_follow' => true,
-				'follow_text' => __('&rarr; Follow me', 'themify'),
+				'follow_text' => __('&rarr; Follow me', 'letts'),
 				'include_retweets' => false,
 				'exclude_replies' => true
 			);

@@ -23,7 +23,7 @@ global $themify; ?>
 		<div id="content" class="list-post">
 
 			<div style="float: left; width: 674px; padding-top: 10px;">
-			<h1 class="post-title entry-title" itemprop="name"><a href="#">Profissional</a></h1>
+			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">Profissional</h1>
 				<div class="related-posts" style="float: left; width: 674px; margin-bottom: 30px;">
 
 					<article class="post type-post clearfix">

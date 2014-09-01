@@ -18,15 +18,15 @@ update_option( "widget_text", $widgets );
 $widgets = get_option( "widget_text" );
 $widgets[1004] = array (
   'title' => 'Facebook',
-  'text' => '<iframe style="border: none; overflow: hidden; width: 310px; height: 320px;" src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fthemify&amp;width=310&amp;height=320&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=true&amp;appId=319378544859599" height="320" width="310" frameborder="0" scrolling="no"></iframe>',
+  'text' => '<iframe style="border: none; overflow: hidden; width: 310px; height: 320px;" src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fletts.global&amp;width=310&amp;height=320&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=true&amp;appId=319378544859599" height="320" width="310" frameborder="0" scrolling="no"></iframe>',
   'filter' => false,
 );
 update_option( "widget_text", $widgets );
 
 $widgets = get_option( "widget_themify-twitter" );
 $widgets[1005] = array (
-  'title' => 'Latest Tweets',
-  'username' => 'themify',
+  'title' => 'Últimos Tweets',
+  'username' => 'lettsglobal',
   'show_count' => '3',
   'hide_timestamp' => NULL,
   'show_follow' => NULL,
