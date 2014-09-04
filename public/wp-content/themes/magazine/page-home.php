@@ -123,7 +123,8 @@ global $themify; ?>
 				<?php include("includes/side-novoperfil.php"); ?>
 			</div>
 
-			<div style="float: left; width: 674px; margin-top: 10px;">
+			<!-- encontrar -->
+			<div style="float: left; width: 674px; margin-top: 10px; display: none;">
 				<div class="related-posts">
 					<h4 class="related-title" style="margin-bottom: 15px;">Encontrar</h4>
 					<div class="related-posts" style="float: left; width: 312px;">
@@ -133,7 +134,7 @@ global $themify; ?>
 									<span class="post-category"><a href="#">Atletas</a> / </span>
 								</p>
 								<h1 class="post-title">
-									<select style="font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100;" onchange="goatleta()">
+									<select class="selectitens" style="width: 240px;">
 										<option>-- Selecione o Atleta --</option>
 										<option>Aeromodelismo</option>
 										<option>Alpinismo</option>
@@ -219,7 +220,7 @@ global $themify; ?>
 									<span class="post-category"><a href="#">Profissionais</a> / </span>
 								</p>
 								<h1 class="post-title">
-									<select style="font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100;" onchange="goprofissional()">
+									<select class="selectitens" style="width: 240px;">
 										<option>-- Selecione o Profissional --</option>
 										<option>Assessor de imprensa</option>
 										<option>Coordenador de eventos</option>
@@ -250,6 +251,92 @@ global $themify; ?>
 				</div>
 			</div>
 
+		</div>
+
+
+		<div style="float: left; width: 100%; margin-top: 10px;">
+			<div class="related-posts">
+				<h4 class="related-title" style="margin-bottom: 15px; border: 0px;">Últimos atletas cadastrados</h4>
+				<div class="related-posts" style="float: left; width: 100%;">
+					<article class="post type-post clearfix">
+						<div class="post-content">
+							
+															
+<section class="module">
+  <section class="wraper">    
+
+
+<?php
+mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
+    die("Could not connect: " . mysql_error());
+mysql_select_db(DB_NAME);
+
+$result = mysql_query("select id, post_title from wp_posts where post_type = 'atleta' AND post_status = 'publish' limit 10");
+
+while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+	$nome = $row["post_title"];
+	$idatleta = $row["id"];
+
+	$resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key = 'atletaesporte' AND post_id = ".$row["id"]);
+    while ($rowesporte = mysql_fetch_array($resultesporte, MYSQL_ASSOC)) {
+    	$esporte = $rowesporte["meta_value"];
+    }
+
+    $resultbasicacidadeatual = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicacidadeatual' AND post_id = ".$row["id"]);
+    while ($rowbasicacidadeatual = mysql_fetch_array($resultbasicacidadeatual, MYSQL_ASSOC)) {
+    	$basicacidadeatual = $rowbasicacidadeatual["meta_value"];
+    }
+
+    $resultbasicaimagem = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicaimagem' AND post_id = ".$row["id"]);
+    while ($rowbasicaimagem = mysql_fetch_array($resultbasicaimagem, MYSQL_ASSOC)) {
+    	$basicaimagem = $rowbasicaimagem["meta_value"];
+    }
+	$resultbasicaimagemurl = mysql_query("select meta_value from wp_postmeta where meta_key = '_wp_attached_file' AND post_id = ".$basicaimagem);
+    while ($rowbasicaimagemurl = mysql_fetch_array($resultbasicaimagemurl, MYSQL_ASSOC)) {
+    	$basicaimagemurl = $rowbasicaimagemurl["meta_value"];
+    }
+
+
+    ?>
+    <figure class='small'>
+      <a href="/?p=<?php echo $idatleta; ?>">
+      	<div style="width: 250px; 
+      	height: 200px; 
+      	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
+      	background-position: center;
+      	background-size: 300px;
+      	">
+      		&nbsp;
+      	</div>
+        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
+      </a>
+      <figcaption class="transition-050 opacity85">
+        <a href="/?p=<?php echo $idatleta; ?>">
+          <strong class="text transition-050 title"><?php echo utf8_encode($nome); ?></strong>
+          <span class="text transition-050 desc"><?php echo utf8_encode($esporte); ?><br><b>Mora em: </b><?php echo utf8_encode($basicacidadeatual); ?></span>
+        </a>
+      </figcaption>
+    </figure>
+    <?php
+}
+
+mysql_free_result($result);
+?>
+
+
+
+  </section>
+</section>
+
+
+
+						</div>
+					</article>
+				</div>
+			</div>
+			<p class="post-meta" style="text-align: right;">
+				<span class="post-category"><a href="http://letts.com.br/buscar-atleta/">Ver mais atletas</a> / </span>
+			</p>
 		</div>
 
 

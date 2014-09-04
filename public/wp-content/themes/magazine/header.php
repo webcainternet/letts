@@ -163,4 +163,103 @@ $(document).ready(function(){
 	}
 
 
+	.selectitens {
+		border: 1px solid;
+		height: 32px;
+		width: 170px;
+		font-size: 100%;
+		font-family: "Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif;
+		line-height: 142%;
+		background-color: rgb(248, 248, 248);
+		border: 1px solid rgb(166, 166, 166);
+		border-image-source: initial;
+		border-image-slice: initial;
+		border-image-width: initial;
+		border-image-outset: initial;
+		border-image-repeat: initial;
+		-webkit-appearance: menulist;
+		box-sizing: border-box;
+		align-items: center;
+		border: 1px solid;
+		border-image-source: initial;
+		border-image-slice: initial;
+		border-image-width: initial;
+		border-image-outset: initial;
+		border-image-repeat: initial;
+		white-space: pre;
+		-webkit-rtl-ordering: logical;
+		color: #666;
+		background-color: white;
+		cursor: default;
+		border-radius: 5px;
+	}
+	.textinput {
+		width: 250px;
+		height: 14px;
+		background-color: #FFFFFF;
+		border: solid 1px;
+		border-radius: 5px;
+	}
+
+</style>
+
+<style type="text/css">
+	/* Transitions */
+	.transition-050 {
+	  -moz-transition: 0.50s;
+	  -webkit-transition: 0.50s;
+	  -ms-transition: 0.50s;
+	  -o-transition: 0.50s;
+	  transition: 0.50s;
+	}
+	.opacity85{ 
+	  opacity: 0.85; 
+	  filter: alpha(opacity=85); 
+	}
+	.module { max-width: 100%; margin:auto; }
+	.module figure {
+	  position: relative;
+	  overflow: hidden;
+	  border:1px solid #fff;
+	  -moz-box-sizing: border-box;
+	  -webkit-box-sizing: border-box;
+	  box-sizing: border-box;
+	}
+	.module .small {
+	  float: left;
+	  width: 20%;
+	}
+	.module figure img {
+	  display: block;
+	  max-width: 100%;
+	}
+	.module figcaption {
+	  position: absolute;
+	  bottom: 0px;
+	  width: 100%;
+	  max-height: 27px;
+	}
+	.module .text {
+	  color: #7A8B8B;
+	  background-color: #fff;
+	  font-size:0.90em;
+	}
+	.module figure:hover figcaption { max-height: 100%;}
+	.module figure:hover figcaption .text {
+	  background-color: #7A8B8B;
+	  color:#fff;
+	}
+	.module figcaption a { display: block; text-decoration:none; }
+	.module .title {
+	  display: inline-block;
+	  padding: 5px;
+	  text-transform:uppercase;  
+	}
+	.module .desc {
+	  display: block;
+	  padding: 15px;
+	}
+	.bgcolor {
+	  background-color: #fff;
+	}
 </style>
