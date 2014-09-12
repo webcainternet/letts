@@ -8,133 +8,134 @@
 
 <?php get_header(); ?>
 
-
-
 <?php 
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
 
+
+<div style="width: 100%; background-image: url('http://letts.com.br/wp-content/uploads/2014/09/abstract_wallpaper_for_mac_by_pimpyourscreen-d6nnlut.jpg');
+			background-position: center; height: 450px;">
+	<div id="layout" class="pagewidth clearfix">
+		<div style="width: 790px; float: left;">
+			<iframe src="//player.vimeo.com/video/79834337?badge=0" width="790" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<!-- <p><a href="http://vimeo.com/79834337">Drive Home</a> from <a href="http://vimeo.com/owlhousestudios">Owl House Studios</a> on <a href="https://vimeo.com">Vimeo</a>.</p> -->
+		</div>
+
+		<div style="float: right; width: 253px;">
+			<section class="module">
+			  <section class="wraper">    
+			    <figure class="small" style="width: 100%;">
+			      <a href="/?p=2435">
+			      	<div style="width: 250px; 
+			      	height: 200px; 
+			      	background-image: url('http://letts.com.br/wp-content/uploads/2014/07/1098357_10200930179274639_1691402653_n.jpg');
+			      	background-position: center;
+			      	background-size: 300px;
+			      	">
+			      		&nbsp;
+			      	</div>
+			        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
+			      </a>
+			      <figcaption class="transition-050 opacity85">
+			        <a href="/?p=2435">
+			          <strong class="text transition-050 title">Fernando de Figueiredo Mendes</strong>
+			          <span class="text transition-050 desc">Skate - Street<br><b>Mora em: </b>São Caetano do Sul</span>
+			        </a>
+			      </figcaption>
+			    </figure>
+			  </section>
+			</section>
+		</div>
+
+		<div style="float: right; width: 233px; background-color: #fff; padding: 10px;opacity: 0.9; filter: alpha(opacity=90);">
+			<span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;"><a href="#" style="text-decoration: none;">Titulo do video lorem ipsum dolor sia met</a></span>
+		</div>
+	</div>
+</div>
+
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
 
+
+
+
 	<div id="contentwrap" style="width: 100%;padding-top: 0px;">
-
-		<div style="width: 100%; background-color: #FAFAFA; height: 170px;">
-			<div class="related-posts" style="height: 125px;">
-				<h4 class="related-title" style="border: 0px;margin-left: 25px;margin-top: 10px; margin-bottom: 5px;">Filtrar Vídeos:</h4>
-
-				<div class="post-meta" style="display: inline;">
-					<div style="float: left; margin-right: 15px; margin-left: 25px;">
-						<span class="post-category"><a href="#">Esporte</a></span><br>
-						<input id="author" name="author" type="text" value="" size="30" class="required" style="width: 260px; height: 10px;">
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<center>
-			<img src="">
-		</center>
-
-		<div id="content" class="list-post" style="background-color: #FFFFFF;">
-
-
-
-			<div style="float: left; width: 100%; padding-top: 10px;">
-				<div class="related-posts" style="float: left; width: 1064px; margin-bottom: 30px;">
-						<div class="post-content">
-							<p class="post-meta">
-								<span class="post-category"><a href="#">Resultado da busca por: </a></span>
-							</p>
-
-							<style type="text/css">
-							.perf1 {
-								width: 266px;
-								margin-left: 0px;
-								margin-top: 0px;
-								float: left;
-								background-size: 280px;
-								height: 220px; 
-								background-position: center; 
-								background-color: #000;
-								overflow: hidden;								
-							}
-							.img1 {
-								opacity: 1.0;
-							    filter: alpha(opacity=100);
-							}
-							.img1:hover {
-								opacity: 0.2;
-							    filter: alpha(opacity=20);
-							}
-
-							</style>
-
-							<div class="perf1">
-								<img class="img1" src="http://letts.com.br/wp-content/uploads/2014/07/1098357_10200930179274639_1691402653_n.jpg" width="100%">
-							</div>
-							<div class="perf1">
-								<img class="img1" src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/603233_437086716358363_1172955751_n.jpg" width="100%">
-							</div>
-							<div class="perf1">
-								<img class="img1" src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xap1/v/t1.0-9/1378821_505707532859594_1115189630_n.jpg?oh=65d7cce91377d1e236d99e696a6c5dfa&oe=547A793A&__gda__=1415500819_10c96d1c12a83b3556d86f7d0ca4cd86" width="100%">
-							</div>
-							<div class="perf1">
-								<img class="img1" src="http://letts.com.br/wp-content/uploads/2014/07/1098357_10200930179274639_1691402653_n.jpg" width="100%">
-							</div>
-							<div class="perf1">
-								<img class="img1" src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/603233_437086716358363_1172955751_n.jpg" width="100%">
-							</div>
-							<div class="perf1">
-								<img class="img1" src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xap1/v/t1.0-9/1378821_505707532859594_1115189630_n.jpg?oh=65d7cce91377d1e236d99e696a6c5dfa&oe=547A793A&__gda__=1415500819_10c96d1c12a83b3556d86f7d0ca4cd86" width="100%">
-							</div>
-							<div class="perf1">
-								<img class="img1" src="http://letts.com.br/wp-content/uploads/2014/07/1098357_10200930179274639_1691402653_n.jpg" width="100%">
-							</div>
-							<div class="perf1">
-								<img class="img1" src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/603233_437086716358363_1172955751_n.jpg" width="100%">
-							</div>
-							<div class="perf1">
-								<img class="img1" src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xap1/v/t1.0-9/1378821_505707532859594_1115189630_n.jpg?oh=65d7cce91377d1e236d99e696a6c5dfa&oe=547A793A&__gda__=1415500819_10c96d1c12a83b3556d86f7d0ca4cd86" width="100%">
-							</div>
-						</div>
-				</div>
-			</div>
-		</div>
-
-
 
 		<div style="float: left; width: 100%; margin-top: 10px;">
 			<div class="related-posts">
-				<h4 class="related-title" style="margin-bottom: 15px; border: 0px;">Marcas</h4>
+				<h4 class="related-title" style="margin-bottom: 15px; border: 0px;">Vídeos do mesmo autor</h4>
 				<div class="related-posts" style="float: left; width: 100%;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
 							
-							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/ripcurl-logo-1.png">
-							</div>
+															
+<section class="module">
+  <section class="wraper">    
 
-							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/nike-logo-sfo6hqef.jpg">
-							</div>
 
-							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/adidas-logo.jpg">
-							</div>
+<?php
+mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
+    die("Could not connect: " . mysql_error());
+mysql_select_db(DB_NAME);
 
-							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/ripcurl-logo-1.png">
-							</div>
+$result = mysql_query("select id, post_title from wp_posts where post_type = 'atleta' AND post_status = 'publish' limit 10");
 
-							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/adidas-logo.jpg">
-							</div>
+while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+	$nome = $row["post_title"];
+	$idatleta = $row["id"];
 
-							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/ripcurl-logo-1.png">
-							</div>
+	$resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key = 'atletaesporte' AND post_id = ".$row["id"]);
+    while ($rowesporte = mysql_fetch_array($resultesporte, MYSQL_ASSOC)) {
+    	$esporte = $rowesporte["meta_value"];
+    }
+
+    $resultbasicacidadeatual = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicacidadeatual' AND post_id = ".$row["id"]);
+    while ($rowbasicacidadeatual = mysql_fetch_array($resultbasicacidadeatual, MYSQL_ASSOC)) {
+    	$basicacidadeatual = $rowbasicacidadeatual["meta_value"];
+    }
+
+    $resultbasicaimagem = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicaimagem' AND post_id = ".$row["id"]);
+    while ($rowbasicaimagem = mysql_fetch_array($resultbasicaimagem, MYSQL_ASSOC)) {
+    	$basicaimagem = $rowbasicaimagem["meta_value"];
+    }
+	$resultbasicaimagemurl = mysql_query("select meta_value from wp_postmeta where meta_key = '_wp_attached_file' AND post_id = ".$basicaimagem);
+    while ($rowbasicaimagemurl = mysql_fetch_array($resultbasicaimagemurl, MYSQL_ASSOC)) {
+    	$basicaimagemurl = $rowbasicaimagemurl["meta_value"];
+    }
+
+
+    ?>
+    <figure class='small'>
+      <a href="/?p=<?php echo $idatleta; ?>">
+      	<div style="width: 250px; 
+      	height: 200px; 
+      	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
+      	background-position: center;
+      	background-size: 300px;
+      	">
+      		&nbsp;
+      	</div>
+        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
+      </a>
+      <figcaption class="transition-050 opacity85">
+        <a href="/?p=<?php echo $idatleta; ?>">
+          <strong class="text transition-050 title"><?php echo utf8_encode($nome); ?></strong>
+          <span class="text transition-050 desc"><?php echo utf8_encode($esporte); ?><br><b>Mora em: </b><?php echo utf8_encode($basicacidadeatual); ?></span>
+        </a>
+      </figcaption>
+    </figure>
+    <?php
+}
+
+mysql_free_result($result);
+?>
+
+
+
+  </section>
+</section>
+
 
 
 						</div>
@@ -142,9 +143,107 @@ global $themify; ?>
 				</div>
 			</div>
 			<p class="post-meta" style="text-align: right;">
-				<span class="post-category"><a href="#">Ver mais marcas</a> / </span>
+				<span class="post-category"><a href="http://letts.com.br/buscar-atleta/">Ver mais do mesmo autor</a> / </span>
 			</p>
 		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div style="float: left; width: 100%; margin-top: 10px;">
+			<div class="related-posts">
+				<h4 class="related-title" style="margin-bottom: 15px; border: 0px;">Mais recentes</h4>
+				<div class="related-posts" style="float: left; width: 100%;">
+					<article class="post type-post clearfix">
+						<div class="post-content">
+							
+															
+<section class="module">
+  <section class="wraper">    
+
+
+<?php
+mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
+    die("Could not connect: " . mysql_error());
+mysql_select_db(DB_NAME);
+
+$result = mysql_query("select id, post_title from wp_posts where post_type = 'atleta' AND post_status = 'publish' limit 10");
+
+while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+	$nome = $row["post_title"];
+	$idatleta = $row["id"];
+
+	$resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key = 'atletaesporte' AND post_id = ".$row["id"]);
+    while ($rowesporte = mysql_fetch_array($resultesporte, MYSQL_ASSOC)) {
+    	$esporte = $rowesporte["meta_value"];
+    }
+
+    $resultbasicacidadeatual = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicacidadeatual' AND post_id = ".$row["id"]);
+    while ($rowbasicacidadeatual = mysql_fetch_array($resultbasicacidadeatual, MYSQL_ASSOC)) {
+    	$basicacidadeatual = $rowbasicacidadeatual["meta_value"];
+    }
+
+    $resultbasicaimagem = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicaimagem' AND post_id = ".$row["id"]);
+    while ($rowbasicaimagem = mysql_fetch_array($resultbasicaimagem, MYSQL_ASSOC)) {
+    	$basicaimagem = $rowbasicaimagem["meta_value"];
+    }
+	$resultbasicaimagemurl = mysql_query("select meta_value from wp_postmeta where meta_key = '_wp_attached_file' AND post_id = ".$basicaimagem);
+    while ($rowbasicaimagemurl = mysql_fetch_array($resultbasicaimagemurl, MYSQL_ASSOC)) {
+    	$basicaimagemurl = $rowbasicaimagemurl["meta_value"];
+    }
+
+
+    ?>
+    <figure class='small'>
+      <a href="/?p=<?php echo $idatleta; ?>">
+      	<div style="width: 250px; 
+      	height: 200px; 
+      	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
+      	background-position: center;
+      	background-size: 300px;
+      	">
+      		&nbsp;
+      	</div>
+        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
+      </a>
+      <figcaption class="transition-050 opacity85">
+        <a href="/?p=<?php echo $idatleta; ?>">
+          <strong class="text transition-050 title"><?php echo utf8_encode($nome); ?></strong>
+          <span class="text transition-050 desc"><?php echo utf8_encode($esporte); ?><br><b>Mora em: </b><?php echo utf8_encode($basicacidadeatual); ?></span>
+        </a>
+      </figcaption>
+    </figure>
+    <?php
+}
+
+mysql_free_result($result);
+?>
+
+
+
+  </section>
+</section>
+
+
+
+						</div>
+					</article>
+				</div>
+			</div>
+			
+		</div>
+
 
 	</div>
 </div>
@@ -154,5 +253,5 @@ global $themify; ?>
 
 </div>
 <!-- /layout-container -->
-
+	
 <?php get_footer(); ?>

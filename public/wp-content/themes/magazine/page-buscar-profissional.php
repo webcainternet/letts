@@ -21,14 +21,14 @@ global $themify; ?>
 
 	<div id="contentwrap" style="width: 100%;padding-top: 0px;">
 
-		<div style="width: 100%; background-color: #FAFAFA; height: 130px;">
+		<div style="width: 100%; background-color: #FFFFFF; height: 130px;">
 			<div class="related-posts" style="height: 125px;">
 				<h4 class="related-title" style="border: 0px;margin-left: 25px;margin-top: 10px; margin-bottom: 5px;">Filtrar Profissional:</h4>
 
 				<div class="post-meta" style="display: inline;">
 					<div style="float: left; margin-right: 15px; margin-left: 25px;">
 						<span class="post-category"><a href="#">Nome</a></span><br>
-						<input id="author" name="author" type="text" value="" size="30" class="required" style="width: 250px; height: 14px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
+						<input id="author" name="author" type="text" value="" size="30" class="required" style="width: 250px; height: 30px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
 					</div>
 
 					<div style="float: left; margin-right: 15px;">
@@ -328,7 +328,9 @@ global $themify; ?>
 		</div>
 
 		
-
+</div>
+</div>
+</div>
 
 			<div style="float: left; width: 100%; padding-top: 10px;">
 				<div class="related-posts" style="float: left; width: 100%; margin-bottom: 30px;">
@@ -338,7 +340,7 @@ global $themify; ?>
 							<div style="">
 								
 <section class="module">
-  <section class="wraper">    
+  <section class="wraper">     
 
 
 <?php
@@ -375,7 +377,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     ?>
     <figure class='small'>
       <a href="/?p=<?php echo $idatleta; ?>">
-      	<div style="width: 250px; 
+      	<div style="width: 100%; 
       	height: 200px; 
       	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
       	background-position: center;
@@ -411,6 +413,8 @@ mysql_free_result($result);
 						</div>
 
 				</div>
+
+<div style="width: 100%; background-color: #FFFFFF; height: 130px;">				
 
 			</div>
 

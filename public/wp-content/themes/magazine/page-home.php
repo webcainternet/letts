@@ -21,22 +21,23 @@ global $themify; ?>
 		<div id="content" class="list-post">
 
 			<div style="float: left; width: 674px; padding-top: 10px;">
-			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;"><a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Morre skatista Jay Adams um dos mais influentes da história</a></h1>
-				<div class="related-posts" style="float: left; width: 674px; margin-bottom: 30px;">
-					
+			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;"><a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"  style="font-weight: bold;">Morre skatista Jay Adams um dos mais influentes da história</a></h1>
+				<div class="related-posts" style="float: left; width: 674px; margin-bottom: 10px;">
+				
+
+					<a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><img class="imgnoticias" src="http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg" width="674" style="width: 674px; border-radius: 5px;"></a>
+
 
 					<article class="post type-post clearfix">
 						<div class="post-content">
 							<p class="post-meta">
-								<span class="post-category"><a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Jay Adams, skatista mericano considerado um dos mais</a> / </span>
+								<span class="post-category"><a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Jay Adams, skatista mericano considerado um dos mais</a></span>
 							</p>
 						</div>
 					</article>
-
-					<a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><img class="imgnoticias" src="http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg" width="674" style="width: 674px; border-radius: 5px;"></a>
 				</div>
 
-				<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">News</h1>
+				<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">News</h1>
 
 				<div style="margin: 0px; padding: 0px;">
 
@@ -47,10 +48,10 @@ global $themify; ?>
 						<article class="post type-post clearfix">
 							<div class="post-content">
 								<p class="post-meta">
-									<span class="post-category"><a href="#">Alemão usa ilusão de ótica e cria fotos surreais de esportes radicais</a> / </span>
+									<span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;"><a href="#">Alemão usa ilusão de ótica e cria fotos surreais de esportes radicais</a></span>
 								</p>
 								<h1 class="post-title">
-									<a href="#" title="Lançamento do website">Parece, mas não é. A habilidade em criar universos</a>
+									<a href="#" title="Lançamento do website">Parece, mas não é. A habilidade em criar universos... <a href="#"><b>[Leia mais]</b></a></a>
 								</h1>
 							</div>
 						</article>
@@ -63,10 +64,10 @@ global $themify; ?>
 						<article class="post type-post clearfix">
 							<div class="post-content">
 								<p class="post-meta">
-									<span class="post-category"><a href="#">Kelly Slater sai da Quiksilver depois de 23 anos e cria sua propria marca</a> / </span>
+									<span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;"><a href="#">Kelly Slater sai da Quiksilver depois de 23 anos e cria sua propria marca</a></span>
 								</p>
 								<h1 class="post-title">
-									<a href="#" title="Lançamento do website">De acordo com uma notícia publicada recentemente pelo</a>
+									<a href="#" title="Lançamento do website">De acordo com uma notícia publicada recentemente pelo... <a href="#"><b>[Leia mais]</b></a></a>
 								</h1>
 							</div>
 						</article>
@@ -81,10 +82,10 @@ global $themify; ?>
 						<article class="post type-post clearfix">
 							<div class="post-content">
 								<p class="post-meta">
-									<span class="post-category"><a href="#">Pista de skate debaixo de uma estação de trem é inaugurada em Londres</a> / </span>
+									<span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;"><a href="#">Pista de skate debaixo de uma estação de trem é inaugurada em Londres</a></span>
 								</p>
 								<h1 class="post-title">
-									<a href="#" title="Lançamento do website">Foi inaugurada, em Londres, a mais nova House of Vans</a>
+									<a href="#" title="Lançamento do website">Foi inaugurada, em Londres, a mais nova House of Vans... <a href="#"><b>[Leia mais]</b></a></a>
 								</h1>
 							</div>
 						</article>
@@ -97,10 +98,10 @@ global $themify; ?>
 						<article class="post type-post clearfix">
 							<div class="post-content">
 								<p class="post-meta">
-									<span class="post-category"><a href="#">Rony Gomes ganha o 1º evento em uma piscina de verdade no Brasil</a> / </span>
+									<span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;"><a href="#">Rony Gomes ganha o 1º evento em uma piscina de verdade no Brasil</a></span>
 								</p>
 								<h1 class="post-title">
-									<a href="#" title="Lançamento do website">Dia 17/08/2014, aconteceu no Clube Jequitibá, em Caçapava</a>
+									<a href="#" title="Lançamento do website">Dia 17/08/2014, aconteceu no Clube Jequitibá, em Caçapava... <a href="#"><b>[Leia mais]</b></a></a>
 								</h1>
 							</div>
 						</article>
@@ -131,7 +132,7 @@ global $themify; ?>
 						<article class="post type-post clearfix">
 							<div class="post-content">
 								<p class="post-meta">
-									<span class="post-category"><a href="#">Atletas</a> / </span>
+									<span class="post-category"><a href="#">Atletas</a></span>
 								</p>
 								<h1 class="post-title">
 									<select class="selectitens" style="width: 240px;">
@@ -217,7 +218,7 @@ global $themify; ?>
 						<article class="post type-post clearfix">
 							<div class="post-content">
 								<p class="post-meta">
-									<span class="post-category"><a href="#">Profissionais</a> / </span>
+									<span class="post-category"><a href="#">Profissionais</a></span>
 								</p>
 								<h1 class="post-title">
 									<select class="selectitens" style="width: 240px;">
@@ -335,7 +336,7 @@ mysql_free_result($result);
 				</div>
 			</div>
 			<p class="post-meta" style="text-align: right;">
-				<span class="post-category"><a href="http://letts.com.br/buscar-atleta/">Ver mais atletas</a> / </span>
+				<span class="post-category"><a href="http://letts.com.br/buscar-atleta/">Ver mais atletas</a></span>
 			</p>
 		</div>
 
@@ -378,7 +379,7 @@ mysql_free_result($result);
 				</div>
 			</div>
 			<p class="post-meta" style="text-align: right;">
-				<span class="post-category"><a href="#">Ver mais marcas</a> / </span>
+				<span class="post-category"><a href="#">Ver mais marcas</a></span>
 			</p>
 		</div>
 

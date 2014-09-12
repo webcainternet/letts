@@ -8,7 +8,7 @@
 									<span class="post-category"><a href="#">Nome</a> / </span>
 								</p>
 								<h1 class="post-title" style="margin-left: 25px;">
-									<input id="author" name="author" type="text" value="" size="30" class="required">
+									<input id="author" name="author" type="text" value="" size="30" class="required" style="height: 30px;">
 								</h1>
 
 

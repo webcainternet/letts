@@ -132,6 +132,18 @@ $(document).ready(function(){
 </script>
 
 <style type="text/css">
+	.titulosmateriahome {
+		font-weight: bold;
+		font-size: 22px;
+		font-family: Oswald, sans-serif;
+	}
+	.btntextarea {
+		height: 200px;
+	}
+	.btntext {
+		width: 250px; height: 14px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;
+	}
+
 	.wcalogos {
 		width: 15%;
 		float: left;

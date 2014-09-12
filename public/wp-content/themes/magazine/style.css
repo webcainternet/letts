@@ -138,13 +138,18 @@ input, textarea, select, input[type=search], button {
 	font-family: inherit;
 }
 textarea, input[type=text], input[type=password], input[type=search], input[type=email], input[type=url] {
-	background: #f2f2f2;
-	border-color: #e5e5e5;
-	border-width: 0 0 2px 0;
+	background-color: #FFFFFF;
+	border: solid 1px;
+	border-radius: 5px;
 	border-style: solid;
-	padding: 8px 10px;
+	height: 30px;
+	font-size: 12px;
 	color: #888;
-	-webkit-appearance: none;
+	/* -webkit-appearance: none; */
+	padding-top: 0px;
+	margin-bottom: 10px;
+	margin-top: 0px;
+  
 }
 input[type=text], input[type=search], input[type=email] {
 	width: 240px;
