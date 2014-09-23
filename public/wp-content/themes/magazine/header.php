@@ -151,7 +151,7 @@ $(document).ready(function(){
 		text-align: center;
 	}
 	.wcsimglogos {
-		width: 125px;
+		width: 145px;
 		text-align: center;
 	}
 	.novoperf {
@@ -252,13 +252,13 @@ $(document).ready(function(){
 	  max-height: 27px;
 	}
 	.module .text {
-	  color: #7A8B8B;
-	  background-color: #fff;
+	  color: #fff;
+	  background-color: #000;
 	  font-size:0.90em;
 	}
 	.module figure:hover figcaption { max-height: 100%;}
 	.module figure:hover figcaption .text {
-	  background-color: #7A8B8B;
+	  background-color: #000;
 	  color:#fff;
 	}
 	.module figcaption a { display: block; text-decoration:none; }

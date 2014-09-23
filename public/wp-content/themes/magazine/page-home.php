@@ -350,25 +350,35 @@ mysql_free_result($result);
 						<div class="post-content">
 							
 							<div class="wcalogos">
+								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/09/letts-logo.png">
+							</div>
+
+							<div class="wcalogos">
 								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/09/logo-1.png">
 							</div>
 
 							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/09/406318_339671396113730_1185490055_n.jpg">
+								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/09/widextravel.png">
 							</div>
 
 							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/09/522360_295536577224313_1304592709_n1.jpg">
+								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/09/wavegreen.png">
 							</div>
 
+							<div class="wcalogos">
+								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/09/vidasobreboards.png">
+							</div>
 
+							<div class="wcalogos">
+								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/09/usetrip.png">
+							</div>
 
 						</div>
 					</article>
 				</div>
 			</div>
 			<p class="post-meta" style="text-align: right;">
-				<span class="post-category"><a href="http://letts.com.br/buscar-marca/">Ver mais marcas</a></span>
+				<span class="post-category"><a href="http://letts.com.br/buscar-marca/m">Ver mais marcas</a></span>
 			</p>
 		</div>
 
