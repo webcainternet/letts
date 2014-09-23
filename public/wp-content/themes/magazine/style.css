@@ -1948,6 +1948,7 @@ FOOTER
 #footer .widgettitle {
 	color: #fff;
 	border-top: 5px #333 solid;
+	text-align: center;
 }
 
 /* footer social widget */

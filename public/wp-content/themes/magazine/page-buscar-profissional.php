@@ -26,14 +26,15 @@ global $themify; ?>
 				<h4 class="related-title" style="border: 0px;margin-left: 25px;margin-top: 10px; margin-bottom: 5px;">Filtrar Profissional:</h4>
 
 				<div class="post-meta" style="display: inline;">
+					<form method="post">
 					<div style="float: left; margin-right: 15px; margin-left: 25px;">
 						<span class="post-category"><a href="#">Nome</a></span><br>
-						<input id="author" name="author" type="text" value="" size="30" class="required" style="width: 250px; height: 30px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
+						<input id="author" name="nome" type="text" value="" size="30" class="required" style="width: 182px; height: 30px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
 					</div>
 
 					<div style="float: left; margin-right: 15px;">
 						<span class="post-category"><a href="#">Profissão</a></span><br>
-						<select  class="selectitens" onchange="goatleta()">
+						<select  class="selectitens" name="profissao">
 										<option>-- Selecione --</option>
 										<option>Assessor de imprensa</option>
 										<option>Coordenador de eventos</option>
@@ -318,12 +319,18 @@ global $themify; ?>
 
 					<div style="float: left; margin-right: 15px;">
 						<span class="post-category"><a href="#">Sexo</a></span><br>
-						<select class="selectitens">
+						<select class="selectitens" name="sexo">
 						<option>-- Selecione --</option>
-						<option value="1">Masculino</option>
-						<option value="2">Feminino</option>
+						<option value="Masculino">Masculino</option>
+						<option value="Feminino">Feminino</option>
 						</select>
 					</div>
+
+					<div style="float: left; margin-right: 15px;">
+						<input type="submit" value="Buscar" style="margin-top: 16px;">
+					</div>
+
+					</form>
 			</div>
 		</div>
 
@@ -351,13 +358,54 @@ mysql_select_db(DB_NAME);
 $result = mysql_query("select id, post_title from wp_posts where post_type = 'profissional' AND post_status = 'publish'");
 
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+	$mostra = "";
 	$nome = $row["post_title"];
 	$idatleta = $row["id"];
 
-	$resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key = 'atletaesporte' AND post_id = ".$row["id"]);
+	//filtro nome
+	if ($_POST["nome"] != "") {
+		$mystring = strtoupper($nome);
+		$findme   = strtoupper($_POST["nome"]);
+		$pos = strpos($mystring, $findme);
+
+		if ($pos === false) {
+			$mostra = " style=\"display: none;\" ";
+		}
+	}
+
+	$resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key = 'profissao' AND post_id = ".$row["id"]);
     while ($rowesporte = mysql_fetch_array($resultesporte, MYSQL_ASSOC)) {
     	$esporte = $rowesporte["meta_value"];
     }
+    //filtro esporte
+	if ($_POST["profissao"] != "-- Selecione --") {
+		if ($_POST["profissao"] != "") {
+			$mystring = strtoupper($esporte);
+			$findme   = strtoupper($_POST["profissao"]);
+			$pos = strpos($mystring, $findme);
+
+			if ($pos === false) {
+				$mostra = " style=\"display: none;\" ";
+			}
+		}
+	}
+
+	$resultbasicapaisnascimento = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicapaisnascimento' AND post_id = ".$row["id"]);
+    while ($rowbasicapaisnascimento = mysql_fetch_array($resultbasicapaisnascimento, MYSQL_ASSOC)) {
+    	$basicapaisnascimento = $rowbasicapaisnascimento["meta_value"];
+    }
+    //filtro pais
+	if ($_POST["pais"] != "-- Selecione --") {
+		if ($_POST["pais"] != "") {
+			$mystring = strtoupper($basicapaisnascimento);
+			$findme   = strtoupper($_POST["pais"]);
+			$pos = strpos($mystring, $findme);
+
+			if ($pos === false) {
+				$mostra = " style=\"display: none;\" ";
+			}
+		}
+	}
 
     $resultbasicacidadeatual = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicacidadeatual' AND post_id = ".$row["id"]);
     while ($rowbasicacidadeatual = mysql_fetch_array($resultbasicacidadeatual, MYSQL_ASSOC)) {
@@ -373,9 +421,26 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     	$basicaimagemurl = $rowbasicaimagemurl["meta_value"];
     }
 
+	$resultbasicagenero = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicagenero' AND post_id = ".$row["id"]);
+    while ($rowbasicagenero = mysql_fetch_array($resultbasicagenero, MYSQL_ASSOC)) {
+    	$basicagenero = $rowbasicagenero["meta_value"];
+    }
+
+    //filtro genero/sexo
+	if ($_POST["sexo"] != "-- Selecione --") {
+		if ($_POST["sexo"] != "") {
+			$mystring = strtoupper($basicagenero);
+			$findme   = strtoupper($_POST["sexo"]);
+			$pos = strpos($mystring, $findme);
+
+			if ($pos === false) {
+				$mostra = " style=\"display: none;\" ";
+			}
+		}
+	}
 
     ?>
-    <figure class='small'>
+    <figure class='small' <?php echo $mostra; ?>>
       <a href="/?p=<?php echo $idatleta; ?>">
       	<div style="width: 100%; 
       	height: 200px; 
@@ -390,7 +455,11 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
       <figcaption class="transition-050 opacity85">
         <a href="/?p=<?php echo $idatleta; ?>">
           <strong class="text transition-050 title"><?php echo utf8_encode($nome); ?></strong>
-          <span class="text transition-050 desc"><?php echo utf8_encode($esporte); ?><br><b>Mora em: </b><?php echo utf8_encode($basicacidadeatual); ?></span>
+          <span class="text transition-050 desc"><?php echo utf8_encode($esporte); ?><br>
+          <?php if ($basicacidadeatual != "") { ?>
+          <b>Mora em: </b><?php echo utf8_encode($basicacidadeatual); ?>
+          <?php } ?>
+          </span>
         </a>
       </figcaption>
     </figure>

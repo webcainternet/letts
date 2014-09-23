@@ -350,28 +350,17 @@ mysql_free_result($result);
 						<div class="post-content">
 							
 							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/ripcurl-logo-1.png">
+								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/09/logo-1.png">
 							</div>
 
 							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/nike-logo-sfo6hqef.jpg">
+								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/09/406318_339671396113730_1185490055_n.jpg">
 							</div>
 
 							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/adidas-logo.jpg">
+								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/09/522360_295536577224313_1304592709_n1.jpg">
 							</div>
 
-							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/ripcurl-logo-1.png">
-							</div>
-
-							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/adidas-logo.jpg">
-							</div>
-
-							<div class="wcalogos">
-								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/08/ripcurl-logo-1.png">
-							</div>
 
 
 						</div>
@@ -379,7 +368,7 @@ mysql_free_result($result);
 				</div>
 			</div>
 			<p class="post-meta" style="text-align: right;">
-				<span class="post-category"><a href="#">Ver mais marcas</a></span>
+				<span class="post-category"><a href="http://letts.com.br/buscar-marca/">Ver mais marcas</a></span>
 			</p>
 		</div>
 

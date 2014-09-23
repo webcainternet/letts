@@ -178,7 +178,7 @@ $(document).ready(function(){
 	.selectitens {
 		border: 1px solid;
 		height: 32px;
-		width: 170px;
+		width: 162px;
 		font-size: 100%;
 		font-family: "Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif;
 		line-height: 142%;
