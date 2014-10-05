@@ -299,7 +299,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
 
     ?>
-    <figure class='small'>
+    <figure class='small' style="border: 0px;">
       <a href="/?p=<?php echo $idatleta; ?>">
       	<div style="width: 250px; 
       	height: 200px; 
@@ -314,7 +314,11 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
       <figcaption class="transition-050 opacity85">
         <a href="/?p=<?php echo $idatleta; ?>">
           <strong class="text transition-050 title"><?php echo utf8_encode($nome); ?></strong>
-          <span class="text transition-050 desc"><?php echo utf8_encode($esporte); ?><br><b>Mora em: </b><?php echo utf8_encode($basicacidadeatual); ?></span>
+          <span class="text transition-050 desc"><?php echo utf8_encode($esporte); ?><br>
+          <?php if ($basicacidadeatual != "") { ?>
+          <b>Mora em: </b><?php echo utf8_encode($basicacidadeatual); ?>
+          <?php } ?>
+          </span>
         </a>
       </figcaption>
     </figure>

@@ -9,7 +9,7 @@
 					</div>
 				</div>
 
-<div style="float: right; width: 340px; margin-left: 50px; background-color: #FAFAFA;">
+<div style="display: none;float: right; width: 340px; margin-left: 50px; background-color: #FAFAFA;">
 					<div class="related-posts">
 						<h4 class="related-title" style="border: 0px;margin-left: 25px; margin-bottom: 10px; margin-top: -20px;">Minha conta</h4>
 

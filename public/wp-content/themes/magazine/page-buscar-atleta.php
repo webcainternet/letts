@@ -489,7 +489,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     }
 
     ?>
-    <figure class='small' <?php echo $mostra; ?>>
+    <figure class='small' <?php echo $mostra; ?> style="border: 0px;">
       <a href="/?p=<?php echo $idatleta; ?>">
       	<div style="width: width: 100%; 
       	height: 200px; 
