@@ -89,24 +89,23 @@
 
 			<a id="menu-icon" href="#sidr"><i class="fa fa-list-ul icon-list-ul"></i></a>
 
-			<div style="float: right; width: 500px;">
-				<div style="float: left; width: 200px;">
-					<div style="font-size: 10px; margin: 0px; padding: 0px; color: #FFF; font-weight: bold;">Email</div>
-					<div style="font-size: 10px; margin: 0px; padding: 0px;"><input type="text" style="margin: 0px; border-radius: 0px;"></div>
-					<div style="font-size: 10px; margin: 0px; padding: 0px; color: #ffca9a;"><input type="checkbox" value="1" checked="1">Manter-me conectado</div>
+			<form action="/wp-content/themes/magazine/login.php" method="post">
+				<div style="float: right; width: 500px;">
+					<div style="float: left; width: 200px;">
+						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #FFF; font-weight: bold;">Email</div>
+						<div style="font-size: 10px; margin: 0px; padding: 0px;"><input name="loginemail" type="text" style="margin: 0px; border-radius: 0px;"></div>
+						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #ffca9a;"><input type="checkbox" value="1" checked="1">Manter-me conectado</div>
+					</div>
+					<div style="float: left; width: 200px;">
+						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #FFF; font-weight: bold;">Senha</div>
+						<div style="font-size: 10px; margin: 0px; padding: 0px;"><input name="loginsenha" type="password" style="width: 240px; max-width: 90%;margin: 0px; border-radius: 0px;"></div>
+						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #ffca9a;">Esqueci minha senha</div>
+					</div>
+					<div style="float: left; width: 50px;">
+						<input type="submit" value="Entrar" style="margin-top: 25px;">
+					</div>
 				</div>
-				<div style="float: left; width: 200px;">
-					<div style="font-size: 10px; margin: 0px; padding: 0px; color: #FFF; font-weight: bold;">Senha</div>
-					<div style="font-size: 10px; margin: 0px; padding: 0px;"><input type="text" style="margin: 0px; border-radius: 0px;"></div>
-					<div style="font-size: 10px; margin: 0px; padding: 0px; color: #ffca9a;">Esqueci minha senha</div>
-				</div>
-				<div style="float: left; width: 50px;">
-					<input type="submit" value="Entrar" style="margin-top: 25px;">
-				</div>
-
-
-
-			</div>
+			</form>
 
 			<nav id="sidr"  style="display: none;">
 				<?php themify_theme_main_menu(); ?>
@@ -775,6 +774,11 @@ global $themify; ?>
 				</div>
 
 			</div>
+	</div>
+
+	<div style="text-align: center;">
+		<label style="font-size: 20px;">Acessar como visitante </label>
+		<input type="submit" value="Entrar" style="margin-top: 25px;">
 	</div>
 </div>
 

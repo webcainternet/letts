@@ -5,6 +5,7 @@
  * @since 1.0.0
  */
 ?>
+<?php include "logincheck.php"; ?>
 <!doctype html>
 <html <?php echo themify_get_html_schema(); ?> <?php language_attributes(); ?>>
 <head>
@@ -42,6 +43,8 @@
 					<?php } ?>
 				<?php endif; ?>
 
+				<div class="social-widget" style="margin-top: 2px;"><a href="/?p=<?php echo $_SESSION["lettslogin"]; ?>" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;"><?php echo $letts_nome; ?></a> <a href="/wp-content/themes/magazine/logout.php" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;">(Sair)</a></div>
+
 				<div class="social-widget">
 					<?php dynamic_sidebar('social-widget'); ?>
 
@@ -53,6 +56,7 @@
 						</div>
 					<?php endif ?>
 				</div>
+
 				<!-- /.social-widget -->
 
 				<?php if(!themify_check('setting-exclude_search_form')): ?>
