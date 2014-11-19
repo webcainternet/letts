@@ -211,14 +211,14 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     <?php if ($basicaimagemurl != "" || $slvideo == "youtube" || $slvideo == "vimeo") { ?>
 
       <?php if ($slvideo == "youtube") { ?>
-        <div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/<?php echo utf8_encode($basicaimagemurl); ?>');">
+        <div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');">
           <iframe width="306" height="180" src="<?php echo $videourl; ?>" frameborder="0" allowfullscreen></iframe>
         </div>
         <article class="post type-post clearfix">
           <div class="post-content">
             <p class="post-meta">
               <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="<?php echo "$guid"; ?>"><?php echo utf8_encode($nome); ?></a></span>
+                <a href="<?php echo "$guid"; ?>"><?php echo $nome; ?></a></span>
             </p>
           </div>
         </article>
@@ -228,14 +228,14 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
         $videourl = str_replace("vimeo.com/", "player.vimeo.com/video/", $videourl)
 
         ?>
-        <div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/<?php echo utf8_encode($basicaimagemurl); ?>');">
+        <div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');">
           <iframe width="306" height="180" src="<?php echo $videourl; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
         <article class="post type-post clearfix">
           <div class="post-content">
             <p class="post-meta">
               <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="<?php echo "$guid"; ?>"><?php echo utf8_encode($nome); ?></a></span>
+                <a href="<?php echo "$guid"; ?>"><?php echo $nome; ?></a></span>
             </p>
           </div>
         </article>
@@ -244,14 +244,14 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
 
       <?php if ($basicaimagemurl != "") { ?>
-      <a href="<?php echo "$guid"; ?>"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/<?php echo utf8_encode($basicaimagemurl); ?>');">
+      <a href="<?php echo "$guid"; ?>"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');">
         &nbsp;
       </div></a>
       <article class="post type-post clearfix">
         <div class="post-content">
           <p class="post-meta">
             <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-              <a href="<?php echo "$guid"; ?>"><?php echo utf8_encode($nome); ?></a></span>
+              <a href="<?php echo "$guid"; ?>"><?php echo $nome; ?></a></span>
           </p>
         </div>
       </article>
@@ -266,10 +266,10 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
         <div class="post-content">
           <p class="post-meta" style="background-image: url('http://letts.com.br/wp-content/uploads/2014/09/icon_folha.png'); background-size: 50px; background-repeat: no-repeat; padding-left: 60px;">
             <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-              <a href="<?php echo "$guid"; ?>"><?php echo utf8_encode($nome); ?></a></span>
+              <a href="<?php echo "$guid"; ?>"><?php echo $nome; ?></a></span>
           </p>
           <h1 class="post-title">
-            <a href="<?php echo "$guid"; ?>" title="Lançamento do website"><?php echo substr(utf8_encode($texto),0, 190); ?>... <a href="<?php echo "$guid"; ?>"><b>[Leia mais]</b></a></a>
+            <a href="<?php echo "$guid"; ?>" title="Lançamento do website"><?php echo substr($texto,0, 190); ?>... <a href="<?php echo "$guid"; ?>"><b>[Leia mais]</b></a></a>
           </h1>
         </div>
       </article>

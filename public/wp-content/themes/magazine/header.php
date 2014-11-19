@@ -43,7 +43,7 @@
 					<?php } ?>
 				<?php endif; ?>
 
-				<div class="social-widget" style="margin-top: 2px;"><a href="/?p=<?php echo $_SESSION["lettslogin"]; ?>" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;"><?php echo $letts_nome; ?></a> <a href="/wp-content/themes/magazine/logout.php" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;">(Sair)</a></div>
+				<div class="social-widget" style="margin-top: 2px;"><a href="/?p=<?php echo $_SESSION["lettslogin"]; ?>" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;"><?php echo $letts_nome; ?></a> <?php if ($letts_nome != "VISITANTE") { ?><a href="/wp-content/themes/magazine/logout.php" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;">(Sair)</a><?php } ?></div>
 
 				<div class="social-widget">
 					<?php dynamic_sidebar('social-widget'); ?>

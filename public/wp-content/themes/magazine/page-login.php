@@ -429,7 +429,7 @@ $(document).ready(function(){
  *  @var object */
 global $themify; ?>
 
-<div style="width: 100%; margin-top: 50px;">
+<div style="width: 100%; margin-top: 50px; min-width: 1160px;">
 	<!-- Imagens -->
 	<div style="float: left; width: 59%;">
 		<!-- Atleta Area -->
@@ -507,7 +507,7 @@ global $themify; ?>
 
 		<!-- marca Area -->
 		<div id="imagensmarca" style="overflow: hidden; height: 500px; display: none;">
-			<table width="95%" border="0" cellspacing="0" cellpadding="0">
+			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="50%">
 						<div id="imagemmarca01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_101549977-682x1024.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
@@ -547,8 +547,8 @@ global $themify; ?>
 	</div>
 
 	<!-- Loging -->
-	<div style="float: left; width: 39%;">
-		<div style="float: left; width: 674px; padding-top: 10px;">
+	<div style="float: right;">
+		<div style="float: left; width: 474px; padding-top: 10px;">
 			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">Perfil: Atleta</h1>
 				<div class="related-posts" style="float: left; width: 400px; margin-bottom: 30px;">
 					
@@ -776,9 +776,9 @@ global $themify; ?>
 			</div>
 	</div>
 
-	<div style="text-align: center;">
+	<div style="float: left;text-align: center; width: 100%;">
 		<label style="font-size: 20px;">Acessar como visitante </label>
-		<input type="submit" value="Entrar" style="margin-top: 25px;">
+		<a href="http://letts.com.br/wp-content/themes/magazine/login.php?visitante=1"><input type="submit" value="Entrar" style="margin-top: 25px;"></a>
 	</div>
 </div>
 
@@ -814,9 +814,11 @@ global $themify; ?>
 			<!-- /.social-widget -->
 
 			<div class="footer-nav-wrap">
-				<?php if (function_exists('wp_nav_menu')) {
-					wp_nav_menu(array('theme_location' => 'footer-nav' , 'fallback_cb' => '' , 'container'  => '' , 'menu_id' => 'footer-nav' , 'menu_class' => 'footer-nav'));
-				} ?>
+				<ul id="footer-nav" class="footer-nav">
+					<li id="menu-item-2497" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2497"><a href="http://letts.com.br/news/?visitante=1">News</a></li>
+					<li id="menu-item-2702" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2702"><a href="http://letts.com.br/contato/?visitante=1">Contato</a></li>
+					<li id="menu-item-2685" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2685"><a href="http://letts.com.br/politicas-de-privacidade/?visitante=1">Políticas de Privacidade</a></li>
+				</ul>
 			</div>
 	
 			<div class="footer-text clearfix">
