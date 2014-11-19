@@ -16,18 +16,28 @@ global $themify; ?>
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
 
-	<div id="contentwrap" style="width: 100%;padding-top: 0px;">
+	<div id="contentwrap" style="width: 100%; padding-top: 0px;">
 
 		<div id="content" class="list-post">
 
-			<div style="float: left; width: 674px; padding-top: 10px;">
+			<div style="float: left; width: 730px; padding-top: 10px;">
+				<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">News</h1>
+
+			<?php $args = array(
+			    'author'        	=>  1,
+			    'orderby'       	=>  'post_date',
+			    'post_type'     	=>  'news',
+			    'order'        		=>  'ASC',
+			    'posts_per_page'  	=>  5
+			); 
+			query_posts($args); ?>
+
+			<?php while (have_posts()) : the_post(); ?>
+			<?php $primeira_noticia = 0; ?>
+			<?php if ($primeira_noticia == 0) { ?>
 			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;"><a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"  style="font-weight: bold;">Morre skatista Jay Adams um dos mais influentes da história</a></h1>
 				<div class="related-posts" style="float: left; width: 674px; margin-bottom: 10px;">
-				
-
 					<a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><img class="imgnoticias" src="http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg" width="674" style="width: 674px; border-radius: 5px;"></a>
-
-
 					<article class="post type-post clearfix">
 						<div class="post-content">
 							<p class="post-meta">
@@ -36,82 +46,28 @@ global $themify; ?>
 						</div>
 					</article>
 				</div>
+			<?php
+				$primeira_noticia = 1;
+				} else{ ?>
 
-				<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">News</h1>
-
-				<div style="margin: 0px; padding: 0px;">
-
-					<div class="related-posts" style="float: left; width: 312px;">
-						<div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/18042014-alemao-usa-ilusao-de-otica-e-cria-fotos-surreais-de-esportes-radicais-1397830703348_300x420.jpg');">
-							&nbsp;
-						</div>
-						<article class="post type-post clearfix">
-							<div class="post-content">
-								<p class="post-meta">
-									<span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;"><a href="#">Alemão usa ilusão de ótica e cria fotos surreais de esportes radicais</a></span>
-								</p>
-								<h1 class="post-title">
-									<a href="#" title="Lançamento do website">Parece, mas não é. A habilidade em criar universos... <a href="#"><b>[Leia mais]</b></a></a>
-								</h1>
-							</div>
-						</article>
-					</div>
-
-					<div class="related-posts" style="float: left; width: 312px; margin-left: 50px;">
-						<div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/kelly-slater-headsapce-900x521.jpg');">
-							&nbsp;
-						</div>
-						<article class="post type-post clearfix">
-							<div class="post-content">
-								<p class="post-meta">
-									<span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;"><a href="#">Kelly Slater sai da Quiksilver depois de 23 anos e cria sua propria marca</a></span>
-								</p>
-								<h1 class="post-title">
-									<a href="#" title="Lançamento do website">De acordo com uma notícia publicada recentemente pelo... <a href="#"><b>[Leia mais]</b></a></a>
-								</h1>
-							</div>
-						</article>
-					</div>
-
-					<div style="width: 100%; height: 30px; float: left;">&nbsp;</div>
-
-					<div class="related-posts" style="float: left; width: 312px;">
-						<div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/hov_ldn_bowl2_0.jpg');">
-							&nbsp;
-						</div>
-						<article class="post type-post clearfix">
-							<div class="post-content">
-								<p class="post-meta">
-									<span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;"><a href="#">Pista de skate debaixo de uma estação de trem é inaugurada em Londres</a></span>
-								</p>
-								<h1 class="post-title">
-									<a href="#" title="Lançamento do website">Foi inaugurada, em Londres, a mais nova House of Vans... <a href="#"><b>[Leia mais]</b></a></a>
-								</h1>
-							</div>
-						</article>
-					</div>
-
-					<div class="related-posts" style="float: left; width: 312px; margin-left: 50px;">
-						<div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/RonyGomes-BigPoolParty-Ca%C3%A7apava.jpg');">
-							&nbsp;
-						</div>
-						<article class="post type-post clearfix">
-							<div class="post-content">
-								<p class="post-meta">
-									<span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;"><a href="#">Rony Gomes ganha o 1º evento em uma piscina de verdade no Brasil</a></span>
-								</p>
-								<h1 class="post-title">
-									<a href="#" title="Lançamento do website">Dia 17/08/2014, aconteceu no Clube Jequitibá, em Caçapava... <a href="#"><b>[Leia mais]</b></a></a>
-								</h1>
-							</div>
-						</article>
-					</div>
-
-					<div style="width: 100%; height: 30px; float: left;">&nbsp;</div>
-
+			<div class="related-posts" style="float: left; width: 335px; height: 480px; margin-right: 30px;">
+				<div class="imgnoticias" style="width: 330px; border-radius: 5px; height: 212px;  margin-bottom: 15px;">
+					<img src="<?php print_custom_field('imgnews:to_image_src'); ?>" style="max-height: 212px;">
 				</div>
+				<article class="post type-post clearfix">
+					<div class="post-content">
+						<p class="post-meta">
+							<span class="post-category" style="font-weight: bold;font-size: 22px; font-family: Oswald, sans-serif;"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></span>
+						</p>
+						<h1 class="post-title">
+							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_excerpt(30); ?></b></a></a>
+						</h1>
+					</div>
+				</article>
+			</div>
 
-
+			<?php } ?>
+			<?php endwhile; ?>
 			</div>
 
 			<!-- Login -->
@@ -123,134 +79,7 @@ global $themify; ?>
 			<div id="divNovo" style="display: none;">
 				<?php include("includes/side-novoperfil.php"); ?>
 			</div>
-
-			<!-- encontrar -->
-			<div style="float: left; width: 674px; margin-top: 10px; display: none;">
-				<div class="related-posts">
-					<h4 class="related-title" style="margin-bottom: 15px;">Encontrar</h4>
-					<div class="related-posts" style="float: left; width: 312px;">
-						<article class="post type-post clearfix">
-							<div class="post-content">
-								<p class="post-meta">
-									<span class="post-category"><a href="#">Atletas</a></span>
-								</p>
-								<h1 class="post-title">
-									<select class="selectitens" style="width: 240px;">
-										<option>-- Selecione o Atleta --</option>
-										<option>Aeromodelismo</option>
-										<option>Alpinismo</option>
-										<option>Asa Delta</option>
-										<option>BMX</option>
-										<option>BMX – Free style</option>
-										<option>Balonismo</option>
-										<option>Base Jumping</option>
-										<option>Bodyboard</option>
-										<option>Bouldering</option>
-										<option>Bungee Jumping</option>
-										<option>Canoagem</option>
-										<option>Carveboard</option>
-										<option>Caça submarina</option>
-										<option>Ciclismo</option>
-										<option>Cliff Diving</option>
-										<option>Corrida aventura</option>
-										<option>Drift</option>
-										<option>Escalada</option>
-										<option>Esqui</option>
-										<option>Football Freestyle</option>
-										<option>Free Style Motocross</option>
-										<option>FreeBoard</option>
-										<option>Heli-Skiing</option>
-										<option>Highline</option>
-										<option>Jet Ski</option>
-										<option>Kart</option>
-										<option>Kitesurfing</option>
-										<option>Liquid Mountaineering</option>
-										<option>Longboard skate</option>
-										<option>Longboard surf</option>
-										<option>Mega ramp</option>
-										<option>Mergulho</option>
-										<option>Moto Trial</option>
-										<option>Moto Wheeling</option>
-										<option>Motocross</option>
-										<option>Mountain Bike</option>
-										<option>Mountain biking</option>
-										<option>Mountain boarding</option>
-										<option>Off Road/Rally</option>
-										<option>Paintball</option>
-										<option>Paragliding</option>
-										<option>Paragliding</option>
-										<option>Parapente</option>
-										<option>Parkour</option>
-										<option>Patins in Line</option>
-										<option>Psicobloc</option>
-										<option>Rafting</option>
-										<option>Rally</option>
-										<option>Rapel</option>
-										<option>Sandboard</option>
-										<option>Skate - Street</option>
-										<option>Skate – Free style</option>
-										<option>Skate – Mini ramp</option>
-										<option>Sky Surfing</option>
-										<option>Skydive</option>
-										<option>Slackline</option>
-										<option>Snowboard</option>
-										<option>Stand Up Paddle</option>
-										<option>Street Luge</option>
-										<option>Surf</option>
-										<option>Surf - Freesurf</option>
-										<option>Tow-in</option>
-										<option>Trekking</option>
-										<option>Triathlon</option>
-										<option>UFC (MMA)</option>
-										<option>Vela/Iatismo</option>
-										<option>Velocidade</option>
-										<option>Wakeboard</option>
-										<option>Wakeboard Free style</option>
-										<option>Windsurf</option>
-										<option>WingWalking</option>
-									</select>
-								</h1>
-							</div>
-						</article>
-					</div>
-
-					<div class="related-posts" style="float: left; width: 312px; margin-left: 50px;">
-						<article class="post type-post clearfix">
-							<div class="post-content">
-								<p class="post-meta">
-									<span class="post-category"><a href="#">Profissionais</a></span>
-								</p>
-								<h1 class="post-title">
-									<select class="selectitens" style="width: 240px;">
-										<option>-- Selecione o Profissional --</option>
-										<option>Assessor de imprensa</option>
-										<option>Coordenador de eventos</option>
-										<option>Desenhista</option>
-										<option>Empresário</option>
-										<option>Estatístico</option>
-										<option>Estilista</option>
-										<option>Executivo de contas publicitárias</option>
-										<option>Fisioterapeuta</option>
-										<option>Fotografo</option>
-										<option>Fotojornalista</option>
-										<option>Gerente de relações públicas</option>
-										<option>Gestor desportivo</option>
-										<option>Jornalista</option>
-										<option>Nutricionista</option>
-										<option>Personal Crossfit</option>
-										<option>Personal academia</option>
-										<option>Professor de idomas</option>
-										<option>Psicologo</option>
-										<option>Psicólogo esportivo</option>
-										<option>Técnico</option>
-										<option>Videomaker</option>
-									</select>
-								</h1>
-							</div>
-						</article>
-					</div>
-				</div>
-			</div>
+			<?php get_sidebar("sidebar-alt"); ?>
 
 		</div>
 
@@ -305,7 +134,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
       	height: 200px; 
       	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
       	background-position: center;
-      	background-size: 300px;
+      	background-size: 100%;
       	">
       		&nbsp;
       	</div>
@@ -316,7 +145,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
           <strong class="text transition-050 title"><?php echo utf8_encode($nome); ?></strong>
           <span class="text transition-050 desc"><?php echo utf8_encode($esporte); ?><br>
           <?php if ($basicacidadeatual != "") { ?>
-          <b>Mora em: </b><?php echo utf8_encode($basicacidadeatual); ?>
+          <b>Mora em: </b><?php echo $basicacidadeatual; ?>
           <?php } ?>
           </span>
         </a>

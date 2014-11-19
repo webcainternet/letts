@@ -225,7 +225,7 @@ if ( ! function_exists( 'themify_theme_register_sidebars' ) ) {
 	function themify_theme_register_sidebars() {
 		$sidebars = array(
 			array(
-				'name' => __('Sidebar Wide', 'themify'),
+				'name' => __('Sidebar Home', 'themify'),
 				'id' => 'sidebar-main',
 				'before_widget' => '<div id="%1$s" class="widget %2$s">',
 				'after_widget' => '</div>',
@@ -405,6 +405,11 @@ if( ! function_exists('themify_theme_comment') ) {
 			</p>
 		<?php
 	}
+}
+
+add_filter('excerpt_length', 'my_excerpt_length');
+	function my_excerpt_length($length) {
+	return 25; 
 }
 
 ?>

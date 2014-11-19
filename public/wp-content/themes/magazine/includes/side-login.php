@@ -1,8 +1,8 @@
-<div style="float: right; width: 340px; margin-left: 50px; background-color: #FAFAFA;">
+<div style="float: right; width: 305px;  background-color: #FAFAFA;">
 					<div class="related-posts">
-						<h4 class="related-title" style="border: 0px;margin-left: 25px; margin-bottom: 10px;">Cadastre-se</h4>
-						
-						<div style="text-align: right; margin-right: 65px;"><input name="submit" type="submit" id="criar" value="Criar Nova Conta" onclick="" ></div>
+						<div style="text-align: right; margin-top: 80px;">
+							<input name="submit" type="submit" style="padding: 10px 69px;" id="criar" value="Criar Nova Conta" onclick="" >
+						</div>
 
 						<br />					
 
