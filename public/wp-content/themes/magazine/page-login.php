@@ -491,23 +491,12 @@ global $themify; ?>
 					</td>
 				</tr>
 			</table>
-
-			<!-- <div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_178947968.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_196230701.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_199106600.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_217821535.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_4307011-682x1024.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_64110910.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_94460587.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_128532530.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_138793265.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_176605295.jpg'); background-size: 100%; background-position: center;">&nbsp;</div> -->
 		</div>
 		<!-- Fim Profissional Area -->
 
 		<!-- marca Area -->
 		<div id="imagensmarca" style="overflow: hidden; height: 500px; display: none;">
-			<table border="0" cellspacing="0" cellpadding="0">
+			<table width="95%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="50%">
 						<div id="imagemmarca01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_101549977-682x1024.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
@@ -531,17 +520,6 @@ global $themify; ?>
 					</td>
 				</tr>
 			</table>
-
-			<!-- <div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_176605295.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_178947968.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_196230701.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_199106600.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_217821535.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_4307011-682x1024.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_64110910.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_94460587.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_128532530.jpg'); background-size: 100%; background-position: center;">&nbsp;</div>
-			<div id="imagemprofissional01" style="display: none; width: 100%; min-height: 250px; background-image: url('http://letts.com.br/wp-content/uploads/2014/10/shutterstock_138793265.jpg'); background-size: 100%; background-position: center;">&nbsp;</div> -->
 		</div>
 		<!-- Fim marca Area -->
 	</div>
