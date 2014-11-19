@@ -65,20 +65,19 @@ global $themify; ?>
 
 			<?php } ?>
 			<?php endwhile; ?>
+
 			<a href="/news" id="criar" style="padding: 10px 245px; background: #f57300; text-decoration: none;">
 				Ver todas as Noticias
 			</a>
 			</div>
 
+			<?php if ($_SESSION["lettslogin"] == "1") { ?>
 			<!-- Login -->
 			<div id="divLogin">
 				<?php include("includes/side-login.php"); ?>
 			</div>
+			<?php } ?>
 
-			<!-- Login -->
-			<div id="divNovo" style="display: none;">
-				<?php include("includes/side-novoperfil.php"); ?>
-			</div>
 			<?php get_sidebar("sidebar-alt"); ?>
 
 		</div>
