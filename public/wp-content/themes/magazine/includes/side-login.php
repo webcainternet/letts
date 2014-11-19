@@ -1,6 +1,6 @@
 <div style="float: right; width: 305px;">
 					<div class="related-posts">
-						<div style="text-align: right; margin-top: 55px;">
+						<div style="text-align: right; padding: 10px 0px;">
 							<a href="/wp-content/themes/magazine/logout.php" id="criar" style="padding: 10px 69px; background: #f57300; text-decoration: none;">
 								Criar Nova Conta
 							</a>
@@ -11,7 +11,7 @@
 					</div>
 				</div>
 
-<div style="display: none;float: right; width: 340px; margin-left: 50px; background-color: #FAFAFA;">
+			<div style="display: none; float: right; width: 340px; margin-left: 50px; background-color: #FAFAFA;">
 					<div class="related-posts">
 						<h4 class="related-title" style="border: 0px;margin-left: 25px; margin-bottom: 10px; margin-top: -20px;">Minha conta</h4>
 

@@ -18,9 +18,9 @@ global $themify; ?>
 
 	<div id="contentwrap" style="width: 100%; padding-top: 0px;">
 
-		<div id="content" class="list-post">
+		<div id="content" class="list-post" style="padding-top: 45px;">
 
-			<div style="float: left; width: 730px; padding-top: 45px;">
+			<div style="float: left; width: 730px;">
 			<?php $args = array(
 			    'author'        	=>  1,
 			    'orderby'       	=>  'post_date',
