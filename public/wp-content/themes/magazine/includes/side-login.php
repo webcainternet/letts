@@ -1,7 +1,9 @@
-<div style="float: right; width: 305px;  background-color: #FAFAFA;">
+<div style="float: right; width: 305px;">
 					<div class="related-posts">
-						<div style="text-align: right; margin-top: 80px;">
-							<input name="submit" type="submit" style="padding: 10px 69px;" id="criar" value="Criar Nova Conta" onclick="" >
+						<div style="text-align: right; margin-top: 55px;">
+							<a href="/wp-content/themes/magazine/logout.php" id="criar" style="padding: 10px 69px; background: #f57300; text-decoration: none;">
+								Criar Nova Conta
+							</a>
 						</div>
 
 						<br />					

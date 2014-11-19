@@ -20,9 +20,7 @@ global $themify; ?>
 
 		<div id="content" class="list-post">
 
-			<div style="float: left; width: 730px; padding-top: 10px;">
-				<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">News</h1>
-
+			<div style="float: left; width: 730px; padding-top: 45px;">
 			<?php $args = array(
 			    'author'        	=>  1,
 			    'orderby'       	=>  'post_date',
@@ -31,24 +29,23 @@ global $themify; ?>
 			    'posts_per_page'  	=>  5
 			); 
 			query_posts($args); ?>
+			<?php $primeira_noticia = 0; ?>
 
 			<?php while (have_posts()) : the_post(); ?>
-			<?php $primeira_noticia = 0; ?>
 			<?php if ($primeira_noticia == 0) { ?>
-			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;"><a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"  style="font-weight: bold;">Morre skatista Jay Adams um dos mais influentes da história</a></h1>
-				<div class="related-posts" style="float: left; width: 674px; margin-bottom: 10px;">
-					<a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><img class="imgnoticias" src="http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg" width="674" style="width: 674px; border-radius: 5px;"></a>
-					<article class="post type-post clearfix">
-						<div class="post-content">
-							<p class="post-meta">
-								<span class="post-category"><a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Jay Adams, skatista mericano considerado um dos mais</a></span>
-							</p>
-						</div>
-					</article>
+			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
+				<a href="<?php the_permalink(); ?>"  style="font-weight: bold;"><?php the_title(); ?></a></h1>
+				<div class="related-posts" style="float: left; width: 720px; margin-bottom: 10px;">
+					<a href="<?php the_permalink(); ?>"><img class="imgnoticias" src="<?php print_custom_field('imgnews:to_image_src'); ?>" style="width: 720px; border-radius: 5px;"></a>
+					<h1 class="post-title">	
+						<a href="<?php the_permalink(); ?>"><?php the_excerpt(80); ?></a>
+					</h1>	
 				</div>
 			<?php
-				$primeira_noticia = 1;
-				} else{ ?>
+				$primeira_noticia++; ?>
+				<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">News</h1>
+				
+				<?php } else{ ?>
 
 			<div class="related-posts" style="float: left; width: 335px; height: 480px; margin-right: 30px;">
 				<div class="imgnoticias" style="width: 330px; border-radius: 5px; height: 212px;  margin-bottom: 15px;">
@@ -68,6 +65,9 @@ global $themify; ?>
 
 			<?php } ?>
 			<?php endwhile; ?>
+			<a href="/news" id="criar" style="padding: 10px 245px; background: #f57300; text-decoration: none;">
+				Ver todas as Noticias
+			</a>
 			</div>
 
 			<!-- Login -->
@@ -84,7 +84,7 @@ global $themify; ?>
 		</div>
 
 
-		<div style="float: left; width: 100%; margin-top: 10px;">
+		<div style="float: left; width: 100%; margin-top: 40px;">
 			<div class="related-posts">
 				<h4 class="related-title" style="margin-bottom: 15px; border: 0px;">Últimos atletas cadastrados</h4>
 				<div class="related-posts" style="float: left; width: 100%;">
