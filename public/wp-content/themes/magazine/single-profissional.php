@@ -157,7 +157,7 @@ global $themify; ?>
 
 	<div>
 		<div style="float: left; width: 325px;">
-				<div class="col3-1" style="width: 100%; margin: 0px;">
+				<div class="col3-1" style="width: 100%; margin: 0px; background: #EFEFEF; padding-left: 15px; border-top: 5px #ff8920 solid;">
 					<div id="text-1016" class="widget widget_text" style="">
 						<h4 class="widgettitle">Informações básicas</h4>			
 						<div class="textwidget">
@@ -311,8 +311,8 @@ global $themify; ?>
 
 			<?php while (have_posts()) : the_post(); ?>
 
-			<div class="related-posts" style="float: left; width: 335px; height: 480px; margin-right: 30px;">
-				<div class="imgnoticias" style="width: 330px; border-radius: 5px; height: 212px;  margin-bottom: 15px;">
+			<div class="related-posts news_perfil" style="float: left; width: 310px; height: 480px;">
+				<div class="imgnoticias" style="width: 300px; border-radius: 5px; height: 212px;  margin-bottom: 15px;">
 					<img src="<?php print_custom_field('imgnews:to_image_src'); ?>" style="max-height: 212px;">
 				</div>
 				<article class="post type-post clearfix">

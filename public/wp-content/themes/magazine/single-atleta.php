@@ -13,63 +13,9 @@
  *  @var object */
 global $themify; ?>
 
-
-
-
-
-	<?php if( have_posts() ) while ( have_posts() ) : the_post(); ?>
-
 	<?php $idpost = get_the_ID(); ?>
-
-	<?php
-	mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
-	    die("Could not connect: " . mysql_error());
-	mysql_select_db(DB_NAME);
-
-	$result = mysql_query("select id, post_title from wp_posts where post_type = 'atleta' AND post_status = 'publish' AND id = ".$idpost);
-
-	while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-
-		$nome = $row["post_title"];
-		$idatleta = $row["id"];
-
-		$resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key = 'atletaesporte' AND post_id = ".$row["id"]);
-	    while ($rowesporte = mysql_fetch_array($resultesporte, MYSQL_ASSOC)) {
-	    	$esporte = $rowesporte["meta_value"];
-	    }
-
-		$resultbasicapaisnascimento = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicapaisnascimento' AND post_id = ".$row["id"]);
-	    while ($rowbasicapaisnascimento = mysql_fetch_array($resultbasicapaisnascimento, MYSQL_ASSOC)) {
-	    	$basicapaisnascimento = $rowbasicapaisnascimento["meta_value"];
-	    }
-
-	    $resultbasicagenero = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicagenero' AND post_id = ".$row["id"]);
-	    while ($rowbasicagenero = mysql_fetch_array($resultbasicagenero, MYSQL_ASSOC)) {
-	    	$basicagenero = $rowbasicagenero["meta_value"];
-	    }
-
-	    $resultbasicacidadeatual = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicacidadeatual' AND post_id = ".$row["id"]);
-	    while ($rowbasicacidadeatual = mysql_fetch_array($resultbasicacidadeatual, MYSQL_ASSOC)) {
-	    	$basicacidadeatual = $rowbasicacidadeatual["meta_value"];
-	    }
-
-	    $resultbasicaimagem = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicaimagem' AND post_id = ".$row["id"]);
-	    while ($rowbasicaimagem = mysql_fetch_array($resultbasicaimagem, MYSQL_ASSOC)) {
-	    	$basicaimagem = $rowbasicaimagem["meta_value"];
-	    }
-		$resultbasicaimagemurl = mysql_query("select meta_value from wp_postmeta where meta_key = '_wp_attached_file' AND post_id = ".$basicaimagem);
-	    while ($rowbasicaimagemurl = mysql_fetch_array($resultbasicaimagemurl, MYSQL_ASSOC)) {
-	    	$basicaimagemurl = $rowbasicaimagemurl["meta_value"];
-	    }
-	}
-
-	mysql_free_result($result);
-	?>
-
-
-
-
-		<!-- content -->
+	
+	<?php if( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
@@ -84,7 +30,7 @@ global $themify; ?>
 					border: 1px #ff8920 solid; 
 					width: 180px; 
 					height: 180px; 
-					margin-top: 280px; 
+					margin-top: 280px;
 					background-image: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>'); 
 					background-size: 1800px; 
 					background-position:center; " id="imgbackground">
@@ -106,7 +52,7 @@ global $themify; ?>
 	  }  
 	  
 	}
-	img.src = '<?php print_custom_field('basicaimagem:to_image_src'); ?>';	
+	img.src = "<?php print_custom_field('basicaimagem:to_image_src'); ?>";	
 </script>
 			
 
@@ -130,7 +76,7 @@ global $themify; ?>
 					margin-left: 5px;
 					margin-right: 15px;
 					font-size: 12px;">
-			<a style="text-decoration: none;" href="?page=videos">Enviar mensagem</a>
+			<a style="text-decoration: none;" href="?page=mensagem">Mensagem</a>
 		</div>
 
 		<div style="float: right; 
@@ -193,26 +139,25 @@ global $themify; ?>
 					margin: 0px;
 					margin-left: 25px;">
 					<div id="text-1017" class="widget widget_text" style="border: 0px; margin: 0px;">
-						<h4 class="widgettitle" style="border: 0px;"><?php echo utf8_encode($esporte); ?></h4>		
+						<h4 class="widgettitle" style="border: 0px;"><?php print_custom_field('atletaesporte'); ?></h4>		
 					</div>
 			
 		</div>
 		
 	</div>
 
-	<div style="margin-top: 20px; margin-bottom: 20px;">
-		<h1 class="post-title entry-title" itemprop="name">
-			<a href="#" title="<?php the_title(); ?>">
-				<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 1.5em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;"><a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/" style="font-weight: bold;"><?php the_title(); ?></a></h1>
-			</a>
-		</h1>
+	<div style="margin-top: 20px; margin-bottom: 20px; width: 100%; float: left;">
+		<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 1.5em; font-family: Oswald, sans-serif; 
+			text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
+				<a href="<?php the_permalink(); ?>" style="font-weight: bold; font-size: 50px;"><?php the_title(); ?></a>
+			</h1>
+		</a>
 	</div>
 
 	<div>
-
-		<?php if ($_GET["page"] != "fotos") { ?>
 		<div style="float: left; width: 325px;">
-				<div class="col3-1" style="width: 100%; margin: 0px;">
+				<div class="col3-1" style="width: 100%; margin: 0px; background: #F5E1CD; padding-left: 15px; border-top: 5px #ff8920 solid;">
 					<div id="text-1016" class="widget widget_text" style="">
 						<h4 class="widgettitle">Informações básicas</h4>			
 						<div class="textwidget">
@@ -221,51 +166,128 @@ global $themify; ?>
 
 							<div style="margin-top: 10px;"><strong>Gênero</strong></div>
 							<?php print_custom_field('basicagenero'); ?><br />
-						</div>
-			
-						<div class="textwidget">
-							<div style="margin-top: 10px;"><strong>E-mail</strong></div>
-							<?php print_custom_field('basicaemail'); ?><br />
 
 							<div style="margin-top: 10px;"><strong>Telefones</strong></div>
 							<?php print_custom_field('basicatelefones'); ?><br />
 
-							<div style="margin-top: 10px;"><strong>Facebook</strong></div>
-							<?php print_custom_field('basicafacebook'); ?><br />
-						</div>
-
-						<div class="textwidget">
 							<div style="margin-top: 10px;"><strong>Nascimento</strong></div>
 							<?php print_custom_field('basicacidadenascimento'); ?>, <?php print_custom_field('basicaestadonascimento'); ?><br />
 
 							<div style="margin-top: 10px;"><strong>Atual</strong></div>
-							<?php print_custom_field('basicacidadeatual'); ?>, <?php print_custom_field('basicaestadoatual'); ?><br />
-
-
+							<?php print_custom_field('basicacidadeatual'); ?>, <?php print_custom_field('basicaestadoatual'); ?><br />							
 						</div>
+			
+						<div class="textwidget icones_sociais">
+							<div style="margin-top: 10px;"><strong>Contatos</strong></div>
+								<?php if (get_custom_field('basicafacebook')) { ?>
+									<a href="<?php print_custom_field('basicafacebook'); ?>" target="_blank">
+										<img src="/wp-content/themes/magazine/images/facebook.png">
+									</a>
+								<?php } ?>
+
+								<?php if (get_custom_field('instagram')) { ?>
+									<a href="<?php print_custom_field('instagram'); ?>" target="_blank">
+										<img src="/wp-content/themes/magazine/images/instagram.png">
+									</a>
+								<?php } ?>
+
+								<?php if (get_custom_field('twitter')) { ?>
+									<a href="<?php print_custom_field('twitter'); ?>" target="_blank">
+										<img src="/wp-content/themes/magazine/images/twitter.png">
+									</a>
+								<?php } ?>
+
+								<?php if (get_custom_field('linkedin')) { ?>
+									<a href="<?php print_custom_field('linkedin'); ?>" target="_blank">
+										<img src="/wp-content/themes/magazine/images/linkedin.png">
+									</a>
+								<?php } ?>
+
+								<?php if (get_custom_field('basicaemail')) { ?>
+									<a href="mailto:<?php print_custom_field('basicaemail'); ?>" target="_blank">
+										<img src="/wp-content/themes/magazine/images/contacts.png">
+									</a>
+								<?php } ?>
+
+								<?php if (get_custom_field('blog')) { ?>
+									<a href="<?php print_custom_field('blog'); ?>" target="_blank">
+										<img src="/wp-content/themes/magazine/images/rss.png">
+									</a>
+								<?php } ?>								
+
+								<?php if (get_custom_field('site')) { ?>
+									<a href="<?php print_custom_field('site'); ?>" target="_blank">
+										<img src="/wp-content/themes/magazine/images/domain.png">
+									</a>
+								<?php } ?>
+							</div>
 					</div>			
 				</div>
 		</div>
-		<?php } ?>
 
-		<?php if ($_GET["page"] == "fotos") { ?>
-				<div style="text-align: right;"><input name="submit" type="submit" id="criar" value="Enviar mensagem para este usuário" onclick=""></div>
-				
-				<iframe frameborder="0" scrolling="no" width="100%" height="900" src="http://letts.com.br/wp-content/themes/magazine/slider/pub/"></iframe>
+		<!--<div style="float: left; width: 705px; margin-left: 30px;">
+			<div style="width: 100%; display: block;" id="newpoststep1">
+				<div>
+				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Adicionar news</h4>
+				</div>
+				<div style="width: 100%;">
+					<textarea style="width: 100%; height: 80px;"></textarea>
+				</div>
+				<div style="text-align: right;">
+					<input type="submit" value=">" style="" 
+						onclick="document.getElementById('newpoststep1').style.display = 'none'; document.getElementById('newpoststep2').style.display = 'block'; document.getElementById('newpoststep3').style.display = 'none';">
+				</div>
+			</div>
 
-		<?php } ?>
 
-		
-		<div style="float: left; width: 705px; margin-left: 30px;">
+
+			<div style="width: 100%; display: none;" id="newpoststep2">
+				<div>
+				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Selecionar mídia</h4>
+				</div>
+				<div style="width: 100%;">
+					<div style="border: #EEE dotted 5px; padding: 30px; margin-bottom: 15px; text-align: center;">
+						<input type="file">
+					</div>
+				</div>
+				<div style="text-align: right;">
+					<input type="submit" value="<" style="" 
+						onclick="document.getElementById('newpoststep1').style.display = 'block'; document.getElementById('newpoststep2').style.display = 'none'; document.getElementById('newpoststep3').style.display = 'none';">
+					<input type="submit" value=">" style="" 
+						onclick="document.getElementById('newpoststep1').style.display = 'none'; document.getElementById('newpoststep2').style.display = 'none'; document.getElementById('newpoststep3').style.display = 'block';">
+				</div>
+			</div>
+
+
+			<div style="width: 100%; display: none;" id="newpoststep3">
+				<div>
+				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Publicar como news no site?</h4>
+				</div>
+				<div style="width: 100%;">
+					 <input type="checkbox" 
+					 	onchange="document.getElementById('sp-change').style.display = 'block';" 
+					 	id="change">
+					 	<label for="change">Gostaria de compartilhar esta notícia na página de news?</label>
+
+					 	<div id="sp-change" style="display: none;">
+					 		Titulo:<br />
+					 		<input type="text">
+					 	</div>
+
+				</div>
+				<div style="text-align: right;">
+					<input type="submit" value="<" style="" 
+						onclick="document.getElementById('newpoststep1').style.display = 'none'; document.getElementById('newpoststep2').style.display = 'block'; document.getElementById('newpoststep3').style.display = 'none';">
+					<input type="submit" value="Publicar" style="" 
+						onclick="alert('Session error!');">
+				</div>
+			</div>
+			-->
 			
-
-
-
-
-
-
-
 			<?php if ($_GET["page"] == "" || $_GET["page"] == "sobre") { ?>
+				
+				<div style="width: 685px; float: left; margin-left: 50px;">
+				
 				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Minha história</h4>
 				<?php the_content(); ?>
 
@@ -274,151 +296,129 @@ global $themify; ?>
 
 				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Meu sonho</h4>
 				<?php print_custom_field('atletameusonho'); ?><br /><br />
+
+				</div>
 			<?php } ?>
-
-
-
-
-
-			
-
-
-
-
-
-
-
 
 			<?php if ($_GET["page"] == "news") { ?>
-				
-				
+			<?php 
+			$email_user = get_custom_field('basicaemail'); ?>
+			<?php $args = array(
+			    'orderby'       	=>  'post_date',
+			    'post_type'     	=>  'news',
+			    'meta_key'     		=>  'basicaemail',
+			    'meta_value'     	=>  $email_user,			    
+			    'order'        		=>  'ASC'
+			); 
+			query_posts($args); ?>
 
-				<!-- Adicionar news -->
-				<div style="width: 100%; display: block;" id="newpoststep1">
-					<div>
-					<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Adicionar news</h4>
-					</div>
-					<div style="width: 100%;">
-						<textarea style="width: 100%; height: 80px;"></textarea>
-					</div>
-					<div style="text-align: right;">
-						<input type="submit" value=">" style="" 
-							onclick="document.getElementById('newpoststep1').style.display = 'none'; document.getElementById('newpoststep2').style.display = 'block'; document.getElementById('newpoststep3').style.display = 'none';">
-					</div>
+			<div style="width: 685px; float: left; margin-left: 50px;">
+			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">News</h4>
+
+			<?php while (have_posts()) : the_post(); ?>
+
+			<div class="related-posts news_perfil" style="float: left; width: 310px; height: 480px;">
+				<div class="imgnoticias" style="width: 300px; border-radius: 5px; height: 212px;  margin-bottom: 15px;">
+					<img src="<?php print_custom_field('imgnews:to_image_src'); ?>" style="max-height: 212px;">
 				</div>
-
-
-
-				<div style="width: 100%; display: none;" id="newpoststep2">
-					<div>
-					<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Selecionar mídia</h4>
+				<article class="post type-post clearfix">
+					<div class="post-content">
+						<p class="post-meta">
+							<span class="post-category" style="font-weight: bold;font-size: 22px; font-family: Oswald, sans-serif;"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></span>
+						</p>
+						<h1 class="post-title">
+							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_excerpt(30); ?></b></a></a>
+						</h1>
 					</div>
-					<div style="width: 100%;">
-						<div style="border: #EEE dotted 5px; padding: 30px; margin-bottom: 15px; text-align: center;">
-							<input type="file">
-						</div>
-					</div>
-					<div style="text-align: right;">
-						<input type="submit" value="<" style="" 
-							onclick="document.getElementById('newpoststep1').style.display = 'block'; document.getElementById('newpoststep2').style.display = 'none'; document.getElementById('newpoststep3').style.display = 'none';">
-						<input type="submit" value=">" style="" 
-							onclick="document.getElementById('newpoststep1').style.display = 'none'; document.getElementById('newpoststep2').style.display = 'none'; document.getElementById('newpoststep3').style.display = 'block';">
-					</div>
-				</div>
-
-
-				<div style="width: 100%; display: none;" id="newpoststep3">
-					<div>
-					<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Publicar como news no site?</h4>
-					</div>
-					<div style="width: 100%;">
-						 <input type="checkbox" 
-						 	onchange="document.getElementById('sp-change').style.display = 'block';" 
-						 	id="change">
-						 	<label for="change">Gostaria de compartilhar esta notícia na página de news?</label>
-
-						 	<div id="sp-change" style="display: none;">
-						 		Titulo:<br />
-						 		<input type="text">
-						 	</div>
-
-					</div>
-					<div style="text-align: right;">
-						<input type="submit" value="<" style="" 
-							onclick="document.getElementById('newpoststep1').style.display = 'none'; document.getElementById('newpoststep2').style.display = 'block'; document.getElementById('newpoststep3').style.display = 'none';">
-						<input type="submit" value="Publicar" style="" 
-							onclick="alert('Session error!');">
-					</div>
-				</div>
-
-
-				<hr style="border: #EEE solid 1px;">
-				<!-- FIM Adicionar news -->
-
-				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">News</h4>
-
-				    <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 0px; margin-bottom: 0px;">
-				    <div style="text-align: right;">
-				      <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">26-08-2014</span>
-				    </div>
-
-				            <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg');">
-				        &nbsp;
-				      </div></a>
-				      <article class="post type-post clearfix">
-				        <div class="post-content">
-				          <p class="post-meta">
-				            <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-				              <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Morre skatista Jay Adams um dos mais influentes da história</a></span>
-				          </p>
-				        </div>
-				      </article>   
-				    </div>
-				    
-				    
-				    
-				    
-				    <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 0px; margin-bottom: 0px;">
-				    <div style="text-align: right;">
-				      <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">26-08-2014</span>
-				    </div>
-				            <a href="http://letts.com.br/kelly-slater-sai-da-quiksilver-depois-de-23-anos-e-cria-sua-propria-marca/"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/09/kelly-slater-headsapce-900x521.jpg');">
-				        &nbsp;
-				      </div></a>
-				      <article class="post type-post clearfix">
-				        <div class="post-content">
-				          <p class="post-meta">
-				            <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-				              <a href="http://letts.com.br/kelly-slater-sai-da-quiksilver-depois-de-23-anos-e-cria-sua-propria-marca/">Kelly Slater sai da Quiksilver depois de 23 anos e cria sua propria marca</a></span>
-				          </p>
-				        </div>
-				      </article>
-				    </div>
-				    
-				    
-				    
-				    
-				    <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 0px; margin-bottom: 0px;">
-				    <div style="text-align: right;">
-				      <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">26-08-2014</span>
-				    </div>
-				            <a href="http://letts.com.br/alemao-usa-ilusao-de-otica-e-cria-fotos-surreais-de-esportes-radicais/"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/09/18042014-alemao-usa-ilusao-de-otica-e-cria-fotos-surreais-de-esportes-radicais-1397830703348_300x420.jpg');">
-				        &nbsp;
-				      </div></a>
-				      <article class="post type-post clearfix">
-				        <div class="post-content">
-				          <p class="post-meta">
-				            <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-				              <a href="http://letts.com.br/alemao-usa-ilusao-de-otica-e-cria-fotos-surreais-de-esportes-radicais/">Alemão usa ilusão de ótica e cria fotos surreais de esportes radicais</a></span>
-				          </p>
-				        </div>
-				      </article>
-				    </div>
-
+				</article>
+			</div>
+			<?php endwhile; ?>
+			<?php wp_reset_query(); ?>
+		</div>
 
 			<?php } ?>
+
+			<?php if ($_GET["page"] == "fotos") { ?>
+				<div style="width: 685px; float: left; margin-left: 50px;">
+					<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Fotos</h4>
+					<div class="galeria_profissional">
+						<?php $path = "wp-content/uploads/users/$idpost"; 
+							$diretorio = dir($path); 
+								while($arquivo = $diretorio -> read()){ 
+									if($arquivo != '..' && $arquivo != '.'){
+										echo '<div class="img_profissional">
+												<a href="/wp-content/uploads/users/'.$idpost.'/'.$arquivo.'" class="fancybox" rel="gallery">
+													<img src=/wp-content/uploads/users/'.$idpost.'/'.$arquivo.'>
+												</a>
+											  </div>'; 
+									}
+								} 
+								$diretorio -> close(); 
+						?>
+					</div>
+					
+				</div>	
+
+			<?php } ?>
+
+			<?php if ($_GET["page"] == "videos") { ?>
+				<?php 
+				$email_user = get_custom_field('basicaemail'); ?>
+				<?php $args = array(
+				    'orderby'       	=>  'post_date',
+				    'post_type'     	=>  'video',
+				    'meta_key'     		=>  'basicaemail',
+				    'meta_value'     	=>  $email_user,			    
+				    'order'        		=>  'ASC'
+				); 
+				query_posts($args); ?>
+
+			<div style="width: 685px; float: left; margin-left: 50px;">
+			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Vídeos</h4>
+
+			<?php while (have_posts()) : the_post(); ?>
+
+			<?php $video = get_custom_field('link_video'); 
+				$video = explode("/", $video);
+				$url_video = explode("=", $video[3]);
+				if ($url_video[0] == 'watch?v') {
+				 	$imgid = $url_video[1];
+				 	$img_video = 'http://img.youtube.com/vi/'.$imgid.'/0.jpg';
+				 } else{
+				$imgid = $url_video[0];
+				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imgid.php"));
+				$img_video = $hash[0]['thumbnail_medium'];
+				 } ?>
+
+				<div class="video">
+					<h3><?php the_title(); ?></h3>
+					<a href="<?php print_custom_field('link_video'); ?>" class="fancybox">
+						<img src="<?php echo $img_video; ?>">
+					</a>
+				</div>
+
+			<?php endwhile; ?>
+			<?php wp_reset_query(); ?>
+
+			</div>				
+			
+			<?php } ?>			
+
+			<?php if ($_GET["page"] == "mensagem") { ?>
+				<div class="formularios profissionais">
+					<div class="mensagem_marca">
+						<h1 class="post-title entry-title">Envie mensagem para <?php the_title(); ?></h1>
+						<form action="" method="post" id="formulario_mensagem">
+							<input type="text" id="nome_msg" name="nome_msg" placeholder="Seu Nome">
+							<input type="text" id="email_msg" name="email_msg" placeholder="Seu E-mail">
+							<input type="text" id="assunto" name="assunto" placeholder="Assunto">
+							<textarea id="mensagem" name="mensagem" placeholder="Mensagem para <?php the_title(); ?>"></textarea>
+							<input type="button" id="botao_mensagem" value="Enviar Mensagem">
+						</form>
+					</div>	
+				</div>
+			<?php } ?>		
 		</div>
-		&nbsp;
 	</div>
 
 
