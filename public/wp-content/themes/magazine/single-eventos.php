@@ -83,17 +83,7 @@ global $themify; ?>
 	</div>
 
 	<div class="formularios">
-		<div class="convidar_atleta">
-			<h1 class="post-title entry-title">Convide um Atleta</h1>
-			<form action="" method="post" id="formulario_convite">
-				<input type="text" id="nome" name="nome" placeholder="Seu Nome">
-				<input type="text" id="nome_atleta" name="nome_atleta" placeholder="Nome do Atleta">
-				<input type="text" id="email_atleta" name="email_atleta" placeholder="E-mail do Atleta">
-				<textarea id="mensagem_atleta" name="mensagem_atleta" placeholder="Mensagem ao Atleta"></textarea>
-				<input type="button" id="botao_convite" value="Convidar Atleta">
-			</form>
-		</div>
-
+		
 		<div class="mensagem_marca">
 			<h1 class="post-title entry-title">Envie mensagem para a marca</h1>
 			<form action="" method="post" id="formulario_mensagem">

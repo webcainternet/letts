@@ -2428,3 +2428,15 @@ CLEAR & ALIGNMENT
 	font-size: 20px;
 	height: 25px;
 }
+
+	
+.img_news {
+	border: solid 3px #FFFFFF; 
+}
+.img_news:hover {
+	border: solid 3px #F57300; 
+}
+
+.related-posts-home:nth-child(2n+2){
+	margin-right: 20px;
+}

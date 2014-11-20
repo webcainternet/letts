@@ -13,21 +13,6 @@
  *  @var object */
 global $themify; ?>
 
-<style type="text/css">
-	
-.img_news {
-	border: solid 3px #FFFFFF; 
-}
-.img_news:hover {
-	border: solid 3px #F57300; 
-}
-
-.related-posts:nth-child(2n+2){
-	margin-right: 20px;
-}
-
-</style>
-
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
 
@@ -53,7 +38,7 @@ global $themify; ?>
 			
 			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
 				<a href="<?php the_permalink(); ?>"  style="font-weight: bold;"><?php the_title(); ?></a></h1>
-				<div class="related-posts" style="float: left; width: 720px; margin-bottom: 10px;">
+				<div class="related-posts related-posts-home" style="float: left; width: 720px; margin-bottom: 10px;">
 					<a href="<?php the_permalink(); ?>" style="text-decoration: none;">
 					<div class="img_news" style="width: 714px; height: 474px; border-radius: 5px;
 					background-image: url('<? echo $urlimg; ?>');
@@ -73,7 +58,7 @@ global $themify; ?>
 				
 				<?php } else{ ?>
 
-			<div class="related-posts" style="float: left; width: 350px; height: 480px;">
+			<div class="related-posts related-posts-home" style="float: left; width: 350px; height: 480px;">
 				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
 					<div class="imgnoticias" style="border-radius: 5px; height: 212px; margin-bottom: 15px;">
 						<div style="height: 212px; width: 344px;
