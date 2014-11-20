@@ -435,29 +435,6 @@ global $themify; ?>
 
 		<div id="content" class="list-post">
 
-
-<?php
-	function calcbackgroundsize($imagem, $origw, $origh) {
-		$imgsize = getimagesize($imagem);
-		$imgsize = explode("=\"", $imgsize["3"]);
-
-		$imgwidth = explode("\"", $imgsize["1"]);
-		$imgwidth = $imgwidth["0"];	
-
-		$imgheight = explode("\"", $imgsize["2"]);
-		$imgheight = $imgheight["0"];
-
-		if($imgwidth/$imgheight < $origw/$origh) {
-			$widthcalc = "background-size: ".$origw."px ".$imgheight*$origw/$imgwidth."px ";
-		} else {
-			$widthcalc = "background-size: ".$imgwidth*$origh/$imgheight."px ".$origh."px ";
-		}
-
-		return $widthcalc;
-	}
-?>
-
-
 <div style="width: 100%; margin-top: 0px; min-width: 1160px;">
 	<!-- Imagens -->
 	<div style="float: left; width: 59%;">

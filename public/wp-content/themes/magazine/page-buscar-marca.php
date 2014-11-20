@@ -79,7 +79,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
       	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
       	background-position: center;
         background-repeat: no-repeat;
-      	background-size: 250px;
+      	<?php echo calcbackgroundsize("wp-content/uploads/".$basicaimagemurl, 250, 200); ?>;
       	">
       		&nbsp;
       	</div>
@@ -87,8 +87,8 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
       </a>
       <figcaption class="transition-050 opacity85">
         <a href="/?p=<?php echo $idatleta; ?>">
-          <strong class="text transition-050 title"><?php echo utf8_encode($nome); ?></strong>
-          <!-- <span class="text transition-050 desc"><?php echo utf8_encode($esporte); ?><br><b>Mora em: </b><?php echo utf8_encode($basicacidadeatual); ?></span> -->
+          <strong class="text transition-050 title"><?php echo $nome; ?></strong>
+          <!-- <span class="text transition-050 desc"><?php echo $esporte; ?><br><b>Mora em: </b><?php echo $basicacidadeatual; ?></span> -->
         </a>
       </figcaption>
     </figure>
@@ -116,6 +116,9 @@ mysql_free_result($result);
 
 		</div>
 
+</div>
+</div>
+</div>
 
 
 	</div>

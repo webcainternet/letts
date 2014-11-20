@@ -334,10 +334,6 @@ global $themify; ?>
 			</div>
 		</div>
 
-		
-</div>
-</div>
-</div>
 
 			<div style="float: left; width: 100%; padding-top: 10px;">
 				<div class="related-posts" style="float: left; width: 100%; margin-bottom: 30px;">
@@ -446,7 +442,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
       	height: 200px; 
       	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
       	background-position: center;
-      	background-size: 300px;
+      	<?php echo calcbackgroundsize("wp-content/uploads/".$basicaimagemurl, 300, 200); ?>;
       	">
       		&nbsp;
       	</div>
@@ -454,10 +450,10 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
       </a>
       <figcaption class="transition-050 opacity85">
         <a href="/?p=<?php echo $idatleta; ?>">
-          <strong class="text transition-050 title"><?php echo utf8_encode($nome); ?></strong>
-          <span class="text transition-050 desc"><?php echo utf8_encode($esporte); ?><br>
+          <strong class="text transition-050 title"><?php echo $nome; ?></strong>
+          <span class="text transition-050 desc"><?php echo $esporte; ?><br>
           <?php if ($basicacidadeatual != "") { ?>
-          <b>Mora em: </b><?php echo utf8_encode($basicacidadeatual); ?>
+          <b>Mora em: </b><?php echo $basicacidadeatual; ?>
           <?php } ?>
           </span>
         </a>
@@ -489,6 +485,9 @@ mysql_free_result($result);
 
 		</div>
 
+</div>
+</div>
+</div>
 
 
 	</div>

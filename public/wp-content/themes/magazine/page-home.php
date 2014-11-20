@@ -13,6 +13,21 @@
  *  @var object */
 global $themify; ?>
 
+<style type="text/css">
+	
+.img_news {
+	border: solid 3px #FFFFFF; 
+}
+.img_news:hover {
+	border: solid 3px #F57300; 
+}
+
+.related-posts:nth-child(2n+2){
+	margin-right: 20px;
+}
+
+</style>
+
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
 
@@ -32,11 +47,22 @@ global $themify; ?>
 			<?php $primeira_noticia = 0; ?>
 
 			<?php while (have_posts()) : the_post(); ?>
-			<?php if ($primeira_noticia == 0) { ?>
+			<?php $urlimg = get_custom_field('imgnews:to_image_src');
+			if ($primeira_noticia == 0) { ?>
+
+			
 			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
 				<a href="<?php the_permalink(); ?>"  style="font-weight: bold;"><?php the_title(); ?></a></h1>
 				<div class="related-posts" style="float: left; width: 720px; margin-bottom: 10px;">
-					<a href="<?php the_permalink(); ?>"><img class="imgnoticias" src="<?php print_custom_field('imgnews:to_image_src'); ?>" style="width: 720px; border-radius: 5px;"></a>
+					<a href="<?php the_permalink(); ?>" style="text-decoration: none;">
+					<div class="img_news" style="width: 714px; height: 474px; border-radius: 5px;
+					background-image: url('<? echo $urlimg; ?>');
+					<?php echo calcbackgroundsize($urlimg, 714, 474); ?>;
+					">
+						&nbsp;
+					</div>
+					</a>
+
 					<h1 class="post-title">	
 						<a href="<?php the_permalink(); ?>"><?php the_excerpt(80); ?></a>
 					</h1>	
@@ -47,10 +73,17 @@ global $themify; ?>
 				
 				<?php } else{ ?>
 
-			<div class="related-posts" style="float: left; width: 335px; height: 480px; margin-right: 30px;">
-				<div class="imgnoticias" style="width: 330px; border-radius: 5px; height: 212px;  margin-bottom: 15px;">
-					<img src="<?php print_custom_field('imgnews:to_image_src'); ?>" style="max-height: 212px;">
-				</div>
+			<div class="related-posts" style="float: left; width: 350px; height: 480px;">
+				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+					<div class="imgnoticias" style="border-radius: 5px; height: 212px; margin-bottom: 15px;">
+						<div style="height: 212px; width: 344px;
+						background-image: url('<? echo $urlimg; ?>');
+						<?php echo calcbackgroundsize($urlimg, 344, 212); ?>;
+						">
+							&nbsp;
+						</div>
+					</div>
+				</a>
 				<article class="post type-post clearfix">
 					<div class="post-content">
 						<p class="post-meta">
@@ -133,7 +166,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
       	height: 200px; 
       	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
       	background-position: center;
-      	background-size: 100%;
+      	<?php echo calcbackgroundsize("wp-content/uploads/".$basicaimagemurl, 300, 200); ?>;
       	">
       		&nbsp;
       	</div>
