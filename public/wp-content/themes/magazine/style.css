@@ -140,7 +140,7 @@ input, textarea, select, input[type=search], button {
 textarea, input[type=text], input[type=password], input[type=search], input[type=email], input[type=url] {
 	background-color: #FFFFFF;
 	border: solid 1px;
-	border-radius: 5px;
+	border-radius: 0px;
 	border-style: solid;
 	height: 30px;
 	font-size: 12px;
@@ -2372,7 +2372,7 @@ CLEAR & ALIGNMENT
 	width: 43%;
 	padding: 10px 30px 30px;
 	border: 1px solid #ccc;
-	border-radius: 16px;
+	border-radius: 0px;
 }
 
 .textwidget.icones_sociais{
@@ -2438,5 +2438,9 @@ CLEAR & ALIGNMENT
 }
 
 .related-posts-home:nth-child(2n+2){
+	margin-right: 20px;
+}
+
+.news_perfil:nth-child(2n+2){
 	margin-right: 20px;
 }
