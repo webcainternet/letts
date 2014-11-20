@@ -22,7 +22,7 @@ global $themify; ?>
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
 
-	<div class="logo_marcas" style="background: url('<?php print_custom_field('eventofoto:to_image_src'); ?>') no-repeat;"></div>
+	<div class="logo_eventos" style="background: url('<?php print_custom_field('eventofoto:to_image_src'); ?>') no-repeat;"></div>
 
 	<div style="float: left; margin: 15px; margin-left: 25px; width: 420px;">
 		<h1 class="post-title entry-title" itemprop="name">

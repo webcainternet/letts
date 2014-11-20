@@ -2311,6 +2311,14 @@ CLEAR & ALIGNMENT
 	float: left;
 }
 
+
+.logo_eventos{
+	background-size: 520px 520px !important;
+	width: 520px;
+	height: 520px;
+	float: right;
+}
+
 .icones_sociais{
 	float: right;
 	margin-top: 25px;
