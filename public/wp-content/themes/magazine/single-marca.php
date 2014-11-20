@@ -61,7 +61,7 @@ global $themify; ?>
 		<?php } ?>
 
 		<?php if (get_custom_field('basicaemail')) { ?>
-			<a href="<?php print_custom_field('basicaemail'); ?>" target="_blank">
+			<a href="mailto:<?php print_custom_field('basicaemail'); ?>" target="_blank">
 				<img src="/wp-content/themes/magazine/images/contacts.png">
 			</a>
 		<?php } ?>

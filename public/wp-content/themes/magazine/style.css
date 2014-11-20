@@ -2366,3 +2366,57 @@ CLEAR & ALIGNMENT
 	border: 1px solid #ccc;
 	border-radius: 16px;
 }
+
+.textwidget.icones_sociais{
+	float: none;
+	margin-right: 0px;
+	margin-top: 10px;
+}
+
+.textwidget.icones_sociais a{
+	padding-left: 0px;
+	padding-right: 10px;
+}
+
+.formularios.profissionais{
+	margin-left: -85px;
+	float: none;
+}
+
+.img_profissional{
+	width: 205px;
+	height: 170px;
+	float: left;
+	margin-right: 10px;
+	border: 3px solid #F1f1f1;
+	margin-bottom: 10px;
+}
+
+.img_profissional img{
+	width: 205px;
+	height: 170px;
+}
+
+.img_profissional:hover{
+	border: 3px solid #f57300;
+}
+
+.video{
+	width: 220px;
+	float: left;
+	margin-right: 12px;
+}
+
+.video:nth-child(3n+1){
+	margin-right: 0px;
+}
+
+.video img{
+	width: 200px;
+	height: 150px;
+}
+
+.video h3{
+	font-size: 20px;
+	height: 25px;
+}
