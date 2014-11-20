@@ -169,8 +169,8 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=s
 }
 
 /* form button */
-input[type=reset], input[type=submit], button, #criar {
-	background: #47a7d7;
+input[type=reset], input[type=submit], button, #criar, input[type=button] {
+	background: #ff8920;
 	color: #fff;
 	border: none;
 	padding: 7px 20px;
@@ -1179,6 +1179,9 @@ POST
 
 .single .post-title {
 	margin: 10px 0 20px;
+	font-family: 'Oswald', sans-serif;
+	color: #f57300;
+	text-transform: uppercase;
 }
 
 /* post image */
@@ -2294,3 +2297,72 @@ CLEAR & ALIGNMENT
 /* clearfix for ie7 */
 .clearfix, .widget li, #body, #footer, footer, .pagenav, #main-nav, .menu, .gallery, #content
 { display: block; zoom: 1; }
+
+.img_marcas{
+	background-size: 1064px 700px !important;
+	width: 1064px;
+	height: 700px;
+}
+
+.logo_marcas{
+	background-size: 250px 210px !important;
+	width: 250px;
+	height: 210px;
+	float: left;
+}
+
+.icones_sociais{
+	float: right;
+	margin-top: 25px;
+	margin-right: 20px;
+}
+
+.icones_sociais a{
+	text-decoration: none;
+	padding-left: 10px;
+}
+
+.description_marcas{
+	float: left;
+	width: 100%;
+	margin-top: 20px;
+}
+
+.formularios{
+	float: left;
+	width: 100%;
+	margin-top: 20px;
+}
+
+.formularios h1{
+	font-size: 25px;
+	text-align: center;
+}
+
+.formularios textarea{
+	width: 436px;
+	padding: 10px;
+	height: 150px;
+}
+
+.formularios input[type="text"]{
+	width: 440px;
+	max-width: 100%;
+	padding-left: 15px;
+}
+
+.convidar_atleta{
+	float: left;
+	width: 43%;
+	padding: 10px 30px 30px;
+	border: 1px solid #ccc;
+	border-radius: 16px; 
+}
+
+.mensagem_marca{
+	float: right;
+	width: 43%;
+	padding: 10px 30px 30px;
+	border: 1px solid #ccc;
+	border-radius: 16px;
+}
