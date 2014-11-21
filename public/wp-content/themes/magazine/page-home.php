@@ -41,7 +41,7 @@ global $themify; ?>
 				<div class="related-posts related-posts-home" style="float: left; width: 720px; margin-bottom: 10px;">
 					<a href="<?php the_permalink(); ?>" style="text-decoration: none;">
 					<div class="img_news" style="width: 714px; height: 474px; border-radius: 5px;
-					background-image: url('<? echo $urlimg; ?>');
+					background-image: url('<?php echo $urlimg; ?>');
 					<?php echo calcbackgroundsize($urlimg, 714, 474); ?>;
 					">
 						&nbsp;
@@ -62,7 +62,7 @@ global $themify; ?>
 				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
 					<div class="imgnoticias" style="border-radius: 5px; height: 212px; margin-bottom: 15px;">
 						<div style="height: 212px; width: 344px;
-						background-image: url('<? echo $urlimg; ?>');
+						background-image: url('<?php echo $urlimg; ?>');
 						<?php echo calcbackgroundsize($urlimg, 344, 212); ?>;
 						">
 							&nbsp;
