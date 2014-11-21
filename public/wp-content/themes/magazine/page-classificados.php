@@ -13,6 +13,9 @@
 </style>
 
 <?php
+
+	ini_set("DISPLAY_ERRORS", 1);
+
 /**
  * Template for single post view
  * @package themify
@@ -28,7 +31,6 @@
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
-
 
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
@@ -155,30 +157,65 @@ global $themify; ?>
 <section class="module">
   <section class="wraper">    
 
-  	
+  	<?php 
+		$sql = mysql_query("SELECT distinct `p`.`id`, `p`.`post_date` as post_data, `p`.`post_title` as title, `testado`.`meta_value` as estado, 
+			`tesporte`.`meta_value` as esporte, `tfoto`.`meta_value` as idfoto, `tvalor`.`meta_value` as valor, 
+			`temail`.`meta_value` as email, `login`.`post_title` as nome, `login`.`post_id` AS loginid, `ttelefone`.`meta_value` AS telefone
+		FROM wp_posts p
+		INNER JOIN wp_postmeta pm ON `p`.`id` = `pm`.`post_id`
+		INNER JOIN (SELECT meta_value, post_id FROM wp_postmeta estado WHERE `estado`.`meta_key` = 'acessorioestado') AS testado ON `testado`.`post_id` = `p`.`id`
+		INNER JOIN (SELECT meta_value, post_id FROM wp_postmeta esporte WHERE `esporte`.`meta_key` = 'atletaesporte') AS tesporte ON `tesporte`.`post_id` = `p`.`id`
+		INNER JOIN (SELECT meta_value, post_id FROM wp_postmeta foto WHERE `foto`.`meta_key` = 'fotoacessorio') AS tfoto ON `tfoto`.`post_id` = `p`.`id`
+		INNER JOIN (SELECT meta_value, post_id FROM wp_postmeta valor WHERE `valor`.`meta_key` = 'acessoriovalor') AS tvalor ON `tvalor`.`post_id` = `p`.`id`
+		INNER JOIN (SELECT meta_value, post_id FROM wp_postmeta email WHERE `email`.`meta_key` = 'basicaemail') AS temail ON `temail`.`post_id` = `p`.`id`
+		INNER JOIN (
+			select `k`.`post_id`, `k`.`meta_value`, `po`.`post_title` from wp_postmeta k 
+			INNER JOIN wp_posts po ON `po`.`id` = `k`.`post_id`
+			WHERE `k`.`meta_key` = 'basicaemail' 
+		) AS login ON `login`.`meta_value` = `temail`.`meta_value`
+		INNER JOIN (
+			select `k`.`post_id`, `k`.`meta_value` from wp_postmeta k 
+			INNER JOIN wp_posts po ON `po`.`id` = `k`.`post_id`
+			WHERE `k`.`meta_key` = 'basicatelefones'
+		) AS ttelefone ON `ttelefone`.`post_id` = `login`.`post_id`");
+	?>
+
+
+  	<?php while ($result = mysql_fetch_array($sql, 1)) { ?>
+  		<?php 
+   			$data_acessorio = explode(" ", $result["post_data"]);
+  			$data_acessorio = explode("-", $data_acessorio[0]);
+  			$data_acessorio = $data_acessorio[2]."-".$data_acessorio[1]."-".$data_acessorio[0];
+  		?>
+
   	<div class="related-posts classificados">
         <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
+          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;
+          font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: <?php echo $data_acessorio; ?></span>
         </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
+        <a href="/wp-content/themes/magazine/form_acessorios.php" class="fancybox">
 
+		<?php 
+			$attachment_id = $result["idfoto"];
+
+			$image_attributes = wp_get_attachment_image_src($attachment_id); 
+				if( $image_attributes ) { ?> 
         	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
+		      <a href="/wp-content/themes/magazine/form_acessorios.php" class="fancybox">
 		      	<div style="width: width: 100%; 
 		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3525.jpg');
+		      	background-image: url('<?php echo $image_attributes[0]; ?>');
 		      	background-position: center;
 		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
+		      	"></div>
 		      </a>
+		      <?php } ?>
+
 		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Novo  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
+		        <a href="/wp-content/themes/magazine/form_acessorios.php" class="fancybox">
+		          <strong class="text transition-050 title"><?php echo $result["estado"]; ?></strong>
+		          <span class="text transition-050 desc"><?php echo $result["nome"]; ?><br>
+		                    <b>Contato: </b><?php echo $result["telefone"]; ?></span>
 		        </a>
 		      </figcaption>
 		    </figure>
@@ -189,626 +226,20 @@ global $themify; ?>
           <div class="post-content">
             <p class="post-meta">
               <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Letts Case Iphone</a></span>
+                <a href="/wp-content/themes/magazine/form_acessorios.php" class="fancybox"><?php echo $result["title"]; ?></a></span>
             </p>
           </div>
         </article>
 
         <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
+			<a href="/wp-content/themes/magazine/form_acessorios.php" class="fancybox"><?php echo $result["valor"]; ?></a>
 		</div>
   	</div>
 
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3529.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Usado  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Letts Case de Galaxy</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3554.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Usado  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Letts Fone de Ouvido</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3515.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Usado  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Prancha de surf</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3518.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Novo  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Capinha de celular</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3520.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Novo  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Colete salva vidas</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3525.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Novo  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Letts Case Iphone</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3529.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Usado  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Letts Case de Galaxy</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3554.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Usado  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Letts Fone de Ouvido</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3515.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Usado  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Prancha de surf</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3518.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Novo  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Capinha de celular</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3520.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Novo  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Colete salva vidas</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3525.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Novo  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Letts Case Iphone</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3529.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Usado  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Letts Case de Galaxy</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-  	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: 26-08-2014</span>
-        </div>
-        <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">
-
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/?p=2435">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('http://letts.com.br/wp-content/uploads/acessorios/_MG_3554.jpg');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	">
-		      		&nbsp;
-		      	</div>
-		        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-		      </a>
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/?p=2435">
-		          <strong class="text transition-050 title">Usado  </strong>
-		          <span class="text transition-050 desc">Fernando de Figueiredo Mendes<br>
-		                    <b>Contato: </b>11 97649-5157</span>
-		        </a>
-		      </figcaption>
-		    </figure>
-
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Letts Fone de Ouvido</a></span>
-            </p>
-          </div>
-        </article>
-
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<input type="submit" value="R$ 49,90" style="margin-top: 0px;">
-		</div>
-  	</div>
-
-
-
-  </section>
-</section>
-
-
-
-							</div>
+  	<?php #} ?>
+	  </section>
+	</section>
+			</div>
 
 
 						</div>
