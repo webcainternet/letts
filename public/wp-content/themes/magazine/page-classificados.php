@@ -1,14 +1,11 @@
 <style type="text/css">
 	.classificados {
 		float: left;
-		width: 292px;
+		width: 275px;
 		margin-left: 20px;
-		margin-right: 20px;
-		margin-bottom: 40px;
+		margin-bottom: 20px;
 		border: solid 1px;
-		padding: 10px;
-		border-radius: 6px;
-
+		padding: 28px;
 	}
 </style>
 <?php
