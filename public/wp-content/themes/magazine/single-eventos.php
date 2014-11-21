@@ -33,50 +33,7 @@ global $themify; ?>
 		<p>Preço: <?php print_custom_field('basicatelefones'); ?></p>
 		<p>Esporte: <?php print_custom_field('basicatelefones'); ?></p>
 	</div>
-	<div class="icones_sociais">
-		<?php if (get_custom_field('basicafacebook')) { ?>
-			<a href="<?php print_custom_field('basicafacebook'); ?>" target="_blank">
-				<img src="/wp-content/themes/magazine/images/facebook.png">
-			</a>
-		<?php } ?>
 
-		<?php if (get_custom_field('instagram')) { ?>
-			<a href="<?php print_custom_field('instagram'); ?>" target="_blank">
-				<img src="/wp-content/themes/magazine/images/instagram.png">
-			</a>
-		<?php } ?>
-
-		<?php if (get_custom_field('twitter')) { ?>
-			<a href="<?php print_custom_field('twitter'); ?>" target="_blank">
-				<img src="/wp-content/themes/magazine/images/twitter.png">
-			</a>
-		<?php } ?>
-
-		<?php if (get_custom_field('linkedin')) { ?>
-			<a href="<?php print_custom_field('linkedin'); ?>" target="_blank">
-				<img src="/wp-content/themes/magazine/images/linkedin.png">
-			</a>
-		<?php } ?>
-
-		<?php if (get_custom_field('basicaemail')) { ?>
-			<a href="<?php print_custom_field('basicaemail'); ?>" target="_blank">
-				<img src="/wp-content/themes/magazine/images/contacts.png">
-			</a>
-		<?php } ?>
-
-		<?php if (get_custom_field('blog')) { ?>
-			<a href="<?php print_custom_field('blog'); ?>" target="_blank">
-				<img src="/wp-content/themes/magazine/images/rss.png">
-			</a>
-		<?php } ?>								
-
-		<?php if (get_custom_field('site')) { ?>
-			<a href="<?php print_custom_field('site'); ?>" target="_blank">
-				<img src="/wp-content/themes/magazine/images/domain.png">
-			</a>
-		<?php } ?>
-
-	</div>
 
 	<div class="description_marcas">
 		<?php the_content(); ?>

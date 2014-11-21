@@ -84,7 +84,7 @@ global $themify; ?>
 			<?php } ?>
 			<?php endwhile; ?>
 
-			<a href="/news" id="criar" style="padding: 10px 245px; background: #f57300; text-decoration: none;">
+			<a href="/news" id="criar" style="padding: 10px 255px; background: #f57300; text-decoration: none;">
 				Ver todas as Noticias
 			</a>
 			</div>
