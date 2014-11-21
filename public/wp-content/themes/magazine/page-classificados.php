@@ -11,9 +11,7 @@
 
 	}
 </style>
-
 <?php
-
 	ini_set("DISPLAY_ERRORS", 1);
 
 /**
@@ -24,8 +22,6 @@
 ?>
 
 <?php get_header(); ?>
-
-
 
 <?php 
 /** Themify Default Variables
@@ -156,9 +152,8 @@ global $themify; ?>
 
 <section class="module">
   <section class="wraper">    
-
   	<?php 
-		$sql = mysql_query("SELECT distinct `p`.`id`, `p`.`post_date` as post_data, `p`.`post_title` as title, `testado`.`meta_value` as estado, 
+		$result = mysql_query("SELECT distinct `p`.`id`, `p`.`post_date` as post_data, `p`.`post_title` as title, `testado`.`meta_value` as estado, 
 			`tesporte`.`meta_value` as esporte, `tfoto`.`meta_value` as idfoto, `tvalor`.`meta_value` as valor, 
 			`temail`.`meta_value` as email, `login`.`post_title` as nome, `login`.`post_id` AS loginid, `ttelefone`.`meta_value` AS telefone
 		FROM wp_posts p
@@ -180,10 +175,9 @@ global $themify; ?>
 		) AS ttelefone ON `ttelefone`.`post_id` = `login`.`post_id`");
 	?>
 
-
-  	<?php while ($result = mysql_fetch_array($sql, 1)) { ?>
+  	<?php while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) { ?>
   		<?php 
-   			$data_acessorio = explode(" ", $result["post_data"]);
+   			$data_acessorio = explode(" ", $row["post_data"]);
   			$data_acessorio = explode("-", $data_acessorio[0]);
   			$data_acessorio = $data_acessorio[2]."-".$data_acessorio[1]."-".$data_acessorio[0];
   		?>
@@ -193,15 +187,15 @@ global $themify; ?>
           <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;
           font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: <?php echo $data_acessorio; ?></span>
         </div>
-        <a href="/wp-content/themes/magazine/form_acessorios.php" class="fancybox">
+        <a href="/wp-content/themes/magazine/form_acessorios.php?nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
 
 		<?php 
-			$attachment_id = $result["idfoto"];
+			$attachment_id = $row["idfoto"];
 
 			$image_attributes = wp_get_attachment_image_src($attachment_id); 
 				if( $image_attributes ) { ?> 
         	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/wp-content/themes/magazine/form_acessorios.php" class="fancybox">
+		      <a href="/wp-content/themes/magazine/form_acessorios.php?nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
 		      	<div style="width: width: 100%; 
 		      	height: 200px; 
 		      	background-image: url('<?php echo $image_attributes[0]; ?>');
@@ -212,10 +206,10 @@ global $themify; ?>
 		      <?php } ?>
 
 		      <figcaption class="transition-050 opacity85">
-		        <a href="/wp-content/themes/magazine/form_acessorios.php" class="fancybox">
-		          <strong class="text transition-050 title"><?php echo $result["estado"]; ?></strong>
-		          <span class="text transition-050 desc"><?php echo $result["nome"]; ?><br>
-		                    <b>Contato: </b><?php echo $result["telefone"]; ?></span>
+		        <a href="/wp-content/themes/magazine/form_acessorios.php?nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
+		          <strong class="text transition-050 title"><?php echo $row["estado"]; ?></strong>
+		          <span class="text transition-050 desc"><?php echo $row["nome"]; ?><br>
+		                    <b>Contato: </b><?php echo $row["telefone"]; ?></span>
 		        </a>
 		      </figcaption>
 		    </figure>
@@ -226,17 +220,17 @@ global $themify; ?>
           <div class="post-content">
             <p class="post-meta">
               <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="/wp-content/themes/magazine/form_acessorios.php" class="fancybox"><?php echo $result["title"]; ?></a></span>
+                <a href="/wp-content/themes/magazine/form_acessorios.php?nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox"><?php echo $row["title"]; ?></a></span>
             </p>
           </div>
         </article>
 
         <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<a href="/wp-content/themes/magazine/form_acessorios.php" class="fancybox"><?php echo $result["valor"]; ?></a>
+			<a href="/wp-content/themes/magazine/form_acessorios.php?nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox button">R$ <?php echo $row["valor"]; ?></a>
 		</div>
   	</div>
 
-  	<?php #} ?>
+  	<?php } ?>
 	  </section>
 	</section>
 			</div>
