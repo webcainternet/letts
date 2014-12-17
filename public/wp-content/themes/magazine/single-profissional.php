@@ -148,7 +148,7 @@ global $themify; ?>
 
 	<div style="margin-top: 20px; margin-bottom: 20px; width: 100%; float: left;">
 		<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 1.5em; font-family: Oswald, sans-serif; 
+			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; text-align: center; padding: 0; font-size: 1.5em; font-family: Oswald, sans-serif; 
 			text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
 				<a href="<?php the_permalink(); ?>" style="font-weight: bold; font-size: 50px;"><?php the_title(); ?></a>
 			</h1>
@@ -174,7 +174,10 @@ global $themify; ?>
 							<?php print_custom_field('basicacidadenascimento'); ?>, <?php print_custom_field('basicaestadonascimento'); ?><br />
 
 							<div style="margin-top: 10px;"><strong>Atual</strong></div>
-							<?php print_custom_field('basicacidadeatual'); ?>, <?php print_custom_field('basicaestadoatual'); ?><br />							
+							<?php print_custom_field('basicacidadeatual'); ?>, <?php print_custom_field('basicaestadoatual'); ?><br />	
+
+							<div style="margin-top: 10px;"><strong>E-mail</strong></div>
+							<?php print_custom_field('basicaemail'); ?><br />												
 						</div>
 			
 						<div class="textwidget icones_sociais">
@@ -200,12 +203,6 @@ global $themify; ?>
 								<?php if (get_custom_field('linkedin')) { ?>
 									<a href="<?php print_custom_field('linkedin'); ?>" target="_blank">
 										<img src="/wp-content/themes/magazine/images/linkedin.png">
-									</a>
-								<?php } ?>
-
-								<?php if (get_custom_field('basicaemail')) { ?>
-									<a href="mailto:<?php print_custom_field('basicaemail'); ?>" target="_blank">
-										<img src="/wp-content/themes/magazine/images/contacts.png">
 									</a>
 								<?php } ?>
 

@@ -33,7 +33,8 @@ global $themify; ?>
 				<?php the_title(); ?>
 		</h1>
 		<?php print_custom_field('endereco:do_shortcode'); ?>
-		<p>Telefones: <?php print_custom_field('basicatelefones'); ?></p>
+		<p>Telefones: <?php print_custom_field('basicatelefones'); ?><br />
+		E-mail: <?php print_custom_field('basicaemail'); ?></p>
 	</div>
 	<div class="icones_sociais">
 		<?php if (get_custom_field('basicafacebook')) { ?>
@@ -57,12 +58,6 @@ global $themify; ?>
 		<?php if (get_custom_field('linkedin')) { ?>
 			<a href="<?php print_custom_field('linkedin'); ?>" target="_blank">
 				<img src="/wp-content/themes/magazine/images/linkedin.png">
-			</a>
-		<?php } ?>
-
-		<?php if (get_custom_field('basicaemail')) { ?>
-			<a href="mailto:<?php print_custom_field('basicaemail'); ?>" target="_blank">
-				<img src="/wp-content/themes/magazine/images/contacts.png">
 			</a>
 		<?php } ?>
 

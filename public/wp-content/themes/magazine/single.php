@@ -27,18 +27,8 @@ global $themify; ?>
 
 			<?php get_template_part( 'includes/loop' , 'single'); ?>
 
-			<?php wp_link_pages(array('before' => '<p><strong>' . __('Pages:', 'themify') . ' </strong>', 'after' => '</p>', 'next_or_number' => 'number')); ?>
-
 			<?php get_template_part( 'includes/author-box', 'single'); ?>
-
-			<?php get_template_part( 'includes/after-content-widget' ); ?>
 			
-			<?php if( 'no' != themify_get('setting-related_posts') ) : ?>
-				<?php get_template_part( 'includes/related-posts'); ?>
-			<?php endif; ?>
-
-			<?php get_template_part( 'includes/post-nav'); ?>
-
 			<?php if( ! themify_check( 'setting-comments_posts' ) ): ?>
 				<?php comments_template(); ?>
 			<?php endif; ?>

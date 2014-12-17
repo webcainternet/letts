@@ -28,7 +28,7 @@ global $themify; ?>
 
   <div id="contentwrap" style="width: 100%;padding-top: 0px;">
 
-    <div id="content" class="list-post">
+    <div id="content" class="list-post" style="width: 67%; float: left;">
 
       <div style="float: left; width: 100%; padding-top: 10px; margin-bottom: 10px;">
       
@@ -36,7 +36,7 @@ global $themify; ?>
         <h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">Notícias</h1>
       </div>
 
-      <div style="float: right; width: 49%; text-align: right; margin-bottom: 10px;"> 
+     <div style="float: right; width: 60%; text-align: right; margin-bottom: 25px;margin-top: -50px;margin-right: 20px;"> 
         
         <div class="post-meta" style="display: inline;">
           <div style="float: right; margin-right: 15px;">
@@ -122,6 +122,39 @@ global $themify; ?>
                     </form>
             </div>
         </div>
+
+        <div class="post-meta" style="display: inline;">
+          <div style="float: right; margin-right: 15px;">
+              <span class="post-category" style="margin-right: 108px;"><a href="#">Profissão</a></span><br>
+              <form method="post" id="filtroprofissao">
+                          <select  class="selectitens" name="profissao">
+                    <option>-- Selecione --</option>
+                    <option>Assessor de imprensa</option>
+                    <option>Coordenador de eventos</option>
+                    <option>Desenhista</option>
+                    <option>Empresário</option>
+                    <option>Estatístico</option>
+                    <option>Estilista</option>
+                    <option>Executivo de contas publicitárias</option>
+                    <option>Fisioterapeuta</option>
+                    <option>Fotografo</option>
+                    <option>Fotojornalista</option>
+                    <option>Gerente de relações públicas</option>
+                    <option>Gestor desportivo</option>
+                    <option>Jornalista</option>
+                    <option>Nutricionista</option>
+                    <option>Personal Crossfit</option>
+                    <option>Personal academia</option>
+                    <option>Professor de idomas</option>
+                    <option>Psicologo</option>
+                    <option>Psicólogo esportivo</option>
+                    <option>Técnico</option>
+                    <option>Videomaker</option>
+                  </select>
+                    </form>
+            </div>
+        </div>
+
         </div>
 
 
@@ -189,7 +222,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     ?>
 
     <?php if ($cont % 3 == 0 ) { ?>
-        <div style="width: 100%; float: left; height: 1px;"> &nbsp;</div>
+       
     <?php } ?>
 
     <?php
@@ -300,6 +333,7 @@ mysql_free_result($result);
     
 
   </div>
+  <?php get_sidebar("sidebar-alt"); ?>
 </div>
   <!-- /#contentwrap -->
 
@@ -307,5 +341,6 @@ mysql_free_result($result);
 
 </div>
 <!-- /layout-container -->
+
   
 <?php get_footer(); ?>

@@ -15,6 +15,16 @@ global $themify; ?>
 <?php themify_post_before(); // hook ?>
 
 <article itemscope itemtype="http://schema.org/Article" id="post-<?php the_ID(); ?>" <?php post_class("post clearfix " . $themify->get_categories_as_classes(get_the_ID())); ?>>
+
+<?php if($themify->hide_title != 'yes'): ?>
+			<?php themify_before_post_title(); // Hook ?>
+			<?php if($themify->unlink_title == 'yes'): ?>
+				<h1 class="post-title entry-title" itemprop="name"><?php the_title(); ?></h1>
+			<?php else: ?>
+				<h1 class="post-title entry-title" itemprop="name"><a href="<?php echo themify_get_featured_image_link(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
+			<?php endif; //unlink post title ?>
+			<?php themify_after_post_title(); // Hook ?> 
+		<?php endif; //post title ?>
 	
 	<?php themify_post_start(); // hook ?>
 	
@@ -51,40 +61,14 @@ global $themify; ?>
 
 	<div class="post-content">
 
-		<?php if( $themify->hide_meta != 'yes' ): ?>
-			<p class="post-meta entry-meta">
-				<?php if($themify->hide_meta_category != 'yes'): ?>
-					<span class="post-category"><?php the_category('/ ') ?></span>
-				<?php endif; ?>
-			</p>
-		<?php endif; //post meta ?>
-
-		<?php if($themify->hide_title != 'yes'): ?>
-			<?php themify_before_post_title(); // Hook ?>
-			<?php if($themify->unlink_title == 'yes'): ?>
-				<h1 class="post-title entry-title" itemprop="name"><?php the_title(); ?></h1>
-			<?php else: ?>
-				<h1 class="post-title entry-title" itemprop="name"><a href="<?php echo themify_get_featured_image_link(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
-			<?php endif; //unlink post title ?>
-			<?php themify_after_post_title(); // Hook ?> 
-		<?php endif; //post title ?>
-
 		<?php if( $themify->hide_date != 'yes' || $themify->hide_meta != 'yes' ): ?>
 			<p class="post-meta entry-meta">
+			<?php print_custom_field('atletaesporte'); ?> - 
 
 				<?php if( $themify->hide_meta != 'yes' ): ?>
 					<?php if($themify->hide_meta_author != 'yes'): ?>
-						<span class="author-avatar"><?php echo get_avatar( get_the_author_meta('user_email'), 30, '' ); ?></span>
-						<span class="author-name"><?php echo themify_get_author_link() ?></span>
+						<span class="author-name"><?php echo themify_get_author_link() ?></span> 
 					<?php endif; ?>
-
-					<?php if($themify->hide_meta_tag != 'yes'): ?>
-						<?php the_tags(' <span class="post-tag">', ', ', '</span>'); ?>
-					<?php endif; ?>
-
-					<?php  if( !themify_get('setting-comments_posts') && comments_open() && $themify->hide_meta_comment != 'yes' ) : ?>
-						<span class="post-comment"><?php comments_popup_link( __( '0 Comment', 'themify' ), __( '1 Comment', 'themify' ), __( '% Comments', 'themify' ) ); ?></span>
-					<?php endif; //post comment ?>
 				<?php endif; // post meta ?>
 
 				<?php if( $themify->hide_date != 'yes' ): ?>
@@ -94,12 +78,6 @@ global $themify; ?>
 			</p>
 		<?php endif; //post date or post meta ?>
 
-		<?php if( is_single() ) : ?>
-			<?php get_template_part( 'includes/social-share'); ?>
-		<?php endif; ?>
-
-		<?php if( is_single() ) get_template_part( 'includes/before-content-widget' ); ?>
-		
 		<div class="entry-content" itemprop="articleBody">
 
 		<?php if ( 'excerpt' == $themify->display_content && ! is_attachment() ) : ?>
@@ -117,6 +95,10 @@ global $themify; ?>
 			<?php the_content(themify_check('setting-default_more_text')? themify_get('setting-default_more_text') : __('More &rarr;', 'themify')); ?>
 		
 		<?php endif; //display content ?>
+
+		<?php if( is_single() ) : ?>
+			<?php get_template_part( 'includes/social-share'); ?>
+		<?php endif; ?>
 
 		</div><!-- /.entry-content -->
 		
