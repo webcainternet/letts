@@ -192,7 +192,7 @@ global $themify; ?>
 			$image_attributes = wp_get_attachment_image_src($attachment_id); 
 				if( $image_attributes ) { ?> 
         	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/wp-content/themes/magazine/form_acessorios.php?nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
+		      <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
 		      	<div style="width: width: 100%; 
 		      	height: 200px; 
 		      	background-image: url('<?php echo $image_attributes[0]; ?>');
@@ -203,7 +203,7 @@ global $themify; ?>
 		      <?php } ?>
 
 		      <figcaption class="transition-050 opacity85">
-		        <a href="/wp-content/themes/magazine/form_acessorios.php?nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
+		        <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
 		          <strong class="text transition-050 title"><?php echo $row["estado"]; ?></strong>
 		          <span class="text transition-050 desc"><?php echo $row["nome"]; ?><br>
 		                    <b>Contato: </b><?php echo $row["telefone"]; ?></span>

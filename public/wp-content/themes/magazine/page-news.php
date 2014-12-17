@@ -336,11 +336,27 @@ mysql_free_result($result);
   <?php get_sidebar("sidebar-alt"); ?>
 </div>
   <!-- /#contentwrap -->
-
-  
-
 </div>
 <!-- /layout-container -->
+
+<div id="vagas">
+<h1 class="post-title">Vagas de emprego</h1>
+    <?php query_posts('post_type=vagas');
+    while (have_posts()): the_post(); ?>
+
+
+    <div class="vaga">
+      <div style="margin-top: 10px;"><strong>Vaga: </strong><br /><?php the_title(); ?></div>
+      <div style="margin-top: 10px;"><strong>Empresa: </strong><?php the_content(); ?></div>
+      <div style="margin-top: 10px;"><strong>Contato: </strong><br /> <?php print_custom_field('basicaemail'); ?></div>
+    </div>
+  
+
+    <?php endwhile; // end of the loop. ?>
+
+</div>
+
+
 
   
 <?php get_footer(); ?>

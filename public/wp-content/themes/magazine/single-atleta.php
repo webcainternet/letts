@@ -218,6 +218,7 @@ global $themify; ?>
 									</a>
 								<?php } ?>
 							</div>
+							<a href="/print?post_id=<?php echo get_the_ID(); ?>" target="_blank">Imprimir Currículo</a>
 					</div>			
 				</div>
 		</div>
