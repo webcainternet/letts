@@ -44,16 +44,10 @@
     while (have_posts()): the_post(); ?>
 	<div class="conteudo_anuncios">
    		<div id="fotos_anuncios">
-	   		<a href="<?php print_custom_field('fotoanuncio1'); ?>" class="fancybox" target="_blank">
 	   			<img src="<?php print_custom_field('fotoanuncio1'); ?>">
-	   		</a>
-			<a href="<?php print_custom_field('fotoanuncio2'); ?>" class="fancybox" target="_blank">
 				<img src="<?php print_custom_field('fotoanuncio2'); ?>">
-			</a>
-			<a href="<?php print_custom_field('fotoanuncio3'); ?>" class="fancybox" target="_blank">
 				<img src="<?php print_custom_field('fotoanuncio3'); ?>">
-			</a>
-		</div>
+			</div>
 
 <?php endwhile; // end of the loop. ?>
 <div class="formularios mensagem_acessorio">

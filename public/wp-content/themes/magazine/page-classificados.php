@@ -184,7 +184,7 @@ global $themify; ?>
           <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;
           font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: <?php echo $data_acessorio; ?></span>
         </div>
-        <a href="/wp-content/themes/magazine/form_acessorios.php?nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
+        <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
 
 		<?php 
 			$attachment_id = $row["idfoto"];
@@ -217,13 +217,13 @@ global $themify; ?>
           <div class="post-content">
             <p class="post-meta">
               <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="/wp-content/themes/magazine/form_acessorios.php?nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox"><?php echo $row["title"]; ?></a></span>
+                <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox"><?php echo $row["title"]; ?></a></span>
             </p>
           </div>
         </article>
 
         <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<a href="/wp-content/themes/magazine/form_acessorios.php?nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox button">R$ <?php echo $row["valor"]; ?></a>
+			<a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox button">R$ <?php echo $row["valor"]; ?></a>
 		</div>
   	</div>
 

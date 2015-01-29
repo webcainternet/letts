@@ -17,6 +17,14 @@ global $themify; ?>
 	
 	<?php if( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
+<style type="text/css">
+.editar_perfil{
+	font-size: 12px;
+	margin-top: -25px;
+	float: left;
+}
+</style>
+
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
 	<div style="border-top: 5px #ff8920 solid; 
@@ -54,13 +62,6 @@ global $themify; ?>
 	}
 	img.src = "<?php print_custom_field('basicaimagem:to_image_src'); ?>";	
 </script>
-			
-
-
-
-
-
-
 	<div style="background-size: 1064px; 
 				background-position:center; 
 				height: 62px;background-color: #EEE;">
@@ -139,7 +140,8 @@ global $themify; ?>
 					margin: 0px;
 					margin-left: 25px;">
 					<div id="text-1017" class="widget widget_text" style="border: 0px; margin: 0px;">
-						<h4 class="widgettitle" style="border: 0px;"><?php print_custom_field('atletaesporte'); ?></h4>		
+						<h4 class="widgettitle" style="border: 0px;"><?php print_custom_field('atletaesporte'); ?></h4>
+						<a class="editar_perfil" href="/edicao-atleta/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>	
 					</div>
 			
 		</div>
@@ -312,6 +314,7 @@ global $themify; ?>
 
 			<div style="width: 685px; float: left; margin-left: 50px;">
 			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">News</h4>
+			<a class="button link_botao" href="/add-news/?id_post=<?php echo $idpost; ?>">+ Notícias</a>
 
 			<?php while (have_posts()) : the_post(); ?>
 
@@ -339,6 +342,7 @@ global $themify; ?>
 			<?php if ($_GET["page"] == "fotos") { ?>
 				<div style="width: 685px; float: left; margin-left: 50px;">
 					<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Fotos</h4>
+					<a class="button link_botao" href="/add-fotos/?id_post=<?php echo $idpost; ?>">+ Fotos</a>
 					<div class="galeria_profissional">
 						<?php $path = "wp-content/uploads/users/$idpost"; 
 							$diretorio = dir($path); 
@@ -373,6 +377,7 @@ global $themify; ?>
 
 			<div style="width: 685px; float: left; margin-left: 50px;">
 			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Vídeos</h4>
+			<a class="button link_botao" href="/add-videos/?id_post=<?php echo $idpost; ?>">+ Vídeos</a>
 
 			<?php while (have_posts()) : the_post(); ?>
 

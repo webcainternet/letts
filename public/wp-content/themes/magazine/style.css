@@ -2473,3 +2473,28 @@ CLEAR & ALIGNMENT
 	padding: 10px;
 	margin-right: 15px;
 }
+
+.link_botao{
+	float: right;
+	margin-top: -45px;
+}
+
+.input_video, .input_noticia{
+	width: 100% !important;
+	padding-left: 10px;
+}
+
+.textarea_noticia{
+	width: 90.9%;
+}
+
+.input_file{
+	margin-bottom: 10px;
+}
+
+#sucesso{
+	color: #ff8920;
+	text-transform: uppercase;
+	font-weight: bold;
+	display: none;
+}
