@@ -129,158 +129,26 @@ global $themify; ?>
 
           <div style="width: 100%; float: left; height: 1px;"> &nbsp;</div>
 
-<!--
-Novo / Usado
+    <?php query_posts('post_type=eventos');
+    while (have_posts()): the_post(); ?>
 
-[imagem]
-
-Titulo
-Valor
-
-
--->
-
-          <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
-            <div style="text-align: right;">
-              <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">26-08-2014</span>
-            </div>
-            <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg');">&nbsp;</div></a>
+         <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
+            <a href="<?php the_permalink(); ?>">
+              <div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; 
+              background-position: center; background-image: url('<?php print_custom_field('eventofoto:to_image_src'); ?>');">
+              &nbsp;</div>
+            </a>
             <article class="post type-post clearfix">
               <div class="post-content">
                 <p class="post-meta">
                   <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                    <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Morre skatista Jay Adams um dos mais influentes da história</a></span>
+                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></span>
                 </p>
               </div>
             </article>
           </div>
 
-          <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
-            <div style="text-align: right;">
-              <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">26-08-2014</span>
-            </div>
-            <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg');">&nbsp;</div></a>
-            <article class="post type-post clearfix">
-              <div class="post-content">
-                <p class="post-meta">
-                  <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                    <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Morre skatista Jay Adams um dos mais influentes da história</a></span>
-                </p>
-              </div>
-            </article>
-          </div>
-
-          <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
-            <div style="text-align: right;">
-              <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">26-08-2014</span>
-            </div>
-            <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg');">&nbsp;</div></a>
-            <article class="post type-post clearfix">
-              <div class="post-content">
-                <p class="post-meta">
-                  <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                    <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Morre skatista Jay Adams um dos mais influentes da história</a></span>
-                </p>
-              </div>
-            </article>
-          </div>
-
-          <div style="width: 100%; float: left; height: 1px;"> &nbsp;</div>
-
-          <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
-            <div style="text-align: right;">
-              <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">26-08-2014</span>
-            </div>
-            <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg');">&nbsp;</div></a>
-            <article class="post type-post clearfix">
-              <div class="post-content">
-                <p class="post-meta">
-                  <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                    <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Morre skatista Jay Adams um dos mais influentes da história</a></span>
-                </p>
-              </div>
-            </article>
-          </div>
-
-          <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
-            <div style="text-align: right;">
-              <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">26-08-2014</span>
-            </div>
-            <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg');">&nbsp;</div></a>
-            <article class="post type-post clearfix">
-              <div class="post-content">
-                <p class="post-meta">
-                  <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                    <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Morre skatista Jay Adams um dos mais influentes da história</a></span>
-                </p>
-              </div>
-            </article>
-          </div>
-
-          <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
-            <div style="text-align: right;">
-              <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">26-08-2014</span>
-            </div>
-            <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg');">&nbsp;</div></a>
-            <article class="post type-post clearfix">
-              <div class="post-content">
-                <p class="post-meta">
-                  <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                    <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Morre skatista Jay Adams um dos mais influentes da história</a></span>
-                </p>
-              </div>
-            </article>
-          </div>
-
-          <div style="width: 100%; float: left; height: 1px;"> &nbsp;</div>
-
-          <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
-            <div style="text-align: right;">
-              <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">26-08-2014</span>
-            </div>
-            <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg');">&nbsp;</div></a>
-            <article class="post type-post clearfix">
-              <div class="post-content">
-                <p class="post-meta">
-                  <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                    <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Morre skatista Jay Adams um dos mais influentes da história</a></span>
-                </p>
-              </div>
-            </article>
-          </div>
-
-          <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
-            <div style="text-align: right;">
-              <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">26-08-2014</span>
-            </div>
-            <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg');">&nbsp;</div></a>
-            <article class="post type-post clearfix">
-              <div class="post-content">
-                <p class="post-meta">
-                  <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                    <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Morre skatista Jay Adams um dos mais influentes da história</a></span>
-                </p>
-              </div>
-            </article>
-          </div>
-
-          <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
-            <div style="text-align: right;">
-              <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">26-08-2014</span>
-            </div>
-            <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/2014/08/JayAdams1.jpg');">&nbsp;</div></a>
-            <article class="post type-post clearfix">
-              <div class="post-content">
-                <p class="post-meta">
-                  <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                    <a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/">Morre skatista Jay Adams um dos mais influentes da história</a></span>
-                </p>
-              </div>
-            </article>
-          </div>
-
-          <div style="width: 100%; float: left; height: 1px;"> &nbsp;</div>
-
+    <?php endwhile; // end of the loop. ?>
 
 
         </div>

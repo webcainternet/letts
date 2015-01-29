@@ -20,25 +20,29 @@ global $themify; ?>
 		<!-- content -->
 
 <!-- layout-container -->
+	<div style="background-image: url('<?php print_custom_field('atletaimagembackground:to_image_src'); ?>'); 
+				background-size: 1064px; 
+				background-position:center; 
+				height: 400px;"></div>
 <div id="layout" class="pagewidth clearfix">
-
 	<div class="logo_eventos" style="background: url('<?php print_custom_field('eventofoto:to_image_src'); ?>') no-repeat;"></div>
 
 	<div style="float: left; margin: 15px; margin-left: 25px; width: 420px;">
 		<h1 class="post-title entry-title" itemprop="name">
-				<?php the_title(); ?> <span style="font-size: 18px;">(<?php print_custom_field('eventotipo'); ?>)</span>
+				<?php the_title(); ?> <!--<span style="font-size: 18px;">(<?php print_custom_field('eventotipo'); ?>)</span>-->
 		</h1>
-		<p>Local: <?php print_custom_field('basicatelefones'); ?></p>
+		<!--<p>Local: <?php print_custom_field('basicatelefones'); ?></p>
 		<p>Data e Hora: <?php print_custom_field('basicatelefones'); ?></p>
 		<p>Preço: <?php print_custom_field('basicatelefones'); ?></p>
-		<p>Esporte: <?php print_custom_field('basicatelefones'); ?></p>
+		<p>Esporte: <?php print_custom_field('basicatelefones'); ?></p>-->
 
 		<div style="width: 500px;">
 			<?php the_content(); ?>
 		</div>
+	<a href="<?php print_custom_field('link_ingresso'); ?>" target="_blank" class="button">Comprar Ingresso</a>	
 	</div>
 
-<div class="mensagem_marca" style="margin-top: 30px;">
+<!--<div class="mensagem_marca" style="margin-top: 30px;">
 			<h1 class="post-title entry-title">Envie mensagem para a marca</h1>
 			<form action="" method="post" id="formulario_mensagem">
 				<input type="text" id="nome_msg" name="nome_msg" placeholder="Seu Nome">
@@ -48,7 +52,7 @@ global $themify; ?>
 				<input type="button" id="botao_mensagem" value="Enviar Mensagem">
 			</form>
 		</div>	
-
+-->
 
 <?php endwhile; ?>
 
