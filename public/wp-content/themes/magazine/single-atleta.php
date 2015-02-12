@@ -13,6 +13,29 @@
  *  @var object */
 global $themify; ?>
 
+  <?php if ($_POST){ ?>
+	  <?php 
+      // Create post object
+        $my_post = array(
+          'post_title'    => $_POST['titulo_noticia'],
+          'post_status'   => 'pending',
+          'post_content'   => $_POST['content_noticia'],
+          'post_type'     => 'news',
+          'post_author'   => 1
+        );
+
+        $post_id = wp_insert_post($my_post);
+        add_post_meta($post_id, 'basicaemail', $_POST['email'], true);
+        add_post_meta($post_id, 'post_image', $_FILES['img_destacada']['tmp_name'], true);
+    ?>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#sucesso').show();
+      }) 
+    </script>
+  <?php } ?>
+
+
 	<?php $idpost = get_the_ID(); ?>
 	
 	<?php if( have_posts() ) while ( have_posts() ) : the_post(); ?>
@@ -224,67 +247,7 @@ global $themify; ?>
 					</div>			
 				</div>
 		</div>
-
-		<!--<div style="float: left; width: 705px; margin-left: 30px;">
-			<div style="width: 100%; display: block;" id="newpoststep1">
-				<div>
-				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Adicionar news</h4>
-				</div>
-				<div style="width: 100%;">
-					<textarea style="width: 100%; height: 80px;"></textarea>
-				</div>
-				<div style="text-align: right;">
-					<input type="submit" value=">" style="" 
-						onclick="document.getElementById('newpoststep1').style.display = 'none'; document.getElementById('newpoststep2').style.display = 'block'; document.getElementById('newpoststep3').style.display = 'none';">
-				</div>
-			</div>
-
-
-
-			<div style="width: 100%; display: none;" id="newpoststep2">
-				<div>
-				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Selecionar mídia</h4>
-				</div>
-				<div style="width: 100%;">
-					<div style="border: #EEE dotted 5px; padding: 30px; margin-bottom: 15px; text-align: center;">
-						<input type="file">
-					</div>
-				</div>
-				<div style="text-align: right;">
-					<input type="submit" value="<" style="" 
-						onclick="document.getElementById('newpoststep1').style.display = 'block'; document.getElementById('newpoststep2').style.display = 'none'; document.getElementById('newpoststep3').style.display = 'none';">
-					<input type="submit" value=">" style="" 
-						onclick="document.getElementById('newpoststep1').style.display = 'none'; document.getElementById('newpoststep2').style.display = 'none'; document.getElementById('newpoststep3').style.display = 'block';">
-				</div>
-			</div>
-
-
-			<div style="width: 100%; display: none;" id="newpoststep3">
-				<div>
-				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Publicar como news no site?</h4>
-				</div>
-				<div style="width: 100%;">
-					 <input type="checkbox" 
-					 	onchange="document.getElementById('sp-change').style.display = 'block';" 
-					 	id="change">
-					 	<label for="change">Gostaria de compartilhar esta notícia na página de news?</label>
-
-					 	<div id="sp-change" style="display: none;">
-					 		Titulo:<br />
-					 		<input type="text">
-					 	</div>
-
-				</div>
-				<div style="text-align: right;">
-					<input type="submit" value="<" style="" 
-						onclick="document.getElementById('newpoststep1').style.display = 'none'; document.getElementById('newpoststep2').style.display = 'block'; document.getElementById('newpoststep3').style.display = 'none';">
-					<input type="submit" value="Publicar" style="" 
-						onclick="alert('Session error!');">
-				</div>
-			</div>
-			-->
-			
-			<?php if ($_GET["page"] == "" || $_GET["page"] == "sobre") { ?>
+			<?php if ($_GET["page"] == "sobre") { ?>
 				
 				<div style="width: 685px; float: left; margin-left: 50px;">
 				
@@ -300,7 +263,7 @@ global $themify; ?>
 				</div>
 			<?php } ?>
 
-			<?php if ($_GET["page"] == "news") { ?>
+			<?php if ($_GET["page"] == "" || $_GET["page"] == "news") { ?>
 			<?php 
 			$email_user = get_custom_field('basicaemail'); ?>
 			<?php $args = array(
@@ -313,24 +276,37 @@ global $themify; ?>
 			query_posts($args); ?>
 
 			<div style="width: 685px; float: left; margin-left: 50px;">
-			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">News</h4>
-			<a class="button link_botao" href="/add-news/?id_post=<?php echo $idpost; ?>">+ Notícias</a>
+
+            <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
+	             <div id="box_pensando">
+		             <textarea class="textarea_noticia" name="content_noticia" placeholder="No que você está pensando..."></textarea>
+					 <span class="button" id="avancar" style="float: right;">Avançar</span>
+				 </div>
+
+				 <div id="nome_img">
+		             <input class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
+		             <input type="file" class="custom-file-input input_file" name="img_destacada">
+		             <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
+		             <input type="submit" style="float: right;" value="Publicar">
+            	</div>
+            </form> 
+
+			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin-top: 20px; margin-bottom: 10px;">News</h4>
 
 			<?php while (have_posts()) : the_post(); ?>
 
 			<div class="related-posts news_perfil" style="float: left; width: 310px; height: 480px;">
 				<div class="imgnoticias" style="width: 300px; border-radius: 5px; height: 190px;  margin-bottom: 15px;">
-					<?php $imgsizeok = print_custom_field('imgnews:to_image_src'); 
-					echo "11------".$imgsizeok."------222";
-					
-					str_replace("letts.com.br", "000", $imgsizeok);
-					
-?>
+					<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
+						$imgsizeok = str_replace("letts.com.br/", "", $imgsizeok);
+						$imgsizeok = str_replace("http://", "", $imgsizeok);
+						$imgsizeok = str_replace("https://", "", $imgsizeok);
+					?>
 					<div style="width: 300px; 
 			      	height: 190px; 
 			      	background-image: url('<?php print_custom_field('imgnews:to_image_src'); ?>');
 			      	background-position: center;
-			      	<?php echo calcbackgroundsize("/wp-content/uploads/2014/08/JayAdams1.jpg", 300, 190); ?>;
+			      	<?php echo calcbackgroundsize($imgsizeok, 300, 190); ?>;
 			      	">
 			      		&nbsp;
   					</div>
@@ -466,3 +442,20 @@ global $themify; ?>
 <!-- /layout-container -->
 	
 <?php get_footer(); ?>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#avancar').click(function(){
+   	 	$('#box_pensando').hide();
+		$('#nome_img').show();
+   	}) 
+
+	$('.textarea_noticia').click(function() {
+		$('.textarea_noticia').css('height','200px');
+	})
+
+	$('.textarea_noticia').focusout(function() {
+		$('.textarea_noticia').css('height','30px');
+	})
+});
+</script>
