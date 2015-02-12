@@ -8,6 +8,40 @@
  
 <?php get_header(); ?>
 
+
+	
+<style type="text/css">
+	
+	.sliderleft {
+		float: left; background-color: #E6E6E6; padding-top: 230px; text-align: center; font-size: 12px; width: 20px; margin-right: 5px; height: 244px; margin-top: 3px; color: #303030;
+	}
+	.sliderleft:hover {
+		background-color: #ff8920; color: #FFFFFF;
+	}
+
+
+	.sliderright {
+		float: left; background-color: #E6E6E6; padding-top: 230px; text-align: center; font-size: 12px; width: 20px; margin-left: 5px; height: 244px; margin-top: 3px; color: #303030;
+	}
+
+	.sliderright:hover {
+		background-color: #ff8920; color: #FFFFFF;
+	} 
+
+	.slideritemselect {
+		float: left;
+		width: 14px;
+		height: 14px;
+		border-radius: 8px;
+		background-color: #DDDDDD;
+		margin-right: 5px;
+	}
+	.slideritemselect:hover {
+		background-color: #ff8920;
+	}
+</style>
+
+
 <?php 
 /** Themify Default Variables
  *  @var object */
@@ -18,7 +52,7 @@ global $themify; ?>
 
 	<div id="contentwrap" style="width: 100%; padding-top: 0px;">
 
-		<div id="content" class="list-post" style="padding-top: 45px;">
+		<div id="content" class="list-post" style="padding-top: 10px;">
 
 			<div style="float: left; width: 730px;">
 			<?php $args = array(
@@ -36,13 +70,25 @@ global $themify; ?>
 			if ($primeira_noticia == 0) { ?>
 
 			
-			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
-				<a href="<?php the_permalink(); ?>"  style="font-weight: bold;"><?php the_title(); ?></a></h1>
-				<div class="related-posts related-posts-home" style="float: left; width: 720px; margin-bottom: 10px;">
+			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%; display: none;">
+				<a href="<?php the_permalink(); ?>"  style="font-weight: bold;"><?php the_title(); ?></a>
+			</h1>
+				<?php echo do_shortcode('[carousel-horizontal-posts-content-slider]'); ?>
+
+
+
+
+				
+				<?php /*
+				<div class="sliderleft">
+					<
+				</div>
+
+				<div class="related-posts related-posts-home" style="float: left; width: 664px; margin-bottom: 0px;">
 					<a href="<?php the_permalink(); ?>" style="text-decoration: none;">
-					<div class="img_news" style="width: 714px; height: 474px; border-radius: 5px;
+					<div class="img_news" style="width: 658px; height: 474px; border-radius: 5px;
 					background-image: url('<?php echo $urlimg; ?>');
-					<?php echo calcbackgroundsize($urlimg, 714, 474); ?>;
+					<?php echo calcbackgroundsize($urlimg, 658, 474); ?>;
 					">
 						&nbsp;
 					</div>
@@ -51,7 +97,23 @@ global $themify; ?>
 					<h1 class="post-title">	
 						<a href="<?php the_permalink(); ?>"><?php the_excerpt(80); ?></a>
 					</h1>	
+
+					<h1 class="post-title" style="text-align: center; margin: auto; width: 95px; font-size: 1px; margin-bottom: 10px;">	
+						<div class="slideritemselect" style="background-color: #ff8920;"></div>
+						<div class="slideritemselect"></div>
+						<div class="slideritemselect"></div>
+						<div class="slideritemselect"></div>
+						<div class="slideritemselect"></div>
+						&nbsp;
+					</h1>
 				</div>
+
+				<div class="sliderright">
+				>
+				</div>
+
+				*/ ?>
+
 			<?php
 				$primeira_noticia++; ?>
 				<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">News</h1>
@@ -101,7 +163,7 @@ global $themify; ?>
 		</div>
 
 
-		<div style="float: left; width: 100%; margin-top: 40px;">
+		<div style="float: left; width: 100%; margin-top: 0px;">
 			<div class="related-posts">
 				<h4 class="related-title" style="margin-bottom: 15px; border: 0px;">Últimos atletas cadastrados</h4>
 				<div class="related-posts" style="float: left; width: 100%;">

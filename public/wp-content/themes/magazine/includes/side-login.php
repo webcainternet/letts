@@ -1,4 +1,4 @@
-<div style="float: right; width: 305px;">
+<div style="float: right; width: 305px; display: none;">
 					<div class="related-posts">
 						<div style="text-align: right; padding: 10px 0px;">
 							<a href="/wp-content/themes/magazine/logout.php" id="criar" style="padding: 10px 69px; background: #f57300; text-decoration: none;">

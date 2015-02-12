@@ -27,6 +27,17 @@
 </head>
 
 <body <?php body_class(); ?>>
+<!-- Facebook -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=805023986191114&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 <?php themify_body_start(); // hook ?>
 <div id="pagewrap" class="hfeed site">
 
@@ -43,7 +54,49 @@
 					<?php } ?>
 				<?php endif; ?>
 
-				<div class="social-widget" style="margin-top: 2px;"><a href="/?p=<?php echo $_SESSION["lettslogin"]; ?>" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;"><?php echo $letts_nome; ?></a> <?php if ($letts_nome != "VISITANTE") { ?><a href="/wp-content/themes/magazine/logout.php" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;">(Sair)</a><?php } ?></div>
+
+				
+
+
+
+				<div class="social-widget" style="margin-top: 4px;">
+				<div style="float: left; margin-right: 7px; border: 0px solid rgb(255, 137, 32); border-radius: 2px; width: 22px; height: 22px; background-image: url(http://letts.com.br/wp-content/uploads/2014/07/1098357_10200930179274639_1691402653_n.jpg); background-size: 22px; background-position: 50% 50%;" id="imgbackgroundtopo">&nbsp;</div>
+
+					<a href="/?p=<?php echo $_SESSION["lettslogin"]; ?>" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;">
+						<?php // echo $letts_nome; ?>
+						<?php
+						$pos = strpos($letts_nome, ' ');
+						echo substr($letts_nome, 0,$pos); 
+						?>
+					</a>
+					|&nbsp;
+					<a href="/" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;">
+						Página inicial
+					</a>
+					
+
+					<?php if ($letts_nome != "VISITANTE") { ?>
+					<a href="/wp-content/themes/magazine/logout.php" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;">
+						(Sair)
+					</a>
+					<?php } else { ?>
+						
+						<div style="float: right;">
+							<div class="related-posts" style="height: 30px;">
+								<div style="text-align: right; padding: 0px 0px;">
+									<a href="/wp-content/themes/magazine/logout.php" id="criar" style="background: #f57300; text-decoration: none; padding: 0px; padding-left: 10px; padding-right: 10px; color: #FFFFFF;">
+										Criar Nova Conta
+									</a>
+								</div>
+								<br>					
+							</div>
+						</div>
+
+				 <?php } ?>
+
+
+
+				</div>
 
 				<div class="social-widget">
 					<?php dynamic_sidebar('social-widget'); ?>

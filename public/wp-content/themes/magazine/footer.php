@@ -15,9 +15,11 @@
 	<!-- /body -->
 		
 	<div id="footerwrap">
+
     
     	<?php themify_footer_before(); // hook ?>
 		<footer id="footer" class="pagewidth clearfix">
+
 			<?php themify_footer_start(); // hook ?>
 
 			<p class="back-top">

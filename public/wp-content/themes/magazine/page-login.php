@@ -345,15 +345,19 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $("#mostraatleta").click(function(){
+  	$("#perfilatleta").show();
+  	$("#perfilprofissional").hide();
+  	$("#perfilmarca").hide();
+
   	//out
-	$("#dadosatleta").fadeOut(1000);
-	$("#dadosprofissional").fadeOut(1000);
-	$("#dadosmarca").fadeOut(1000);
+	$("#dadosatleta").hide();
+	$("#dadosprofissional").hide();
+	$("#dadosmarca").hide();
 	$("#imagensatleta").fadeOut(1000);
 	$("#imagensprofissional").fadeOut(1000);
 	$("#imagensmarca").fadeOut(1000);
 	//in
-	$("#dadosatleta").delay(1000).fadeIn(1000);
+	$("#dadosatleta").show();
     $("#imagensatleta").delay(1000).fadeIn(1000);
 
     //passagens
@@ -388,15 +392,18 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $("#mostraprofissional").click(function(){
+  	$("#perfilatleta").hide();
+  	$("#perfilprofissional").show();
+  	$("#perfilmarca").hide();
 	//out
-	$("#dadosatleta").fadeOut(1000);
-	$("#dadosprofissional").fadeOut(1000);
-	$("#dadosmarca").fadeOut(1000);
+	$("#dadosatleta").hide();
+	$("#dadosprofissional").hide();
+	$("#dadosmarca").hide();
 	$("#imagensatleta").fadeOut(1000);
 	$("#imagensprofissional").fadeOut(1000);
 	$("#imagensmarca").fadeOut(1000);
 	//in
-	$("#dadosprofissional").delay(1000).fadeIn(1000);
+	$("#dadosprofissional").show();
     $("#imagensprofissional").delay(1000).fadeIn(1000);
   });
 });
@@ -404,15 +411,18 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $("#mostramarca").click(function(){
+  	$("#perfilatleta").hide();
+  	$("#perfilprofissional").hide();
+  	$("#perfilmarca").show();
 	//out
-	$("#dadosatleta").fadeOut(1000);
-	$("#dadosprofissional").fadeOut(1000);
-	$("#dadosmarca").fadeOut(1000);
+	$("#dadosatleta").hide();
+	$("#dadosprofissional").hide();
+	$("#dadosmarca").hide();
 	$("#imagensatleta").fadeOut(1000);
 	$("#imagensprofissional").fadeOut(1000);
 	$("#imagensmarca").fadeOut(1000);
 	//in
-	$("#dadosmarca").delay(1000).fadeIn(1000);
+	$("#dadosmarca").show();
     $("#imagensmarca").delay(1000).fadeIn(1000);
   });
 });	
@@ -439,7 +449,7 @@ global $themify; ?>
 	<!-- Imagens -->
 	<div style="float: left; width: 59%;">
 	<div style="position: absolute; top: 320px; left: 370px; z-index: 100;">
-		<a href="http://letts.com.br/wp-content/themes/magazine/login.php?visitante=1"><input type="submit" value="Acessar como visitante" style="margin-top: 25px;"></a>
+		<a href="http://letts.com.br/wp-content/themes/magazine/login.php?visitante=1"><input type="submit" value="Acessar como visitante" style="margin-top: 0px;"></a>
 	</div>
 
 		<!-- Atleta Area -->
@@ -523,7 +533,11 @@ global $themify; ?>
 	<!-- Loging -->
 	<div style="float: right;">
 		<div style="float: left; width: 460px; padding-top: 10px;">
-			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">Perfil: Atleta</h1>
+			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%; display: none;">
+				<div id="perfilatleta" style="display: block;">Perfil: Atleta</div>
+				<div id="perfilprofissional" style="display: none;">Perfil: Profissional</div>
+				<div id="perfilmarca" style="display: none;">Perfil: Marca</div>
+			</h1>
 				<div class="related-posts" style="float: left; width: 400px; margin-bottom: 30px;">
 					
 
@@ -543,6 +557,21 @@ global $themify; ?>
 											<input id="mostraprofissional" type="radio" name="tipodeconta" style="margin-left: 20px;">Profissional
 											<input id="mostramarca" type="radio" name="tipodeconta" style="margin-left: 20px;">Marca
 										</h1>
+									</div>
+
+									<div style="text-align: center; margin-top: 10px; text-align: left;">
+										<p class="post-meta" style="margin-left: 25px;">
+											<span class="post-category"><a href="#">Cadastrar com o Facebook:</a> / </span>
+										</p>
+										<h1 class="post-title" style="margin-left: 0px; margin-bottom: 10px; text-align: center; width: 340px;">
+											<a href="#"><img src="/wp-content/themes/magazine/images/pZzc4.png" alt="Login com Facebook" style="width: 250px;"></a>
+										</h1>
+									</div>
+
+									<div style="text-align: center; margin-top: 10px; text-align: left; width: 340px;">
+										<p class="post-meta" style="margin-left: 25px; text-align: center; color: #f57300;">
+											<span class="post-category"><a href="#">Ou</a> / </span>
+										</p>
 									</div>
 
 									<div class="post-content" style="margin-top: 10px; display: none;">

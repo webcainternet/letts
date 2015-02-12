@@ -23,6 +23,15 @@ global $themify; ?>
 });
 </script>
 
+<style type="text/css">
+  .imgnoticias {
+    width: 330px; border-radius: 5px; height: 180px; background-size: 336px; background-position: center;
+  }
+  .related-posts {
+    float: left; width: 336px; margin-left: 0px; margin-right: 20px; margin-bottom: 0px;
+  }
+</style>
+
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
 
@@ -36,14 +45,13 @@ global $themify; ?>
         <h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">Notícias</h1>
       </div>
 
-     <div style="float: right; width: 60%; text-align: right; margin-bottom: 25px;margin-top: -50px;margin-right: 20px;"> 
+     <div style="float: right; width: 60%; text-align: right; margin-bottom: 10px;margin-top: -45px;margin-right: 7px;"> 
         
         <div class="post-meta" style="display: inline;">
           <div style="float: right; margin-right: 15px;">
-              <span class="post-category" style="margin-right: 108px;"><a href="#">Esporte</a></span><br>
               <form method="post" id="filtroesporte">
               <select name="slesporte" class="selectitens"  onchange="this.form.submit();">
-                      <option>-- Selecione --</option>
+                      <option>-- Atleta --</option>
                       <option>Aeromodelismo</option>
                       <option>Alpinismo</option>
                       <option>Asa Delta</option>
@@ -125,10 +133,9 @@ global $themify; ?>
 
         <div class="post-meta" style="display: inline;">
           <div style="float: right; margin-right: 15px;">
-              <span class="post-category" style="margin-right: 108px;"><a href="#">Profissão</a></span><br>
               <form method="post" id="filtroprofissao">
                           <select  class="selectitens" name="profissao">
-                    <option>-- Selecione --</option>
+                    <option>-- Profissão --</option>
                     <option>Assessor de imprensa</option>
                     <option>Coordenador de eventos</option>
                     <option>Desenhista</option>
@@ -160,7 +167,6 @@ global $themify; ?>
 
         <div style="margin: 0px; padding: 0px;">
 
-          <div style="width: 100%; float: left; height: 1px;"> &nbsp;</div>
 
 
     
@@ -222,7 +228,6 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     ?>
 
     <?php if ($cont % 3 == 0 ) { ?>
-       
     <?php } ?>
 
     <?php
@@ -237,15 +242,15 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     
     ?>
 
-    <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
-    <div style="text-align: right;">
+    <div class="related-posts">
+    <div style="text-align: left;">
       <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;"><?php echo $data2; ?></span>
     </div>
     <?php if ($basicaimagemurl != "" || $slvideo == "youtube" || $slvideo == "vimeo") { ?>
 
       <?php if ($slvideo == "youtube") { ?>
-        <div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');">
-          <iframe width="306" height="180" src="<?php echo $videourl; ?>" frameborder="0" allowfullscreen></iframe>
+        <div class="imgnoticias" style="background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');">
+          <iframe width="330" height="180" src="<?php echo $videourl; ?>" frameborder="0" allowfullscreen></iframe>
         </div>
         <article class="post type-post clearfix">
           <div class="post-content">
@@ -261,8 +266,8 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
         $videourl = str_replace("vimeo.com/", "player.vimeo.com/video/", $videourl)
 
         ?>
-        <div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');">
-          <iframe width="306" height="180" src="<?php echo $videourl; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <div class="imgnoticias" style="background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');">
+          <iframe width="330" height="180" src="<?php echo $videourl; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
         <article class="post type-post clearfix">
           <div class="post-content">
@@ -277,7 +282,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
 
       <?php if ($basicaimagemurl != "") { ?>
-      <a href="<?php echo "$guid"; ?>"><div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');">
+      <a href="<?php echo "$guid"; ?>"><div class="imgnoticias" style="background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');">
         &nbsp;
       </div></a>
       <article class="post type-post clearfix">
@@ -309,6 +314,8 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     <?php } ?>
 
     </div>
+
+    <?php if ($contador % 2 == 1 ) { echo "<div style='float: left; width: 100%;'><hr style='border: 0px; border-top: dotted 1px;'></div>"; } $contador++;?>
     
     <?php
     }
@@ -339,16 +346,17 @@ mysql_free_result($result);
 </div>
 <!-- /layout-container -->
 
-<div id="vagas">
+<a name="vagas"></a>
+<div id="vagas" style="display: none;">
 <h1 class="post-title">Vagas de emprego</h1>
     <?php query_posts('post_type=vagas');
     while (have_posts()): the_post(); ?>
 
 
     <div class="vaga">
-      <div style="margin-top: 10px;"><strong>Vaga: </strong><br /><?php the_title(); ?></div>
-      <div style="margin-top: 10px;"><strong>Empresa: </strong><?php the_content(); ?></div>
-      <div style="margin-top: 10px;"><strong>Contato: </strong><br /> <?php print_custom_field('basicaemail'); ?></div>
+      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Vaga: </strong><br /><?php the_title(); ?></div>
+      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Empresa: </strong><?php the_content(); ?></div>
+      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Contato: </strong><br /> <?php print_custom_field('basicaemail'); ?></div>
     </div>
   
 

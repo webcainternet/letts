@@ -319,9 +319,29 @@ global $themify; ?>
 			<?php while (have_posts()) : the_post(); ?>
 
 			<div class="related-posts news_perfil" style="float: left; width: 310px; height: 480px;">
-				<div class="imgnoticias" style="width: 300px; border-radius: 5px; height: 212px;  margin-bottom: 15px;">
-					<img src="<?php print_custom_field('imgnews:to_image_src'); ?>" style="max-height: 212px;">
+				<div class="imgnoticias" style="width: 300px; border-radius: 5px; height: 190px;  margin-bottom: 15px;">
+					<?php $imgsizeok = print_custom_field('imgnews:to_image_src'); 
+					echo "11------".$imgsizeok."------222";
+					
+					str_replace("letts.com.br", "000", $imgsizeok);
+					
+?>
+					<div style="width: 300px; 
+			      	height: 190px; 
+			      	background-image: url('<?php print_custom_field('imgnews:to_image_src'); ?>');
+			      	background-position: center;
+			      	<?php echo calcbackgroundsize("/wp-content/uploads/2014/08/JayAdams1.jpg", 300, 190); ?>;
+			      	">
+			      		&nbsp;
+  					</div>
+					<?php /*<img src="<?php print_custom_field('imgnews:to_image_src'); ?>" style="max-height: 212px;"> */?>
 				</div>
+
+
+				
+
+
+
 				<article class="post type-post clearfix">
 					<div class="post-content">
 						<p class="post-meta">
