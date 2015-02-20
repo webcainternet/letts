@@ -1,11 +1,14 @@
 <style type="text/css">
 	.classificados {
 		float: left;
-		width: 275px;
-		margin-left: 20px;
+		width: 234px;
+		margin-left: 0px;
 		margin-bottom: 20px;
-		border: solid 1px;
-		padding: 28px;
+		border: solid 1px #FFFFFF;
+		padding: 15px;
+	}
+	.classificados:hover {
+		border: solid 1px #BBBBBB;
 	}
 </style>
 <?php
@@ -180,51 +183,55 @@ global $themify; ?>
   		?>
 
   	<div class="related-posts classificados">
-        <div style="text-align: right;">
-          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;
-          font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: <?php echo $data_acessorio; ?></span>
-        </div>
-        <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
 
-		<?php 
-			$attachment_id = $row["idfoto"];
 
-			$image_attributes = wp_get_attachment_image_src($attachment_id); 
-				if( $image_attributes ) { ?> 
-        	<figure class="small" style="border: 0px; width: 100%;">
-		      <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
-		      	<div style="width: width: 100%; 
-		      	height: 200px; 
-		      	background-image: url('<?php echo $image_attributes[0]; ?>');
-		      	background-position: center;
-		      	background-size: 300px;
-		      	"></div>
-		      </a>
-		      <?php } ?>
+	        <div style="text-align: left;">
+	          <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 14px;
+	          font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Anunciado: <?php echo $data_acessorio; ?></span>
+	        </div>
+	        <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
 
-		      <figcaption class="transition-050 opacity85">
-		        <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
-		          <strong class="text transition-050 title"><?php echo $row["estado"]; ?></strong>
-		          <span class="text transition-050 desc"><?php echo $row["nome"]; ?><br>
-		                    <b>Contato: </b><?php echo $row["telefone"]; ?></span>
-		        </a>
-		      </figcaption>
-		    </figure>
+			<?php 
+				$attachment_id = $row["idfoto"];
 
-        </a>
-        <br/>
-        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
-          <div class="post-content">
-            <p class="post-meta">
-              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
-                <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox"><?php echo $row["title"]; ?></a></span>
-            </p>
-          </div>
-        </article>
+				$image_attributes = wp_get_attachment_image_src($attachment_id); 
+					if( $image_attributes ) { ?> 
+	        	<figure class="small" style="border: 0px; width: 100%;">
+			      <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
+			      	<div style="width: width: 100%; 
+			      	height: 200px; 
+			      	background-image: url('<?php echo $image_attributes[0]; ?>');
+			      	background-position: center;
+			      	background-size: 234px;
+			      	background-repeat: no-repeat;
+			      	"></div>
+			      </a>
+			      <?php } ?>
 
-        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
-			<a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox button">R$ <?php echo $row["valor"]; ?></a>
-		</div>
+			      <figcaption class="transition-050 opacity85">
+			        <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
+			          <strong class="text transition-050 title"><?php echo $row["estado"]; ?></strong>
+			          <span class="text transition-050 desc"><?php echo $row["nome"]; ?><br>
+			                    <b>Contato: </b><?php echo $row["telefone"]; ?></span>
+			        </a>
+			      </figcaption>
+			    </figure>
+
+	        </a>
+	        <br/>
+	        <article class="post type-post clearfix" style="margin-bottom: 0px !important;">
+	          <div class="post-content">
+	            <p class="post-meta">
+	              <span class="post-category" style="font-weight: bold;font-size: 22px;font-family: Oswald, sans-serif;">
+	                <a style="color: #444;" href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox"><?php echo $row["title"]; ?></a></span>
+	            </p>
+	          </div>
+	        </article>
+
+	        <div style="float: right; margin-right: 0px;margin-top: 0px; margin-bottom: 0px;">
+				<a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox button">R$ <?php echo $row["valor"]; ?></a>
+			</div>
+
   	</div>
 
   	<?php } ?>

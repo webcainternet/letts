@@ -8,7 +8,6 @@
  
 <?php get_header(); ?>
 
-
 	
 <style type="text/css">
 	
@@ -54,7 +53,13 @@ global $themify; ?>
 
 		<div id="content" class="list-post" style="padding-top: 10px;">
 
+
 			<div style="float: left; width: 730px;">
+
+				<?php echo do_shortcode('[nemus_slider id="2849"]'); ?>
+
+
+
 			<?php $args = array(
 			    'author'        	=>  1,
 			    'orderby'       	=>  'post_date',
@@ -65,6 +70,12 @@ global $themify; ?>
 			query_posts($args); ?>
 			<?php $primeira_noticia = 0; ?>
 
+<style type="text/css">
+	.related-margin-news:nth-child(2n+1) {
+		margin-right: 10px;
+	}
+</style>
+
 			<?php while (have_posts()) : the_post(); ?>
 			<?php $urlimg = get_custom_field('imgnews:to_image_src');
 			if ($primeira_noticia == 0) { ?>
@@ -73,54 +84,23 @@ global $themify; ?>
 			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%; display: none;">
 				<a href="<?php the_permalink(); ?>"  style="font-weight: bold;"><?php the_title(); ?></a>
 			</h1>
-				<?php echo do_shortcode('[carousel-horizontal-posts-content-slider]'); ?>
 
 
 
 
-				
-				<?php /*
-				<div class="sliderleft">
-					<
-				</div>
+				<?php  //echo do_shortcode('[carousel-horizontal-posts-content-slider]'); ?>
 
-				<div class="related-posts related-posts-home" style="float: left; width: 664px; margin-bottom: 0px;">
-					<a href="<?php the_permalink(); ?>" style="text-decoration: none;">
-					<div class="img_news" style="width: 658px; height: 474px; border-radius: 5px;
-					background-image: url('<?php echo $urlimg; ?>');
-					<?php echo calcbackgroundsize($urlimg, 658, 474); ?>;
-					">
-						&nbsp;
-					</div>
-					</a>
+				<?php //echo do_shortcode('[nemus_slider id="2849"]'); ?>
 
-					<h1 class="post-title">	
-						<a href="<?php the_permalink(); ?>"><?php the_excerpt(80); ?></a>
-					</h1>	
-
-					<h1 class="post-title" style="text-align: center; margin: auto; width: 95px; font-size: 1px; margin-bottom: 10px;">	
-						<div class="slideritemselect" style="background-color: #ff8920;"></div>
-						<div class="slideritemselect"></div>
-						<div class="slideritemselect"></div>
-						<div class="slideritemselect"></div>
-						<div class="slideritemselect"></div>
-						&nbsp;
-					</h1>
-				</div>
-
-				<div class="sliderright">
-				>
-				</div>
-
-				*/ ?>
 
 			<?php
+
 				$primeira_noticia++; ?>
-				<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">News</h1>
+				<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; margin-top: 170px; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">News</h1>
 				
 				<?php } else{ ?>
 
-			<div class="related-posts related-posts-home" style="float: left; width: 350px; height: 480px;">
+			<div class="related-posts related-posts-home related-margin-news" style="float: left; width: 350px; height: 440px;">
 				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
 					<div class="imgnoticias" style="border-radius: 5px; height: 212px; margin-bottom: 15px;">
 						<div style="height: 212px; width: 344px;

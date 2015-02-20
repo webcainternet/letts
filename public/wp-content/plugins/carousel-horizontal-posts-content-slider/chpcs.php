@@ -289,7 +289,6 @@ class CHPCS {
 			background: <?php echo $arrows_hover_colour; ?>;
 
 		}
-
 	</style>
 
 	<?php
@@ -307,7 +306,7 @@ class CHPCS {
 
 	$args_custom = array(
 		 	'posts_per_page' => $number_of_posts_to_display,
-		    'post_type' => 'post',
+		    'post_type' => 'news',
 		    'order'=> $posts_order, 
 		    'orderby' => $posts_orderby,
 		    'post_status'  => 'publish',
@@ -335,14 +334,29 @@ class CHPCS {
 		
 		$slider_gallery.= '<div class="chpcs_foo_content" style="width:'.$item_width.'px; height:'.$item_height.'px;">';
 
-		if($display_image){
-		
-			$slider_gallery.= '<span class="chpcs_img"><a href="'.$post_link.'">'.$this->get_post_image($post->ID,$image_size).'</a></span>';
-		}
 		
 		//Post title, Post Description, Post read more
 		if($display_title){
-		$slider_gallery.= '<br/><span class="chpcs_title"><a  style=" text-decoration:none;" href="'.$post_link.'">'.$post_title.'</a></span><br/>';
+		$slider_gallery.= '
+		<h1 class="post-title" itemprop="name" style="margin: 0px 0 0px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
+			<a  style=" text-decoration:none;" href="'.$post_link.'">'.$post_title.'</a>
+		</h1>
+		<br/>';
+		}
+		$imgslider = str_replace("<img src='http://letts.com.br/", "", $this->get_post_image($post->ID,$image_size));
+		$imgslider = str_replace("'/>", "", $imgslider);
+		$imgsizesl = calcbackgroundsize($imgslider, 720, 480);
+
+		if($display_image){
+			$slider_gallery.= '<span class="chpcs_img">
+				<a href="'.$post_link.'">'.
+				'<div style="background-image: url(\'http://letts.com.br/'.$imgslider. '\'); width: 720px; height: 480px;'.
+				 $imgsizesl .'; margin-bottom: 5px;
+
+				">&nbsp;</div>'
+				.'</a>
+
+				</span>';
 		}
 
 		if($display_excerpt){
@@ -362,14 +376,13 @@ class CHPCS {
 
 	if($display_controls) {
 
-		$slider_gallery.='<a class="chpcs_prev" id="wa_chpc_slider_prev" href="#"><span>‹</span></a>';
+		$slider_gallery.='<a class="chpcs_prev" id="wa_chpc_slider_prev" href="#" style="background-color: #f57300;"><span>‹</span></a>';
 
-		$slider_gallery.='<a class="chpcs_next" id="wa_chpc_slider_next" href="#"><span>›</span></a>';	
+		$slider_gallery.='<a class="chpcs_next" id="wa_chpc_slider_next" href="#" style="background-color: #f57300;"><span>›</span></a>';	
 
 	}
 
 	if($display_pagination) {
-
 	$slider_gallery.='<div class="chpcs_pagination" id="wa_chpcs_pager"></div>'; 
 
 	}

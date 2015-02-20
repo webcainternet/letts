@@ -346,7 +346,6 @@ mysql_free_result($result);
 </div>
 <!-- /layout-container -->
 
-<a name="vagas"></a>
 <div id="vagas" style="display: none;">
 <h1 class="post-title">Vagas de emprego</h1>
     <?php query_posts('post_type=vagas');
