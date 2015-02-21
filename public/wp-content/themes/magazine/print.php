@@ -158,6 +158,10 @@ body{
             <div style="margin-top: 10px;"><strong>Site</strong></div>
             <?php print_custom_field('site'); ?>
           <?php } ?>
+
+          <div style="margin-top: 10px;"><strong>Link dos vídeos:</strong></div>
+          <?php the_permalink(); ?>?page=videos
+
         </div>          
 
 
