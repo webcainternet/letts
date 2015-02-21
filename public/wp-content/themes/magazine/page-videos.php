@@ -46,6 +46,9 @@ while ($rowNome = mysql_fetch_array($resultNome, MYSQL_ASSOC)) {
  *  @var object */
 global $themify; ?>
 
+<style type="text/css">
+  .module figure { border: 0px; }
+</style>
 
 <div style="width: 100%; background-image: url('http://letts.com.br/wp-content/uploads/2014/09/abstract_wallpaper_for_mac_by_pimpyourscreen-d6nnlut.jpg');
 			background-position: center; height: 504px;">
@@ -78,7 +81,7 @@ global $themify; ?>
           <div style="float: right; margin-right: 15px;">
               <form method="post" id="filtroesporte">
               <select name="slesporte" class="selectitens"  onchange="this.form.submit();">
-                      <option>-- Atleta --</option>
+                      <option>-- Esporte --</option>
                       <option>Aeromodelismo</option>
                       <option>Alpinismo</option>
                       <option>Asa Delta</option>

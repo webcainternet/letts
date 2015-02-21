@@ -13,7 +13,13 @@
 	<?php themify_layout_after(); //hook ?>
     </div>
 	<!-- /body -->
-		
+	
+	<div id="footerwrapface">
+		<footer id="footerface" class="pagewidth clearfix">
+			<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fletts.global&amp;width=1064&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false&amp;appId=805023986191114" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:1064px; height:258px;" allowTransparency="true"></iframe>
+		</footer>
+	</div>
+
 	<div id="footerwrap">
 
     

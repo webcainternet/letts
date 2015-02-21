@@ -30,7 +30,7 @@ global $themify; ?>
 			<?php get_template_part( 'includes/author-box', 'single'); ?>
 			
 			<?php if( ! themify_check( 'setting-comments_posts' ) ): ?>
-				<?php comments_template(); ?>
+				<?php // comments_template(); ?>
 			<?php endif; ?>
 
 			<?php themify_content_end(); // hook ?>
