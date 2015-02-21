@@ -367,9 +367,11 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 			<?php while (have_posts()) : the_post(); ?>
 
-			<div class="related-posts news_perfil" style="float: left; width: 100%; height: 480px;">
-				<div class="imgnoticias" style="width: 685px; border-radius: 5px; height: 320px;  margin-bottom: 15px;">
-					<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
+			<div class="related-posts news_perfil" style="float: left; width: 100%;">
+				<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
+					if ($imgsizeok) { ?>
+				<div class="imgnoticias" style="width: 679px; border-radius: 5px; height: 320px;  margin-bottom: 15px;">
+					<?php
 						$imgsizeok = str_replace("letts.com.br/", "", $imgsizeok);
 						$imgsizeok = str_replace("http://", "", $imgsizeok);
 						$imgsizeok = str_replace("https://", "", $imgsizeok);
@@ -383,7 +385,9 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			      		&nbsp;
   					</div>
 					<?php /*<img src="<?php print_custom_field('imgnews:to_image_src'); ?>" style="max-height: 212px;"> */?>
+				
 				</div>
+				<?php } ?>
 
 
 				
@@ -400,6 +404,8 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 						</h1>
 					</div>
 				</article>
+
+				<div style="float: left; width: 100%;"><hr style="border: 0px; margin: 0px 0px 30px; border-top: dotted 1px;"></div>
 			</div>
 			<?php endwhile; ?>
 			<?php wp_reset_query(); ?>
