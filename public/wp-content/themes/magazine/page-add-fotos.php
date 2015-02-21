@@ -31,6 +31,11 @@ textarea{
   margin-top: -25px;
   float: left;
 }
+
+#file_upload-button{
+  width: 160px !important;
+}
+
 </style>
 
 <!-- layout-container -->
@@ -85,7 +90,7 @@ textarea{
           margin-left: 5px;
           margin-right: 15px;
           font-size: 12px;">
-      <a style="text-decoration: none;" href="/?page=mensagem">Mensagem</a>
+      <a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=mensagem">Mensagem</a>
     </div>
 
     <div style="float: right; 
@@ -99,7 +104,7 @@ textarea{
           margin-left: 5px;
           margin-right: 5px;
           font-size: 12px;">
-      <a style="text-decoration: none;" href="?page=videos">Vídeos</a>
+      <a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=videos">Vídeos</a>
     </div>
 
     <div style="float: right; 
@@ -113,7 +118,7 @@ textarea{
           margin-left: 5px;
           margin-right: 5px;
           font-size: 12px;">
-      <a style="text-decoration: none;" href="?page=fotos">Fotos</a>
+      <a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=fotos">Fotos</a>
     </div>
 
     <div style="float: right; 
@@ -127,7 +132,7 @@ textarea{
           margin-left: 5px;
           margin-right: 5px;
           font-size: 12px;">
-      <a style="text-decoration: none;" href="?page=sobre">Sobre</a>
+      <a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=sobre">Sobre</a>
     </div>
 
     <div style="float: right; 
@@ -141,7 +146,7 @@ textarea{
           margin-left: 5px;
           margin-right: 5px;
           font-size: 12px;">
-      <a style="text-decoration: none;" href="?page=news">News</a>
+      <a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=news">News</a>
     </div>
 
     <div style="float: left;
@@ -236,7 +241,6 @@ textarea{
 
 
         <div style="width: 685px; float: left; margin-left: 50px;">
-           <p id="sucesso">Vídeo cadastrado com sucesso.</p>
           <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Publicar Fotos</h4>
           <div class="galeria_profissional">
               <form>
@@ -244,6 +248,7 @@ textarea{
                 <input id="file_upload" name="file_upload" type="file" multiple="true">
               </form>
           </div>
+          <div id="sucesso" style="text-align: center; font-size: 14px;"><a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=fotos">As fotos foram publicadas com sucesso, clique aqui para visualizar a sua galeria.</a></div>
         </div>  
     </div>
   </div>
@@ -268,7 +273,10 @@ textarea{
         'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
       },
       'swf'      : '/wp-content/themes/magazine/uploadify.swf',
-      'uploader' : '/wp-content/themes/magazine/uploadify.php?id_post='+<?php echo $_GET['id_post'] ?>
+      'uploader' : '/wp-content/themes/magazine/uploadify.php?id_post='+<?php echo $_GET['id_post'] ?>,
+      'onUploadComplete': function(file) {
+            $('#sucesso').show(2000);
+      }
     });
   });
 </script>

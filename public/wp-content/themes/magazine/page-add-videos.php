@@ -104,7 +104,7 @@ textarea{
           margin-left: 5px;
           margin-right: 15px;
           font-size: 12px;">
-      <a style="text-decoration: none;" href="/?page=mensagem">Mensagem</a>
+      <a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=mensagem">Mensagem</a>
     </div>
 
     <div style="float: right; 
@@ -118,7 +118,7 @@ textarea{
           margin-left: 5px;
           margin-right: 5px;
           font-size: 12px;">
-      <a style="text-decoration: none;" href="?page=videos">Vídeos</a>
+      <a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=videos">Vídeos</a>
     </div>
 
     <div style="float: right; 
@@ -132,7 +132,7 @@ textarea{
           margin-left: 5px;
           margin-right: 5px;
           font-size: 12px;">
-      <a style="text-decoration: none;" href="?page=fotos">Fotos</a>
+      <a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=fotos">Fotos</a>
     </div>
 
     <div style="float: right; 
@@ -146,7 +146,7 @@ textarea{
           margin-left: 5px;
           margin-right: 5px;
           font-size: 12px;">
-      <a style="text-decoration: none;" href="?page=sobre">Sobre</a>
+      <a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=sobre">Sobre</a>
     </div>
 
     <div style="float: right; 
@@ -160,7 +160,7 @@ textarea{
           margin-left: 5px;
           margin-right: 5px;
           font-size: 12px;">
-      <a style="text-decoration: none;" href="?page=news">News</a>
+      <a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=news">News</a>
     </div>
 
     <div style="float: left;
@@ -168,7 +168,9 @@ textarea{
           margin-left: 25px;">
           <div id="text-1017" class="widget widget_text" style="border: 0px; margin: 0px;">
             <h4 class="widgettitle" style="border: 0px;"><?php print_custom_field('atletaesporte'); ?></h4>
-            <a class="editar_perfil" href="/edicao-atleta/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>  
+            <?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+              <a class="editar_perfil" href="/edicao-atleta/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>  
+            <?php } ?>
           </div>
       
     </div>

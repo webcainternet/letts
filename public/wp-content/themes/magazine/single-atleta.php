@@ -24,9 +24,61 @@ global $themify; ?>
           'post_author'   => 1
         );
 
-        $post_id = wp_insert_post($my_post);
-        add_post_meta($post_id, 'basicaemail', $_POST['email'], true);
-        add_post_meta($post_id, 'post_image', $_FILES['img_destacada']['tmp_name'], true);
+$path = "wp-content/uploads/nws/"; 
+
+$valid_formats = array("pdf", "doc", "xls", "docx", "jpg", "gif", "png", "tif", "zip", "jpeg", "xlsx", "ppt", "pptx");
+if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+{
+
+	//Arquivo Catálogo
+	$name = $_FILES['img_destacada']['name'];
+	$size = $_FILES['img_destacada']['size'];
+
+	$file_info = pathinfo($name);
+	$name = md5($name) .'.'. $file_info['extension'];
+
+	if(strlen($name))
+		{
+			list($txt, $ext) = explode(".", $name);
+			if(in_array($ext,$valid_formats))
+			{
+			if($size<(10240*10240))
+				{
+					$actual_name = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
+					$tmp = $_FILES['img_destacada']['tmp_name'];
+					if(move_uploaded_file($tmp, $path.$actual_name))
+						{
+							$response['response']="Arquivo OK";
+						}
+					else
+						$response['response']="Falhou"; 
+				}
+				else
+				$response['response']="Arquivo tem mais de 4MB"; 
+				}
+				else
+				$response['response']="Formato Inválido"; 
+		}
+	else
+		$response['response']="Selecione um arquivo";
+}
+
+		$cur_post_id = wp_insert_post( $my_post );
+
+		$filename = 'http://letts.com.br/wp-content/uploads/nws/'.$actual_name;
+
+		$wp_filetype = wp_check_filetype(basename($filename), null );
+		$attachment = array(
+			'post_mime_type' => $wp_filetype['type'],
+			'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
+			'post_content' => '',
+			'post_status' => 'inherit'
+		);
+		$attach_id = wp_insert_attachment( $attachment, $filename, $cur_post_id );
+		add_post_meta($cur_post_id, '_thumbnail_id', $attach_id, true);
+		add_post_meta($cur_post_id, 'post_image', $attach_id, true);
+		add_post_meta($cur_post_id, 'imgnews', $attach_id, true);
+		add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
     ?>
     <script type="text/javascript">
       $(document).ready(function(){
@@ -46,6 +98,11 @@ global $themify; ?>
 	margin-top: -25px;
 	float: left;
 }
+
+.news_perfil:nth-child(2n+2){
+	margin-left: 0px;
+}
+
 </style>
 
 <!-- layout-container -->
@@ -88,20 +145,21 @@ global $themify; ?>
 	<div style="background-size: 1064px; 
 				background-position:center; 
 				height: 62px;background-color: #EEE;">
-
-		<div style="float: right; 
-					margin-top: 25px;
-					/* border-bottom: 2px #ff8920 solid; */
-					font-weight: bold;
-					text-align: center;
-					padding-left: 2px;
-					padding-right: 2px;
-					text-transform: uppercase;
-					margin-left: 5px;
-					margin-right: 15px;
-					font-size: 12px;">
-			<a style="text-decoration: none;" href="?page=mensagem">Mensagem</a>
-		</div>
+		<?php if ($_SESSION["lettslogin"] != $idpost) { ?>		
+			<div style="float: right; 
+						margin-top: 25px;
+						/* border-bottom: 2px #ff8920 solid; */
+						font-weight: bold;
+						text-align: center;
+						padding-left: 2px;
+						padding-right: 2px;
+						text-transform: uppercase;
+						margin-left: 5px;
+						margin-right: 15px;
+						font-size: 12px;">
+				<a style="text-decoration: none;" href="?page=mensagem">Mensagem</a>
+			</div>
+		<?php } ?>	
 
 		<div style="float: right; 
 					margin-top: 25px;
@@ -164,7 +222,9 @@ global $themify; ?>
 					margin-left: 25px;">
 					<div id="text-1017" class="widget widget_text" style="border: 0px; margin: 0px;">
 						<h4 class="widgettitle" style="border: 0px;"><?php print_custom_field('atletaesporte'); ?></h4>
-						<a class="editar_perfil" href="/edicao-atleta/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>	
+						<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+			              <a class="editar_perfil" href="/edicao-atleta/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>  
+			            <?php } ?>	
 					</div>
 			
 		</div>
@@ -243,7 +303,9 @@ global $themify; ?>
 									</a>
 								<?php } ?>
 							</div>
-							<a href="/print?post_id=<?php echo get_the_ID(); ?>" target="_blank">Imprimir Currículo</a>
+							<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+								<a href="/print?post_id=<?php echo get_the_ID(); ?>" target="_blank">Imprimir Currículo</a>
+							<?php } ?>	
 					</div>			
 				</div>
 		</div>
@@ -266,17 +328,26 @@ global $themify; ?>
 			<?php if ($_GET["page"] == "" || $_GET["page"] == "news") { ?>
 			<?php 
 			$email_user = get_custom_field('basicaemail'); ?>
+			<?php 
+				if ($_SESSION["lettslogin"] == $idpost) {
+					$news_publish = array('pending', 'publish');
+				}else{
+					$news_publish = 'publish';
+				}
+			?>
 			<?php $args = array(
 			    'orderby'       	=>  'post_date',
 			    'post_type'     	=>  'news',
 			    'meta_key'     		=>  'basicaemail',
 			    'meta_value'     	=>  $email_user,			    
-			    'order'        		=>  'ASC'
+			    'order'        		=>  'DESC',
+			    'post_status'		=> 	$news_publish
 			); 
 			query_posts($args); ?>
 
 			<div style="width: 685px; float: left; margin-left: 50px;">
-
+			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+				<p id="sucesso">Noticia cadastrada com sucesso.</p>
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
 	             <div id="box_pensando">
 		             <textarea class="textarea_noticia" name="content_noticia" placeholder="No que você está pensando..."></textarea>
@@ -290,23 +361,24 @@ global $themify; ?>
 		             <input type="submit" style="float: right;" value="Publicar">
             	</div>
             </form> 
+            <?php } ?>
 
 			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin-top: 20px; margin-bottom: 10px;">News</h4>
 
 			<?php while (have_posts()) : the_post(); ?>
 
-			<div class="related-posts news_perfil" style="float: left; width: 310px; height: 480px;">
-				<div class="imgnoticias" style="width: 300px; border-radius: 5px; height: 190px;  margin-bottom: 15px;">
+			<div class="related-posts news_perfil" style="float: left; width: 100%; height: 480px;">
+				<div class="imgnoticias" style="width: 685px; border-radius: 5px; height: 320px;  margin-bottom: 15px;">
 					<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
 						$imgsizeok = str_replace("letts.com.br/", "", $imgsizeok);
 						$imgsizeok = str_replace("http://", "", $imgsizeok);
 						$imgsizeok = str_replace("https://", "", $imgsizeok);
 					?>
-					<div style="width: 300px; 
-			      	height: 190px; 
+					<div style="width: 685px; 
+			      	height: 320px; 
 			      	background-image: url('<?php print_custom_field('imgnews:to_image_src'); ?>');
 			      	background-position: center;
-			      	<?php echo calcbackgroundsize($imgsizeok, 300, 190); ?>;
+			      	<?php echo calcbackgroundsize($imgsizeok, 685, 320); ?>;
 			      	">
 			      		&nbsp;
   					</div>
@@ -338,7 +410,9 @@ global $themify; ?>
 			<?php if ($_GET["page"] == "fotos") { ?>
 				<div style="width: 685px; float: left; margin-left: 50px;">
 					<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Fotos</h4>
-					<a class="button link_botao" href="/add-fotos/?id_post=<?php echo $idpost; ?>">+ Fotos</a>
+					<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+						<a class="button link_botao" href="/add-fotos/?id_post=<?php echo $idpost; ?>">+ Fotos</a>
+					<?php } ?>	
 					<div class="galeria_profissional">
 						<?php $path = "wp-content/uploads/users/$idpost"; 
 							$diretorio = dir($path); 
@@ -373,7 +447,9 @@ global $themify; ?>
 
 			<div style="width: 685px; float: left; margin-left: 50px;">
 			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Vídeos</h4>
-			<a class="button link_botao" href="/add-videos/?id_post=<?php echo $idpost; ?>">+ Vídeos</a>
+			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+				<a class="button link_botao" href="/add-videos/?id_post=<?php echo $idpost; ?>">+ Vídeos</a>
+			<?php } ?>	
 
 			<?php while (have_posts()) : the_post(); ?>
 
