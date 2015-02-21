@@ -32,6 +32,10 @@
 	width: 640px;
 }
 
+#fancybox-wrap{
+	top: 50px !important;
+}
+
 </style>
 
 
