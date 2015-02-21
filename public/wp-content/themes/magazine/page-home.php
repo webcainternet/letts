@@ -270,7 +270,7 @@ mysql_free_result($result);
 				</div>
 			</div>
 			<p class="post-meta" style="text-align: right;">
-				<span class="post-category"><a href="http://letts.com.br/buscar-marca/m">Ver mais marcas</a></span>
+				<span class="post-category"><a href="http://letts.com.br/buscar-marca/">Ver mais marcas</a></span>
 			</p>
 		</div>
 
