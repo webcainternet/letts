@@ -27,7 +27,7 @@ global $themify; ?>
           'post_author'   => 1
         );
 
-mkdir('C:\xampp\htdocs\letts\public\wp-content\uploads\users\\'.$idpost);
+mkdir('/srv/httpd/letts.com.br/public/wp-content/uploads/users/'.$idpost);
 $path = "wp-content/uploads/users/".$idpost."/"; 
 
 $valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");

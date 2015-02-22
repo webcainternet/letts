@@ -64,7 +64,7 @@ global $themify; ?>
 				'offset'       		=>  '5',
 			    'orderby'       	=>  'post_date',
 			    'post_type'     	=>  'news',
-			    'order'        		=>  'ASC',
+			    'order'        		=>  'DESC',
 
 			); 
 			query_posts($args); ?>

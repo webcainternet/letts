@@ -50,12 +50,20 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['code'])){
         $facedados_link_facebook = $user->link;
       }
     }else{
-      echo "Erro de conexão com Facebook";
+      ?>
+		<script type="text/javascript">
+			window.location = "http://letts.com.br/login";
+		</script>
+      <?php
       exit(0);
     }
  
   }else{
-    echo "Erro de conexão com Facebook";
+    ?>
+		<script type="text/javascript">
+			window.location = "http://letts.com.br/login";
+		</script>
+    <?php
     exit(0);
   }
 }else if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['error'])){
@@ -72,6 +80,14 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['code'])){
 ?>
 
 <?php get_header(); ?>
+
+<script type="text/javascript">
+function esconderitens() {
+	document.getElementById("dadosatleta").style.display = "none"; 
+	document.getElementById("dadosprofissional").style.display = "none"; 
+	document.getElementById("dadosmarca").style.display = "none"; 
+}
+</script>
 
 <style type="text/css">
 .wbanner2 {
@@ -138,6 +154,11 @@ global $themify; ?>
 				<div class="page-content entry-content" itemprop="articleBody">
 
 					<?php the_content(); ?>
+					<form id="new_post" method="post" action="/add-login-db/">
+					<input type="hidden" name="nomecompleto" value="<?php echo $facedados_nome;?>">
+					<input type="hidden" name="senha" value="facebook">
+					<input type="hidden" name="basicaemail" value="<?php echo $facedados_email;?>">
+					<input type="hidden" name="faceimg" value="https://graph.facebook.com/<?php echo $facedados_uid_facebook;?>/picture?type=large">
 
 					<div style="border: solid 2px #f57300; float: left; width: 200px; padding: 5px;">
 						<img src="//graph.facebook.com/<?php echo $facedados_uid_facebook;?>/picture?type=large" style="margin-bottom: -9px;">
@@ -152,105 +173,165 @@ global $themify; ?>
 								<span class="post-category"><a href="#">Tipo de conta:</a> / </span>
 							</p>
 							<h1 class="post-title" style="margin-left: 25px; margin-bottom: 10px;font-size: 1.12em;">
-								<input id="mostraatleta" type="radio" name="tipodeconta" style="margin-left: 0px;" checked="">Atleta
-								<input id="mostraprofissional" type="radio" name="tipodeconta" style="margin-left: 20px;">Profissional
-								<input id="mostramarca" type="radio" name="tipodeconta" style="margin-left: 20px;">Marca
+								<input onclick="javascript: esconderitens(); document.getElementById('dadosatleta').style.display = 'block';" id="mostraatleta" type="radio" value="atleta" name="tipodeconta" style="margin-left: 0px;" checked="">Atleta
+								<input onclick="javascript: esconderitens(); document.getElementById('dadosprofissional').style.display = 'block';" id="mostraprofissional" type="radio" value="profissional" name="tipodeconta" style="margin-left: 20px;">Profissional
+								<input onclick="javascript: esconderitens(); document.getElementById('dadosmarca').style.display = 'block';" id="mostramarca" type="radio" value="marca" name="tipodeconta" style="margin-left: 20px;">Marca
 							</h1>
 						</div>
 
-						<div id="dadosatleta" style="display: block;">
-										<div style="text-align: center; margin-top: 0px; text-align: left;">
-											<p class="post-meta" style="margin-left: 25px;">
-												<span class="post-category"><a href="#">Esporte:</a> / </span>
-											</p>
-											<h1 class="post-title" style="margin-left: 25px;">
-												<select id="atletaesporte" name="atletaesporte" style="font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
-												<option>-- Selecione o esporte --</option>
-												<option>Aeromodelismo</option>
-												<option>Alpinismo</option>
-												<option>Asa Delta</option>
-												<option>BMX</option>
-												<option>BMX – Free style</option>
-												<option>Balonismo</option>
-												<option>Base Jumping</option>
-												<option>Bodyboard</option>
-												<option>Bouldering</option>
-												<option>Bungee Jumping</option>
-												<option>Canoagem</option>
-												<option>Carveboard</option>
-												<option>Caça submarina</option>
-												<option>Ciclismo</option>
-												<option>Cliff Diving</option>
-												<option>Corrida aventura</option>
-												<option>Drift</option>
-												<option>Escalada</option>
-												<option>Esqui</option>
-												<option>Football Freestyle</option>
-												<option>Free Style Motocross</option>
-												<option>FreeBoard</option>
-												<option>Heli-Skiing</option>
-												<option>Highline</option>
-												<option>Jet Ski</option>
-												<option>Kart</option>
-												<option>Kitesurfing</option>
-												<option>Liquid Mountaineering</option>
-												<option>Longboard skate</option>
-												<option>Longboard surf</option>
-												<option>Mega ramp</option>
-												<option>Mergulho</option>
-												<option>Moto Trial</option>
-												<option>Moto Wheeling</option>
-												<option>Motocross</option>
-												<option>Mountain Bike</option>
-												<option>Mountain biking</option>
-												<option>Mountain boarding</option>
-												<option>Off Road/Rally</option>
-												<option>Paintball</option>
-												<option>Paragliding</option>
-												<option>Paragliding</option>
-												<option>Parapente</option>
-												<option>Parkour</option>
-												<option>Patins in Line</option>
-												<option>Psicobloc</option>
-												<option>Rafting</option>
-												<option>Rally</option>
-												<option>Rapel</option>
-												<option>Sandboard</option>
-												<option>Skate - Street</option>
-												<option>Skate – Free style</option>
-												<option>Skate – Mini ramp</option>
-												<option>Sky Surfing</option>
-												<option>Skydive</option>
-												<option>Slackline</option>
-												<option>Snowboard</option>
-												<option>Stand Up Paddle</option>
-												<option>Street Luge</option>
-												<option>Surf</option>
-												<option>Surf - Freesurf</option>
-												<option>Tow-in</option>
-												<option>Trekking</option>
-												<option>Triathlon</option>
-												<option>UFC (MMA)</option>
-												<option>Vela/Iatismo</option>
-												<option>Velocidade</option>
-												<option>Wakeboard</option>
-												<option>Wakeboard Free style</option>
-												<option>Windsurf</option>
-												<option>WingWalking</option>
-											</select>
-											</h1>
-										</div>
-										<div style="text-align: center; margin-top: 0px; text-align: left;">
-											<h1 class="post-title" style="margin-left: 25px;">
-												<input type="checkbox" name="termos" value="termos">Li e aceito as <a target="_blank" href="http://letts.com.br/politicas-de-privacidade/">políticas de uso</a>
-											</h1>
-										</div>
-										<div style="text-align: right; margin-right: 25px; margin-top: 0px;">
-											<input name="submit" type="submit" id="criar" value="Criar Conta">
-										</div>
-									</div>
+						<!-- Atleta Area -->
+						<div id="dadosatleta">
+							<div style="text-align: center; margin-top: 0px; text-align: left;">
+								<p class="post-meta" style="margin-left: 25px;">
+									<span class="post-category"><a href="#">Esporte:</a> / </span>
+								</p>
+								<h1 class="post-title" style="margin-left: 25px;">
+									<select id="atletaesporte" name="atletaesporte" style="font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
+									<option>-- Selecione o esporte --</option>
+									<option>Aeromodelismo</option>
+									<option>Alpinismo</option>
+									<option>Asa Delta</option>
+									<option>BMX</option>
+									<option>BMX – Free style</option>
+									<option>Balonismo</option>
+									<option>Base Jumping</option>
+									<option>Bodyboard</option>
+									<option>Bouldering</option>
+									<option>Bungee Jumping</option>
+									<option>Canoagem</option>
+									<option>Carveboard</option>
+									<option>Caça submarina</option>
+									<option>Ciclismo</option>
+									<option>Cliff Diving</option>
+									<option>Corrida aventura</option>
+									<option>Drift</option>
+									<option>Escalada</option>
+									<option>Esqui</option>
+									<option>Football Freestyle</option>
+									<option>Free Style Motocross</option>
+									<option>FreeBoard</option>
+									<option>Heli-Skiing</option>
+									<option>Highline</option>
+									<option>Jet Ski</option>
+									<option>Kart</option>
+									<option>Kitesurfing</option>
+									<option>Liquid Mountaineering</option>
+									<option>Longboard skate</option>
+									<option>Longboard surf</option>
+									<option>Mega ramp</option>
+									<option>Mergulho</option>
+									<option>Moto Trial</option>
+									<option>Moto Wheeling</option>
+									<option>Motocross</option>
+									<option>Mountain Bike</option>
+									<option>Mountain biking</option>
+									<option>Mountain boarding</option>
+									<option>Off Road/Rally</option>
+									<option>Paintball</option>
+									<option>Paragliding</option>
+									<option>Paragliding</option>
+									<option>Parapente</option>
+									<option>Parkour</option>
+									<option>Patins in Line</option>
+									<option>Psicobloc</option>
+									<option>Rafting</option>
+									<option>Rally</option>
+									<option>Rapel</option>
+									<option>Sandboard</option>
+									<option>Skate - Street</option>
+									<option>Skate – Free style</option>
+									<option>Skate – Mini ramp</option>
+									<option>Sky Surfing</option>
+									<option>Skydive</option>
+									<option>Slackline</option>
+									<option>Snowboard</option>
+									<option>Stand Up Paddle</option>
+									<option>Street Luge</option>
+									<option>Surf</option>
+									<option>Surf - Freesurf</option>
+									<option>Tow-in</option>
+									<option>Trekking</option>
+									<option>Triathlon</option>
+									<option>UFC (MMA)</option>
+									<option>Vela/Iatismo</option>
+									<option>Velocidade</option>
+									<option>Wakeboard</option>
+									<option>Wakeboard Free style</option>
+									<option>Windsurf</option>
+									<option>WingWalking</option>
+								</select>
+								</h1>
+							</div>
+							<div style="text-align: center; margin-top: 0px; text-align: left;">
+								<h1 class="post-title" style="margin-left: 25px;">
+									<input type="checkbox" name="termos" value="termos">Li e aceito as <a target="_blank" href="http://letts.com.br/politicas-de-privacidade/">políticas de uso</a>
+								</h1>
+							</div>
+							<div style="text-align: right; margin-right: 25px; margin-top: 0px;">
+								<input name="submit" type="submit" id="criar" value="Criar Conta">
+							</div>
+						</div>
+						<!-- Fim Atleta Area -->
+
+						<!-- Atleta Profissional -->
+						<div id="dadosprofissional" style="display: none;">
+							<div style="text-align: center; margin-top: 0px; text-align: left;">
+								<p class="post-meta" style="margin-left: 25px;">
+									<span class="post-category"><a href="#">Profissão:</a> / </span>
+								</p>
+								<h1 class="post-title" style="margin-left: 25px;">
+									<select id="profissao" name="profissao" style="font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
+										<option>-- Selecione a profissão --</option>
+										<option>Assessor de imprensa</option>
+										<option>Coordenador de eventos</option>
+										<option>Desenhista</option>
+										<option>Empresário</option>
+										<option>Estatístico</option>
+										<option>Estilista</option>
+										<option>Executivo de contas publicitárias</option>
+										<option>Fisioterapeuta</option>
+										<option>Fotografo</option>
+										<option>Fotojornalista</option>
+										<option>Gerente de relações públicas</option>
+										<option>Gestor desportivo</option>
+										<option>Jornalista</option>
+										<option>Nutricionista</option>
+										<option>Personal Crossfit</option>
+										<option>Personal academia</option>
+										<option>Professor de idomas</option>
+										<option>Psicologo</option>
+										<option>Psicólogo esportivo</option>
+										<option>Técnico</option>
+										<option>Videomaker</option>
+									</select>
+								</h1>
+							</div>
+							<div style="text-align: center; margin-top: 0px; text-align: left;">
+								<h1 class="post-title" style="margin-left: 25px;">
+									<input type="checkbox" name="termos" value="termos">Li e aceito as <a target="_blank" href="http://letts.com.br/politicas-de-privacidade/">políticas de uso</a>
+								</h1>
+							</div>
+							<div style="text-align: right; margin-right: 25px; margin-top: 10px;">
+								<input name="submit" type="submit" id="criar" value="Criar Conta">
+							</div>
+						</div>
+						<!-- Fim Profissional Area -->
+
+						<!-- marca -->
+						<div id="dadosmarca" style="display: none;">
+							<div style="text-align: center; margin-top: 0px; text-align: left;">
+								<h1 class="post-title" style="margin-left: 25px;">
+									<input type="checkbox" name="termos" value="termos">Li e aceito as <a target="_blank" href="http://letts.com.br/politicas-de-privacidade/">políticas de uso</a>
+								</h1>
+							</div>
+							<div style="text-align: right; margin-right: 25px; margin-top: 0px;">
+								<input name="submit" type="submit" id="criar" value="Criar Conta">
+							</div>
+						</div>
+						<!-- Fim marca -->
 
 					</div>
+					</form>
 
 					<?php wp_link_pages(array('before' => '<p><strong>'.__('Pages:','themify').'</strong> ', 'after' => '</p>', 'next_or_number' => 'number')); ?>
 
