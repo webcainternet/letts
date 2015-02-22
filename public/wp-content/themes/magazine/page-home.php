@@ -61,14 +61,14 @@ global $themify; ?>
 
 
 			<?php $args = array(
-			    'author'        	=>  1,
+				'offset'       		=>  '5',
 			    'orderby'       	=>  'post_date',
 			    'post_type'     	=>  'news',
 			    'order'        		=>  'ASC',
-			    'posts_per_page'  	=>  5
+
 			); 
 			query_posts($args); ?>
-			<?php $primeira_noticia = 0; ?>
+			<?php //$primeira_noticia = -1; ?>
 
 <style type="text/css">
 	.related-margin-news:nth-child(2n+1) {
@@ -76,29 +76,10 @@ global $themify; ?>
 	}
 </style>
 
+
+			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; margin-top: 170px; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">News</h1>
 			<?php while (have_posts()) : the_post(); ?>
-			<?php $urlimg = get_custom_field('imgnews:to_image_src');
-			if ($primeira_noticia == 0) { ?>
-
-			
-			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%; display: none;">
-				<a href="<?php the_permalink(); ?>"  style="font-weight: bold;"><?php the_title(); ?></a>
-			</h1>
-
-
-
-
-				<?php  //echo do_shortcode('[carousel-horizontal-posts-content-slider]'); ?>
-
-				<?php //echo do_shortcode('[nemus_slider id="2849"]'); ?>
-
-
-			<?php
-
-				$primeira_noticia++; ?>
-				<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; margin-top: 170px; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">News</h1>
-				
-				<?php } else{ ?>
+			<?php $urlimg = get_custom_field('imgnews:to_image_src'); ?>
 
 			<div class="related-posts related-posts-home related-margin-news" style="float: left; width: 350px; height: 440px;">
 				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
@@ -123,7 +104,6 @@ global $themify; ?>
 				</article>
 			</div>
 
-			<?php } ?>
 			<?php endwhile; ?>
 
 			<a href="/news" id="criar" style="padding: 10px 255px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px;">
