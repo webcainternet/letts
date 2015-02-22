@@ -61,25 +61,27 @@
 
 				<div class="social-widget" style="margin-top: 4px;">
 
-				<?php $post_usuario = $_SESSION["lettslogin"];
+				<?php 
+				$post_usuario = $_SESSION["lettslogin"];
 					if ($post_usuario != 0) { ?>
 
 				<?php query_posts( array('post_type'=>'atleta','p' => $post_usuario ) ); ?>
 
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-					<?php $imgsizeok = get_custom_field('basicaimagem:to_image_src'); ?>
+					<?php $imgsize_top = get_custom_field('basicaimagem:to_image_src'); ?>
 					<?php
-						$imgsizeok = str_replace("letts.com.br/", "", $imgsizeok);
-						$imgsizeok = str_replace("http://", "", $imgsizeok);
-						$imgsizeok = str_replace("https://", "", $imgsizeok);
+						$imgsize_top = str_replace("letts.com.br/", "", $imgsize_top);
+						$imgsize_top = str_replace("http://", "", $imgsize_top);
+						$imgsize_top = str_replace("https://", "", $imgsize_top);
 					?>
 						
 						<div style="float: left; margin-right: 7px; border: 0px solid rgb(255, 137, 32); 
 						border-radius: 2px; width: 22px; height: 22px; 
 						background-image: url(<?php print_custom_field('basicaimagem:to_image_src'); ?>); 
-						<?php echo calcbackgroundsize($imgsizeok, 22, 22); ?>" id="imgbackgroundtopo">&nbsp;</div>
+						<?php echo calcbackgroundsize($imgsize_top, 22, 22); ?>" id="imgbackgroundtopo">&nbsp;</div>
 						
-				<?php endwhile; endif; wp_reset_query; ?>
+					<?php endwhile; endif; ?>
+					<?php wp_reset_query(); ?>
 				<?php } ?>	
 
 
