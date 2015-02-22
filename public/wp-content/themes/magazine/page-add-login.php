@@ -48,6 +48,30 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['code'])){
         $facedados_uid_facebook = $user->id;
         $facedados_user_facebook = $user->username;
         $facedados_link_facebook = $user->link;
+
+
+		//incluindo config
+		include "../../../wp-config.php";
+
+		//Conecta bd
+		$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+		if (mysqli_connect_errno()) {
+	    	printf("Connect failed: %s\n", mysqli_connect_error());
+			exit();
+		}
+
+		//autenticacao
+		$obj = $mysqli->query("select PU.post_id FROM wp_postmeta PU inner join wp_postmeta PS ON PU.post_id = PS.post_id where PU.meta_key = 'basicaemail' AND PU.meta_value = '".$facedados_email."' AND PS.meta_key = 'senha' AND PS.meta_value = 'lettsappface'")->fetch_object();
+		$letts_loginid = $obj->post_id;
+
+		if ($letts_loginid == "") {	}
+		else {
+			$_SESSION["lettslogin"] = $letts_loginid;
+			echo "<script> window.location.assign(\"http://letts.com.br/?p=".$_SESSION["lettslogin"]."\") </script>";
+			exit;
+		}
+
+
       }
     }else{
       ?>
