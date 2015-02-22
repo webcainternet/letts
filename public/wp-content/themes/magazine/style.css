@@ -2642,3 +2642,24 @@ $file-upload-size: 300px;
         background-color: darken($file-upload-color, 20);
     }
 }
+
+.bg_sucesso{
+	background: #FFF;
+	padding: 7px 10px;
+}
+
+.editarperfil_marca{
+	margin-top: -14px;
+	display: block;
+	margin-bottom: 10px;
+	font-size: 14px;
+}
+
+.edit_marcas{
+	width: 100%;
+	display: inline-block;
+}
+
+.marca_textarea{
+	height: 200px;
+}

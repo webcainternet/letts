@@ -26,14 +26,14 @@ global $themify; ?>
         wp_update_post($my_post);
 
         update_post_meta($_GET['id_post'], 'atletaesporte', $_POST['esporte']);
-        update_post_meta($_GET['id_post'], 'data_nascimento', $_POST['basicanascimento']);
-        update_post_meta($_GET['id_post'], 'genero', $_POST['basicagenero']);
-        update_post_meta($_GET['id_post'], 'telefones', $_POST['basicatelefones']);
-        update_post_meta($_GET['id_post'], 'cidade_nascimento', $_POST['basicacidadenascimento']);
-        update_post_meta($_GET['id_post'], 'estado_nascimento', $_POST['basicaestadonascimento']);
-        update_post_meta($_GET['id_post'], 'cidade_atual', $_POST['basicacidadeatual']);
-        update_post_meta($_GET['id_post'], 'estado_atual', $_POST['basicaestadoatual']);
-        update_post_meta($_GET['id_post'], 'facebook', $_POST['basicafacebook']);
+        update_post_meta($_GET['id_post'], 'basicanascimento', $_POST['data_nascimento']);
+        update_post_meta($_GET['id_post'], 'basicagenero', $_POST['genero']);
+        update_post_meta($_GET['id_post'], 'basicatelefones', $_POST['telefones']);
+        update_post_meta($_GET['id_post'], 'basicacidadenascimento', $_POST['cidade_nascimento']);
+        update_post_meta($_GET['id_post'], 'basicaestadonascimento', $_POST['estado_nascimento']);
+        update_post_meta($_GET['id_post'], 'basicacidadeatual', $_POST['cidade_atual']);
+        update_post_meta($_GET['id_post'], 'basicaestadoatual', $_POST['estado_atual']);
+        update_post_meta($_GET['id_post'], 'basicafacebook', $_POST['facebook']);
         update_post_meta($_GET['id_post'], 'instagram', $_POST['instagram']);
         update_post_meta($_GET['id_post'], 'twitter', $_POST['twitter']);
         update_post_meta($_GET['id_post'], 'linkedin', $_POST['linkedin']);

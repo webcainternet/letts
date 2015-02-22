@@ -30,7 +30,7 @@ global $themify; ?>
 mkdir('C:\xampp\htdocs\letts\public\wp-content\uploads\users\\'.$idpost);
 $path = "wp-content/uploads/users/".$idpost."/"; 
 
-$valid_formats = array("pdf", "doc", "xls", "docx", "jpg", "gif", "png", "tif", "zip", "jpeg", "xlsx", "ppt", "pptx");
+$valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
 if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 {
 
@@ -97,7 +97,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 <?php $path = "wp-content/uploads/users/perfil/"; 
 
-$valid_formats = array("pdf", "doc", "xls", "docx", "jpg", "gif", "png", "tif", "zip", "jpeg", "xlsx", "ppt", "pptx");
+$valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
 if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 {
 
@@ -163,7 +163,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 <?php $path = "wp-content/uploads/users/capa/"; 
 
-$valid_formats = array("pdf", "doc", "xls", "docx", "jpg", "gif", "png", "tif", "zip", "jpeg", "xlsx", "ppt", "pptx");
+$valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
 if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 {
 

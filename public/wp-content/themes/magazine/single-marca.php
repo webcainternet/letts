@@ -13,9 +13,141 @@
  *  @var object */
 global $themify; ?>
 
+<?php $idpost = get_the_ID(); ?>
+
+   <?php 
+    $alterarfotocapa = $_POST['alterarfotocapa'];
+    if ($alterarfotocapa == 'alterar'){ ?>
+
+<?php $path = "wp-content/uploads/users/capa/"; 
+
+$valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
+if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+{
+
+	//Arquivo Catálogo
+	$name = $_FILES['img_capa']['name'];
+	$size = $_FILES['img_capa']['size'];
+
+	$file_info = pathinfo($name);
+	$name = md5($name) .'.'. $file_info['extension'];
+
+	if(strlen($name))
+		{
+			list($txt, $ext) = explode(".", $name);
+			if(in_array($ext,$valid_formats))
+			{
+			if($size<(10240*10240))
+				{
+					$actual_name = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
+					$tmp = $_FILES['img_capa']['tmp_name'];
+					if(move_uploaded_file($tmp, $path.$actual_name))
+						{
+							$response['response']="Arquivo OK";
+						}
+					else
+						$response['response']="Falhou"; 
+				}
+				else
+				$response['response']="Arquivo tem mais de 4MB"; 
+				}
+				else
+				$response['response']="Formato Inválido"; 
+		}
+	else
+		$response['response']="Selecione um arquivo";
+}
+
+		$cur_post_id = $idpost;
+
+	
+		$filename = 'http://letts.com.br/wp-content/uploads/users/capa/'.$actual_name;
+
+		$wp_filetype = wp_check_filetype(basename($filename), null );
+		$attachment = array(
+			'post_mime_type' => $wp_filetype['type'],
+			'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
+			'post_content' => '',
+			'post_status' => 'inherit'
+		);
+		$attach_id = wp_insert_attachment($attachment, $filename, $cur_post_id);
+		delete_post_meta($cur_post_id, 'basicaimagem');
+		update_post_meta($cur_post_id, 'basicaimagem', $attach_id, true);
+    ?>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#sucesso_capa').show();
+      }) 
+    </script>
+  <?php } ?> 
+
+<?php 
+$alterarfoto = $_POST['alterarfoto'];
+if ($alterarfoto == 'alterar'){ ?>
+
+<?php $path = "wp-content/uploads/users/perfil/"; 
+
+$valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
+if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+{
+
+	//Arquivo Catálogo
+	$name = $_FILES['img_perfil']['name'];
+	$size = $_FILES['img_perfil']['size'];
+
+	$file_info = pathinfo($name);
+	$name = md5($name) .'.'. $file_info['extension'];
+
+	if(strlen($name))
+		{
+			list($txt, $ext) = explode(".", $name);
+			if(in_array($ext,$valid_formats))
+			{
+			if($size<(10240*10240))
+				{
+					$actual_name = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
+					$tmp = $_FILES['img_perfil']['tmp_name'];
+					if(move_uploaded_file($tmp, $path.$actual_name))
+						{
+							$response['response']="Arquivo OK";
+						}
+					else
+						$response['response']="Falhou"; 
+				}
+				else
+				$response['response']="Arquivo tem mais de 4MB"; 
+				}
+				else
+				$response['response']="Formato Inválido"; 
+		}
+	else
+		$response['response']="Selecione um arquivo";
+}
+
+		$cur_post_id = $idpost;
+
+	
+		$filename = 'http://letts.com.br/wp-content/uploads/users/perfil/'.$actual_name;
+
+		$wp_filetype = wp_check_filetype(basename($filename), null );
+		$attachment = array(
+			'post_mime_type' => $wp_filetype['type'],
+			'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
+			'post_content' => '',
+			'post_status' => 'inherit'
+		);
+		$attach_id = wp_insert_attachment($attachment, $filename, $cur_post_id);
+		delete_post_meta($cur_post_id, 'logo');
+		update_post_meta($cur_post_id, 'logo', $attach_id, true);
+    ?>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#sucesso_perfil').show();
+      }) 
+    </script>
+  <?php } ?> 
 
 	<?php if( have_posts() ) while ( have_posts() ) : the_post(); ?>
-
 
 		<!-- content -->
 
@@ -24,14 +156,37 @@ global $themify; ?>
 
 	
 		
-	<div class="img_marcas" style="background: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>') no-repeat;"></div>
+	<div class="img_marcas imagem_editar_capa" style="background: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>') no-repeat;">
+		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>		
+			<div id="link_editar_capa">
+					<a class="fancybox" href="/alterar-foto-de-capa/?id_post=<?php echo $idpost; ?>">Editar Foto de Capa</a>		
+			</div>			
+		<?php } ?>
+	</div>
 
-	<div class="logo_marcas" style="background: url('<?php print_custom_field('logo:to_image_src'); ?>') no-repeat;"></div>
+	<?php if (get_custom_field('logo:to_image_src')	) { ?>
+		<div class="logo_marcas imagem_editar" style="background: url('<?php print_custom_field('logo:to_image_src'); ?>') no-repeat; margin-right: 25px;">
+			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
+			<div id="link_editar">
+				<a class="fancybox" href="/alterar-foto/?id_post=<?php echo $idpost; ?>">Editar Foto</a>		
+			</div>
+			<?php } ?>
+		</div>
+	<?php } ?>
 
-	<div style="float: left; margin: 15px; margin-left: 25px; width: 420px;">
-		<h1 class="post-title entry-title" itemprop="name">
-				<?php the_title(); ?>
+		<p id="sucesso_perfil" class="bg_sucesso">Foto alterada com sucesso</p>			
+		<p id="sucesso_capa" class="bg_sucesso">Foto de capa alterada com sucesso</p>		
+
+	<div style="float: left; margin: 15px 0px; width: 420px;">
+		<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 1.5em; font-family: Oswald, sans-serif;"> 
+			<a href="<?php the_permalink(); ?>" style="font-weight: bold; font-size: 50px" >
+					<?php the_title(); ?>
+			</a>
 		</h1>
+		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
+			<a class="editarperfil_marca" href="/edicao-marca/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>		
+		<?php } ?>
+
 		<?php print_custom_field('endereco:do_shortcode'); ?>
 		<p>Telefones: <?php print_custom_field('basicatelefones'); ?><br />
 		E-mail: <?php print_custom_field('basicaemail'); ?></p>
@@ -110,3 +265,15 @@ global $themify; ?>
 <!-- /layout-container -->
 	
 <?php get_footer(); ?>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    	$('.imagem_editar').hover(function(){
+    		$('#link_editar').toggle();
+    	})
+
+    	$('.imagem_editar_capa').hover(function(){
+    		$('#link_editar_capa').toggle();
+    	})    	
+	});
+</script>
