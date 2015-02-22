@@ -15,6 +15,7 @@ global $themify; ?>
 <script src="/wp-content/themes/magazine/js/jquery.uploadify.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="/wp-content/themes/magazine/uploadify.css">
 
+<?php $idpost = $_GET['id_post']; ?>
 
   <?php 
     query_posts( array('p' => $_GET['id_post'], 'post_type' => 'atleta') );
@@ -78,7 +79,7 @@ textarea{
   <div style="background-size: 1064px; 
         background-position:center; 
         height: 62px;background-color: #EEE;">
-
+  <?php if ($_SESSION["lettslogin"] != $idpost) { ?>  
     <div style="float: right; 
           margin-top: 25px;
           /* border-bottom: 2px #ff8920 solid; */
@@ -92,6 +93,7 @@ textarea{
           font-size: 12px;">
       <a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=mensagem">Mensagem</a>
     </div>
+    <?php } ?>
 
     <div style="float: right; 
           margin-top: 25px;

@@ -2502,6 +2502,24 @@ CLEAR & ALIGNMENT
 	display: none;
 }
 
+#sucesso_perfil{
+	color: #ff8920;
+	text-transform: uppercase;
+	font-weight: bold;
+	display: none;
+	margin-left: 200px;
+	margin-top: -45px;	
+}
+
+#sucesso_capa{
+	color: #ff8920;
+	text-transform: uppercase;
+	font-weight: bold;
+	display: none;
+	margin-left: 200px;
+	margin-top: -45px;	
+}
+
 #nome_img{
 	display: none;
 }
@@ -2538,4 +2556,89 @@ CLEAR & ALIGNMENT
 }
 .custom-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+#link_editar{
+	text-align: right;
+	padding-right: 10px;
+	background: rgba(255, 255, 255, 0.8);
+	font-size: 13px;
+	display: none;
+}
+
+#link_editar_capa{
+	text-align: right;
+	padding: 10px;
+	background: rgba(255, 255, 255, 0.8);
+	font-size: 13px;
+	display: none;
+	position: absolute;
+	width: 1044px;
+}
+
+#botao_foto{
+  margin-top: 30px;
+text-align: center;
+margin-left: -95px;
+}
+
+@import url("http://fonts.googleapis.com/css?family=Lato");
+
+$background: #e74c3c;
+$file-upload-color: #c0392b;
+$file-upload-size: 300px;
+
+
+.custom-file-upload-hidden {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    left: -9999px;
+}
+.custom-file-upload {
+    display: block;
+    width: auto;
+    font-size: 16px;
+    margin-top: 30px;
+    //border: 1px solid #ccc;
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+}
+
+.file-upload-wrapper {
+    position: relative; 
+    margin-bottom: 5px;
+    //border: 1px solid #ccc;
+}
+.file-upload-input {
+    width: $file-upload-size;
+    color: #fff;
+    font-size: 16px;
+    padding: 4px 17px; 
+    border: none;
+    background-color: $file-upload-color; 
+    @include transition(all 0.2s ease-in); 
+    float: left; /* IE 9 Fix */
+    &:hover, &:focus { 
+        background-color: darken($file-upload-color, 5);
+        outline: none; 
+    }
+}
+.file-upload-button {
+    cursor: pointer; 
+    display: inline-block; 
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 6px 20px; 
+    border: none;
+    margin-left: -1px;  
+    background-color: #E8B588 !important;   
+    float: left; /* IE 9 Fix */
+    @include transition(all 0.2s ease-in);
+    &:hover {
+        background-color: darken($file-upload-color, 20);
+    }
 }

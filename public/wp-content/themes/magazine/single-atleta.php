@@ -13,7 +13,10 @@
  *  @var object */
 global $themify; ?>
 
-  <?php if ($_POST){ ?>
+	<?php $idpost = get_the_ID(); ?>
+
+  <?php $publicar_news = $_POST['adicionarnews'];
+    if ($publicar_news == 'adicionarnews'){ ?>
 	  <?php 
       // Create post object
         $my_post = array(
@@ -24,7 +27,8 @@ global $themify; ?>
           'post_author'   => 1
         );
 
-$path = "wp-content/uploads/nws/"; 
+mkdir('C:\xampp\htdocs\letts\public\wp-content\uploads\users\\'.$idpost);
+$path = "wp-content/uploads/users/".$idpost."/"; 
 
 $valid_formats = array("pdf", "doc", "xls", "docx", "jpg", "gif", "png", "tif", "zip", "jpeg", "xlsx", "ppt", "pptx");
 if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
@@ -65,7 +69,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 		$cur_post_id = wp_insert_post( $my_post );
 
-		$filename = 'http://letts.com.br/wp-content/uploads/nws/'.$actual_name;
+		$filename = 'http://letts.com.br/wp-content/uploads/users/'.$idpost.'/'.$actual_name;
 
 		$wp_filetype = wp_check_filetype(basename($filename), null );
 		$attachment = array(
@@ -76,7 +80,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		);
 		$attach_id = wp_insert_attachment( $attachment, $filename, $cur_post_id );
 		add_post_meta($cur_post_id, '_thumbnail_id', $attach_id, true);
-		add_post_meta($cur_post_id, 'post_image', $attach_id, true);
+		add_post_meta($cur_post_id, 'post_image', $filename, true);
 		add_post_meta($cur_post_id, 'imgnews', $attach_id, true);
 		add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
     ?>
@@ -87,8 +91,138 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     </script>
   <?php } ?>
 
+    <?php 
+    $alterarfoto = $_POST['alterarfoto'];
+    if ($alterarfoto == 'alterar'){ ?>
 
-	<?php $idpost = get_the_ID(); ?>
+<?php $path = "wp-content/uploads/users/perfil/"; 
+
+$valid_formats = array("pdf", "doc", "xls", "docx", "jpg", "gif", "png", "tif", "zip", "jpeg", "xlsx", "ppt", "pptx");
+if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+{
+
+	//Arquivo Catálogo
+	$name = $_FILES['img_perfil']['name'];
+	$size = $_FILES['img_perfil']['size'];
+
+	$file_info = pathinfo($name);
+	$name = md5($name) .'.'. $file_info['extension'];
+
+	if(strlen($name))
+		{
+			list($txt, $ext) = explode(".", $name);
+			if(in_array($ext,$valid_formats))
+			{
+			if($size<(10240*10240))
+				{
+					$actual_name = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
+					$tmp = $_FILES['img_perfil']['tmp_name'];
+					if(move_uploaded_file($tmp, $path.$actual_name))
+						{
+							$response['response']="Arquivo OK";
+						}
+					else
+						$response['response']="Falhou"; 
+				}
+				else
+				$response['response']="Arquivo tem mais de 4MB"; 
+				}
+				else
+				$response['response']="Formato Inválido"; 
+		}
+	else
+		$response['response']="Selecione um arquivo";
+}
+
+		$cur_post_id = $idpost;
+
+	
+		$filename = 'http://letts.com.br/wp-content/uploads/users/perfil/'.$actual_name;
+
+		$wp_filetype = wp_check_filetype(basename($filename), null );
+		$attachment = array(
+			'post_mime_type' => $wp_filetype['type'],
+			'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
+			'post_content' => '',
+			'post_status' => 'inherit'
+		);
+		$attach_id = wp_insert_attachment($attachment, $filename, $cur_post_id);
+		delete_post_meta($cur_post_id, 'basicaimagem');
+		update_post_meta($cur_post_id, 'basicaimagem', $attach_id, true);
+    ?>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#sucesso_perfil').show();
+      }) 
+    </script>
+  <?php } ?> 
+
+    <?php 
+    $alterarfotocapa = $_POST['alterarfotocapa'];
+    if ($alterarfotocapa == 'alterar'){ ?>
+
+<?php $path = "wp-content/uploads/users/capa/"; 
+
+$valid_formats = array("pdf", "doc", "xls", "docx", "jpg", "gif", "png", "tif", "zip", "jpeg", "xlsx", "ppt", "pptx");
+if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+{
+
+	//Arquivo Catálogo
+	$name = $_FILES['img_capa']['name'];
+	$size = $_FILES['img_capa']['size'];
+
+	$file_info = pathinfo($name);
+	$name = md5($name) .'.'. $file_info['extension'];
+
+	if(strlen($name))
+		{
+			list($txt, $ext) = explode(".", $name);
+			if(in_array($ext,$valid_formats))
+			{
+			if($size<(10240*10240))
+				{
+					$actual_name = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
+					$tmp = $_FILES['img_capa']['tmp_name'];
+					if(move_uploaded_file($tmp, $path.$actual_name))
+						{
+							$response['response']="Arquivo OK";
+						}
+					else
+						$response['response']="Falhou"; 
+				}
+				else
+				$response['response']="Arquivo tem mais de 4MB"; 
+				}
+				else
+				$response['response']="Formato Inválido"; 
+		}
+	else
+		$response['response']="Selecione um arquivo";
+}
+
+		$cur_post_id = $idpost;
+
+	
+		$filename = 'http://letts.com.br/wp-content/uploads/users/capa/'.$actual_name;
+
+		$wp_filetype = wp_check_filetype(basename($filename), null );
+		$attachment = array(
+			'post_mime_type' => $wp_filetype['type'],
+			'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
+			'post_content' => '',
+			'post_status' => 'inherit'
+		);
+		$attach_id = wp_insert_attachment($attachment, $filename, $cur_post_id);
+		delete_post_meta($cur_post_id, 'atletaimagembackground');
+		update_post_meta($cur_post_id, 'atletaimagembackground', $attach_id, true);
+    ?>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#sucesso_capa').show();
+      }) 
+    </script>
+  <?php } ?> 
+
 	
 	<?php if( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
@@ -107,13 +241,19 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
-	<div style="border-top: 5px #ff8920 solid; 
+	<div class="imagem_editar_capa" style="border-top: 5px #ff8920 solid; 
 				background-image: url('<?php print_custom_field('atletaimagembackground'); ?>'); 
 				background-size: 1064px; 
 				background-position:center; 
 				height: 400px;">
 
-		<div style="float: left;
+		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>		
+			<div id="link_editar_capa">
+					<a class="fancybox" href="/alterar-foto-de-capa/?id_post=<?php echo $idpost; ?>">Editar Foto de Capa</a>		
+			</div>			
+		<?php } ?>
+
+		<div class="imagem_editar" style="float: left;
 					margin-left: 30px; 
 					border: 1px #ff8920 solid; 
 					width: 180px; 
@@ -122,10 +262,28 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 					background-image: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>'); 
 					background-size: 1800px; 
 					background-position:center; " id="imgbackground">
+			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
+			<div id="link_editar">
+				<a class="fancybox" href="/alterar-foto/?id_post=<?php echo $idpost; ?>">Editar Foto</a>		
+			</div>
+			<?php } ?>
+				
 			&nbsp;
 		</div>
 
 	</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    	$('.imagem_editar').hover(function(){
+    		$('#link_editar').toggle();
+    	})
+
+    	$('.imagem_editar_capa').hover(function(){
+    		$('#link_editar_capa').toggle();
+    	})    	
+	});
+</script>
 
 
 <script type="text/javascript">
@@ -226,6 +384,9 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			              <a class="editar_perfil" href="/edicao-atleta/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>  
 			            <?php } ?>	
 					</div>
+
+		<p id="sucesso_perfil">Foto alterada com sucesso</p>			
+		<p id="sucesso_capa">Foto de capa alterada com sucesso</p>			
 			
 		</div>
 		
@@ -328,20 +489,13 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			<?php if ($_GET["page"] == "" || $_GET["page"] == "news") { ?>
 			<?php 
 			$email_user = get_custom_field('basicaemail'); ?>
-			<?php 
-				if ($_SESSION["lettslogin"] == $idpost) {
-					$news_publish = array('pending', 'publish');
-				}else{
-					$news_publish = 'publish';
-				}
-			?>
 			<?php $args = array(
 			    'orderby'       	=>  'post_date',
 			    'post_type'     	=>  'news',
 			    'meta_key'     		=>  'basicaemail',
 			    'meta_value'     	=>  $email_user,			    
 			    'order'        		=>  'DESC',
-			    'post_status'		=> 	$news_publish
+			    'post_status'		=> 	array('pending', 'publish')
 			); 
 			query_posts($args); ?>
 
@@ -358,6 +512,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		             <input class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
 		             <input type="file" class="custom-file-input input_file" name="img_destacada">
 		             <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
+		             <input type="hidden" value="adicionarnews" name="adicionarnews">
 		             <input type="submit" style="float: right;" value="Publicar">
             	</div>
             </form> 
@@ -376,7 +531,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 						$imgsizeok = str_replace("http://", "", $imgsizeok);
 						$imgsizeok = str_replace("https://", "", $imgsizeok);
 					?>
-					<div style="width: 685px; 
+					<div style="width: 679px; 
 			      	height: 320px; 
 			      	background-image: url('<?php print_custom_field('imgnews:to_image_src'); ?>');
 			      	background-position: center;

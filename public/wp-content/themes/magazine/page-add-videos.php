@@ -13,6 +13,8 @@
  *  @var object */
 global $themify; ?>
 
+<?php $idpost = $_GET['id_post']; ?>
+
   <?php if ($_POST){ ?>
     <?php 
       // Create post object
@@ -92,7 +94,7 @@ textarea{
   <div style="background-size: 1064px; 
         background-position:center; 
         height: 62px;background-color: #EEE;">
-
+    <?php if ($_SESSION["lettslogin"] != $idpost) { ?> 
     <div style="float: right; 
           margin-top: 25px;
           /* border-bottom: 2px #ff8920 solid; */
@@ -106,6 +108,7 @@ textarea{
           font-size: 12px;">
       <a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=mensagem">Mensagem</a>
     </div>
+    <?php } ?>
 
     <div style="float: right; 
           margin-top: 25px;
