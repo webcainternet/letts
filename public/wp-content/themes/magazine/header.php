@@ -60,7 +60,28 @@
 
 
 				<div class="social-widget" style="margin-top: 4px;">
-				<div style="float: left; margin-right: 7px; border: 0px solid rgb(255, 137, 32); border-radius: 2px; width: 22px; height: 22px; background-image: url(http://letts.com.br/wp-content/uploads/2014/07/1098357_10200930179274639_1691402653_n.jpg); background-size: 22px; background-position: 50% 50%;" id="imgbackgroundtopo">&nbsp;</div>
+
+				<?php $post_usuario = $_SESSION["lettslogin"];
+					if ($post_usuario != 0) { ?>
+
+				<?php query_posts( array('post_type'=>'atleta','p' => $post_usuario ) ); ?>
+
+				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+					<?php $imgsizeok = get_custom_field('basicaimagem:to_image_src'); ?>
+					<?php
+						$imgsizeok = str_replace("letts.com.br/", "", $imgsizeok);
+						$imgsizeok = str_replace("http://", "", $imgsizeok);
+						$imgsizeok = str_replace("https://", "", $imgsizeok);
+					?>
+						
+						<div style="float: left; margin-right: 7px; border: 0px solid rgb(255, 137, 32); 
+						border-radius: 2px; width: 22px; height: 22px; 
+						background-image: url(<?php print_custom_field('basicaimagem:to_image_src'); ?>); 
+						<?php echo calcbackgroundsize($imgsizeok, 22, 22); ?>" id="imgbackgroundtopo">&nbsp;</div>
+						
+				<?php endwhile; endif; wp_reset_query; ?>
+				<?php } ?>	
+
 
 					<a href="/?p=<?php echo $_SESSION["lettslogin"]; ?>" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;">
 						<?php // echo $letts_nome; ?>
