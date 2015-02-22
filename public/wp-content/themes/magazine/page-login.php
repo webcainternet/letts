@@ -564,7 +564,7 @@ global $themify; ?>
 											<span class="post-category"><a href="#">Cadastrar com o Facebook:</a> / </span>
 										</p>
 										<h1 class="post-title" style="margin-left: 0px; margin-bottom: 10px; text-align: center; width: 340px;">
-											<a href="#"><img src="/wp-content/themes/magazine/images/pZzc4.png" alt="Login com Facebook" style="width: 250px;"></a>
+											<a href="https://www.facebook.com/dialog/oauth?client_id=1540707736203396&redirect_uri=https://letts.com.br/add-login/&scope=email,user_website,user_location"><img src="/wp-content/themes/magazine/images/pZzc4.png" alt="Login com Facebook" style="width: 250px;"></a>
 										</h1>
 									</div>
 

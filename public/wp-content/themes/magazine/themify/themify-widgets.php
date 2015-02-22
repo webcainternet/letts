@@ -275,7 +275,7 @@ class Themify_Social_Links extends WP_Widget {
 
 			$query_opts = apply_filters('themify_query', array(
 				'posts_per_page' => $show_count,
-				'post_type' => 'post',
+				'post_type' => 'news',
 				'orderby' => $orderby,
 				'order' => $order,
 			));
