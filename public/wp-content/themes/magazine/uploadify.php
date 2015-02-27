@@ -6,7 +6,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 */
 
 // Define a destination
-   mkdir('C:\xampp\htdocs\letts\public\wp-content\uploads\users\\'.$_GET['id_post']);
+   mkdir('/srv/httpd/letts.com.br/public/wp-content/uploads/users/'.$_GET['id_post']);
 
 $targetFolder = '/wp-content/uploads/users/'.$_GET['id_post']; // Relative to the root
 

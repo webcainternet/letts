@@ -1,4 +1,10 @@
 <?php
+session_start();
+$letts_nome = "VISITANTE";
+$_SESSION["lettslogin"] = 1;
+?>
+
+<?php
 /**
  * Template for single post view
  * @package themify
@@ -546,16 +552,16 @@ global $themify; ?>
 							<p class="post-meta" style="display: none;">
 								<span class="post-category"><a href="#">Criar perfil através do site</a></span>
 							</p>
-							<form id="new_post" method="post" action="">
+							<form id="new_post" method="post" action="/add-login-db/">
 								<div style="margin-left: 0px; margin-top: 0px;">
 									<div style="text-align: center; margin-top: 10px; text-align: left;">
 										<p class="post-meta" style="margin-left: 25px;">
 											<span class="post-category"><a href="#">Tipo de conta:</a> / </span>
 										</p>
 										<h1 class="post-title" style="margin-left: 25px; margin-bottom: 10px;">
-											<input id="mostraatleta" type="radio" name="tipodeconta" style="margin-left: 0px;" checked>Atleta
-											<input id="mostraprofissional" type="radio" name="tipodeconta" style="margin-left: 20px;">Profissional
-											<input id="mostramarca" type="radio" name="tipodeconta" style="margin-left: 20px;">Marca
+											<input id="mostraatleta" type="radio" value="atleta" name="tipodeconta" style="margin-left: 0px;" checked>Atleta
+											<input id="mostraprofissional" type="radio" value="profissional" name="tipodeconta" style="margin-left: 20px;">Profissional
+											<input id="mostramarca" type="radio" value="marca" name="tipodeconta" style="margin-left: 20px;">Marca
 										</h1>
 									</div>
 

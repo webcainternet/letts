@@ -178,7 +178,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		<p id="sucesso_capa" class="bg_sucesso">Foto de capa alterada com sucesso</p>		
 
 	<div style="float: left; margin: 15px 0px; width: 420px;">
-		<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 1.5em; font-family: Oswald, sans-serif;"> 
+		<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 1.5em; font-family: Oswald, sans-serif; width: 785px;"> 
 			<a href="<?php the_permalink(); ?>" style="font-weight: bold; font-size: 50px" >
 					<?php the_title(); ?>
 			</a>

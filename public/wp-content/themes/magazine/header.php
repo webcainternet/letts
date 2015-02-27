@@ -88,7 +88,7 @@
 					<a href="/?p=<?php echo $_SESSION["lettslogin"]; ?>" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;">
 						<?php // echo $letts_nome; ?>
 						<?php
-						$pos = strpos($letts_nome, ' ');
+						$pos = strpos($letts_nome." ", ' ');
 						echo substr($letts_nome, 0,$pos); 
 						?>
 					</a>
