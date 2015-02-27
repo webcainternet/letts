@@ -15,17 +15,244 @@ global $themify; ?>
 
 	<?php $idpost = get_the_ID(); ?>
 	
+  <?php $publicar_news = $_POST['adicionarnews'];
+    if ($publicar_news == 'adicionarnews'){ ?>
+	  <?php 
+      // Create post object
+        $my_post = array(
+          'post_title'    => $_POST['titulo_noticia'],
+          'post_status'   => 'pending',
+          'post_content'   => $_POST['content_noticia'],
+          'post_type'     => 'news',
+          'post_author'   => 1
+        );
+
+mkdir('C:\xampp\htdocs\letts\public\wp-content\uploads\users\\'.$idpost);
+$path = "wp-content/uploads/users/".$idpost."/"; 
+
+$valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
+if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+{
+
+	//Arquivo Catálogo
+	$name = $_FILES['img_destacada']['name'];
+	$size = $_FILES['img_destacada']['size'];
+
+	$file_info = pathinfo($name);
+	$name = md5($name) .'.'. $file_info['extension'];
+
+	if(strlen($name))
+		{
+			list($txt, $ext) = explode(".", $name);
+			if(in_array($ext,$valid_formats))
+			{
+			if($size<(10240*10240))
+				{
+					$actual_name = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
+					$tmp = $_FILES['img_destacada']['tmp_name'];
+					if(move_uploaded_file($tmp, $path.$actual_name))
+						{
+							$response['response']="Arquivo OK";
+						}
+					else
+						$response['response']="Falhou"; 
+				}
+				else
+				$response['response']="Arquivo tem mais de 4MB"; 
+				}
+				else
+				$response['response']="Formato Inválido"; 
+		}
+	else
+		$response['response']="Selecione um arquivo";
+}
+
+		$cur_post_id = wp_insert_post( $my_post );
+
+		$filename = 'http://letts.com.br/wp-content/uploads/users/'.$idpost.'/'.$actual_name;
+
+		$wp_filetype = wp_check_filetype(basename($filename), null );
+		$attachment = array(
+			'post_mime_type' => $wp_filetype['type'],
+			'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
+			'post_content' => '',
+			'post_status' => 'inherit'
+		);
+		$attach_id = wp_insert_attachment( $attachment, $filename, $cur_post_id );
+		add_post_meta($cur_post_id, '_thumbnail_id', $attach_id, true);
+		add_post_meta($cur_post_id, 'post_image', $filename, true);
+		add_post_meta($cur_post_id, 'imgnews', $attach_id, true);
+		add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
+    ?>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#sucesso').show();
+      }) 
+    </script>
+  <?php } ?>
+
+    <?php 
+    $alterarfoto = $_POST['alterarfoto'];
+    if ($alterarfoto == 'alterar'){ ?>
+
+<?php $path = "wp-content/uploads/users/perfil/"; 
+
+$valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
+if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+{
+
+	//Arquivo Catálogo
+	$name = $_FILES['img_perfil']['name'];
+	$size = $_FILES['img_perfil']['size'];
+
+	$file_info = pathinfo($name);
+	$name = md5($name) .'.'. $file_info['extension'];
+
+	if(strlen($name))
+		{
+			list($txt, $ext) = explode(".", $name);
+			if(in_array($ext,$valid_formats))
+			{
+			if($size<(10240*10240))
+				{
+					$actual_name = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
+					$tmp = $_FILES['img_perfil']['tmp_name'];
+					if(move_uploaded_file($tmp, $path.$actual_name))
+						{
+							$response['response']="Arquivo OK";
+						}
+					else
+						$response['response']="Falhou"; 
+				}
+				else
+				$response['response']="Arquivo tem mais de 4MB"; 
+				}
+				else
+				$response['response']="Formato Inválido"; 
+		}
+	else
+		$response['response']="Selecione um arquivo";
+}
+
+		$cur_post_id = $idpost;
+
+	
+		$filename = 'http://letts.com.br/wp-content/uploads/users/perfil/'.$actual_name;
+
+		$wp_filetype = wp_check_filetype(basename($filename), null );
+		$attachment = array(
+			'post_mime_type' => $wp_filetype['type'],
+			'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
+			'post_content' => '',
+			'post_status' => 'inherit'
+		);
+		$attach_id = wp_insert_attachment($attachment, $filename, $cur_post_id);
+		delete_post_meta($cur_post_id, 'basicaimagem');
+		update_post_meta($cur_post_id, 'basicaimagem', $attach_id, true);
+    ?>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#sucesso_perfil').show();
+      }) 
+    </script>
+  <?php } ?> 
+
+    <?php 
+    $alterarfotocapa = $_POST['alterarfotocapa'];
+    if ($alterarfotocapa == 'alterar'){ ?>
+
+<?php $path = "wp-content/uploads/users/capa/"; 
+
+$valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
+if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+{
+
+	//Arquivo Catálogo
+	$name = $_FILES['img_capa']['name'];
+	$size = $_FILES['img_capa']['size'];
+
+	$file_info = pathinfo($name);
+	$name = md5($name) .'.'. $file_info['extension'];
+
+	if(strlen($name))
+		{
+			list($txt, $ext) = explode(".", $name);
+			if(in_array($ext,$valid_formats))
+			{
+			if($size<(10240*10240))
+				{
+					$actual_name = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
+					$tmp = $_FILES['img_capa']['tmp_name'];
+					if(move_uploaded_file($tmp, $path.$actual_name))
+						{
+							$response['response']="Arquivo OK";
+						}
+					else
+						$response['response']="Falhou"; 
+				}
+				else
+				$response['response']="Arquivo tem mais de 4MB"; 
+				}
+				else
+				$response['response']="Formato Inválido"; 
+		}
+	else
+		$response['response']="Selecione um arquivo";
+}
+
+		$cur_post_id = $idpost;
+
+	
+		$filename = 'http://letts.com.br/wp-content/uploads/users/capa/'.$actual_name;
+
+		$wp_filetype = wp_check_filetype(basename($filename), null );
+		$attachment = array(
+			'post_mime_type' => $wp_filetype['type'],
+			'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
+			'post_content' => '',
+			'post_status' => 'inherit'
+		);
+		$attach_id = wp_insert_attachment($attachment, $filename, $cur_post_id);
+		delete_post_meta($cur_post_id, 'image_profissional');
+		update_post_meta($cur_post_id, 'image_profissional', $attach_id, true);
+    ?>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#sucesso_capa').show();
+      }) 
+    </script>
+  <?php } ?> 
+
 	<?php if( have_posts() ) while ( have_posts() ) : the_post(); ?>
+
+<style type="text/css">
+.editar_perfil{
+	font-size: 12px;
+	margin-top: -25px;
+	float: left;
+}
+
+.news_perfil:nth-child(2n+2){
+	margin-left: 0px;
+}
+
+</style>
 
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
-	<div style="border-top: 5px #ff8920 solid; 
+	<div class="imagem_editar_capa" style="border-top: 5px #ff8920 solid; 
 				background-image: url('<?php print_custom_field('image_profissional'); ?>'); 
 				background-size: 1064px; 
 				background-position:center; 
 				height: 400px;">
 
-		<div style="float: left;
+		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>		
+			<div id="link_editar_capa">
+					<a class="fancybox" href="/alterar-foto-de-capa/?id_post=<?php echo $idpost; ?>">Editar Foto de Capa</a>		
+			</div>			
+		<?php } ?>			
+
+		<div class="imagem_editar" style="float: left;
 					margin-left: 30px; 
 					border: 1px #ff8920 solid; 
 					width: 180px; 
@@ -34,11 +261,28 @@ global $themify; ?>
 					background-image: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>'); 
 					background-size: 1800px; 
 					background-position:center; " id="imgbackground">
+		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
+			<div id="link_editar">
+				<a class="fancybox" href="/alterar-foto/?id_post=<?php echo $idpost; ?>">Editar Foto</a>		
+			</div>
+			<?php } ?>			
 			&nbsp;
 		</div>
 
 	</div>
 
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    	$('.imagem_editar').hover(function(){
+    		$('#link_editar').toggle();
+    	})
+
+    	$('.imagem_editar_capa').hover(function(){
+    		$('#link_editar_capa').toggle();
+    	})    	
+	});
+</script>
 
 <script type="text/javascript">
 	var img = new Image();
@@ -65,6 +309,7 @@ global $themify; ?>
 				background-position:center; 
 				height: 62px;background-color: #EEE;">
 
+		<?php if ($_SESSION["lettslogin"] != $idpost) { ?>			
 		<div style="float: right; 
 					margin-top: 25px;
 					/* border-bottom: 2px #ff8920 solid; */
@@ -78,6 +323,7 @@ global $themify; ?>
 					font-size: 12px;">
 			<a style="text-decoration: none;" href="?page=mensagem">Mensagem</a>
 		</div>
+		<?php } ?>	
 
 		<div style="float: right; 
 					margin-top: 25px;
@@ -139,9 +385,15 @@ global $themify; ?>
 					margin: 0px;
 					margin-left: 25px;">
 					<div id="text-1017" class="widget widget_text" style="border: 0px; margin: 0px;">
-						<h4 class="widgettitle" style="border: 0px;"><?php print_custom_field('profissao'); ?></h4>		
+						<h4 class="widgettitle" style="border: 0px;"><?php print_custom_field('profissao'); ?></h4>
+						<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+			              <a class="editar_perfil" href="/edicao-profissional/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>  
+			            <?php } ?>
 					</div>
-			
+
+		<p id="sucesso_perfil">Foto alterada com sucesso</p>			
+		<p id="sucesso_capa">Foto de capa alterada com sucesso</p>				
+
 		</div>
 		
 	</div>
@@ -218,70 +470,13 @@ global $themify; ?>
 									</a>
 								<?php } ?>
 							</div>
+              <?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+                <a href="/print-profissional?post_id=<?php echo get_the_ID(); ?>" target="_blank">Imprimir Currículo</a>
+              <?php } ?>  							
 					</div>			
 				</div>
 		</div>
-
-		<!--<div style="float: left; width: 705px; margin-left: 30px;">
-			<div style="width: 100%; display: block;" id="newpoststep1">
-				<div>
-				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Adicionar news</h4>
-				</div>
-				<div style="width: 100%;">
-					<textarea style="width: 100%; height: 80px;"></textarea>
-				</div>
-				<div style="text-align: right;">
-					<input type="submit" value=">" style="" 
-						onclick="document.getElementById('newpoststep1').style.display = 'none'; document.getElementById('newpoststep2').style.display = 'block'; document.getElementById('newpoststep3').style.display = 'none';">
-				</div>
-			</div>
-
-
-
-			<div style="width: 100%; display: none;" id="newpoststep2">
-				<div>
-				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Selecionar mídia</h4>
-				</div>
-				<div style="width: 100%;">
-					<div style="border: #EEE dotted 5px; padding: 30px; margin-bottom: 15px; text-align: center;">
-						<input type="file">
-					</div>
-				</div>
-				<div style="text-align: right;">
-					<input type="submit" value="<" style="" 
-						onclick="document.getElementById('newpoststep1').style.display = 'block'; document.getElementById('newpoststep2').style.display = 'none'; document.getElementById('newpoststep3').style.display = 'none';">
-					<input type="submit" value=">" style="" 
-						onclick="document.getElementById('newpoststep1').style.display = 'none'; document.getElementById('newpoststep2').style.display = 'none'; document.getElementById('newpoststep3').style.display = 'block';">
-				</div>
-			</div>
-
-
-			<div style="width: 100%; display: none;" id="newpoststep3">
-				<div>
-				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Publicar como news no site?</h4>
-				</div>
-				<div style="width: 100%;">
-					 <input type="checkbox" 
-					 	onchange="document.getElementById('sp-change').style.display = 'block';" 
-					 	id="change">
-					 	<label for="change">Gostaria de compartilhar esta notícia na página de news?</label>
-
-					 	<div id="sp-change" style="display: none;">
-					 		Titulo:<br />
-					 		<input type="text">
-					 	</div>
-
-				</div>
-				<div style="text-align: right;">
-					<input type="submit" value="<" style="" 
-						onclick="document.getElementById('newpoststep1').style.display = 'none'; document.getElementById('newpoststep2').style.display = 'block'; document.getElementById('newpoststep3').style.display = 'none';">
-					<input type="submit" value="Publicar" style="" 
-						onclick="alert('Session error!');">
-				</div>
-			</div>
-			-->
-			
-			<?php if ($_GET["page"] == "" || $_GET["page"] == "sobre") { ?>
+			<?php if ($_GET["page"] == "sobre") { ?>
 				
 				<div style="width: 685px; float: left; margin-left: 50px;">
 				
@@ -291,7 +486,7 @@ global $themify; ?>
 				</div>
 			<?php } ?>
 
-			<?php if ($_GET["page"] == "news") { ?>
+			<?php if ($_GET["page"] == "" || $_GET["page"] == "news") { ?>
 			<?php 
 			$email_user = get_custom_field('basicaemail'); ?>
 			<?php $args = array(
@@ -299,19 +494,52 @@ global $themify; ?>
 			    'post_type'     	=>  'news',
 			    'meta_key'     		=>  'basicaemail',
 			    'meta_value'     	=>  $email_user,			    
-			    'order'        		=>  'ASC'
+			    'order'        		=>  'DESC',
+			    'post_status'		=> 	array('pending', 'publish')
 			); 
 			query_posts($args); ?>
 
 			<div style="width: 685px; float: left; margin-left: 50px;">
+			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+				<p id="sucesso">Noticia cadastrada com sucesso.</p>
+            <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
+	             <div id="box_pensando">
+		             <textarea class="textarea_noticia" name="content_noticia" placeholder="No que você está pensando..."></textarea>
+					 <span class="button" id="avancar" style="float: right;">Avançar</span>
+				 </div>
+
+				 <div id="nome_img">
+		             <input class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
+		             <input type="file" class="custom-file-input input_file" name="img_destacada">
+		             <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
+		             <input type="hidden" value="adicionarnews" name="adicionarnews">
+		             <input type="submit" style="float: right;" value="Publicar">
+            	</div>
+            </form> 
+            <?php } ?>				
 			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">News</h4>
 
 			<?php while (have_posts()) : the_post(); ?>
 
-			<div class="related-posts news_perfil" style="float: left; width: 310px; height: 480px;">
-				<div class="imgnoticias" style="width: 300px; border-radius: 5px; height: 212px;  margin-bottom: 15px;">
-					<img src="<?php print_custom_field('imgnews:to_image_src'); ?>" style="max-height: 212px;">
+			<div class="related-posts news_perfil" style="float: left; width: 100%;">
+				<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
+					if ($imgsizeok) { ?>
+				<div class="imgnoticias" style="width: 679px; border-radius: 5px; height: 320px;  margin-bottom: 15px;">
+					<?php
+						$imgsizeok = str_replace("letts.com.br/", "", $imgsizeok);
+						$imgsizeok = str_replace("http://", "", $imgsizeok);
+						$imgsizeok = str_replace("https://", "", $imgsizeok);
+					?>
+					<div style="width: 679px; 
+			      	height: 320px; 
+			      	background-image: url('<?php print_custom_field('imgnews:to_image_src'); ?>');
+			      	background-position: center;
+			      	<?php echo calcbackgroundsize($imgsizeok, 685, 320); ?>; ">
+			      		&nbsp;
+  					</div>
 				</div>
+				<?php } ?>
+
 				<article class="post type-post clearfix">
 					<div class="post-content">
 						<p class="post-meta">
@@ -332,6 +560,9 @@ global $themify; ?>
 			<?php if ($_GET["page"] == "fotos") { ?>
 				<div style="width: 685px; float: left; margin-left: 50px;">
 					<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Fotos</h4>
+					<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+						<a class="button link_botao" href="/add-fotos-profissional/?id_post=<?php echo $idpost; ?>">+ Fotos</a>
+					<?php } ?>						
 					<div class="galeria_profissional">
 						<?php $path = "wp-content/uploads/users/$idpost"; 
 							$diretorio = dir($path); 
@@ -366,6 +597,9 @@ global $themify; ?>
 
 			<div style="width: 685px; float: left; margin-left: 50px;">
 			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Vídeos</h4>
+			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+				<a class="button link_botao" href="/add-videos-profissional/?id_post=<?php echo $idpost; ?>">+ Vídeos</a>
+			<?php } ?>	
 
 			<?php while (have_posts()) : the_post(); ?>
 
@@ -434,3 +668,20 @@ global $themify; ?>
 <!-- /layout-container -->
 	
 <?php get_footer(); ?>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#avancar').click(function(){
+   	 	$('#box_pensando').hide();
+		$('#nome_img').show();
+   	}) 
+
+	$('.textarea_noticia').click(function() {
+		$('.textarea_noticia').css('height','200px');
+	})
+
+	$('.textarea_noticia').focusout(function() {
+		$('.textarea_noticia').css('height','30px');
+	})
+});
+</script>

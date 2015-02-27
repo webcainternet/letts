@@ -38,7 +38,7 @@ global $themify; ?>
 
 
   <?php 
-    query_posts( array('p' => $_GET['id_post'], 'post_type' => 'atleta') );
+    query_posts( array('p' => $_GET['id_post'], 'post_type' => 'profissional') );
     while ( have_posts() ) : the_post();
   ?>
 
@@ -57,7 +57,7 @@ textarea{
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
   <div style="border-top: 5px #ff8920 solid; 
-        background-image: url('<?php print_custom_field('atletaimagembackground'); ?>'); 
+        background-image: url('<?php print_custom_field('image_profissional'); ?>'); 
         background-size: 1064px; 
         background-position:center; 
         height: 400px;">
@@ -170,9 +170,9 @@ textarea{
           margin: 0px;
           margin-left: 25px;">
           <div id="text-1017" class="widget widget_text" style="border: 0px; margin: 0px;">
-            <h4 class="widgettitle" style="border: 0px;"><?php print_custom_field('atletaesporte'); ?></h4>
+            <h4 class="widgettitle" style="border: 0px;"><?php print_custom_field('profissao'); ?></h4>
             <?php if ($_SESSION["lettslogin"] == $idpost) { ?>
-              <a class="editar_perfil" href="/edicao-atleta/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>  
+              <a class="editar_perfil" href="/edicao-profissional/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>  
             <?php } ?>
           </div>
       
@@ -191,7 +191,7 @@ textarea{
 
   <div>
     <div style="float: left; width: 325px;">
-        <div class="col3-1" style="width: 100%; margin: 0px; background: #F5E1CD; padding-left: 15px; border-top: 5px #ff8920 solid;">
+        <div class="col3-1" style="width: 100%; margin: 0px; background: #EFEFEF; padding-left: 15px; border-top: 5px #ff8920 solid;">
           <div id="text-1016" class="widget widget_text" style="">
             <h4 class="widgettitle">Informações básicas</h4>      
             <div class="textwidget">
@@ -253,7 +253,7 @@ textarea{
                 <?php } ?>
               </div>
               <?php if ($_SESSION["lettslogin"] == $idpost) { ?>
-                <a href="/print?post_id=<?php echo get_the_ID(); ?>" target="_blank">Imprimir Currículo</a>
+                <a href="/print-profissional?post_id=<?php echo get_the_ID(); ?>" target="_blank">Imprimir Currículo</a>
               <?php } ?>  
           </div>      
         </div>

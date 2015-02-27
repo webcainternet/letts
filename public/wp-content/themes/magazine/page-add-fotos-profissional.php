@@ -12,33 +12,13 @@
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
+<script src="/wp-content/themes/magazine/js/jquery.uploadify.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/magazine/uploadify.css">
 
 <?php $idpost = $_GET['id_post']; ?>
 
-  <?php if ($_POST){ ?>
-    <?php 
-      // Create post object
-        $my_post = array(
-          'post_title'    => $_POST['titulo_video'],
-          'post_status'   => 'publish',
-          'post_type'     => 'video',
-          'post_author'   => 1
-        );
-
-        $post_id = wp_insert_post($my_post);
-        add_post_meta($post_id, 'link_video', $_POST['link_video'], true);
-        add_post_meta($post_id, 'basicaemail', $_POST['email'], true);
-    ?>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('#sucesso').show();
-      }) 
-    </script>
-  <?php } ?>
-
-
   <?php 
-    query_posts( array('p' => $_GET['id_post'], 'post_type' => 'atleta') );
+    query_posts( array('p' => $_GET['id_post'], 'post_type' => 'profissional') );
     while ( have_posts() ) : the_post();
   ?>
 
@@ -52,12 +32,17 @@ textarea{
   margin-top: -25px;
   float: left;
 }
+
+#file_upload-button{
+  width: 160px !important;
+}
+
 </style>
 
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
   <div style="border-top: 5px #ff8920 solid; 
-        background-image: url('<?php print_custom_field('atletaimagembackground'); ?>'); 
+        background-image: url('<?php print_custom_field('image_profissional'); ?>'); 
         background-size: 1064px; 
         background-position:center; 
         height: 400px;">
@@ -94,7 +79,7 @@ textarea{
   <div style="background-size: 1064px; 
         background-position:center; 
         height: 62px;background-color: #EEE;">
-    <?php if ($_SESSION["lettslogin"] != $idpost) { ?> 
+  <?php if ($_SESSION["lettslogin"] != $idpost) { ?>  
     <div style="float: right; 
           margin-top: 25px;
           /* border-bottom: 2px #ff8920 solid; */
@@ -170,10 +155,8 @@ textarea{
           margin: 0px;
           margin-left: 25px;">
           <div id="text-1017" class="widget widget_text" style="border: 0px; margin: 0px;">
-            <h4 class="widgettitle" style="border: 0px;"><?php print_custom_field('atletaesporte'); ?></h4>
-            <?php if ($_SESSION["lettslogin"] == $idpost) { ?>
-              <a class="editar_perfil" href="/edicao-atleta/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>  
-            <?php } ?>
+            <h4 class="widgettitle" style="border: 0px;"><?php print_custom_field('profissao'); ?></h4>
+            <a class="editar_perfil" href="/edicao-profissional/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>  
           </div>
       
     </div>
@@ -191,7 +174,7 @@ textarea{
 
   <div>
     <div style="float: left; width: 325px;">
-        <div class="col3-1" style="width: 100%; margin: 0px; background: #F5E1CD; padding-left: 15px; border-top: 5px #ff8920 solid;">
+        <div class="col3-1" style="width: 100%; margin: 0px; background: #EFEFEF; padding-left: 15px; border-top: 5px #ff8920 solid;">
           <div id="text-1016" class="widget widget_text" style="">
             <h4 class="widgettitle">Informações básicas</h4>      
             <div class="textwidget">
@@ -253,7 +236,7 @@ textarea{
                 <?php } ?>
               </div>
               <?php if ($_SESSION["lettslogin"] == $idpost) { ?>
-                <a href="/print?post_id=<?php echo get_the_ID(); ?>" target="_blank">Imprimir Currículo</a>
+                <a href="/print-profissional?post_id=<?php echo get_the_ID(); ?>" target="_blank">Imprimir Currículo</a>
               <?php } ?>  
           </div>      
         </div>
@@ -262,16 +245,14 @@ textarea{
 
 
         <div style="width: 685px; float: left; margin-left: 50px;">
-          <p id="sucesso">Vídeo cadastrado com sucesso.</p>
-          <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Publicar Vídeo</h4>
+          <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Publicar Fotos</h4>
           <div class="galeria_profissional">
-            <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
-             <input class="input_video" type="text" name="link_video" value="" placeholder="Link do Video do Youtube ou Vímeo">
-             <input class="input_video" type="text" name="titulo_video" value="" placeholder="Título do Vídeo">
-             <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
-             <input type="submit" value="Enviar Vídeo">
-            </form> 
+              <form>
+                <div id="queue"></div>
+                <input id="file_upload" name="file_upload" type="file" multiple="true">
+              </form>
           </div>
+          <div id="sucesso" style="text-align: center; font-size: 14px;"><a style="text-decoration: none;" href="<?php the_permalink(); ?>?page=fotos">As fotos foram publicadas com sucesso, clique aqui para visualizar a sua galeria.</a></div>
         </div>  
     </div>
   </div>
@@ -286,3 +267,20 @@ textarea{
 
   <?php endwhile ?>
 <?php get_footer(); ?>
+
+<script type="text/javascript">
+  <?php $timestamp = time();?>
+  $(function() {
+    $('#file_upload').uploadify({
+      'formData'     : {
+        'timestamp' : '<?php echo $timestamp;?>',
+        'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+      },
+      'swf'      : '/wp-content/themes/magazine/uploadify.swf',
+      'uploader' : '/wp-content/themes/magazine/uploadify.php?id_post='+<?php echo $_GET['id_post'] ?>,
+      'onUploadComplete': function(file) {
+            $('#sucesso').show(2000);
+      }
+    });
+  });
+</script>

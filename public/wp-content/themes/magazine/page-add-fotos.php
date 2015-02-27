@@ -235,7 +235,9 @@ textarea{
                   </a>
                 <?php } ?>
               </div>
-              <a href="/print?post_id=<?php echo get_the_ID(); ?>" target="_blank">Imprimir Currículo</a>
+              <?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+                <a href="/print?post_id=<?php echo get_the_ID(); ?>" target="_blank">Imprimir Currículo</a>
+              <?php } ?>  
           </div>      
         </div>
     </div>

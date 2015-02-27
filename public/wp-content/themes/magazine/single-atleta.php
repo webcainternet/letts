@@ -538,8 +538,6 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			      	<?php echo calcbackgroundsize($imgsizeok, 685, 320); ?>; ">
 			      		&nbsp;
   					</div>
-					<?php /*<img src="<?php print_custom_field('imgnews:to_image_src'); ?>" style="max-height: 212px;"> */?>
-				
 				</div>
 				<?php } ?>
 

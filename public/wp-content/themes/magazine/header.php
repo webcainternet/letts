@@ -65,7 +65,7 @@
 				$post_usuario = $_SESSION["lettslogin"];
 					if ($post_usuario != 0) { ?>
 
-				<?php query_posts( array('post_type'=>'atleta','p' => $post_usuario ) ); ?>
+				<?php query_posts( array('post_type'=>array('profissional','atleta','marca'),'p' => $post_usuario ) ); ?>
 
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 					<?php $imgsize_top = get_custom_field('basicaimagem:to_image_src'); ?>
