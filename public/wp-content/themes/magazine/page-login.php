@@ -39,6 +39,9 @@ $_SESSION["lettslogin"] = 1;
 <!-- wp_header -->
 <?php wp_head(); ?>
 
+
+
+
 </head>
 
 <body <?php body_class(); ?>>
@@ -438,6 +441,174 @@ $(document).ready(function(){
 
 
 
+
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$( "#criarAtleta" ).click(function() {
+
+	  //Nome em branco
+	  if ($( "#nomecompleto" ).val() == '') {
+	  	alert( "O nome não foi preenchido" );
+	  	$( "#nomecompleto" ).focus();
+	  } else {
+
+	  	//Email em branco
+	  	if ($( "#basicaemail" ).val() == '') {
+	  		alert( "O endereço de e-mail não foi preenchido" );
+	  		$( "#basicaemail" ).focus();
+	  	} else {
+
+	  		//Senha 1 em branco
+		  	if ($( "#senha" ).val() == '') {
+		  		alert( "A senha não foi preenchida" );
+		  		$( "#senha" ).focus();
+		  	} else {
+
+		  		//Senha 2 em branco
+			  	if ($( "#senha2" ).val() == '') {
+			  		alert( "A senha não foi confirmada" );
+			  		$( "#senha2" ).focus();
+			  	} else {
+
+			  		//Senhas confirmadas
+			  		if ($( "#senha" ).val() != $( "#senha2" ).val()) {
+						alert( "A senha deve ser digitada duas vezes iguais!" );
+			  			$( "#senha2" ).focus();
+		  			} else {
+
+	  					//Esporte
+						if ($( "#atletaesporte" ).val() == '-- Selecione o esporte --') {
+							alert( "Selecione o esporte" );
+				  			$( "#atletaesporte" ).focus();
+			  			} else {
+	  						
+	  						//Termos
+	  						if ($('#termos1').is(':checked') == false) {
+								alert( "Você deve aceitar os termos de uso para continuar" );
+							} else {
+								$( "#new_post" ).submit();
+							}
+		  				}
+		  			}
+		  		}
+	  		}
+  		}
+	  }
+	});
+
+
+	$( "#criarPro" ).click(function() {
+
+	  //Nome em branco
+	  if ($( "#nomecompleto" ).val() == '') {
+	  	alert( "O nome não foi preenchido" );
+	  	$( "#nomecompleto" ).focus();
+	  } else {
+
+	  	//Email em branco
+	  	if ($( "#basicaemail" ).val() == '') {
+	  		alert( "O endereço de e-mail não foi preenchido" );
+	  		$( "#basicaemail" ).focus();
+	  	} else {
+
+	  		//Senha 1 em branco
+		  	if ($( "#senha" ).val() == '') {
+		  		alert( "A senha não foi preenchida" );
+		  		$( "#senha" ).focus();
+		  	} else {
+
+		  		//Senha 2 em branco
+			  	if ($( "#senha2" ).val() == '') {
+			  		alert( "A senha não foi confirmada" );
+			  		$( "#senha2" ).focus();
+			  	} else {
+
+			  		//Senhas confirmadas
+			  		if ($( "#senha" ).val() != $( "#senha2" ).val()) {
+						alert( "A senha deve ser digitada duas vezes iguais!" );
+			  			$( "#senha2" ).focus();
+		  			} else {
+
+	  					//profissao
+						if ($( "#profissao" ).val() == '-- Selecione a profissão --') {
+							alert( "Selecione a profissão" );
+				  			$( "#profissao" ).focus();
+			  			} else {
+	  						
+	  						//Termos
+	  						if ($('#termos2').is(':checked') == false) {
+								alert( "Você deve aceitar os termos de uso para continuar" );
+							} else {
+								$( "#new_post" ).submit();
+							}
+		  				}
+		  			}
+		  		}
+	  		}
+  		}
+	  }
+	});
+
+
+
+
+	$( "#criarMarca" ).click(function() {
+
+	  //Nome em branco
+	  if ($( "#nomecompleto" ).val() == '') {
+	  	alert( "O nome não foi preenchido" );
+	  	$( "#nomecompleto" ).focus();
+	  } else {
+
+	  	//Email em branco
+	  	if ($( "#basicaemail" ).val() == '') {
+	  		alert( "O endereço de e-mail não foi preenchido" );
+	  		$( "#basicaemail" ).focus();
+	  	} else {
+
+	  		//Senha 1 em branco
+		  	if ($( "#senha" ).val() == '') {
+		  		alert( "A senha não foi preenchida" );
+		  		$( "#senha" ).focus();
+		  	} else {
+
+		  		//Senha 2 em branco
+			  	if ($( "#senha2" ).val() == '') {
+			  		alert( "A senha não foi confirmada" );
+			  		$( "#senha2" ).focus();
+			  	} else {
+
+			  		//Senhas confirmadas
+			  		if ($( "#senha" ).val() != $( "#senha2" ).val()) {
+						alert( "A senha deve ser digitada duas vezes iguais!" );
+			  			$( "#senha2" ).focus();
+		  			} else {
+	  						
+  						//Termos
+  						if ($('#termos3').is(':checked') == false) {
+							alert( "Você deve aceitar os termos de uso para continuar" );
+						} else {
+							$( "#new_post" ).submit();
+						}
+		  			}
+		  		}
+	  		}
+  		}
+	  }
+	});
+
+
+
+});	
+</script>
+
+
+
+
 <?php // ******************* Fim Header ******************* ?>
 
 <?php 
@@ -552,7 +723,7 @@ global $themify; ?>
 							<p class="post-meta" style="display: none;">
 								<span class="post-category"><a href="#">Criar perfil através do site</a></span>
 							</p>
-							<form id="new_post" method="post" action="/add-login-db/">
+							<form id="new_post" method="post" action="/add-login-db/" >
 								<div style="margin-left: 0px; margin-top: 0px;">
 									<div style="text-align: center; margin-top: 10px; text-align: left;">
 										<p class="post-meta" style="margin-left: 25px;">
@@ -708,11 +879,11 @@ global $themify; ?>
 										</div>
 										<div style="text-align: center; margin-top: 0px; text-align: left;">
 											<h1 class="post-title" style="margin-left: 25px;">
-												<input type="checkbox" name="termos" value="termos">Li e aceito as <a target="_blank" href="http://letts.com.br/politicas-de-privacidade/">políticas de uso</a>
+												<input type="checkbox" name="termos1" id="termos1" value="termos">Li e aceito as <a target="_blank" href="http://letts.com.br/politicas-de-privacidade/">políticas de uso</a>
 											</h1>
 										</div>
 										<div style="text-align: right; margin-right: 25px; margin-top: 0px;">
-											<input name="submit" type="submit" id="criar" value="Criar Conta">
+											<input name="criarAtleta" type="button" id="criarAtleta" value="Criar Conta">
 										</div>
 									</div>
 									<!-- Fim Atleta Area -->
@@ -752,11 +923,11 @@ global $themify; ?>
 										</div>
 										<div style="text-align: center; margin-top: 0px; text-align: left;">
 											<h1 class="post-title" style="margin-left: 25px;">
-												<input type="checkbox" name="termos" value="termos">Li e aceito as <a target="_blank" href="http://letts.com.br/politicas-de-privacidade/">políticas de uso</a>
+												<input type="checkbox" name="termos2" id="termos2" value="termos">Li e aceito as <a target="_blank" href="http://letts.com.br/politicas-de-privacidade/">políticas de uso</a>
 											</h1>
 										</div>
 										<div style="text-align: right; margin-right: 25px; margin-top: 10px;">
-											<input name="submit" type="submit" id="criar" value="Criar Conta">
+											<input name="criarPro" type="button" id="criarPro" value="Criar Conta">
 										</div>
 									</div>
 									<!-- Fim Profissional Area -->
@@ -765,11 +936,11 @@ global $themify; ?>
 									<div id="dadosmarca" style="display: none;">
 										<div style="text-align: center; margin-top: 0px; text-align: left;">
 											<h1 class="post-title" style="margin-left: 25px;">
-												<input type="checkbox" name="termos" value="termos">Li e aceito as <a target="_blank" href="http://letts.com.br/politicas-de-privacidade/">políticas de uso</a>
+												<input type="checkbox" name="termos3" id="termos3" value="termos">Li e aceito as <a target="_blank" href="http://letts.com.br/politicas-de-privacidade/">políticas de uso</a>
 											</h1>
 										</div>
 										<div style="text-align: right; margin-right: 25px; margin-top: 0px;">
-											<input name="submit" type="submit" id="criar" value="Criar Conta">
+											<input name="criarMarca" type="button" id="criarMarca" value="Criar Conta">
 										</div>
 									</div>
 									<!-- Fim marca -->

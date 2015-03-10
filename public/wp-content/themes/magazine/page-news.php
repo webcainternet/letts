@@ -50,8 +50,8 @@ global $themify; ?>
         <div class="post-meta" style="display: inline;">
           <div style="float: right; margin-right: 15px;">
               <form method="post" id="filtroesporte">
-              <select name="slesporte" class="selectitens"  onchange="this.form.submit();">
-                      <option>-- Atleta --</option>
+              <select name="slesporte" id="slesporte" class="selectitens"  onchange="this.form.submit();">
+                      <option>-- Esporte --</option>
                       <option>Aeromodelismo</option>
                       <option>Alpinismo</option>
                       <option>Asa Delta</option>
@@ -134,7 +134,7 @@ global $themify; ?>
         <div class="post-meta" style="display: inline;">
           <div style="float: right; margin-right: 15px;">
               <form method="post" id="filtroprofissao">
-                          <select  class="selectitens" name="profissao">
+                          <select  class="selectitens" name="profissao" id="profissao" onchange="this.form.submit();">
                     <option>-- Profissão --</option>
                     <option>Assessor de imprensa</option>
                     <option>Coordenador de eventos</option>
@@ -178,7 +178,18 @@ mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
 mysql_select_db(DB_NAME);
 
 
-  $result = mysql_query("select id, post_title, post_content, post_date, guid from wp_posts where post_type = 'news' AND post_status = 'publish'");
+  if ($_POST["profissao"]) {
+    $result = mysql_query("select po.id, po.post_title, po.post_content, po.post_date, po.guid, pm.meta_value from wp_posts po INNER JOIN wp_postmeta pm ON pm.post_id = po.id where pm.meta_key = 'profissao' AND po.post_type = 'news' AND po.post_status = 'publish' AND pm.meta_value = '".$_POST["profissao"]."'");
+  } else {
+      if ($_POST["slesporte"]) {
+        $result = mysql_query("select po.id, po.post_title, po.post_content, po.post_date, po.guid, pm.meta_value from wp_posts po INNER JOIN wp_postmeta pm ON pm.post_id = po.id where pm.meta_key = 'atletaesporte' AND po.post_type = 'news' AND po.post_status = 'publish' AND pm.meta_value = '".$_POST["slesporte"]."'");
+      } else {
+        $result = mysql_query("select id, post_title, post_content, post_date, guid from wp_posts where post_type = 'news' AND post_status = 'publish'");
+      }
+  }
+
+
+if(mysql_num_rows($result) > 0) {
 
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
   $guid = $row["guid"];
@@ -323,6 +334,10 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
     
 }
+} else {
+  echo "<div style=\"float: left; margin-top: 20px;\">Nenhuma noticia encontrada!</div>";
+}
+
 
 mysql_free_result($result);
 ?>
