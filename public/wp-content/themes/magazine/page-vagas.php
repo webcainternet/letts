@@ -12,8 +12,6 @@
 	}
 </style>
 <?php
-	ini_set("DISPLAY_ERRORS", 1);
-
 /**
  * Template for single post view
  * @package themify
@@ -161,6 +159,12 @@ global $themify; ?>
 					</div>
 					</form>
 			</div>
+			<?php if ($_SESSION["lettslogin"]) { ?>	
+				<div class="bt_vagas">
+					<a class="button" href="/cadastrar-vagas/?id_post=<?php echo $_SESSION["lettslogin"]; ?>">Cadastrar Vaga</a>
+				</div>
+			<?php } ?>	
+
 		</div>
 
 
@@ -172,16 +176,13 @@ global $themify; ?>
 
 
     <div class="vaga">
-      <div style="margin-top: 0px; color: #666; font-size: 12px;">Data de postagem: 12/12/2012</div>
+      <div style="margin-top: 0px; color: #666; font-size: 12px;">Data de postagem: <?php echo mysql2date('j/m/Y', $post->post_date); ?></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;"><center><?php the_title(); ?></center></strong></div>
-      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;"><center>São Paulo - SP</center></strong></div>
-      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Empresa: </strong><?php the_content(); ?></div>
+      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;"><center><?php print_custom_field('basicacidadeatual'); ?> - <?php print_custom_field('basicaestadoatual'); ?></center></strong></div>
+      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Empresa: </strong><br /><?php print_custom_field('empresa'); ?></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Contato: </strong><br /> <?php print_custom_field('basicaemail'); ?></div>
-      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Descrição: </strong><br /> Texto com informações sobre a vaga e lorem ipsum dolar si amet diwne lorem ipsum dolar si amet diwne lorem ipsum dolar si amet diwn. Texto com informações sobre a vaga e lorem ipsum dolar si amet diwne lorem ipsum dolar si amet diwne lorem ipsum dolar si amet diwn. Texto com informações sobre a vaga e lorem ipsum dolar si amet diwne lorem ipsum dolar si amet diwne lorem ipsum dolar si amet diwn.</div>
+      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Descrição: </strong><br /> <?php the_content(); ?></div>
       <div style="margin-top: 10px; color: #666; text-align: right;"><a href="mailto:<?php print_custom_field('basicaemail'); ?>"><input type="submit" value="Enviar currículo" style="margin-top: 16px;"></a></div>
-
-
-
     </div>
   
 

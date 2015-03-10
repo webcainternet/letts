@@ -37,6 +37,12 @@ global $themify; ?>
 			<div class="related-posts" style="height: 125px;">
 				<h4 class="related-title" style="border: 0px;margin-left: 25px;margin-top: 10px; margin-bottom: 5px;">Acessórios / Classificados:</h4>
 
+			<?php if ($_SESSION["lettslogin"]) { ?>	
+				<div class="bt_acessorios">
+					<a class="button" href="/cadastrar-acessorios/?id_post=<?php echo $_SESSION["lettslogin"]; ?>">Cadastrar Acessório</a>
+				</div>
+			<?php } ?>			
+
 				<div class="post-meta" style="display: inline;">
 					<form method="post">
 					<div style="float: left; margin-right: 15px; margin-left: 25px;">
@@ -65,7 +71,7 @@ global $themify; ?>
 						<input id="author" name="nome" type="text" value="" size="30" class="required" style="width: 150px; height: 30px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
 					</div>
 
-					<div style="float: left; margin-right: 15px;">
+					<div style="float: left; margin-right: 15px; margin-top: -3px;">
 						<span class="post-category"><a href="#">Esporte</a></span><br>
 						<select class="selectitens" name="sexo">
 						<option>-- Selecione --</option>
@@ -143,7 +149,7 @@ global $themify; ?>
 						</select>
 					</div>
 
-					<div style="float: left; margin-right: 15px;">
+					<div style="float: left; margin-right: 15px; margin-top: -3px;">
 						<input type="submit" value="Buscar" style="margin-top: 16px;">
 					</div>
 					</form>

@@ -2663,3 +2663,36 @@ $file-upload-size: 300px;
 .marca_textarea{
 	height: 200px;
 }
+
+.bt_vagas{
+	margin-top: 45px;
+	display: inline-block;
+	margin-left: 15px;
+}
+
+.bt_acessorios{
+	float: right;
+  	margin-top: -40px;
+  	display: block;
+  	margin-bottom: -10px;
+}
+
+#tipo_acessorio{
+	float: left;
+	margin-left: 29px;
+	height: 35px;
+	width: 215px;
+}
+
+.foto_principal, .fotos_adicionais{
+	float: left;
+  	width: 100%;
+  	text-align: left;
+  	padding-left: 30px;
+  	margin-top: 10px;
+  	margin-bottom: -20px;
+}
+
+.foto_principal p, .fotos_adicionais p{
+	margin-bottom: 5px;
+}
