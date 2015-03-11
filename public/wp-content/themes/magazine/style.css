@@ -2689,10 +2689,22 @@ $file-upload-size: 300px;
   	width: 100%;
   	text-align: left;
   	padding-left: 30px;
-  	margin-top: 10px;
+  	margin-top: -5px;
   	margin-bottom: -20px;
 }
 
 .foto_principal p, .fotos_adicionais p{
 	margin-bottom: 5px;
+}
+
+.selects_forms{
+	width: 660px;
+  float: left;
+}
+
+.div_semcad{
+  width: 1020px;
+  margin: 0 auto;
+  padding: 30px;
+  text-align: center;
 }

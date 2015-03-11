@@ -83,6 +83,17 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		add_post_meta($cur_post_id, 'post_image', $filename, true);
 		add_post_meta($cur_post_id, 'imgnews', $attach_id, true);
 		add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
+
+	    $destinatario = "fernando.mendes@webca.com.br";  
+
+	    $headers = "From: $destinatario \r\n";
+	    $headers.= "Content-Type: text/html; charset=ISO-8859-1 ";
+	    $headers.= "MIME-Version: 1.0 ";    
+
+	    $html = 'Você tem uma nova postagem de News para aprovação';
+
+	    mail($destinatario,"Nova postagem pendente",$html,$headers);
+		
     ?>
     <script type="text/javascript">
       $(document).ready(function(){

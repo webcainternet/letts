@@ -155,6 +155,12 @@ global $themify; ?>
 
       </div>
 
+        <?php if ($_SESSION["lettslogin"]) { ?> 
+        <div class="bt_acessorios">
+          <a class="button" href="/cadastrar-evento/?id_post=<?php echo $_SESSION["lettslogin"]; ?>">Cadastrar Evento</a>
+        </div>
+      <?php } ?>  
+
 
 
 

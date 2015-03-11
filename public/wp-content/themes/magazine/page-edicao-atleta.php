@@ -177,7 +177,9 @@ textarea{
         <div style="width: 685px; float: left; margin-left: 50px;">
         
         <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Minha história</h4>
-        <textarea name="content_atleta"><?php the_content(); ?></textarea>  
+        <?php $minhahistoria = get_the_content(); ?>
+
+        <textarea name="content_atleta"><?php echo strip_tags($minhahistoria); ?></textarea>  
 
         <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Patrocínio ou apoio que esta procurando</h4>
         <textarea name="patrocinio_atleta"><?php print_custom_field('atletapatrocinio'); ?></textarea><br /><br />

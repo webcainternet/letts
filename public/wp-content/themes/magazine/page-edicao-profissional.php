@@ -175,7 +175,8 @@ textarea{
         <div style="width: 685px; float: left; margin-left: 50px;">
         
         <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Minha história</h4>
-        <textarea name="content_profissional"><?php the_content(); ?></textarea>  
+        <?php $minhahistoria = get_the_content(); ?>
+        <textarea name="content_profissional"><?php echo strip_tags($minhahistoria); ?></textarea>  
         </div>
 
         <div style="float: right; margin-right: 37px;">

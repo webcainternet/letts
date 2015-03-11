@@ -200,9 +200,10 @@ global $themify; ?>
 			<?php 
 				$attachment_id = $row["idfoto"];
 
-				$image_attributes = wp_get_attachment_image_src($attachment_id); 
-					if( $image_attributes ) { ?> 
+				$image_attributes = wp_get_attachment_image_src($attachment_id); ?>
+					 
 	        	<figure class="small" style="border: 0px; width: 100%;">
+	        	<?php if($image_attributes) { ?>	
 			      <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
 			      	<div style="width: width: 100%; 
 			      	height: 200px; 
@@ -211,6 +212,14 @@ global $themify; ?>
 			      	background-size: 234px;
 			      	background-repeat: no-repeat;
 			      	"></div>
+			      </a>
+			      <?php }else{ ?>
+			      <a href="/formulario-acessorios/?post_id=<?php echo $row["id"]; ?>&nome=<?php echo $row["nome"]; ?>&produto=<?php echo $row["title"]; ?>&email=<?php echo $row["email"]; ?>" class="fancybox">
+			      	<div style="width: 100%;
+							  height: 100px;
+							  padding-top: 100px;
+							  text-align: center;
+			      	">Produto sem imagem</div>
 			      </a>
 			      <?php } ?>
 

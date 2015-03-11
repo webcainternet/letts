@@ -447,6 +447,19 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 
+function checkMail(mail){
+	var er = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
+    if(typeof(mail) == "string"){
+		if(er.test(mail)){ return true; }
+    }else if(typeof(mail) == "object"){
+            if(er.test(mail.value)){ 
+    			return true; 
+    		}
+    }else{
+            return false;
+     }
+}
+
 $(document).ready(function(){
 	$( "#criarAtleta" ).click(function() {
 
@@ -457,8 +470,8 @@ $(document).ready(function(){
 	  } else {
 
 	  	//Email em branco
-	  	if ($( "#basicaemail" ).val() == '') {
-	  		alert( "O endereço de e-mail não foi preenchido" );
+	  	if ($( "#basicaemail" ).val() == '' || checkMail($('#basicaemail').val())!=true){
+	  		alert( "O endereço de e-mail não foi preenchido corretamente");
 	  		$( "#basicaemail" ).focus();
 	  	} else {
 
@@ -510,8 +523,8 @@ $(document).ready(function(){
 	  } else {
 
 	  	//Email em branco
-	  	if ($( "#basicaemail" ).val() == '') {
-	  		alert( "O endereço de e-mail não foi preenchido" );
+	  	if ($( "#basicaemail" ).val() == '' || checkMail($('#basicaemail').val())!=true){
+	  		alert( "O endereço de e-mail não foi preenchido corretamente" );
 	  		$( "#basicaemail" ).focus();
 	  	} else {
 
@@ -565,8 +578,8 @@ $(document).ready(function(){
 	  } else {
 
 	  	//Email em branco
-	  	if ($( "#basicaemail" ).val() == '') {
-	  		alert( "O endereço de e-mail não foi preenchido" );
+	  	if ($( "#basicaemail" ).val() == '' || checkMail($('#basicaemail').val())!=true){
+	  		alert( "O endereço de e-mail não foi preenchido corretamente" );
 	  		$( "#basicaemail" ).focus();
 	  	} else {
 

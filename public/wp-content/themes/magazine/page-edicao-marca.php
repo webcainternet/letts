@@ -95,7 +95,9 @@ global $themify; ?>
 
 	<div class="description_marcas">
 		 <div style="display: inline-block;"><strong>Descrição</strong><br /></div>
-		<textarea name="content_marca" class="marca_textarea"><?php the_content(); ?></textarea>  
+
+     <?php $minhahistoria = get_the_content(); ?>
+		<textarea name="content_marca" class="marca_textarea"><?php echo strip_tags($minhahistoria); ?></textarea>  
 	</div>
 
 	<div style="float: right; margin-right: 37px;">
