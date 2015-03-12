@@ -120,14 +120,21 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     );
     $attach_id1 = wp_insert_attachment($attachment1, $filename1, $cur_post_id);
 
-    add_post_meta($cur_post_id, 'eventofoto', $attach_id, true);
-    add_post_meta($cur_post_id, 'post_image', $filename, true);
-    add_post_meta($cur_post_id, 'atletaimagembackground', $attach_id1, true);
+    if ($actual_name) {
+      add_post_meta($cur_post_id, 'eventofoto', $attach_id, true);
+    }  
+    
+      add_post_meta($cur_post_id, 'post_image', $filename, true);
+
+    if ($actual_name1) {
+      add_post_meta($cur_post_id, 'atletaimagembackground', $attach_id1, true);
+    }
     add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
     add_post_meta($cur_post_id, 'link_ingresso', $_POST['link'], true);
     add_post_meta($cur_post_id, 'atletaesporte', $_POST['esporte'], true);
     add_post_meta($cur_post_id, 'profissao', $_POST['profissao'], true);
     add_post_meta($cur_post_id, 'basicapaisatual', $_POST['pais'], true);
+    add_post_meta($cur_post_id, 'eventotipo', $_POST['tipo_evento'], true);
 
     $destinatario = "fernando.mendes@webca.com.br";  
 
@@ -161,7 +168,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
           <div class="galeria_profissional">
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
              <input class="input_video" type="text" name="evento" value="" placeholder="Nome do Evento">
-             <input class="input_video" type="text" name="link" value="" placeholder="Link para comprar ingresso com http://">
+             <input class="input_video" type="text" name="link" value="" placeholder="Link para comprar ingresso ou para inscrição com http://">
 
              <div class="selects_forms" style="margin-top: -10px;">
 
@@ -525,6 +532,14 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
               <option value="Zimbabué">Zimbabué</option>
               </select> 
 
+              <select id="tipo_evento" name="tipo_evento" style="width: 310px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: right; margin-top: -5px; margin-right: 29px;">
+                      <option>-- Selecione o tipo do evento --</option>
+                      <option value="Campeonato">Campeonato</option>
+                      <option value="Show">Show</option>
+                      <option value="Festa">Festa</option>
+                      <option value="Outros">Outros</option>
+               </select>         
+
               <div class="foto_principal">
                 <p>Foto principal</p>
                 <input type="file" class="custom-file-input input_file" name="img_destacada">
@@ -535,7 +550,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                 <input type="file" class="custom-file-input input_file" name="img_evento1">
               </div>  
 
-              <textarea class="" name="descricao_evento" placeholder="Descrição" style="width: 91%; height: 115px;"></textarea>
+              <textarea class="" name="descricao_evento" placeholder="Descrição do evento" style="width: 91%; height: 115px;"></textarea>
 
              <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
              <input type="submit" value="Enviar Evento">

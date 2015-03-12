@@ -122,6 +122,25 @@ body{
       <div style="margin-top: 10px;"><strong>E-mail</strong></div>
           <?php print_custom_field('basicaemail'); ?><br />
 
+      <div style="margin-top: 10px;"><strong>Escolaridade</strong></div>
+      <?php print_custom_field('escolaridade'); ?><br />
+
+      <div style="margin-top: 10px;"><strong>Idiomas</strong></div>
+      <?php 
+        $my_array = get_custom_field('idiomas:to_array');
+        foreach ($my_array as $item) {
+          print $item.'<br />'; 
+        }
+      ?>
+
+      <div style="margin-top: 10px;"><strong>Paises que já viajou</strong></div>
+      <?php 
+        $my_array = get_custom_field('paisesviagem:to_array');
+        foreach ($my_array as $item) {
+          print $item.'<br />'; 
+        }
+      ?>                  
+
       <div style="margin-top: 10px;"><strong>Outros Contatos</strong></div>
           <?php if (get_custom_field('basicafacebook')) { ?>
             <div style="margin-top: 10px;"><strong>Facebook</strong></div>

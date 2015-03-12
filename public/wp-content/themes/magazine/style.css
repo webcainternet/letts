@@ -2716,3 +2716,18 @@ $file-upload-size: 300px;
   text-transform: uppercase;
   font-weight: bold;
 }
+
+#paises_hd{
+  height: 200px;
+  overflow: auto;
+  margin-bottom: 40px;
+  width: 650px;
+  border: 1px solid;
+  padding: 5px;
+}
+
+#paises_hd span{
+  display: inline-block;
+  width: 48%;
+  margin-right: 10px
+}

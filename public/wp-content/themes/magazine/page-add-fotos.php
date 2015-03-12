@@ -178,6 +178,9 @@ textarea{
           <div id="text-1016" class="widget widget_text" style="">
             <h4 class="widgettitle">Informações básicas</h4>      
             <div class="textwidget">
+                <div style="margin-top: 10px;"><strong>Apelido</strong></div>
+              <?php print_custom_field('apelido'); ?><br />
+
               <div style="margin-top: 10px;"><strong>Data de nascimento</strong></div>
               <?php print_custom_field('basicanascimento'); ?><br />
 
@@ -192,6 +195,25 @@ textarea{
 
               <div style="margin-top: 10px;"><strong>Atual</strong></div>
               <?php print_custom_field('basicacidadeatual'); ?>, <?php print_custom_field('basicaestadoatual'); ?><br />
+
+              <div style="margin-top: 10px;"><strong>Escolaridade</strong></div>
+              <?php print_custom_field('escolaridade'); ?><br />
+
+              <div style="margin-top: 10px;"><strong>Idiomas</strong></div>
+              <?php 
+                $my_array = get_custom_field('idiomas:to_array');
+                foreach ($my_array as $item) {
+                  print $item.'<br />'; 
+                }
+              ?>
+
+              <div style="margin-top: 10px;"><strong>Paises que já viajou</strong></div>
+              <?php 
+                $my_array = get_custom_field('paisesviagem:to_array');
+                foreach ($my_array as $item) {
+                  print $item.'<br />'; 
+                }
+              ?>
 
               <div style="margin-top: 10px;"><strong>E-mail</strong></div>
                   <?php print_custom_field('basicaemail'); ?><br />

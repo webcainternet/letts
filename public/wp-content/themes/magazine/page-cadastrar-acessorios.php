@@ -205,12 +205,21 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     );
     $attach_id3 = wp_insert_attachment($attachment3, $filename3, $cur_post_id);        
 
-
-    add_post_meta($cur_post_id, 'fotoacessorio', $attach_id, true);
+    if ($actual_name) {
+      add_post_meta($cur_post_id, 'fotoacessorio', $attach_id, true);
+    }
+    
+    if ($actual_name1) {
+      add_post_meta($cur_post_id, 'fotoanuncio1', $attach_id1, true);
+    }
+    if ($actual_name2) {
+      add_post_meta($cur_post_id, 'fotoanuncio2', $attach_id2, true);
+    }
+    if ($actual_name3) {
+      add_post_meta($cur_post_id, 'fotoanuncio3', $attach_id3, true);
+    }
+    
     add_post_meta($cur_post_id, 'post_image', $filename, true);
-    add_post_meta($cur_post_id, 'fotoanuncio1', $attach_id1, true);
-    add_post_meta($cur_post_id, 'fotoanuncio2', $attach_id2, true);
-    add_post_meta($cur_post_id, 'fotoanuncio3', $attach_id3, true);
     add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
     add_post_meta($cur_post_id, 'acessoriovalor', $_POST['valor'], true);
     add_post_meta($cur_post_id, 'acessorioestado', $_POST['tipo_acessorio'], true);

@@ -108,7 +108,14 @@ body{
 
         <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Meu sonho</h4>
         <?php print_custom_field('atletameusonho'); ?><br /><br />
+
+        <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Campeonatos que já participei</h4>
+        <?php print_custom_field('campeonatospart'); ?><br /><br />
+
       </div>
+
+      <div style="margin-top: 10px;"><strong>Apelido</strong></div>
+      <?php print_custom_field('apelido'); ?><br />
 
       <div style="margin-top: 10px;"><strong>Data de nascimento</strong></div>
       <?php print_custom_field('basicanascimento'); ?><br />
@@ -127,6 +134,25 @@ body{
 
       <div style="margin-top: 10px;"><strong>E-mail</strong></div>
           <?php print_custom_field('basicaemail'); ?><br />
+
+      <div style="margin-top: 10px;"><strong>Escolaridade</strong></div>
+      <?php print_custom_field('escolaridade'); ?><br />
+
+      <div style="margin-top: 10px;"><strong>Idiomas</strong></div>
+      <?php 
+        $my_array = get_custom_field('idiomas:to_array');
+        foreach ($my_array as $item) {
+          print $item.'<br />'; 
+        }
+      ?>
+
+      <div style="margin-top: 10px;"><strong>Paises que já viajou</strong></div>
+      <?php 
+        $my_array = get_custom_field('paisesviagem:to_array');
+        foreach ($my_array as $item) {
+          print $item.' / '; 
+        }
+      ?>
 
       <div style="margin-top: 10px;"><strong>Outros Contatos</strong></div>
           <?php if (get_custom_field('basicafacebook')) { ?>

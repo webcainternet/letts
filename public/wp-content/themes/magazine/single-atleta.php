@@ -422,6 +422,9 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 					<div id="text-1016" class="widget widget_text" style="">
 						<h4 class="widgettitle">Informações básicas</h4>			
 						<div class="textwidget">
+							<div style="margin-top: 10px;"><strong>Apelido</strong></div>
+							<?php print_custom_field('apelido'); ?><br />
+
 							<div style="margin-top: 10px;"><strong>Data de nascimento</strong></div>
 							<?php print_custom_field('basicanascimento'); ?><br />
 
@@ -436,6 +439,25 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 							<div style="margin-top: 10px;"><strong>Atual</strong></div>
 							<?php print_custom_field('basicacidadeatual'); ?>, <?php print_custom_field('basicaestadoatual'); ?><br />
+
+							<div style="margin-top: 10px;"><strong>Escolaridade</strong></div>
+							<?php print_custom_field('escolaridade'); ?><br />
+
+							<div style="margin-top: 10px;"><strong>Idiomas</strong></div>
+							<?php 
+								$my_array = get_custom_field('idiomas:to_array');
+								foreach ($my_array as $item) {
+									print $item.'<br />'; 
+								}
+							?>
+
+							<div style="margin-top: 10px;"><strong>Paises que já viajou</strong></div>
+							<?php 
+								$my_array = get_custom_field('paisesviagem:to_array');
+								foreach ($my_array as $item) {
+									print $item.'<br />'; 
+								}
+							?>
 
 							<div style="margin-top: 10px;"><strong>E-mail</strong></div>
 									<?php print_custom_field('basicaemail'); ?><br />
@@ -497,6 +519,11 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Meu sonho</h4>
 				<?php print_custom_field('atletameusonho'); ?><br /><br />
+
+				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Campeonatos que já participei</h4>
+				<?php print_custom_field('campeonatospart'); ?><br /><br />
+
+				
 
 				</div>
 			<?php } ?>

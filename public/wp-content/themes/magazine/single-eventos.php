@@ -39,7 +39,14 @@ global $themify; ?>
 		<div style="width: 500px;">
 			<?php the_content(); ?>
 		</div>
-	<a href="<?php print_custom_field('link_ingresso'); ?>" target="_blank" class="button">Comprar Ingresso</a>	
+		<p>Tipo do Evento: <?php print_custom_field('eventotipo'); ?></p>
+		<?php 
+			$tipo_evento = get_custom_field('eventotipo');
+			if ($tipo_evento == 'Campeonato') { ?>
+				<a href="<?php print_custom_field('link_ingresso'); ?>" target="_blank" class="button">Realizar Inscrição</a>
+			<?php }elseif (get_custom_field('link_ingresso')) { ?>
+				<a href="<?php print_custom_field('link_ingresso'); ?>" target="_blank" class="button">Comprar Ingresso</a>	.
+			<?php } ?>
 	</div>
 
 <!--<div class="mensagem_marca" style="margin-top: 30px;">

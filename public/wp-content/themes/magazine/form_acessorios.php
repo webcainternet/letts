@@ -60,13 +60,21 @@
 		<form action="" method="post" id="formulario_mensagem">
 			<input type="text" id="nome_msg" name="nome_msg" placeholder="Seu Nome">
 			<input type="text" id="email_msg" name="email_msg" placeholder="Seu E-mail">
-			<input type="text" id="produto" name="produto" placeholder="Produto" value="<?php echo $_GET['produto']; ?>">
-			<textarea id="mensagem" name="mensagem" placeholder="Mensagem para"></textarea>
-			<input type="button" id="botao_mensagem" value="Enviar Mensagem">
+			<input type="text" id="produto" name="produto" placeholder="Produto" value="<?php echo $_GET['produto']; ?>" disabled="disabled">
+			<textarea id="mensagem" name="mensagem" placeholder="Mensagem para <?php echo $_GET['nome']; ?>"></textarea>
+			<input type="button" id="botao_mensagem" value="Enviar Mensagem" onclick="EnviarForm();">
 		</form>
+		<div id="sucesso" style="text-align: center;">E-mail enviado com sucesso.</div>
 	</div>	
 </div>
 </div>
  		
   </body>
-</html>    
+</html>
+
+<script type="text/javascript">
+function EnviarForm() {
+	$('#formulario_mensagem').hide();
+	$('#sucesso').show();
+}
+</script>
