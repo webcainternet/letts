@@ -81,7 +81,11 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		$attach_id = wp_insert_attachment( $attachment, $filename, $cur_post_id );
 		add_post_meta($cur_post_id, '_thumbnail_id', $attach_id, true);
 		add_post_meta($cur_post_id, 'post_image', $filename, true);
-		add_post_meta($cur_post_id, 'imgnews', $attach_id, true);
+		if ($actual_name) {
+			add_post_meta($cur_post_id, 'imgnews', $attach_id, true);
+		}    	
+    	add_post_meta($cur_post_id, 'atletaesporte', $_POST['esporte'], true);
+    	add_post_meta($cur_post_id, 'profissao', $_POST['profissao'], true);		
 		add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
 
 	    $destinatario = "fernando.mendes@webca.com.br";  
@@ -521,6 +525,106 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 				 <div id="nome_img">
 		             <input class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
+
+                <select id="atletaesporte" name="esporte" style="width: 325px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: 0px; margin-left: 0px;">
+                        <option>-- Selecione o esporte --</option>
+                        <option value="Aeromodelismo">Aeromodelismo</option>
+                        <option value="Alpinismo">Alpinismo</option>
+                        <option value="Asa Delta">Asa Delta</option>
+                        <option value="BMX">BMX</option>
+                        <option value="BMX – Free style">BMX – Free style</option>
+                        <option value="Balonismo">Balonismo</option>
+                        <option value="Base Jumping">Base Jumping</option>
+                        <option value="Bodyboard">Bodyboard</option>
+                        <option value="Bouldering">Bouldering</option>
+                        <option value="Bungee Jumping">Bungee Jumping</option>
+                        <option value="Canoagem">Canoagem</option>
+                        <option value="Carveboard">Carveboard</option>
+                        <option value="Caça submarina">Caça submarina</option>
+                        <option value="Ciclismo">Ciclismo</option>
+                        <option value="Cliff Diving">Cliff Diving</option>
+                        <option value="Corrida aventura">Corrida aventura</option>
+                        <option value="Drift">Drift</option>
+                        <option value="Escalada">Escalada</option>
+                        <option value="Esqui">Esqui</option>
+                        <option value="Football Freestyle">Football Freestyle</option>
+                        <option value="Free Style Motocross">Free Style Motocross</option>
+                        <option value="FreeBoard">FreeBoard</option>
+                        <option value="Heli-Skiing">Heli-Skiing</option>
+                        <option value="Highline">Highline</option>
+                        <option value="Jet Ski">Jet Ski</option>
+                        <option value="Kart">Kart</option>
+                        <option value="Kitesurfing">Kitesurfing</option>
+                        <option value="Liquid Mountaineering">Liquid Mountaineering</option>
+                        <option value="Longboard skate">Longboard skate</option>
+                        <option value="Longboard surf">Longboard surf</option>
+                        <option value="Mega ramp">Mega ramp</option>
+                        <option value="Mergulho">Mergulho</option>
+                        <option value="Moto Trial">Moto Trial</option>
+                        <option value="Moto Wheeling">Moto Wheeling</option>
+                        <option value="Motocross">Motocross</option>
+                        <option value="Mountain Bike">Mountain Bike</option>
+                        <option value="Mountain biking">Mountain biking</option>
+                        <option value="Mountain boarding">Mountain boarding</option>
+                        <option value="Off Road/Rally">Off Road/Rally</option>
+                        <option value="Paintball">Paintball</option>
+                        <option value="Paragliding">Paragliding</option>
+                        <option value="Paragliding">Paragliding</option>
+                        <option value="Parapente">Parapente</option>
+                        <option value="Parkour">Parkour</option>
+                        <option value="Patins in Line">Patins in Line</option>
+                        <option value="Psicobloc">Psicobloc</option>
+                        <option value="Rafting">Rafting</option>
+                        <option value="Rally">Rally</option>
+                        <option value="Rapel">Rapel</option>
+                        <option value="Sandboard">Sandboard</option>
+                        <option value="Skate - Street">Skate - Street</option>
+                        <option value="Skate – Free style">Skate – Free style</option>
+                        <option value="Skate – Mini ramp">Skate – Mini ramp</option>
+                        <option value="Sky Surfing">Sky Surfing</option>
+                        <option value="Skydive">Skydive</option>
+                        <option value="Slackline">Slackline</option>
+                        <option value="Snowboard">Snowboard</option>
+                        <option value="Stand Up Paddle">Stand Up Paddle</option>
+                        <option value="Street Luge">Street Luge</option>
+                        <option value="Surf">Surf</option>
+                        <option value="Surf - Freesurf">Surf - Freesurf</option>
+                        <option value="Tow-in">Tow-in</option>
+                        <option value="Trekking">Trekking</option>
+                        <option value="Triathlon">Triathlon</option>
+                        <option value="UFC (MMA">UFC (MMA)</option>
+                        <option value="Vela/Iatismo">Vela/Iatismo</option>
+                        <option value="Velocidade">Velocidade</option>
+                        <option value="Wakeboard">Wakeboard</option>
+                        <option value="Wakeboard Free style">Wakeboard Free style</option>
+                        <option value="Windsurf">Windsurf</option>
+                        <option value="WingWalking">WingWalking</option>
+                      </select>
+
+                <select id="profissao" name="profissao" style="width: 330px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: right; margin-top: 0px; margin-right: -2px;">
+                      <option>-- Selecione a profissão --</option>
+                      <option value="Assessor de imprensa">Assessor de imprensa</option>
+                      <option value="Coordenador de eventos">Coordenador de eventos</option>
+                      <option value="Desenhista">Desenhista</option>
+                      <option value="Empresário">Empresário</option>
+                      <option value="Estatístico">Estatístico</option>
+                      <option value="Estilista">Estilista</option>
+                      <option value="Executivo de contas publicitárias">Executivo de contas publicitárias</option>
+                      <option value="Fisioterapeuta">Fisioterapeuta</option>
+                      <option value="Fotografo">Fotografo</option>
+                      <option value="Fotojornalista">Fotojornalista</option>
+                      <option value="Gerente de relações públicas">Gerente de relações públicas</option>
+                      <option value="Gestor desportivo">Gestor desportivo</option>
+                      <option value="Jornalista">Jornalista</option>
+                      <option value="Nutricionista">Nutricionista</option>
+                      <option value="Personal Crossfit">Personal Crossfit</option>
+                      <option value="Personal academia">Personal academia</option>
+                      <option value="Professor de idomas">Professor de idomas</option>
+                      <option value="Psicologo">Psicologo</option>
+                      <option value="Psicólogo esportivo">Psicólogo esportivo</option>
+                      <option value="Técnico">Técnico</option>
+                      <option value="Videomaker">Videomaker</option>
+                  </select> 		             
 		             <input type="file" class="custom-file-input input_file" name="img_destacada">
 		             <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
 		             <input type="hidden" value="adicionarnews" name="adicionarnews">

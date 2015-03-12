@@ -2708,3 +2708,11 @@ $file-upload-size: 300px;
   padding: 30px;
   text-align: center;
 }
+
+.div_esqueci{
+  text-align: center;
+  padding-top: 30px;
+  color: #FF8920;
+  text-transform: uppercase;
+  font-weight: bold;
+}
