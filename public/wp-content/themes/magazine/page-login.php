@@ -108,7 +108,7 @@ $_SESSION["lettslogin"] = 1;
 					<div style="float: left; width: 200px;">
 						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #FFF; font-weight: bold;">Senha</div>
 						<div style="font-size: 10px; margin: 0px; padding: 0px;"><input name="loginsenha" type="password" style="width: 240px; max-width: 90%;margin: 0px; border-radius: 0px;"></div>
-						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #ffca9a;">Esqueci minha senha</div>
+						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #ffca9a;"><a href="/recuperar-senha/" style="color: #ffca9a;">Esqueci minha senha</a></div>
 					</div>
 					<div style="float: left; width: 50px;">
 						<input type="submit" value="Entrar" style="margin-top: 25px;">
