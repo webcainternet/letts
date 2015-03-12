@@ -171,6 +171,8 @@ global $themify; ?>
 
 <div id="vagas" style="float: left; width: 705px; margin-left: 20px;">
 
+<div class="fb-like" style="margin-top: 30px;" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+
     <?php query_posts('post_type=vagas');
     while (have_posts()): the_post(); ?>
 

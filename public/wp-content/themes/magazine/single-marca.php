@@ -174,6 +174,9 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		</div>
 	<?php } ?>
 
+	<div class="fb-like" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+		
+
 		<p id="sucesso_perfil" class="bg_sucesso">Foto alterada com sucesso</p>			
 		<p id="sucesso_capa" class="bg_sucesso">Foto de capa alterada com sucesso</p>		
 
@@ -183,6 +186,8 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 					<?php the_title(); ?>
 			</a>
 		</h1>
+
+
 		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
 			<a class="editarperfil_marca" href="/edicao-marca/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>		
 		<?php } ?>
@@ -234,6 +239,8 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		<?php the_content(); ?>
 	</div>
 
+		<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+
 	<div class="formularios">
 		<div class="convidar_atleta">
 			<h1 class="post-title entry-title">Convide um Atleta</h1>
@@ -257,6 +264,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			</form>
 		</div>		
 	</div>
+
 
 
 <?php endwhile; ?>

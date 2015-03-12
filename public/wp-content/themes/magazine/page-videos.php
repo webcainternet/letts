@@ -1,8 +1,22 @@
 <?php
 if (isset($_GET['vid']) == false) {
-	//Randomiza Video ID
-	$resultIDNull = mysql_query("SELECT id FROM (SELECT * FROM wp_posts WHERE post_type = 'video' AND post_status = 'publish' ORDER BY post_modified limit 5) AS t1 order by rand() limit 1");
-	while ($rowIDNull = mysql_fetch_array($resultIDNull, MYSQL_ASSOC)) {
+  if ($_POST["esporte"]) {
+    $resultIDNull = mysql_query("SELECT id FROM (SELECT id, post_title,meta_value FROM wp_posts p INNER JOIN wp_postmeta pm on p.id = pm.post_id WHERE p.post_type = 'video' AND p.post_status = 'publish' AND pm.meta_key = 'basicaemail' AND meta_value IN (
+SELECT pm2.meta_value FROM wp_postmeta pm INNER JOIN wp_posts p ON pm.post_id = p.id
+INNER JOIN wp_postmeta pm2 ON p.id = pm2.post_id
+WHERE p.post_type = 'atleta' AND pm.meta_key = 'atletaesporte' AND pm.meta_value = '".$_POST["esporte"]."' AND pm2.meta_key = 'basicaemail') ) AS t1 order by rand() limit 1");
+  } else {
+    if ($_POST["profissao"]) {
+      $resultIDNull = mysql_query("SELECT id FROM (SELECT id, post_title,meta_value FROM wp_posts p INNER JOIN wp_postmeta pm on p.id = pm.post_id WHERE p.post_type = 'video' AND p.post_status = 'publish' AND pm.meta_key = 'basicaemail' AND meta_value IN (
+SELECT pm2.meta_value FROM wp_postmeta pm INNER JOIN wp_posts p ON pm.post_id = p.id
+INNER JOIN wp_postmeta pm2 ON p.id = pm2.post_id
+WHERE p.post_type = 'profissional' AND pm.meta_key = 'profissao' AND pm.meta_value = '".$_POST["profissao"]."' AND pm2.meta_key = 'basicaemail') ) AS t1 order by rand() limit 1");
+  } else {
+	   //Randomiza Video ID
+	   $resultIDNull = mysql_query("SELECT id FROM (SELECT * FROM wp_posts WHERE post_type = 'video' AND post_status = 'publish' ORDER BY post_modified limit 5) AS t1 order by rand() limit 1");
+  } }
+
+  while ($rowIDNull = mysql_fetch_array($resultIDNull, MYSQL_ASSOC)) {
 		$idq = $rowIDNull["id"];
 	}
 } else {
@@ -27,7 +41,11 @@ while ($rowNome = mysql_fetch_array($resultNome, MYSQL_ASSOC)) {
 	$NomeU = $rowNome["post_title"];
 }
 
-
+//Obtem Imagem do perfil
+$resultImgP = mysql_query("SELECT meta_value FROM wp_postmeta WHERE post_id IN (select meta_value from wp_postmeta WHERE meta_key = 'basicaimagem' AND post_id =  ".$IDLogin." ) AND meta_key = '_wp_attached_file'");
+while ($rowImgP = mysql_fetch_array($resultImgP, MYSQL_ASSOC)) {
+  $ImgP = $rowImgP["meta_value"];
+}
 
 ?>
 
@@ -80,7 +98,7 @@ global $themify; ?>
         <div class="post-meta" style="display: inline;">
           <div style="float: right; margin-right: 15px;">
               <form method="post" id="filtroesporte">
-              <select name="slesporte" class="selectitens"  onchange="this.form.submit();">
+              <select name="esporte" class="selectitens"  onchange="this.form.submit();">
                       <option>-- Esporte --</option>
                       <option>Aeromodelismo</option>
                       <option>Alpinismo</option>
@@ -164,7 +182,7 @@ global $themify; ?>
         <div class="post-meta" style="display: inline;">
           <div style="float: right; margin-right: 15px;">
               <form method="post" id="filtroprofissao">
-                          <select  class="selectitens" name="profissao">
+                          <select  class="selectitens" name="profissao"  onchange="this.form.submit();">
                     <option>-- Profissão --</option>
                     <option>Assessor de imprensa</option>
                     <option>Coordenador de eventos</option>
@@ -229,7 +247,7 @@ global $themify; ?>
 			      <a href="/?p=2435">
 			      	<div style="width: 250px; 
 			      	height: 200px; 
-			      	background-image: url('http://letts.com.br/wp-content/uploads/2014/07/1098357_10200930179274639_1691402653_n.jpg');
+			      	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $ImgP; ?>');
 			      	background-position: center;
 			      	background-size: 300px;
 			      	">
@@ -271,6 +289,204 @@ global $themify; ?>
 
 	<div id="contentwrap" style="width: 100%;padding-top: 0px;">
 
+
+
+
+
+
+
+<?php
+if ($_POST["esporte"]) { ?>
+
+
+  <!-- Selecionada pelo filtro -->
+    <div style="float: left; width: 100%; margin-top: 10px;">
+      <div class="related-posts">
+        <h4 class="related-title" style="margin-bottom: 15px; border: 0px;">Selecionados por esporte: <?php echo $_POST["esporte"]; ?></h4>
+        <div class="related-posts" style="float: left; width: 100%;">
+          <article class="post type-post clearfix">
+            <div class="post-content">
+              <section class="module">
+                <section class="wraper">    
+
+
+<?php
+mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
+    die("Could not connect: " . mysql_error());
+mysql_select_db(DB_NAME);
+
+$result = mysql_query("SELECT id, post_title,meta_value FROM wp_posts p INNER JOIN wp_postmeta pm on p.id = pm.post_id WHERE p.post_type = 'video' AND p.post_status = 'publish' AND pm.meta_key = 'basicaemail' AND meta_value IN (
+SELECT pm2.meta_value FROM wp_postmeta pm INNER JOIN wp_posts p ON pm.post_id = p.id
+INNER JOIN wp_postmeta pm2 ON p.id = pm2.post_id
+WHERE p.post_type = 'atleta' AND pm.meta_key = 'atletaesporte' AND pm.meta_value = '".$_POST["esporte"]."' AND pm2.meta_key = 'basicaemail' 
+)");
+
+while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+  $nomevideo = $row["post_title"];
+  $idusuario = $row["id"];
+
+  $resultlink_video = mysql_query("select meta_value from wp_postmeta where meta_key = 'link_video' AND post_id = ".$row["id"]);
+    while ($rowlink_video = mysql_fetch_array($resultlink_video, MYSQL_ASSOC)) {
+      $link_video = $rowlink_video["meta_value"];
+      $videoid = $row["id"];
+    ?>
+    <figure class='small'>
+      <a href="/videos/?vid=<?php echo $videoid; ?>">
+        
+
+
+        <?php 
+          $video = $link_video;
+      $video = explode("/", $video);
+      $url_video = explode("=", $video[3]);
+    
+      if ($url_video[0] == 'watch?v') {
+        $imgid = $url_video[1];
+        $img_video = 'http://img.youtube.com/vi/'.$imgid.'/0.jpg';
+      } else{
+        $imgid = $url_video[0];
+        $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imgid.php"));
+        $img_video = $hash[0]['thumbnail_medium'];
+      } 
+    ?>
+
+
+        <div style="width: 250px; 
+        height: 200px; 
+        background-image: url('<?php echo $img_video; ?>; ?>');
+        background-position: center;
+        background-size: 300px;
+        ">
+          &nbsp;
+        </div>
+        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
+      </a>
+      <figcaption class="transition-050 opacity85">
+        <a href="/?p=<?php echo $idatleta; ?>">
+          <strong class="text transition-050 title"><?php echo utf8_encode($nomevideo); ?></strong>
+        </a>
+      </figcaption>
+    </figure>
+
+    <?php
+  }
+}
+
+mysql_free_result($result);
+?>
+                </section>
+              </section>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+  
+<? } else { ?>
+
+
+
+
+
+
+
+
+
+<?php
+if ($_POST["profissao"]) { ?>
+
+
+  <!-- Selecionada pelo filtro -->
+    <div style="float: left; width: 100%; margin-top: 10px;">
+      <div class="related-posts">
+        <h4 class="related-title" style="margin-bottom: 15px; border: 0px;">Selecionados pelo filtro pela profissão: <?php echo $_POST["profissao"]; ?></h4>
+        <div class="related-posts" style="float: left; width: 100%;">
+          <article class="post type-post clearfix">
+            <div class="post-content">
+              <section class="module">
+                <section class="wraper">    
+
+
+<?php
+mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
+    die("Could not connect: " . mysql_error());
+mysql_select_db(DB_NAME);
+
+$result = mysql_query("SELECT id, post_title,meta_value FROM wp_posts p INNER JOIN wp_postmeta pm on p.id = pm.post_id WHERE p.post_type = 'video' AND p.post_status = 'publish' AND pm.meta_key = 'basicaemail' AND meta_value IN (
+SELECT pm2.meta_value FROM wp_postmeta pm INNER JOIN wp_posts p ON pm.post_id = p.id
+INNER JOIN wp_postmeta pm2 ON p.id = pm2.post_id
+WHERE p.post_type = 'profissional' AND pm.meta_key = 'profissao' AND pm.meta_value = '".$_POST["profissao"]."' AND pm2.meta_key = 'basicaemail' 
+)");
+
+while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+  $nomevideo = $row["post_title"];
+  $idusuario = $row["id"];
+
+  $resultlink_video = mysql_query("select meta_value from wp_postmeta where meta_key = 'link_video' AND post_id = ".$row["id"]);
+    while ($rowlink_video = mysql_fetch_array($resultlink_video, MYSQL_ASSOC)) {
+      $link_video = $rowlink_video["meta_value"];
+      $videoid = $row["id"];
+    ?>
+    <figure class='small'>
+      <a href="/videos/?vid=<?php echo $videoid; ?>">
+        
+
+
+        <?php 
+          $video = $link_video;
+      $video = explode("/", $video);
+      $url_video = explode("=", $video[3]);
+    
+      if ($url_video[0] == 'watch?v') {
+        $imgid = $url_video[1];
+        $img_video = 'http://img.youtube.com/vi/'.$imgid.'/0.jpg';
+      } else{
+        $imgid = $url_video[0];
+        $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imgid.php"));
+        $img_video = $hash[0]['thumbnail_medium'];
+      } 
+    ?>
+
+
+        <div style="width: 250px; 
+        height: 200px; 
+        background-image: url('<?php echo $img_video; ?>; ?>');
+        background-position: center;
+        background-size: 300px;
+        ">
+          &nbsp;
+        </div>
+        <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
+      </a>
+      <figcaption class="transition-050 opacity85">
+        <a href="/?p=<?php echo $idatleta; ?>">
+          <strong class="text transition-050 title"><?php echo utf8_encode($nomevideo); ?></strong>
+        </a>
+      </figcaption>
+    </figure>
+
+    <?php
+  }
+}
+
+mysql_free_result($result);
+?>
+                </section>
+              </section>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+  
+<? } else { ?>
+
+
+
+
+
 	<!-- Vídeos do mesmo autor -->
 		<div style="float: left; width: 100%; margin-top: 10px;">
 			<div class="related-posts">
@@ -278,12 +494,8 @@ global $themify; ?>
 				<div class="related-posts" style="float: left; width: 100%;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
-							
-															
-<section class="module">
-  <section class="wraper">    
-
-
+              <section class="module">
+                <section class="wraper">    
 <?php
 mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
     die("Could not connect: " . mysql_error());
@@ -302,9 +514,6 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     ?>
     <figure class='small'>
       <a href="/videos/?vid=<?php echo $videoid; ?>">
-      	
-
-
       	<?php 
       		$video = $link_video;
 			$video = explode("/", $video);
@@ -344,36 +553,13 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
 mysql_free_result($result);
 ?>
-
-
-
   </section>
 </section>
-
-
-
 						</div>
 					</article>
 				</div>
 			</div>
-			<!--
-			<p class="post-meta" style="text-align: right;">
-				<span class="post-category"><a href="http://letts.com.br/buscar-atleta/">Ver mais do mesmo autor</a> / </span>
-			</p>
-			-->
 		</div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -389,12 +575,8 @@ mysql_free_result($result);
 				<div class="related-posts" style="float: left; width: 100%;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
-							
-															
-<section class="module">
-  <section class="wraper">    
-
-
+              <section class="module">
+                <section class="wraper">    
 <?php
 mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
     die("Could not connect: " . mysql_error());
@@ -413,9 +595,6 @@ while ($rowu = mysql_fetch_array($resultu, MYSQL_ASSOC)) {
     ?>
     <figure class='small'>
       <a href="/videos/?vid=<?php echo $videoid; ?>">
-      	
-
-
       	<?php 
       		$video = $link_video;
 			$video = explode("/", $video);
@@ -456,19 +635,14 @@ while ($rowu = mysql_fetch_array($resultu, MYSQL_ASSOC)) {
 mysql_free_result($resultu);
 ?>
 
-
-  </section>
-</section>
-
-
-
+                </section>
+              </section>
 						</div>
 					</article>
 				</div>
 			</div>
-			
 
-
+<?php } } ?>
 
 
 

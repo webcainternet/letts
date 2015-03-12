@@ -95,7 +95,7 @@ global $themify; ?>
 									$pid = wp_insert_post( $my_post );
 
 									// Salva os Custom content type de acordo com o Post_id retornado
-									update_post_meta($pid, 'profissao', $_POST['atletaesporte']);
+									update_post_meta($pid, 'profissao', $_POST['profissao']);
 
 
 									//Profile

@@ -254,6 +254,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     ?>
 
     <div class="related-posts">
+    
     <div style="text-align: left;">
       <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;"><?php echo $data2; ?></span>
     </div>

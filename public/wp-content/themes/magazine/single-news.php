@@ -27,6 +27,8 @@ global $themify; ?>
       <div style="float: left; width: 674px; padding-top: 10px; min-height: 1000px;">
       <h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;"><a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"  style="font-weight: bold;"><?php echo the_title(); ?></a></h1>
         
+        <div class="fb-like" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+
         <div style="text-align: right;">
           <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;"><?php echo the_date() ; ?></span>
         </div>
@@ -130,7 +132,11 @@ global $themify; ?>
                 <span class="post-category">
                   <?php the_content(); ?>
                 </span>
+
+                <div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="674px" data-numposts="5" data-colorscheme="light"></div>
               </p>
+
+
             </div>
           </article>
         </div>

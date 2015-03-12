@@ -1447,7 +1447,7 @@ SHARE BOX
 }
 .fb_iframe_widget span {
 	position: absolute;
-	width: 450px !important;
+	width: 450px;
 }
 .share .share-google-plus {
 	position: relative;

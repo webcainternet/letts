@@ -27,10 +27,13 @@ global $themify; ?>
 <div id="layout" class="pagewidth clearfix">
 	<div class="logo_eventos" style="background: url('<?php print_custom_field('eventofoto:to_image_src'); ?>') no-repeat;"></div>
 
+
+
 	<div style="float: left; margin: 15px; margin-left: 25px; width: 420px;">
 		<h1 class="post-title entry-title" itemprop="name">
 				<?php the_title(); ?> <!--<span style="font-size: 18px;">(<?php print_custom_field('eventotipo'); ?>)</span>-->
 		</h1>
+		<div class="fb-like" style="margin-bottom: 30px;" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
 		<!--<p>Local: <?php print_custom_field('basicatelefones'); ?></p>
 		<p>Data e Hora: <?php print_custom_field('basicatelefones'); ?></p>
 		<p>Preço: <?php print_custom_field('basicatelefones'); ?></p>
@@ -49,6 +52,10 @@ global $themify; ?>
 			<?php } ?>
 	</div>
 
+	<div class="logo_eventos">&nbsp;<br>
+		<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+	</div>
+
 <!--<div class="mensagem_marca" style="margin-top: 30px;">
 			<h1 class="post-title entry-title">Envie mensagem para a marca</h1>
 			<form action="" method="post" id="formulario_mensagem">
@@ -62,6 +69,8 @@ global $themify; ?>
 -->
 
 <?php endwhile; ?>
+
+	
 
 </div>
 <!-- /layout-container -->

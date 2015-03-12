@@ -507,6 +507,9 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 					</div>			
 				</div>
 		</div>
+
+		<div class="fb-like" style="margin-left: 50px;" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+
 			<?php if ($_GET["page"] == "sobre") { ?>
 				
 				<div style="width: 685px; float: left; margin-left: 50px;">
@@ -729,6 +732,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 						?>
 					</div>
 					
+					<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
 				</div>	
 
 			<?php } ?>
@@ -775,6 +779,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			<?php endwhile; ?>
 			<?php wp_reset_query(); ?>
 
+				<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
 			</div>				
 			
 			<?php } ?>			
