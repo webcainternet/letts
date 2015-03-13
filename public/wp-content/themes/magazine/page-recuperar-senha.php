@@ -164,7 +164,7 @@ mysql_select_db(DB_NAME);
 			
 				$destinatario = $_POST['email'];  
 
-			    $headers = "From: fernando.mendes@webca.com.br \r\n";
+			    $headers = "From: contato@letts.com.br \r\n";
 			    $headers.= "Content-Type: text/html; charset=ISO-8859-1 ";
 			    $headers.= "MIME-Version: 1.0 ";    
 

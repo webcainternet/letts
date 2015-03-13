@@ -88,7 +88,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     	add_post_meta($cur_post_id, 'profissao', $_POST['profissao'], true);		
 		add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
 
-	    $destinatario = "fernando.mendes@webca.com.br";  
+	    $destinatario = "renato.botani@letts.com.br";  
 
 	    $headers = "From: $destinatario \r\n";
 	    $headers.= "Content-Type: text/html; charset=ISO-8859-1 ";

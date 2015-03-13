@@ -136,7 +136,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     add_post_meta($cur_post_id, 'basicapaisatual', $_POST['pais'], true);
     add_post_meta($cur_post_id, 'eventotipo', $_POST['tipo_evento'], true);
 
-    $destinatario = "fernando.mendes@webca.com.br";  
+    $destinatario = "renato.botani@letts.com.br";  
 
     $headers = "From: $destinatario \r\n";
     $headers.= "Content-Type: text/html; charset=ISO-8859-1 ";
