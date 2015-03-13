@@ -2671,9 +2671,14 @@ $file-upload-size: 300px;
 }
 
 .bt_acessorios{
-	float: right;
-  	display: block;
-  	margin-bottom: -10px;
+  float: right;
+  display: block;
+  margin-bottom: -22px;
+  margin-top: -35px;
+}
+
+.bt_acessorios2{
+	margin-top: 0px;
 }
 
 #tipo_acessorio{

@@ -178,7 +178,9 @@ global $themify; ?>
 			select `k`.`post_id`, `k`.`meta_value` from wp_postmeta k 
 			INNER JOIN wp_posts po ON `po`.`id` = `k`.`post_id`
 			WHERE `k`.`meta_key` = 'basicatelefones'
-		) AS ttelefone ON `ttelefone`.`post_id` = `login`.`post_id`");
+		) AS ttelefone ON `ttelefone`.`post_id` = `login`.`post_id` 
+			WHERE `p`.`post_status` = 'publish'
+			ORDER BY `p`.`post_date` DESC");
 	?>
 
   	<?php while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) { ?>
