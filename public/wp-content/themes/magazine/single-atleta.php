@@ -670,7 +670,8 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			<div class="related-posts news_perfil" style="float: left; width: 100%;">
 				<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
 					if ($imgsizeok) { ?>
-				<div class="imgnoticias" style="width: 679px; border-radius: 5px; height: 320px;  margin-bottom: 15px;">
+				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+					<div class="imgnoticias" style="width: 679px; border-radius: 5px; height: 320px;  margin-bottom: 15px;">
 					<?php
 						$imgsizeok = str_replace("letts.com.br/", "", $imgsizeok);
 						$imgsizeok = str_replace("http://", "", $imgsizeok);
@@ -683,7 +684,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			      	<?php echo calcbackgroundsize($imgsizeok, 685, 320); ?>; ">
 			      		&nbsp;
   					</div>
-				</div>
+				</div></a>
 				<?php } ?>
 
 

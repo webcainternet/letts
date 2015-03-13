@@ -259,13 +259,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
              <input class="input_video" type="text" name="acessorio" value="" placeholder="Acessório">
              <input class="input_video" type="text" name="valor" value="" placeholder="Valor">
-             <select name="tipo_acessorio" id="tipo_acessorio">
-              <option value="">Tipo do acessório</option>
-              <option value="Novo">Novo</option>
-              <option value="Usado">Usado</option>
-             </select>
-
-             <div class="selects_forms">
+             <div class="selects_forms" style="margin-top: -10px; width: 662px;">
 
                 <select id="atletaesporte" name="esporte" style="width: 310px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: 10px; margin-left: 22px;">
                         <option>-- Selecione o esporte --</option>
@@ -367,6 +361,12 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                       <option value="Videomaker">Videomaker</option>
                   </select>             
               </div>
+
+             <select name="tipo_acessorio" id="tipo_acessorio">
+              <option value="">Tipo do acessório</option>
+              <option value="Novo">Novo</option>
+              <option value="Usado">Usado</option>
+             </select>
                   
               <div class="foto_principal">
                 <p>Foto principal</p>
@@ -381,7 +381,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
               </div>  
 
              <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
-             <input type="submit" value="Enviar Acessório">
+             <div class="botao_enviar"><input type="submit" value="Enviar Acessório"></div>
             </form> 
           </div>
         </div>  
@@ -398,8 +398,10 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
           $id_post = $_GET['id_post'];
             if ($id_post == 1) { ?>
             <div class="div_semcad">
-              Para realizar esta ação é necessario criar uma conta, <a href="/wp-content/themes/magazine/logout.php" id="criar" style="background: #f57300; text-decoration: none; padding: 0px; padding-left: 10px; padding-right: 10px; color: #FFFFFF;">clique aqui.</a> 
-          </div>  
+                <h1 style="text-transform: uppercase; margin-bottom: -13px; font-weight: bold;">Área Restrita</h1>
+                <p style="margin: 4px 0px 20px;">Para realizar esta ação é necessario ser cadastrado.</p>
+                <a href="/wp-content/themes/magazine/logout.php" id="criar" style="background: #f57300; text-decoration: none; padding: 5px 20px; color: #FFFFFF;">Criar Nova Conta.</a> 
+          </div>   
         <?php } ?>
 
 <?php get_footer(); ?>

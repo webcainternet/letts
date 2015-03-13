@@ -569,9 +569,11 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     <?php 
       $id_post = $_GET['id_post'];
         if ($id_post == 1) { ?>
-        <div class="div_semcad">
-          Para realizar esta ação é necessario criar uma conta, <a href="/wp-content/themes/magazine/logout.php" id="criar" style="background: #f57300; text-decoration: none; padding: 0px; padding-left: 10px; padding-right: 10px; color: #FFFFFF;">clique aqui.</a> 
-      </div>  
+            <div class="div_semcad">
+                <h1 style="text-transform: uppercase; margin-bottom: -13px; font-weight: bold;">Área Restrita</h1>
+                <p style="margin: 4px 0px 20px;">Para realizar esta ação é necessario ser cadastrado.</p>
+                <a href="/wp-content/themes/magazine/logout.php" id="criar" style="background: #f57300; text-decoration: none; padding: 5px 20px; color: #FFFFFF;">Criar Nova Conta.</a> 
+          </div>  
     <?php } ?>
   
 <?php get_footer(); ?>
