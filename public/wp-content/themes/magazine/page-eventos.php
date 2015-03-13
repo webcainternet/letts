@@ -132,11 +132,19 @@ global $themify; ?>
     <?php query_posts('post_type=eventos');
     while (have_posts()): the_post(); ?>
 
+          <?php $basicaimagemurl = get_custom_field('eventofoto:to_image_src');
+            $basicaimagemurl = str_replace("http://letts.com.br/wp-content/uploads/", "", $basicaimagemurl);
+           ?>
          <div class="related-posts" style="float: left; width: 312px; margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
             <a href="<?php the_permalink(); ?>">
               <div class="imgnoticias" style="width: 306px; border-radius: 5px; height: 180px; background-size: 312px; 
-              background-position: center; background-image: url('<?php print_custom_field('eventofoto:to_image_src'); ?>');">
+              background-position: center;
+              background-image: url('<?php print_custom_field('eventofoto:to_image_src'); ?>');
+              <?php echo calcbackgroundsize("wp-content/uploads/".$basicaimagemurl, 306, 180); ?>;
+              ">
+
               &nbsp;</div>
+
             </a>
             <article class="post type-post clearfix">
               <div class="post-content">
@@ -156,7 +164,7 @@ global $themify; ?>
       </div>
 
         <?php if ($_SESSION["lettslogin"]) { ?> 
-        <div class="bt_acessorios">
+        <div class="bt_acessorios bt_acessorios2">
           <a class="button" href="/cadastrar-evento/?id_post=<?php echo $_SESSION["lettslogin"]; ?>">Cadastrar Evento</a>
         </div>
       <?php } ?>  
