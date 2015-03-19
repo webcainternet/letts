@@ -101,7 +101,7 @@ $_SESSION["lettslogin"] = 1;
 			<form action="/wp-content/themes/magazine/login.php" method="post">
 				<div style="float: right; width: 500px;">
 					<div style="float: left; width: 200px;">
-						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #FFF; font-weight: bold;">Email</div>
+						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #FFF; font-weight: bold;">E-mail</div>
 						<div style="font-size: 10px; margin: 0px; padding: 0px;"><input name="loginemail" type="text" style="margin: 0px; border-radius: 0px;"></div>
 						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #ffca9a;"><input type="checkbox" value="1" checked="1">Manter-me conectado</div>
 					</div>
@@ -740,7 +740,7 @@ global $themify; ?>
 								<div style="margin-left: 0px; margin-top: 0px;">
 									<div style="text-align: center; margin-top: 10px; text-align: left;">
 										<p class="post-meta" style="margin-left: 25px;">
-											<span class="post-category"><a href="#">Tipo de conta:</a> / </span>
+											<span class="post-category"><a href="#">Tipo de conta:</a></span>
 										</p>
 										<h1 class="post-title" style="margin-left: 25px; margin-bottom: 10px;">
 											<input id="mostraatleta" type="radio" value="atleta" name="tipodeconta" style="margin-left: 0px;" checked>Atleta
@@ -751,7 +751,7 @@ global $themify; ?>
 
 									<div style="text-align: center; margin-top: 10px; text-align: left;">
 										<p class="post-meta" style="margin-left: 25px;">
-											<span class="post-category"><a href="#">Cadastrar com o Facebook:</a> / </span>
+											<span class="post-category"><a href="#">Cadastrar com o Facebook:</a></span>
 										</p>
 										<h1 class="post-title" style="margin-left: 0px; margin-bottom: 10px; text-align: center; width: 340px;">
 											<a href="https://www.facebook.com/dialog/oauth?client_id=1540707736203396&redirect_uri=https://letts.com.br/add-login/&scope=email,user_website,user_location"><img src="/wp-content/themes/magazine/images/pZzc4.png" alt="Login com Facebook" style="width: 250px;"></a>
@@ -760,7 +760,7 @@ global $themify; ?>
 
 									<div style="text-align: center; margin-top: 10px; text-align: left; width: 340px;">
 										<p class="post-meta" style="margin-left: 25px; text-align: center; color: #f57300;">
-											<span class="post-category"><a href="#">Ou</a> / </span>
+											<span class="post-category"><a href="#">Ou</a></span>
 										</p>
 									</div>
 
@@ -778,7 +778,7 @@ global $themify; ?>
 
 									<div style="text-align: center; margin-top: 0px; text-align: left;">
 										<p class="post-meta" style="margin-left: 25px;">
-											<span class="post-category"><a href="#">Nome completo:</a> / </span>
+											<span class="post-category"><a href="#">Nome completo:</a></span>
 										</p>
 										<h1 class="post-title" style="margin-left: 25px;">
 											<input id="nomecompleto" name="nomecompleto" type="text" value="" size="30" class="required">
@@ -787,7 +787,7 @@ global $themify; ?>
 
 									<div style="text-align: center; margin-top: 0px; text-align: left;">
 										<p class="post-meta" style="margin-left: 25px;">
-											<span class="post-category"><a href="#">E-mail:</a> / </span>
+											<span class="post-category"><a href="#">E-mail:</a></span>
 										</p>
 										<h1 class="post-title" style="margin-left: 25px;">
 											<input id="basicaemail" name="basicaemail" type="text" value="" size="30" class="required">
@@ -796,7 +796,7 @@ global $themify; ?>
 
 									<div style="text-align: center; margin-top: 0px; text-align: left;">
 										<p class="post-meta" style="margin-left: 25px;">
-											<span class="post-category"><a href="#">Senha:</a> / </span>
+											<span class="post-category"><a href="#">Senha:</a></span>
 										</p>
 										<h1 class="post-title" style="margin-left: 25px;">
 											<input id="senha" name="senha" type="password" value="" size="20" class="required">
@@ -811,7 +811,7 @@ global $themify; ?>
 									<div id="dadosatleta">
 										<div style="text-align: center; margin-top: 0px; text-align: left;">
 											<p class="post-meta" style="margin-left: 25px;">
-												<span class="post-category"><a href="#">Esporte:</a> / </span>
+												<span class="post-category"><a href="#">Esporte:</a></span>
 											</p>
 											<h1 class="post-title" style="margin-left: 25px;">
 												<select id="atletaesporte" name="atletaesporte" style="font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
@@ -905,7 +905,7 @@ global $themify; ?>
 									<div id="dadosprofissional" style="display: none;">
 										<div style="text-align: center; margin-top: 0px; text-align: left;">
 											<p class="post-meta" style="margin-left: 25px;">
-												<span class="post-category"><a href="#">Profissão:</a> / </span>
+												<span class="post-category"><a href="#">Profissão:</a></span>
 											</p>
 											<h1 class="post-title" style="margin-left: 25px;">
 												<select id="profissao" name="profissao" style="font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100;">

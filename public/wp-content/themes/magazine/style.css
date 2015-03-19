@@ -2301,7 +2301,7 @@ CLEAR & ALIGNMENT
 .img_marcas{
 	background-size: 1064px 700px !important;
 	width: 1064px;
-	height: 700px;
+	height: 400px;
 }
 
 .logo_marcas{
@@ -2360,19 +2360,19 @@ CLEAR & ALIGNMENT
 }
 
 .convidar_atleta{
-	float: left;
-	width: 43%;
-	padding: 10px 30px 30px;
-	border: 1px solid #ccc;
-	border-radius: 0px; 
-}
-
-.mensagem_marca{
-	float: right;
 	width: 43%;
 	padding: 10px 30px 30px;
 	border: 1px solid #ccc;
 	border-radius: 0px;
+	margin: 0 auto;
+}
+
+.mensagem_marca{
+	width: 43%;
+	padding: 10px 30px 30px;
+	border: 1px solid #ccc;
+	border-radius: 0px;
+	margin: 0 auto;
 }
 
 .textwidget.icones_sociais{
@@ -2520,6 +2520,15 @@ CLEAR & ALIGNMENT
 	margin-top: -45px;	
 }
 
+#sucesso_edicaoperfil{
+	color: #ff8920;
+	text-transform: uppercase;
+	font-weight: bold;
+	display: none;
+	margin-left: 200px;
+	margin-top: -45px;	
+}
+
 #nome_img{
 	display: none;
 }
@@ -2646,6 +2655,7 @@ $file-upload-size: 300px;
 .bg_sucesso{
 	background: #FFF;
 	padding: 7px 10px;
+	margin-top: -63px !important;
 }
 
 .editarperfil_marca{
@@ -2685,7 +2695,7 @@ $file-upload-size: 300px;
 	float: left;
 	margin-left: 29px;
 	height: 35px;
-	width: 310px;
+	width: 629px;
   	margin-bottom: 10px;
   	margin-top: -5px;	
 }
@@ -2742,4 +2752,13 @@ $file-upload-size: 300px;
   float: left;
   width: 100%;
   margin-top: 10px;
+}
+
+.idiomas_edit span{
+	display: inline-block;
+	width: 49%;
+}
+
+.idiomas_edit{
+	margin-bottom: -45px;
 }

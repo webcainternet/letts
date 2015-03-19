@@ -290,6 +290,7 @@ textarea{
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
              <input class="input_video" type="text" name="link_video" value="" placeholder="Link do Video do Youtube ou Vímeo">
              <input class="input_video" type="text" name="titulo_video" value="" placeholder="Título do Vídeo">
+             <p style="margin: 2px 0px 1px;padding-left: 130px;">Selecione apenas uma opção: Esporte ou Profissão</p>
                   <select id="atletaesporte" name="esporte" style="width: 300px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: 0px; margin-left: 0px;">
                         <option>-- Selecione o esporte --</option>
                         <option value="Aeromodelismo">Aeromodelismo</option>
@@ -365,7 +366,7 @@ textarea{
                         <option value="WingWalking">WingWalking</option>
                       </select>
 
-                <select id="profissao" name="profissao" style="width: 300px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: right; margin-top: 0px; margin-right: 55px;">
+                <select id="profissao" name="profissao" style="width: 300px; margin-bottom: 15px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: right; margin-top: 0px; margin-right: 55px;">
                       <option>-- Selecione a profissão --</option>
                       <option value="Assessor de imprensa">Assessor de imprensa</option>
                       <option value="Coordenador de eventos">Coordenador de eventos</option>
@@ -407,3 +408,16 @@ textarea{
 
   <?php endwhile ?>
 <?php get_footer(); ?>
+
+<script type="text/javascript">
+$("#atletaesporte").change(function() {
+  $("#profissao").hide();
+  $("#atletaesporte").css('width','629px');
+}) 
+
+$("#profissao").change(function() {
+  $("#atletaesporte").hide();
+  $("#profissao").css('width','629px');
+}) 
+
+</script>

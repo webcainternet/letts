@@ -483,6 +483,12 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 	$resultbasicaimagemurl = mysql_query("select meta_value from wp_postmeta where meta_key = '_wp_attached_file' AND post_id = ".$basicaimagem);
     while ($rowbasicaimagemurl = mysql_fetch_array($resultbasicaimagemurl, MYSQL_ASSOC)) {
     	$basicaimagemurl = $rowbasicaimagemurl["meta_value"];
+    	$basicaimagemurl = explode("http://letts.com.br/wp-content/uploads/", $basicaimagemurl);
+    	if ($basicaimagemurl[1]) {
+    		$basicaimagemurl = $basicaimagemurl[1];
+    	}else{
+    		$basicaimagemurl = $basicaimagemurl[0];
+    	}
     }
 
     ?>

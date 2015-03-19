@@ -15,6 +15,47 @@ global $themify; ?>
 
 	<?php $idpost = get_the_ID(); ?>
 
+<?php $atualizar_perfil = $_POST['atualizar_perfil'];
+    if ($atualizar_perfil == 'atualizar_perfil'){
+        $my_post = array(
+          'ID'           => $idpost,
+          'post_content' => $_POST['content_atleta'],
+          'post_title'   => $_POST['titulo']
+        );
+
+      // Update the post into the database
+        wp_update_post($my_post);
+
+        update_post_meta($idpost, 'atletaesporte', $_POST['esporte']);
+        update_post_meta($idpost, 'basicanascimento', $_POST['data_nascimento']);
+        update_post_meta($idpost, 'basicagenero', $_POST['genero']);
+        update_post_meta($idpost, 'basicatelefones', $_POST['telefones']);
+        update_post_meta($idpost, 'basicacidadenascimento', $_POST['cidade_nascimento']);
+        update_post_meta($idpost, 'basicaestadonascimento', $_POST['estado_nascimento']);
+        update_post_meta($idpost, 'basicacidadeatual', $_POST['cidade_atual']);
+        update_post_meta($idpost, 'basicaestadoatual', $_POST['estado_atual']);
+        update_post_meta($idpost, 'basicafacebook', $_POST['facebook']);
+        update_post_meta($idpost, 'instagram', $_POST['instagram']);
+        update_post_meta($idpost, 'twitter', $_POST['twitter']);
+        update_post_meta($idpost, 'linkedin', $_POST['linkedin']);
+        update_post_meta($idpost, 'blog', $_POST['blog']);
+        update_post_meta($idpost, 'site', $_POST['site']);
+        update_post_meta($idpost, 'atletapatrocinio', $_POST['patrocinio_atleta']);
+        update_post_meta($idpost, 'atletameusonho', $_POST['sonho_atleta']);
+        update_post_meta($idpost, 'apelido', $_POST['apelido']);
+        update_post_meta($idpost, 'escolaridade', $_POST['escolaridade']);
+        update_post_meta($idpost, 'campeonatospart', $_POST['campeonatospart']);
+        update_post_meta($idpost, 'idiomas', $_POST['check_idiomas']);
+        update_post_meta($idpost, 'paisesviagem', $_POST['check_paises']);        
+	?>    
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#sucesso_edicaoperfil').show();
+      }) 
+    </script>
+<?php } ?>
+
+
   <?php $publicar_news = $_POST['adicionarnews'];
     if ($publicar_news == 'adicionarnews'){ ?>
 	  <?php 
@@ -402,6 +443,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 		<p id="sucesso_perfil">Foto alterada com sucesso</p>			
 		<p id="sucesso_capa">Foto de capa alterada com sucesso</p>			
+		<p id="sucesso_edicaoperfil">Dados alterados com sucesso</p>			
 			
 		</div>
 		
@@ -437,7 +479,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 							<div style="margin-top: 10px;"><strong>Nascimento</strong></div>
 							<?php print_custom_field('basicacidadenascimento'); ?>, <?php print_custom_field('basicaestadonascimento'); ?><br />
 
-							<div style="margin-top: 10px;"><strong>Atual</strong></div>
+							<div style="margin-top: 10px;"><strong>Onde Mora</strong></div>
 							<?php print_custom_field('basicacidadeatual'); ?>, <?php print_custom_field('basicaestadoatual'); ?><br />
 
 							<div style="margin-top: 10px;"><strong>Escolaridade</strong></div>
@@ -548,12 +590,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
 				<p id="sucesso">Noticia cadastrada com sucesso.</p>
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
-	             <div id="box_pensando">
-		             <textarea class="textarea_noticia" name="content_noticia" placeholder="No que você está pensando..."></textarea>
-					 <span class="button" id="avancar" style="float: right;">Avançar</span>
-				 </div>
-
-				 <div id="nome_img">
+	             <textarea class="textarea_noticia" name="content_noticia" placeholder="No que você está pensando..."></textarea>
 		             <input class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
 
                 <select id="atletaesporte" name="esporte" style="width: 325px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: 0px; margin-left: 0px;">
@@ -659,7 +696,6 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		             <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
 		             <input type="hidden" value="adicionarnews" name="adicionarnews">
 		             <input type="submit" style="float: right;" value="Publicar">
-            	</div>
             </form> 
             <?php } ?>
 
@@ -827,11 +863,6 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$('#avancar').click(function(){
-   	 	$('#box_pensando').hide();
-		$('#nome_img').show();
-   	}) 
-
 	$('.textarea_noticia').click(function() {
 		$('.textarea_noticia').css('height','200px');
 	})

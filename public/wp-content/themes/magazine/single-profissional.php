@@ -14,6 +14,44 @@
 global $themify; ?>
 
 	<?php $idpost = get_the_ID(); ?>
+
+<?php $atualizar_perfil = $_POST['atualizar_perfil'];
+    if ($atualizar_perfil == 'atualizar_perfil'){
+        $my_post = array(
+          'ID'           => $idpost,
+          'post_content' => $_POST['content_profissional'],
+          'post_title'   => $_POST['titulo']
+        );
+
+      // Update the post into the database
+        wp_update_post($my_post);
+
+        update_post_meta($idpost, 'profissao', $_POST['profissao']);
+        update_post_meta($idpost, 'basicanascimento', $_POST['data_nascimento']);
+        update_post_meta($idpost, 'basicagenero', $_POST['genero']);
+        update_post_meta($idpost, 'basicatelefones', $_POST['telefones']);
+        update_post_meta($idpost, 'basicacidadenascimento', $_POST['cidade_nascimento']);
+        update_post_meta($idpost, 'basicaestadonascimento', $_POST['estado_nascimento']);
+        update_post_meta($idpost, 'basicacidadeatual', $_POST['cidade_atual']);
+        update_post_meta($idpost, 'basicaestadoatual', $_POST['estado_atual']);
+        update_post_meta($idpost, 'basicafacebook', $_POST['facebook']);
+        update_post_meta($idpost, 'instagram', $_POST['instagram']);
+        update_post_meta($idpost, 'twitter', $_POST['twitter']);
+        update_post_meta($idpost, 'linkedin', $_POST['linkedin']);
+        update_post_meta($idpost, 'blog', $_POST['blog']);
+        update_post_meta($idpost, 'site', $_POST['site']);
+        update_post_meta($idpost, 'escolaridade', $_POST['escolaridade']);
+        update_post_meta($idpost, 'idiomas', $_POST['check_idiomas']);
+        update_post_meta($idpost, 'paisesviagem', $_POST['check_paises']);
+    ?>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#sucesso_edicaoperfil').show();
+      }) 
+    </script>
+  <?php } ?>
+  
+
 	
   <?php $publicar_news = $_POST['adicionarnews'];
     if ($publicar_news == 'adicionarnews'){ ?>
@@ -407,7 +445,8 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 					</div>
 
 		<p id="sucesso_perfil">Foto alterada com sucesso</p>			
-		<p id="sucesso_capa">Foto de capa alterada com sucesso</p>				
+		<p id="sucesso_capa">Foto de capa alterada com sucesso</p>
+		<p id="sucesso_edicaoperfil">Dados alterados com sucesso</p>		
 
 		</div>
 		
@@ -440,7 +479,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 							<div style="margin-top: 10px;"><strong>Nascimento</strong></div>
 							<?php print_custom_field('basicacidadenascimento'); ?>, <?php print_custom_field('basicaestadonascimento'); ?><br />
 
-							<div style="margin-top: 10px;"><strong>Atual</strong></div>
+							<div style="margin-top: 10px;"><strong>Onde Mora</strong></div>
 							<?php print_custom_field('basicacidadeatual'); ?>, <?php print_custom_field('basicaestadoatual'); ?><br />	
 
 							<div style="margin-top: 10px;"><strong>E-mail</strong></div>

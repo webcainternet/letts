@@ -171,7 +171,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
              <input class="input_video" type="text" name="link" value="" placeholder="Link para comprar ingresso ou para inscrição com http://">
 
              <div class="selects_forms" style="margin-top: -10px;">
-
+                <p style="margin: 10px 0px -10px;">Selecione apenas uma opção: Esporte ou Profissão</p>
                 <select id="atletaesporte" name="esporte" style="width: 310px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: 10px; margin-left: 22px;">
                         <option>-- Selecione o esporte --</option>
                         <option value="Aeromodelismo">Aeromodelismo</option>
@@ -247,7 +247,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                         <option value="WingWalking">WingWalking</option>
                       </select>
 
-                 <select id="profissao" name="profissao" style="width: 310px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: right; margin-top: 10px; margin-right: 5px;">
+                 <select id="profissao" name="profissao" style="width: 310px; margin-bottom: 14px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: right; margin-top: 10px; margin-right: 5px;">
                       <option>-- Selecione a profissão --</option>
                       <option value="Assessor de imprensa">Assessor de imprensa</option>
                       <option value="Coordenador de eventos">Coordenador de eventos</option>
@@ -577,3 +577,16 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     <?php } ?>
   
 <?php get_footer(); ?>
+
+<script type="text/javascript">
+$("#atletaesporte").change(function() {
+  $("#profissao").hide();
+  $("#atletaesporte").css('width','629px');
+}) 
+
+$("#profissao").change(function() {
+  $("#atletaesporte").hide();
+  $("#profissao").css('width','629px');
+}) 
+
+</script>

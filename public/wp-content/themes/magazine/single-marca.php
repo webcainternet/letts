@@ -15,8 +15,34 @@ global $themify; ?>
 
 <?php $idpost = get_the_ID(); ?>
 
-   <?php 
-    $alterarfotocapa = $_POST['alterarfotocapa'];
+<?php $atualizar_perfil = $_POST['atualizar_perfil'];
+    if ($atualizar_perfil == 'atualizar_perfil'){
+        $my_post = array(
+          'ID'           => $idpost,
+          'post_content' => $_POST['content_marca'],
+          'post_title'   => $_POST['titulo']
+        );
+
+      // Update the post into the database
+        wp_update_post($my_post);
+
+        update_post_meta($idpost, 'basicatelefones', $_POST['telefones']);
+        update_post_meta($idpost, 'basicafacebook', $_POST['facebook']);
+        update_post_meta($idpost, 'instagram', $_POST['instagram']);
+        update_post_meta($idpost, 'twitter', $_POST['twitter']);
+        update_post_meta($idpost, 'linkedin', $_POST['linkedin']);
+        update_post_meta($idpost, 'blog', $_POST['blog']);
+        update_post_meta($idpost, 'site', $_POST['site']);
+    ?>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#sucesso_edicaoperfil').show();
+      }) 
+    </script>
+<?php } ?>
+
+<?php 
+	$alterarfotocapa = $_POST['alterarfotocapa'];
     if ($alterarfotocapa == 'alterar'){ ?>
 
 <?php $path = "wp-content/uploads/users/capa/"; 
@@ -178,7 +204,8 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		
 
 		<p id="sucesso_perfil" class="bg_sucesso">Foto alterada com sucesso</p>			
-		<p id="sucesso_capa" class="bg_sucesso">Foto de capa alterada com sucesso</p>		
+		<p id="sucesso_capa" class="bg_sucesso">Foto de capa alterada com sucesso</p>
+		<p id="sucesso_edicaoperfil" class="bg_sucesso">Dados alterados com sucesso</p>				
 
 	<div style="float: left; margin: 15px 0px; width: 420px;">
 		<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 1.5em; font-family: Oswald, sans-serif; width: 785px;"> 
@@ -242,6 +269,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
 
 	<div class="formularios">
+		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
 		<div class="convidar_atleta">
 			<h1 class="post-title entry-title">Convide um Atleta</h1>
 			<form action="" method="post" id="formulario_convite">
@@ -252,6 +280,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 				<input type="button" id="botao_convite" value="Convidar Atleta">
 			</form>
 		</div>
+		<?php } ?>
 
 		<div class="mensagem_marca">
 			<h1 class="post-title entry-title">Envie mensagem para a marca</h1>

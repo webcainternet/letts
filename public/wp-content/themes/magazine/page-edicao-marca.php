@@ -12,36 +12,6 @@
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
-
-  <?php if ($_POST){ ?>
-    <?php 
-
-        $my_post = array(
-          'ID'           => $_GET['id_post'],
-          'post_content' => $_POST['content_marca'],
-          'post_title'   => $_POST['titulo']
-        );
-
-      // Update the post into the database
-        wp_update_post($my_post);
-
-        update_post_meta($_GET['id_post'], 'basicatelefones', $_POST['telefones']);
-        update_post_meta($_GET['id_post'], 'basicafacebook', $_POST['facebook']);
-        update_post_meta($_GET['id_post'], 'instagram', $_POST['instagram']);
-        update_post_meta($_GET['id_post'], 'twitter', $_POST['twitter']);
-        update_post_meta($_GET['id_post'], 'linkedin', $_POST['linkedin']);
-        update_post_meta($_GET['id_post'], 'blog', $_POST['blog']);
-        update_post_meta($_GET['id_post'], 'site', $_POST['site']);
-    ?>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('#sucesso').show();
-      }) 
-    </script>
-  <?php } ?>
-
- 
-
   <?php 
     query_posts( array('p' => $_GET['id_post'], 'post_type' => 'marca') );
     while ( have_posts() ) : the_post();
@@ -59,7 +29,7 @@ global $themify; ?>
 		</div>
 	<?php } ?>
 
-<form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data"> 
+<form id="new_post" name="new_post" method="post" action="<?php the_permalink(); ?>" enctype="multipart/form-data"> 
 	<p id="sucesso">Dados alterados com sucesso.</p>
 	<div style="float: left; margin: 15px 0px; width: 420px;">
 			
@@ -89,7 +59,9 @@ global $themify; ?>
               <input type="text" name="blog" value="<?php print_custom_field('blog'); ?>"> </div>
 
             <div style="display: inline-block;"><strong>Site</strong><br />
-              <input type="text" name="site" value="<?php print_custom_field('site'); ?>">   </div>         
+              <input type="text" name="site" value="<?php print_custom_field('site'); ?>">
+              <input type="hidden" name="atualizar_perfil" value="atualizar_perfil"><br /> 
+            </div>         
           </div>
 	</div>
 

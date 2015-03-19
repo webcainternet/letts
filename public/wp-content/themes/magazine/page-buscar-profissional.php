@@ -35,28 +35,77 @@ global $themify; ?>
 					<div style="float: left; margin-right: 15px;">
 						<span class="post-category"><a href="#">Profissão</a></span><br>
 						<select  class="selectitens" name="profissao">
-										<option>-- Selecione --</option>
-										<option>Assessor de imprensa</option>
-										<option>Coordenador de eventos</option>
-										<option>Desenhista</option>
-										<option>Empresário</option>
-										<option>Estatístico</option>
-										<option>Estilista</option>
-										<option>Executivo de contas publicitárias</option>
-										<option>Fisioterapeuta</option>
-										<option>Fotografo</option>
-										<option>Fotojornalista</option>
-										<option>Gerente de relações públicas</option>
-										<option>Gestor desportivo</option>
-										<option>Jornalista</option>
-										<option>Nutricionista</option>
-										<option>Personal Crossfit</option>
-										<option>Personal academia</option>
-										<option>Professor de idomas</option>
-										<option>Psicologo</option>
-										<option>Psicólogo esportivo</option>
-										<option>Técnico</option>
-										<option>Videomaker</option>
+										<option>Aeromodelismo</option>
+										<option>Alpinismo</option>
+										<option>Asa Delta</option>
+										<option>BMX</option>
+										<option>BMX – Free style</option>
+										<option>Balonismo</option>
+										<option>Base Jumping</option>
+										<option>Bodyboard</option>
+										<option>Bouldering</option>
+										<option>Bungee Jumping</option>
+										<option>Canoagem</option>
+										<option>Carveboard</option>
+										<option>Caça submarina</option>
+										<option>Ciclismo</option>
+										<option>Cliff Diving</option>
+										<option>Corrida aventura</option>
+										<option>Drift</option>
+										<option>Escalada</option>
+										<option>Esqui</option>
+										<option>Football Freestyle</option>
+										<option>Free Style Motocross</option>
+										<option>FreeBoard</option>
+										<option>Heli-Skiing</option>
+										<option>Highline</option>
+										<option>Jet Ski</option>
+										<option>Kart</option>
+										<option>Kitesurfing</option>
+										<option>Liquid Mountaineering</option>
+										<option>Longboard skate</option>
+										<option>Longboard surf</option>
+										<option>Mega ramp</option>
+										<option>Mergulho</option>
+										<option>Moto Trial</option>
+										<option>Moto Wheeling</option>
+										<option>Motocross</option>
+										<option>Mountain Bike</option>
+										<option>Mountain biking</option>
+										<option>Mountain boarding</option>
+										<option>Off Road/Rally</option>
+										<option>Paintball</option>
+										<option>Paragliding</option>
+										<option>Paragliding</option>
+										<option>Parapente</option>
+										<option>Parkour</option>
+										<option>Patins in Line</option>
+										<option>Psicobloc</option>
+										<option>Rafting</option>
+										<option>Rally</option>
+										<option>Rapel</option>
+										<option>Sandboard</option>
+										<option>Skate - Street</option>
+										<option>Skate – Free style</option>
+										<option>Skate – Mini ramp</option>
+										<option>Sky Surfing</option>
+										<option>Skydive</option>
+										<option>Slackline</option>
+										<option>Snowboard</option>
+										<option>Stand Up Paddle</option>
+										<option>Street Luge</option>
+										<option>Surf</option>
+										<option>Surf - Freesurf</option>
+										<option>Tow-in</option>
+										<option>Trekking</option>
+										<option>Triathlon</option>
+										<option>UFC (MMA)</option>
+										<option>Vela/Iatismo</option>
+										<option>Velocidade</option>
+										<option>Wakeboard</option>
+										<option>Wakeboard Free style</option>
+										<option>Windsurf</option>
+										<option>WingWalking</option>
 									</select>
 					</div>
 
@@ -415,6 +464,12 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 	$resultbasicaimagemurl = mysql_query("select meta_value from wp_postmeta where meta_key = '_wp_attached_file' AND post_id = ".$basicaimagem);
     while ($rowbasicaimagemurl = mysql_fetch_array($resultbasicaimagemurl, MYSQL_ASSOC)) {
     	$basicaimagemurl = $rowbasicaimagemurl["meta_value"];
+		$basicaimagemurl = explode("http://letts.com.br/wp-content/uploads/", $basicaimagemurl);
+    	if ($basicaimagemurl[1]) {
+    		$basicaimagemurl = $basicaimagemurl[1];
+    	}else{
+    		$basicaimagemurl = $basicaimagemurl[0];
+    	}    	
     }
 
 	$resultbasicagenero = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicagenero' AND post_id = ".$row["id"]);

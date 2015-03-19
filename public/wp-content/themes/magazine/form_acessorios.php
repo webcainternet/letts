@@ -48,9 +48,9 @@
     while (have_posts()): the_post(); ?>
 	<div class="conteudo_anuncios">
    		<div id="fotos_anuncios">
-	   			<img src="<?php print_custom_field('fotoanuncio1'); ?>">
-				<img src="<?php print_custom_field('fotoanuncio2'); ?>">
-				<img src="<?php print_custom_field('fotoanuncio3'); ?>">
+	   			<a href="javascript:abrir('<?php print_custom_field('fotoanuncio1'); ?>');"><img src="<?php print_custom_field('fotoanuncio1'); ?>"></a>
+				<a href="javascript:abrir('<?php print_custom_field('fotoanuncio2'); ?>');"><img src="<?php print_custom_field('fotoanuncio2'); ?>"></a>
+				<a href="javascript:abrir('<?php print_custom_field('fotoanuncio3'); ?>');"><img src="<?php print_custom_field('fotoanuncio3'); ?>"></a>
 			</div>
 
 <?php endwhile; // end of the loop. ?>
@@ -76,5 +76,18 @@
 function EnviarForm() {
 	$('#formulario_mensagem').hide();
 	$('#sucesso').show();
+}
+</script>
+
+<script language="JavaScript">
+function abrir(URL) {
+ 
+  var width = 800;
+  var height = 600;
+ 
+  var left = 99;
+  var top = 99;
+ 
+  window.open(URL,'janela', 'width='+width+', height='+height+', top='+top+', left='+left+', scrollbars=yes, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no');
 }
 </script>
