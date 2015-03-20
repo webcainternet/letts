@@ -40,7 +40,7 @@ global $themify; ?>
 	</div>
 
 	<div class="icones_sociais edit_marcas">
-            <div class="textwidget icones_sociais">
+            <div class="textwidget icones_sociais" style="margin-left: 20px;">
               <div><strong>Outros Contatos</strong></div>
             
             <div style="display: inline-block;"><strong>Facebook</strong><br />
