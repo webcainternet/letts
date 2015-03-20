@@ -6,8 +6,10 @@
 		$_SESSION["lettslogin"] = 1;
 	} else {
 		if ($_SESSION["lettslogin"] == "") {
-			echo "<script> window.location.assign(\"http://letts.com.br/login\") </script>";
-			exit;
+			//echo "<script> window.location.assign(\"http://letts.com.br/login\") </script>";
+			//exit;
+			$letts_nome = "VISITANTE";
+			$_SESSION["lettslogin"] = 1;
 		} else {
 			//Conecta bd
 			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
