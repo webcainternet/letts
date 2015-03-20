@@ -462,7 +462,6 @@ function checkMail(mail){
 
 $(document).ready(function(){
 	$( "#criarAtleta" ).click(function() {
-
 	  //Nome em branco
 	  if ($( "#nomecompleto" ).val() == '') {
 	  	alert( "O nome não foi preenchido" );
@@ -475,40 +474,56 @@ $(document).ready(function(){
 	  		$( "#basicaemail" ).focus();
 	  	} else {
 
-	  		//Senha 1 em branco
-		  	if ($( "#senha" ).val() == '') {
-		  		alert( "A senha não foi preenchida" );
-		  		$( "#senha" ).focus();
-		  	} else {
+	  		//Email cadastrado
+			txtemail=$('#basicaemail').val();
+		    $.ajax({
+		      type: 'POST',
+		      data: { 
+		        email:txtemail
+		    	},
+		      	url:'/wp-content/themes/magazine/email_check.php',
+		      	success: function(retorno) {
+		        if (retorno == 1) {
+		          	alert('E-mail já cadastrado, por favor escolha outro.');
+		          	$( "#basicaemail" ).focus();
+		        } else {
 
-		  		//Senha 2 em branco
-			  	if ($( "#senha2" ).val() == '') {
-			  		alert( "A senha não foi confirmada" );
-			  		$( "#senha2" ).focus();
-			  	} else {
+		        	//Senha 1 em branco
+				  	if ($( "#senha" ).val() == '') {
+				  		alert( "A senha não foi preenchida" );
+				  		$( "#senha" ).focus();
+				  	} else {
 
-			  		//Senhas confirmadas
-			  		if ($( "#senha" ).val() != $( "#senha2" ).val()) {
-						alert( "A senha deve ser digitada duas vezes iguais!" );
-			  			$( "#senha2" ).focus();
-		  			} else {
+				  		//Senha 2 em branco
+					  	if ($( "#senha2" ).val() == '') {
+					  		alert( "A senha não foi confirmada" );
+					  		$( "#senha2" ).focus();
+					  	} else {
 
-	  					//Esporte
-						if ($( "#atletaesporte" ).val() == '-- Selecione o esporte --') {
-							alert( "Selecione o esporte" );
-				  			$( "#atletaesporte" ).focus();
-			  			} else {
-	  						
-	  						//Termos
-	  						if ($('#termos1').is(':checked') == false) {
-								alert( "Você deve aceitar os termos de uso para continuar" );
-							} else {
-								$( "#new_post" ).submit();
-							}
-		  				}
-		  			}
-		  		}
-	  		}
+					  		//Senhas confirmadas
+					  		if ($( "#senha" ).val() != $( "#senha2" ).val()) {
+								alert( "A senha deve ser digitada duas vezes iguais!" );
+					  			$( "#senha2" ).focus();
+				  			} else {
+
+			  					//Esporte
+								if ($( "#atletaesporte" ).val() == '-- Selecione o esporte --') {
+									alert( "Selecione o esporte" );
+						  			$( "#atletaesporte" ).focus();
+					  			} else {
+			  						
+			  						//Termos
+			  						if ($('#termos1').is(':checked') == false) {
+										alert( "Você deve aceitar os termos de uso para continuar" );
+									} else {
+										$( "#new_post" ).submit();
+									}
+				  				}
+				  			}
+				  		}
+			  		}
+		    	} }
+		    });	
   		}
 	  }
 	});
