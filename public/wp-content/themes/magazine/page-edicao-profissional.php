@@ -73,7 +73,30 @@ textarea{
           margin: 0px;
           margin-left: 25px;">
           <div id="text-1017" class="widget widget_text" style="border: 0px; margin: 0px; margin-top: 13px;">
-            <input type="text" name="profissao" value="<?php print_custom_field('profissao'); ?>">   
+                 <select id="profissao" name="profissao" style="width: 313px; height: 35px; font-size: 0.9em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
+                      <option>-- Selecione a profissão --</option>
+                      <option value="Assessor de imprensa">Assessor de imprensa</option>
+                      <option value="Coordenador de eventos">Coordenador de eventos</option>
+                      <option value="Desenhista">Desenhista</option>
+                      <option value="Empresário">Empresário</option>
+                      <option value="Estatístico">Estatístico</option>
+                      <option value="Estilista">Estilista</option>
+                      <option value="Executivo de contas publicitárias">Executivo de contas publicitárias</option>
+                      <option value="Fisioterapeuta">Fisioterapeuta</option>
+                      <option value="Fotografo">Fotografo</option>
+                      <option value="Fotojornalista">Fotojornalista</option>
+                      <option value="Gerente de relações públicas">Gerente de relações públicas</option>
+                      <option value="Gestor desportivo">Gestor desportivo</option>
+                      <option value="Jornalista">Jornalista</option>
+                      <option value="Nutricionista">Nutricionista</option>
+                      <option value="Personal Crossfit">Personal Crossfit</option>
+                      <option value="Personal academia">Personal academia</option>
+                      <option value="Professor de idomas">Professor de idomas</option>
+                      <option value="Psicologo">Psicologo</option>
+                      <option value="Psicólogo esportivo">Psicólogo esportivo</option>
+                      <option value="Técnico">Técnico</option>
+                      <option value="Videomaker">Videomaker</option>
+                  </select>    
           </div>
       
     </div>
@@ -101,11 +124,71 @@ textarea{
 
               <div style="margin-top: 10px;"><strong>Nascimento</strong></div>
               <input type="text" name="cidade_nascimento" value="<?php print_custom_field('basicacidadenascimento'); ?>">
-              <input type="text" name="estado_nascimento" value="<?php print_custom_field('basicaestadonascimento'); ?>"><br />
+             <select name="estado_nascimento" id="estado_nascimento" style="width: 243px; height: 35px; margin-bottom: 14px; font-size: 0.9em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
+              <option>-- Selecione o estado --</option> 
+              <option value="Acre">Acre</option> 
+              <option value="Alagoas">Alagoas</option> 
+              <option value="Amazonas">Amazonas</option> 
+              <option value="Amapá">Amapá</option> 
+              <option value="Bahia">Bahia</option> 
+              <option value="Ceará">Ceará</option> 
+              <option value="Distrito Federal">Distrito Federal</option> 
+              <option value="Espírito Santo">Espírito Santo</option> 
+              <option value="Goiás">Goiás</option> 
+              <option value="Maranhão">Maranhão</option> 
+              <option value="Mato Grosso">Mato Grosso</option> 
+              <option value="Mato Grosso do Sul">Mato Grosso do Sul</option> 
+              <option value="Minas Gerais">Minas Gerais</option> 
+              <option value="Pará">Pará</option> 
+              <option value="Paraíba">Paraíba</option> 
+              <option value="Paraná">Paraná</option> 
+              <option value="Pernambuco">Pernambuco</option> 
+              <option value="Piauí">Piauí</option> 
+              <option value="Rio de Janeiro">Rio de Janeiro</option> 
+              <option value="Rio Grande do Norte">Rio Grande do Norte</option> 
+              <option value="Rondônia">Rondônia</option> 
+              <option value="Rio Grande do Sul">Rio Grande do Sul</option> 
+              <option value="Roraima">Roraima</option> 
+              <option value="Santa Catarina">Santa Catarina</option> 
+              <option value="Sergipe">Sergipe</option> 
+              <option value="São Paulo">São Paulo</option> 
+              <option value="Tocantins">Tocantins</option> 
+             </select>              
+              <br />
 
               <div style="margin-top: 10px;"><strong>Onde Mora</strong></div>
               <input type="text" name="cidade_atual" value="<?php print_custom_field('basicacidadeatual'); ?>">
-              <input type="text" name="estado_atual" value="<?php print_custom_field('basicaestadoatual'); ?>"><br />
+             <select name="estado_atual" id="estado_atual" style="width: 243px; height: 35px; margin-bottom: 14px; font-size: 0.9em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
+              <option>-- Selecione o estado --</option> 
+              <option value="Acre">Acre</option> 
+              <option value="Alagoas">Alagoas</option> 
+              <option value="Amazonas">Amazonas</option> 
+              <option value="Amapá">Amapá</option> 
+              <option value="Bahia">Bahia</option> 
+              <option value="Ceará">Ceará</option> 
+              <option value="Distrito Federal">Distrito Federal</option> 
+              <option value="Espírito Santo">Espírito Santo</option> 
+              <option value="Goiás">Goiás</option> 
+              <option value="Maranhão">Maranhão</option> 
+              <option value="Mato Grosso">Mato Grosso</option> 
+              <option value="Mato Grosso do Sul">Mato Grosso do Sul</option> 
+              <option value="Minas Gerais">Minas Gerais</option> 
+              <option value="Pará">Pará</option> 
+              <option value="Paraíba">Paraíba</option> 
+              <option value="Paraná">Paraná</option> 
+              <option value="Pernambuco">Pernambuco</option> 
+              <option value="Piauí">Piauí</option> 
+              <option value="Rio de Janeiro">Rio de Janeiro</option> 
+              <option value="Rio Grande do Norte">Rio Grande do Norte</option> 
+              <option value="Rondônia">Rondônia</option> 
+              <option value="Rio Grande do Sul">Rio Grande do Sul</option> 
+              <option value="Roraima">Roraima</option> 
+              <option value="Santa Catarina">Santa Catarina</option> 
+              <option value="Sergipe">Sergipe</option> 
+              <option value="São Paulo">São Paulo</option> 
+              <option value="Tocantins">Tocantins</option> 
+             </select>
+             <br />
 
               <div style="margin-top: 10px;"><strong>Escolaridade</strong></div>
               <select id="escolaridade" name="escolaridade" style="width: 240px; height: 35px; font-size: 1.00em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: left; margin-top: -2px; ">

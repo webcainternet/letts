@@ -128,6 +128,17 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     	add_post_meta($cur_post_id, 'atletaesporte', $_POST['esporte'], true);
     	add_post_meta($cur_post_id, 'profissao', $_POST['profissao'], true);		
 		add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
+		add_post_meta($cur_post_id, 'videourl', $_POST['link_video'], true);
+
+		$tipo_video = explode("/", $_POST['link_video']);
+		$final_tipo = $tipo_video[2];
+		if ($final_tipo == 'www.youtube.com') {
+			$final_tipo = 'youtube';
+		}else if ($final_tipo == 'vimeo.com') {
+			$final_tipo = 'vimeo';
+		}
+
+		add_post_meta($cur_post_id, 'slvideo', $final_tipo, true);
 
 	    $destinatario = "renato.botani@letts.com.br";  
 
@@ -146,6 +157,23 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
       }) 
     </script>
   <?php } ?>
+
+  <?php 
+  if ($_POST['link_video']) {
+  	    $my_post_video = array(
+          'post_title'    => $_POST['titulo_noticia'],
+          'post_status'   => 'publish',
+          'post_type'     => 'video',
+          'post_author'   => 1
+        );
+
+        $post_id_video = wp_insert_post($my_post_video);
+        add_post_meta($post_id_video, 'link_video', $_POST['link_video'], true);
+        add_post_meta($post_id_video, 'basicaemail', $_POST['email'], true);
+        add_post_meta($post_id_video, 'atletaesporte', $_POST['esporte'], true);
+        add_post_meta($post_id_video, 'profissao', $_POST['profissao'], true); 
+  }
+  ?>
 
     <?php 
     $alterarfoto = $_POST['alterarfoto'];
@@ -592,7 +620,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
 	             <textarea class="textarea_noticia" name="content_noticia" placeholder="No que você está pensando..."></textarea>
 		             <input class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
-
+		        <p style="margin: 0px 0px 2px;text-align: center;">Selecione apenas uma opção: Esporte ou Profissão</p>   
                 <select id="atletaesporte" name="esporte" style="width: 325px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: 0px; margin-left: 0px;">
                         <option>-- Selecione o esporte --</option>
                         <option value="Aeromodelismo">Aeromodelismo</option>
@@ -693,9 +721,10 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                       <option value="Videomaker">Videomaker</option>
                   </select> 		             
 		             <input type="file" class="custom-file-input input_file" name="img_destacada">
+		             <input class="input_video" type="text" name="link_video" style="width: 450px !important; max-width: 100%;margin-top: -5px;float: right;" value="" placeholder="Link do Video do Youtube ou Vímeo">
 		             <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
 		             <input type="hidden" value="adicionarnews" name="adicionarnews">
-		             <input type="submit" style="float: right;" value="Publicar">
+		             <input type="submit" style="float: right; margin-top: -20px;" value="Publicar">
             </form> 
             <?php } ?>
 
@@ -871,4 +900,14 @@ $(document).ready(function() {
 		$('.textarea_noticia').css('height','30px');
 	})
 });
+
+$("#atletaesporte").change(function() {
+  $("#profissao").hide();
+  $("#atletaesporte").css('width','684px');
+}) 
+
+$("#profissao").change(function() {
+  $("#atletaesporte").hide();
+  $("#profissao").css('width','684px');
+}) 
 </script>
