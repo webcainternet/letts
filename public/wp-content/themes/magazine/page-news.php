@@ -262,7 +262,11 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
       <?php if ($slvideo == "youtube") { ?>
         <div class="imgnoticias" style="background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');">
-          <iframe width="330" height="180" src="<?php echo $videourl; ?>" frameborder="0" allowfullscreen></iframe>
+          
+          <?php 
+            $url_video = explode("=", $videourl);            
+          ?>
+          <iframe width="330" height="180" src="//www.youtube.com/embed/<?php echo $url_video[1]; ?>" frameborder="0" allowfullscreen></iframe>
         </div>
         <article class="post type-post clearfix">
           <div class="post-content">

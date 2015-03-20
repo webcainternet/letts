@@ -70,9 +70,11 @@ global $themify; ?>
             $resultbasicaimagemurl = mysql_query("select meta_value from wp_postmeta where meta_key = '_wp_attached_file' AND post_id = (select meta_value from wp_postmeta where meta_key = 'imgnews' AND post_id = ".$idpost.")");
             while ($rowbasicaimagemurl = mysql_fetch_array($resultbasicaimagemurl, MYSQL_ASSOC)) {
               $basicaimagemurl = $rowbasicaimagemurl["meta_value"];
+              if ($basicaimagemurl) {
               ?>
-              <a href="#"><img class="imgnoticias" src="http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>" width="674" style="width: 674px; border-radius: 5px;"></a>
+              <img class="imgnoticias" src="<?php echo $basicaimagemurl; ?>" width="674" style="width: 674px; border-radius: 5px;">
               <?php
+              }
             }
 
           ?>
@@ -92,7 +94,11 @@ global $themify; ?>
 
           <?php if ($slvideo == "youtube") { ?>
             <div style="width: 674px; border-radius: 5px; height: 390px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/<?php echo utf8_encode($basicaimagemurl); ?>');">
-              <iframe width="674" height="390" src="<?php echo $videourl; ?>" frameborder="0" allowfullscreen></iframe>
+          <?php 
+            $url_video = explode("=", $videourl);            
+          ?>
+          <iframe width="674" height="390" src="//www.youtube.com/embed/<?php echo $url_video[1]; ?>" frameborder="0" allowfullscreen></iframe>
+        
             </div>
             <article class="post type-post clearfix">
               <div class="post-content">
