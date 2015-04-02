@@ -182,7 +182,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 	
 		
-	<div class="img_marcas imagem_editar_capa" style="background: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>') no-repeat;">
+	<div class="img_marcas imagem_editar_capa" style="background: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>') no-repeat; background-size: 1064px; background-position:center; height: 400px;">
 		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>		
 			<div id="link_editar_capa">
 					<a class="fancybox" href="/alterar-foto-de-capa/?id_post=<?php echo $idpost; ?>">Editar Foto de Capa</a>		
@@ -266,7 +266,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		<?php the_content(); ?>
 	</div>
 
-		<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+		<!--<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>-->
 
 	<div class="formularios">
 		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
@@ -280,7 +280,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 				<input type="button" id="botao_convite" value="Convidar Atleta">
 			</form>
 		</div>
-		<?php } ?>
+		<?php }else{ ?>
 
 		<div class="mensagem_marca">
 			<h1 class="post-title entry-title">Envie mensagem para a marca</h1>
@@ -291,7 +291,8 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 				<textarea id="mensagem" name="mensagem" placeholder="Mensagem para a Marca"></textarea>
 				<input type="button" id="botao_mensagem" value="Enviar Mensagem">
 			</form>
-		</div>		
+		</div>	
+		<?php } ?>	
 	</div>
 
 

@@ -370,14 +370,37 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                   
               <div class="foto_principal">
                 <p>Foto principal</p>
-                <input type="file" class="custom-file-input input_file" name="img_destacada">
+                <div class="custom-upload">
+                    <input type="file" name="img_destacada">
+                    <div class="fake-file">
+                        <input disabled="disabled" placeholder="Selecione uma Imagem">
+                    </div>
+                </div>
               </div>
 
-              <div class="fotos_adicionais">
+              <div class="fotos_adicionais" style="margin-top: 40px; margin-bottom: 10px;">
                 <p>Fotos adicionais</p>
-                <input type="file" class="custom-file-input input_file" name="img_acessorio1">
-                <input type="file" class="custom-file-input input_file" name="img_acessorio2">
-                <input type="file" class="custom-file-input input_file" name="img_acessorio3">
+
+                <div class="custom-upload">
+                    <input type="file" name="img_acessorio1">
+                    <div class="fake-file">
+                        <input disabled="disabled" placeholder="Selecione uma Imagem">
+                    </div>
+                </div>
+
+                <div class="custom-upload">
+                    <input type="file" name="img_acessorio2">
+                    <div class="fake-file">
+                        <input disabled="disabled" placeholder="Selecione uma Imagem">
+                    </div>
+                </div>
+
+                <div class="custom-upload">
+                    <input type="file" name="img_acessorio3">
+                    <div class="fake-file">
+                        <input disabled="disabled" placeholder="Selecione uma Imagem">
+                    </div>
+                </div>
               </div>  
 
              <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
@@ -416,5 +439,9 @@ $("#profissao").change(function() {
   $("#atletaesporte").hide();
   $("#profissao").css('width','629px');
 }) 
+
+$('.custom-upload input[type=file]').change(function(){
+    $(this).next().find('input').val($(this).val());
+});
 
 </script>

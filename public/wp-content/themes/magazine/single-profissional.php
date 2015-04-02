@@ -42,7 +42,7 @@ global $themify; ?>
         update_post_meta($idpost, 'site', $_POST['site']);
         update_post_meta($idpost, 'escolaridade', $_POST['escolaridade']);
         update_post_meta($idpost, 'idiomas', $_POST['check_idiomas']);
-        update_post_meta($idpost, 'paisesviagem', $_POST['check_paises']);
+        update_post_meta($idpost, 'paisesviagem', $_POST['paisesviagem']);
     ?>
     <script type="text/javascript">
       $(document).ready(function(){
@@ -525,12 +525,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 							?>
 
 							<div style="margin-top: 10px;"><strong>Paises que já viajou</strong></div>
-							<?php 
-								$my_array = get_custom_field('paisesviagem:to_array');
-								foreach ($my_array as $item) {
-									print $item.'<br />'; 
-								}
-							?>
+							<?php print_custom_field('paisesviagem'); ?>
 
 						</div>
 			
@@ -611,7 +606,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		             <textarea class="textarea_noticia" name="content_noticia" placeholder="No que você está pensando..."></textarea>
 		             <input class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
 		        <p style="margin: 0px 0px 2px;text-align: center;">Selecione apenas uma opção: Esporte ou Profissão</p>     
-                <select id="atletaesporte" name="esporte" style="width: 325px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: 0px; margin-left: 0px;">
+                <select id="atletaesporte" name="esporte" style="width: 325px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin: 0px 27px 14px 0px;">
                         <option>-- Selecione o esporte --</option>
                         <option value="Aeromodelismo">Aeromodelismo</option>
                         <option value="Alpinismo">Alpinismo</option>
@@ -686,7 +681,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                         <option value="WingWalking">WingWalking</option>
                       </select>
 
-                <select id="profissao" name="profissao" style="width: 330px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: right; margin-top: 0px; margin-right: -2px;">
+                <select id="profissao" name="profissao" style="width: 330px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-bottom: 14px; margin-top: 0px; margin-right: -2px;">
                       <option>-- Selecione a profissão --</option>
                       <option value="Assessor de imprensa">Assessor de imprensa</option>
                       <option value="Coordenador de eventos">Coordenador de eventos</option>
@@ -710,11 +705,17 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                       <option value="Técnico">Técnico</option>
                       <option value="Videomaker">Videomaker</option>
                   </select> 				             
-		             <input type="file" class="custom-file-input input_file" name="img_destacada">
-		             <input class="input_video" type="text" name="link_video" style="width: 450px !important; max-width: 100%;margin-top: -5px;float: right;" value="" placeholder="Link do Video do Youtube ou Vímeo">
+					<div class="custom-upload">
+					    <input type="file" name="img_destacada">
+					    <div class="fake-file">
+					        <input disabled="disabled" placeholder="Selecione uma Imagem">
+					    </div>
+					</div>
+
+		             <input class="input_video" type="text" name="link_video" style="width: 316px !important; max-width: 100%;margin-top: -33px;float: right;margin-right: -1px;" value="" placeholder="Link do Video do Youtube ou Vímeo">
 		             <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
 		             <input type="hidden" value="adicionarnews" name="adicionarnews">
-		             <input type="submit" style="float: right; margin-top: -20px;" value="Publicar">
+		             <input type="submit" style="float: right; margin-top: 0px;margin-left: 300px;" value="Publicar">
             </form> 
             <?php } ?>				
 			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">News</h4>
@@ -765,18 +766,25 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 						<a class="button link_botao" href="/add-fotos-profissional/?id_post=<?php echo $idpost; ?>">+ Fotos</a>
 					<?php } ?>						
 					<div class="galeria_profissional">
-						<?php $path = "wp-content/uploads/users/$idpost"; 
-							$diretorio = dir($path); 
+						<?php $pasta = "wp-content/uploads/users/$idpost/"; 
+							$diretorio = dir($pasta);
 								while($arquivo = $diretorio -> read()){ 
 									if($arquivo != '..' && $arquivo != '.'){
-										echo '<div class="img_profissional">
-												<a href="/wp-content/uploads/users/'.$idpost.'/'.$arquivo.'" class="fancybox" rel="gallery">
-													<img src=/wp-content/uploads/users/'.$idpost.'/'.$arquivo.'>
-												</a>
-											  </div>'; 
+										$arrayArquivos[date('Y/m/d H:i:s', filemtime($pasta.$arquivo))] = $pasta.$arquivo;
 									}
 								} 
-								$diretorio -> close(); 
+								$diretorio -> close();	 
+
+								krsort($arrayArquivos, SORT_STRING);
+
+							foreach($arrayArquivos as $valorArquivos){
+								echo '<div class="img_profissional">
+									<a href="/'.$valorArquivos.'" class="fancybox" rel="gallery">
+										<img src="/'.$valorArquivos.'">
+									</a>
+								</div>';
+							}	
+
 						?>
 					</div>
 					
@@ -893,4 +901,9 @@ $("#profissao").change(function() {
   $("#atletaesporte").hide();
   $("#profissao").css('width','684px');
 }) 
+
+$('.custom-upload input[type=file]').change(function(){
+    $(this).next().find('input').val($(this).val());
+});
+
 </script>

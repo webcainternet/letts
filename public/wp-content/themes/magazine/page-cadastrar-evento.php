@@ -542,15 +542,25 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
               <div class="foto_principal">
                 <p>Foto principal</p>
-                <input type="file" class="custom-file-input input_file" name="img_destacada">
+                <div class="custom-upload">
+                    <input type="file" name="img_destacada">
+                    <div class="fake-file">
+                        <input disabled="disabled" placeholder="Selecione uma Imagem">
+                    </div>
+                </div>                
               </div>
 
-              <div class="fotos_adicionais">
+              <div class="foto_principal" style="margin-top: 30px; margin-bottom: 20px;">
                 <p>Flyer</p>
-                <input type="file" class="custom-file-input input_file" name="img_evento1">
+                <div class="custom-upload">
+                    <input type="file" name="img_evento1">
+                    <div class="fake-file">
+                        <input disabled="disabled" placeholder="Selecione uma Imagem">
+                    </div>
+                </div>
               </div>  
 
-              <textarea class="" name="descricao_evento" placeholder="Descrição do evento" style="width: 91%; height: 115px;"></textarea>
+              <textarea class="" name="descricao_evento" placeholder="Descrição do evento" style="margin-left: 6px; width: 91%; height: 115px;"></textarea>
 
              <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
              <input type="submit" value="Enviar Evento">
@@ -588,5 +598,9 @@ $("#profissao").change(function() {
   $("#atletaesporte").hide();
   $("#profissao").css('width','629px');
 }) 
+
+$('.custom-upload input[type=file]').change(function(){
+    $(this).next().find('input').val($(this).val());
+});
 
 </script>
