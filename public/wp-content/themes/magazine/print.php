@@ -106,6 +106,9 @@ body{
         <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Patrocínio ou apoio que esta procurando</h4>
         <?php print_custom_field('atletapatrocinio'); ?><br /><br />
 
+        <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Patrocinios ou apoios que já tive</h4>
+        <?php print_custom_field('patrocinio_tive'); ?><br /><br />
+
         <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Meu sonho</h4>
         <?php print_custom_field('atletameusonho'); ?><br /><br />
 
@@ -146,13 +149,10 @@ body{
         }
       ?>
 
+      <?php if (get_custom_field('paisesviagem')) { ?>
       <div style="margin-top: 10px;"><strong>Paises que já viajou</strong></div>
-      <?php 
-        $my_array = get_custom_field('paisesviagem:to_array');
-        foreach ($my_array as $item) {
-          print $item.' / '; 
-        }
-      ?>
+      <?php print_custom_field('paisesviagem');
+      } ?>
 
       <div style="margin-top: 10px;"><strong>Outros Contatos</strong></div>
           <?php if (get_custom_field('basicafacebook')) { ?>

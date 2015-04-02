@@ -499,7 +499,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 							<div style="margin-top: 10px;"><strong>Data de nascimento</strong></div>
 							<?php print_custom_field('basicanascimento'); ?><br />
 
-							<div style="margin-top: 10px;"><strong>Gênero</strong></div>
+							<div style="margin-top: 10px;"><strong>Sexo</strong></div>
 							<?php print_custom_field('basicagenero'); ?><br />
 
 							<div style="margin-top: 10px;"><strong>Telefones</strong></div>

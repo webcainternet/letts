@@ -298,9 +298,25 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
 
       <?php if ($basicaimagemurl != "") { ?>
-      <a href="<?php echo "$guid"; ?>"><div class="imgnoticias" style="background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');">
+
+      <?php 
+        $basicaimagemurl = explode("http://letts.com.br/wp-content/uploads/", $basicaimagemurl);
+
+       ?>
+
+       <?php if ($basicaimagemurl[1]){ ?>
+                <a href="<?php echo "$guid"; ?>">
+                  <div class="imgnoticias" 
+        style="background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl[1]; ?>');">
         &nbsp;
-      </div></a>
+               </div></a>           
+       <?php }else{ ?>
+                <a href="<?php echo "$guid"; ?>">
+                  <div class="imgnoticias" 
+        style="background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl[0]; ?>');">
+        &nbsp;
+               </div></a> 
+      <?php } ?>
       <article class="post type-post clearfix">
         <div class="post-content">
           <p class="post-meta">

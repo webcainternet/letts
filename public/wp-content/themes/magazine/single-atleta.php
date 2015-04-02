@@ -47,6 +47,7 @@ global $themify; ?>
         update_post_meta($idpost, 'campeonatospart', $_POST['campeonatospart']);
         update_post_meta($idpost, 'idiomas', $_POST['check_idiomas']);
         update_post_meta($idpost, 'paisesviagem', $_POST['paisesviagem']);        
+        update_post_meta($idpost, 'patrocinio_tive', $_POST['patrocinio_tive']);        
 	?>    
     <script type="text/javascript">
       $(document).ready(function(){
@@ -499,7 +500,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 							<div style="margin-top: 10px;"><strong>Data de nascimento</strong></div>
 							<?php print_custom_field('basicanascimento'); ?><br />
 
-							<div style="margin-top: 10px;"><strong>Gênero</strong></div>
+							<div style="margin-top: 10px;"><strong>Sexo</strong></div>
 							<?php print_custom_field('basicagenero'); ?><br />
 
 							<div style="margin-top: 10px;"><strong>Telefones</strong></div>
@@ -590,6 +591,12 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 				if ($conteudo == '') { } else { ?>
 				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Patrocínio ou apoio que esta procurando</h4>
 				<?php print_custom_field('atletapatrocinio'); ?><br /><br />
+				<?php } $conteudo = ""; ?>
+
+				<?php $conteudo = get_custom_field('patrocinio_tive');
+				if ($conteudo == '') { } else { ?>
+				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Patrocinios ou apoios que já tive</h4>
+				<?php print_custom_field('patrocinio_tive'); ?><br /><br />
 				<?php } $conteudo = ""; ?>
 
 				<?php $conteudo = get_custom_field('atletameusonho');

@@ -12,6 +12,16 @@
 	.classificados:hover {
 		border: solid 1px #BBBBBB;
 	}
+
+#input_estado{
+  width: 180px;
+  border-radius: 4px;
+}
+
+#select_estado{
+	display: none;
+}
+
 </style>
 <?php
 /**
@@ -44,43 +54,9 @@ global $themify; ?>
 						<input id="author" name="nome" type="text" value="" size="30" class="required" style="width: 190px; height: 30px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
 					</div>
 
-					<div style="float: left; margin-right: 15px; margin-left: 25px;">
-						<span class="post-category"><a href="#">Estado</a></span><br>
-						<select  class="selectitens" name="estado">
-										<option>-- Selecione --</option>
-										<option>Acre</option>
-						                <option>Alagoas</option>
-						                <option>Amapá</option>
-						                <option>Amazonas</option>
-						                <option>Bahia</option>
-						                <option>Ceará</option>
-						                <option>Distrito Federal</option>
-						                <option>Espírito Santo</option>
-						                <option>Goiás</option>
-						                <option>Maranhão</option>
-						                <option>Mato Grosso</option>
-						                <option>Mato Grosso do Sul</option>
-						                <option>Minas Gerais</option>
-						                <option>Pará</option>
-						                <option>Paraíba</option>
-						                <option>Paraná</option>
-						                <option>Pernambuco</option>
-						                <option>Piauí</option>
-						                <option>Rio de Janeiro</option>
-						                <option>Rio Grande do Norte</option>
-						                <option>Rio Grande do Sul</option>
-						                <option>Rondônia</option>
-						                <option>Roraima</option>
-						                <option>Santa Catarina</option>
-						                <option>São Paulo</option>
-						                <option>Sergipe</option>
-						                <option>Tocantins</option>
-									</select>
-					</div>
-
-				    <div style="float: left; margin-right: 15px; margin-top: 8px; margin-left: 25px;">
+				    <div style="float: left; margin-right: 15px; margin-top: -1px; margin-left: 25px;">
 				      <span class="post-category"><a href="#">Pais</a></span><br>
-				      <select class="selectitens" name="pais">
+				      <select class="selectitens" name="pais" id="pais" onchange="SelectPais();">
 				        <option>-- Selecione um pais --</option>
 			              <option value="Afeganistão">Afeganistão</option>
 			              <option value="África do Sul">África do Sul</option>
@@ -341,6 +317,41 @@ global $themify; ?>
 			          </select>
 				    </div>  
 
+					<div style="float: left; margin-right: 15px; margin-left: 25px; margin-top: 8px;">
+						<span class="post-category"><a href="#">Estado</a></span><br>
+						<input name="estado" type="text" id="input_estado">
+						<select  class="selectitens" name="estado" id="select_estado">
+										<option>-- Selecione --</option>
+										<option>Acre</option>
+						                <option>Alagoas</option>
+						                <option>Amapá</option>
+						                <option>Amazonas</option>
+						                <option>Bahia</option>
+						                <option>Ceará</option>
+						                <option>Distrito Federal</option>
+						                <option>Espírito Santo</option>
+						                <option>Goiás</option>
+						                <option>Maranhão</option>
+						                <option>Mato Grosso</option>
+						                <option>Mato Grosso do Sul</option>
+						                <option>Minas Gerais</option>
+						                <option>Pará</option>
+						                <option>Paraíba</option>
+						                <option>Paraná</option>
+						                <option>Pernambuco</option>
+						                <option>Piauí</option>
+						                <option>Rio de Janeiro</option>
+						                <option>Rio Grande do Norte</option>
+						                <option>Rio Grande do Sul</option>
+						                <option>Rondônia</option>
+						                <option>Roraima</option>
+						                <option>Santa Catarina</option>
+						                <option>São Paulo</option>
+						                <option>Sergipe</option>
+						                <option>Tocantins</option>
+									</select>
+					</div>
+
 					<div style="float: left; margin-right: 15px; margin-left: 25px; margin-top: 10px;">
 						<span class="post-category"><a href="#">Esporte</a></span><br>
 						<select class="selectitens" name="esporte">
@@ -422,78 +433,28 @@ global $themify; ?>
 					<div style="float: left; margin-right: 15px; margin-left: 25px; margin-top: 10px;">
 						<span class="post-category"><a href="#">Profissão</a></span><br>
 						<select class="selectitens" name="profissao">
-						<option>-- Selecione --</option>
-										<option>Aeromodelismo</option>
-										<option>Alpinismo</option>
-										<option>Asa Delta</option>
-										<option>BMX</option>
-										<option>BMX – Free style</option>
-										<option>Balonismo</option>
-										<option>Base Jumping</option>
-										<option>Bodyboard</option>
-										<option>Bouldering</option>
-										<option>Bungee Jumping</option>
-										<option>Canoagem</option>
-										<option>Carveboard</option>
-										<option>Caça submarina</option>
-										<option>Ciclismo</option>
-										<option>Cliff Diving</option>
-										<option>Corrida aventura</option>
-										<option>Drift</option>
-										<option>Escalada</option>
-										<option>Esqui</option>
-										<option>Football Freestyle</option>
-										<option>Free Style Motocross</option>
-										<option>FreeBoard</option>
-										<option>Heli-Skiing</option>
-										<option>Highline</option>
-										<option>Jet Ski</option>
-										<option>Kart</option>
-										<option>Kitesurfing</option>
-										<option>Liquid Mountaineering</option>
-										<option>Longboard skate</option>
-										<option>Longboard surf</option>
-										<option>Mega ramp</option>
-										<option>Mergulho</option>
-										<option>Moto Trial</option>
-										<option>Moto Wheeling</option>
-										<option>Motocross</option>
-										<option>Mountain Bike</option>
-										<option>Mountain biking</option>
-										<option>Mountain boarding</option>
-										<option>Off Road/Rally</option>
-										<option>Paintball</option>
-										<option>Paragliding</option>
-										<option>Paragliding</option>
-										<option>Parapente</option>
-										<option>Parkour</option>
-										<option>Patins in Line</option>
-										<option>Psicobloc</option>
-										<option>Rafting</option>
-										<option>Rally</option>
-										<option>Rapel</option>
-										<option>Sandboard</option>
-										<option>Skate - Street</option>
-										<option>Skate – Free style</option>
-										<option>Skate – Mini ramp</option>
-										<option>Sky Surfing</option>
-										<option>Skydive</option>
-										<option>Slackline</option>
-										<option>Snowboard</option>
-										<option>Stand Up Paddle</option>
-										<option>Street Luge</option>
-										<option>Surf</option>
-										<option>Surf - Freesurf</option>
-										<option>Tow-in</option>
-										<option>Trekking</option>
-										<option>Triathlon</option>
-										<option>UFC (MMA)</option>
-										<option>Vela/Iatismo</option>
-										<option>Velocidade</option>
-										<option>Wakeboard</option>
-										<option>Wakeboard Free style</option>
-										<option>Windsurf</option>
-										<option>WingWalking</option>
+				              <option>-- Selecione --</option>
+				              <option value="Assessor de imprensa">Assessor de imprensa</option>
+				              <option value="Coordenador de eventos">Coordenador de eventos</option>
+				              <option value="Desenhista">Desenhista</option>
+				              <option value="Empresário">Empresário</option>
+				              <option value="Estatístico">Estatístico</option>
+				              <option value="Estilista">Estilista</option>
+				              <option value="Executivo de contas publicitárias">Executivo de contas publicitárias</option>
+				              <option value="Fisioterapeuta">Fisioterapeuta</option>
+				              <option value="Fotografo">Fotografo</option>
+				              <option value="Fotojornalista">Fotojornalista</option>
+				              <option value="Gerente de relações públicas">Gerente de relações públicas</option>
+				              <option value="Gestor desportivo">Gestor desportivo</option>
+				              <option value="Jornalista">Jornalista</option>
+				              <option value="Nutricionista">Nutricionista</option>
+				              <option value="Personal Crossfit">Personal Crossfit</option>
+				              <option value="Personal academia">Personal academia</option>
+				              <option value="Professor de idomas">Professor de idomas</option>
+				              <option value="Psicologo">Psicologo</option>
+				              <option value="Psicólogo esportivo">Psicólogo esportivo</option>
+				              <option value="Técnico">Técnico</option>
+				              <option value="Videomaker">Videomaker</option>
 						</select>
 					</div>
 
@@ -588,3 +549,16 @@ global $themify; ?>
 <!-- /layout-container -->
 
 <?php get_footer(); ?>
+
+<script type="text/javascript">
+function SelectPais(){
+	var teste_pais = $('#pais').val();
+  if (teste_pais == 'Brasil') {
+  	$('#input_estado').hide();
+  	$('#select_estado').show();
+  }else if (teste_pais != 'Brasil') {
+  	$('#input_estado').show();
+  	$('#select_estado').hide();
+  }
+}
+</script>

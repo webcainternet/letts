@@ -13,16 +13,6 @@
  *  @var object */
 global $themify; ?>
 
-<script type="text/javascript">
-  newsfiltraesporte() {
-    document.forms["filtroesporte"].submit();
-  }
-
-  $( ".selectitens" ).change(function() {
-    alert( "Handler for .change() called." );
-});
-</script>
-
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
 
@@ -40,9 +30,9 @@ global $themify; ?>
         
         <div class="post-meta" style="display: inline;">
           <div style="float: left; margin-right: 15px;">
+            <form id="formulario" name="form" method="POST" action="/eventos/">
               <span class="post-category" style="margin-right: 102px;"><a href="#">Esporte</a></span><br>
-              <form method="post" id="filtroesporte">
-              <select name="slesporte" class="selectitens"  onchange="this.form.submit();">
+              <select name="esporte" class="selectitens" onchange="ChangeSelect();">
                       <option>-- Selecione --</option>
                       <option>Aeromodelismo</option>
                       <option>Alpinismo</option>
@@ -123,84 +113,35 @@ global $themify; ?>
 
           <div style="float: left; margin-right: 15px;">
             <span class="post-category" style="margin-right: 84px;"><a href="#">Profissão</a></span><br>
-            <select  class="selectitens" name="profissao">
-                    <option>Aeromodelismo</option>
-                    <option>Alpinismo</option>
-                    <option>Asa Delta</option>
-                    <option>BMX</option>
-                    <option>BMX – Free style</option>
-                    <option>Balonismo</option>
-                    <option>Base Jumping</option>
-                    <option>Bodyboard</option>
-                    <option>Bouldering</option>
-                    <option>Bungee Jumping</option>
-                    <option>Canoagem</option>
-                    <option>Carveboard</option>
-                    <option>Caça submarina</option>
-                    <option>Ciclismo</option>
-                    <option>Cliff Diving</option>
-                    <option>Corrida aventura</option>
-                    <option>Drift</option>
-                    <option>Escalada</option>
-                    <option>Esqui</option>
-                    <option>Football Freestyle</option>
-                    <option>Free Style Motocross</option>
-                    <option>FreeBoard</option>
-                    <option>Heli-Skiing</option>
-                    <option>Highline</option>
-                    <option>Jet Ski</option>
-                    <option>Kart</option>
-                    <option>Kitesurfing</option>
-                    <option>Liquid Mountaineering</option>
-                    <option>Longboard skate</option>
-                    <option>Longboard surf</option>
-                    <option>Mega ramp</option>
-                    <option>Mergulho</option>
-                    <option>Moto Trial</option>
-                    <option>Moto Wheeling</option>
-                    <option>Motocross</option>
-                    <option>Mountain Bike</option>
-                    <option>Mountain biking</option>
-                    <option>Mountain boarding</option>
-                    <option>Off Road/Rally</option>
-                    <option>Paintball</option>
-                    <option>Paragliding</option>
-                    <option>Paragliding</option>
-                    <option>Parapente</option>
-                    <option>Parkour</option>
-                    <option>Patins in Line</option>
-                    <option>Psicobloc</option>
-                    <option>Rafting</option>
-                    <option>Rally</option>
-                    <option>Rapel</option>
-                    <option>Sandboard</option>
-                    <option>Skate - Street</option>
-                    <option>Skate – Free style</option>
-                    <option>Skate – Mini ramp</option>
-                    <option>Sky Surfing</option>
-                    <option>Skydive</option>
-                    <option>Slackline</option>
-                    <option>Snowboard</option>
-                    <option>Stand Up Paddle</option>
-                    <option>Street Luge</option>
-                    <option>Surf</option>
-                    <option>Surf - Freesurf</option>
-                    <option>Tow-in</option>
-                    <option>Trekking</option>
-                    <option>Triathlon</option>
-                    <option>UFC (MMA)</option>
-                    <option>Vela/Iatismo</option>
-                    <option>Velocidade</option>
-                    <option>Wakeboard</option>
-                    <option>Wakeboard Free style</option>
-                    <option>Windsurf</option>
-                    <option>WingWalking</option>
+            <select  class="selectitens" id="profissao" name="profissao" onchange="ChangeSelect();">
+              <option>-- Selecione --</option>
+              <option value="Assessor de imprensa">Assessor de imprensa</option>
+              <option value="Coordenador de eventos">Coordenador de eventos</option>
+              <option value="Desenhista">Desenhista</option>
+              <option value="Empresário">Empresário</option>
+              <option value="Estatístico">Estatístico</option>
+              <option value="Estilista">Estilista</option>
+              <option value="Executivo de contas publicitárias">Executivo de contas publicitárias</option>
+              <option value="Fisioterapeuta">Fisioterapeuta</option>
+              <option value="Fotografo">Fotografo</option>
+              <option value="Fotojornalista">Fotojornalista</option>
+              <option value="Gerente de relações públicas">Gerente de relações públicas</option>
+              <option value="Gestor desportivo">Gestor desportivo</option>
+              <option value="Jornalista">Jornalista</option>
+              <option value="Nutricionista">Nutricionista</option>
+              <option value="Personal Crossfit">Personal Crossfit</option>
+              <option value="Personal academia">Personal academia</option>
+              <option value="Professor de idomas">Professor de idomas</option>
+              <option value="Psicologo">Psicologo</option>
+              <option value="Psicólogo esportivo">Psicólogo esportivo</option>
+              <option value="Técnico">Técnico</option>
+              <option value="Videomaker">Videomaker</option>
                   </select>
           </div>
 
     <div style="float: left; margin-right: 15px;">
       <span class="post-category" style="margin-right: 125px;"><a href="#">Pais</a></span><br>
-      <select class="selectitens">
+      <select class="selectitens" name="pais" onchange="ChangeSelect();">
         <option>-- Selecione --</option>
         <option value="AF">Afghanistan</option>
         <option value="AL">Albania</option>
@@ -452,7 +393,31 @@ global $themify; ?>
 
           <div style="width: 100%; float: left; height: 1px;"> &nbsp;</div>
 
-    <?php query_posts('post_type=eventos');
+    <?php 
+    $args = array(
+      'post_type' => 'eventos',
+      'meta_query' => array(
+        'relation' => 'OR',
+        array(
+          'key' => 'atletaesporte',
+          'value' => $_POST['esporte'],
+          'compare' => 'LIKE'
+        ),
+        array(
+          'key' => 'basicapaisatual',
+          'value' => $_POST['pais'],
+          'compare' => 'LIKE'
+        ),                
+        array(
+          'key' => 'profissao',
+          'value' => $_POST['profissao'],
+          'compare' => 'LIKE'
+        )
+      )
+    ); ?>
+
+
+  <?php query_posts($args);
     while (have_posts()): the_post(); ?>
 
           <?php $basicaimagemurl = get_custom_field('eventofoto:to_image_src');
@@ -507,3 +472,10 @@ global $themify; ?>
 <!-- /layout-container -->
   
 <?php get_footer(); ?>
+
+<script type="text/javascript">
+function ChangeSelect(){
+  $('#formulario').submit();
+}
+
+</script>

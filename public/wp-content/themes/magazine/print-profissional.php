@@ -133,13 +133,10 @@ body{
         }
       ?>
 
+      <?php if (get_custom_field('paisesviagem')) { ?>
       <div style="margin-top: 10px;"><strong>Paises que já viajou</strong></div>
-      <?php 
-        $my_array = get_custom_field('paisesviagem:to_array');
-        foreach ($my_array as $item) {
-          print $item.'<br />'; 
-        }
-      ?>                  
+      <?php print_custom_field('paisesviagem');
+      } ?>                
 
       <div style="margin-top: 10px;"><strong>Outros Contatos</strong></div>
           <?php if (get_custom_field('basicafacebook')) { ?>

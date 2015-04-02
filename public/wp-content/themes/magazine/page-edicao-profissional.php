@@ -116,14 +116,14 @@ textarea{
               <div style="margin-top: 10px;"><strong>Data de nascimento</strong></div>
               <input type="text" name="data_nascimento" value="<?php print_custom_field('basicanascimento'); ?>"><br />
 
-              <div style="margin-top: 10px;"><strong>Gênero</strong></div>
+              <div style="margin-top: 10px;"><strong>Sexo</strong></div>
               <input type="text" name="genero" value="<?php print_custom_field('basicagenero'); ?>"><br />
 
               <div style="margin-top: 10px;"><strong>Telefones</strong></div>
               <input type="text" name="telefones" value="<?php print_custom_field('basicatelefones'); ?>"><br />
 
               <div style="margin-top: 10px;"><strong>Nascimento</strong></div>
-              <input type="text" name="cidade_nascimento" value="<?php print_custom_field('basicacidadenascimento'); ?>">
+              <div style="margin-top: 5px;">Estado</div>
              <select name="estado_nascimento" id="estado_nascimento" style="width: 243px; height: 35px; margin-bottom: 14px; font-size: 0.9em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
               <option>-- Selecione o estado --</option> 
               <option value="Acre">Acre</option> 
@@ -154,10 +154,12 @@ textarea{
               <option value="São Paulo">São Paulo</option> 
               <option value="Tocantins">Tocantins</option> 
              </select>              
-              <br />
+              <div style="margin-top: -10px;">Cidade</div>
+              <input type="text" name="cidade_nascimento" value="<?php print_custom_field('basicacidadenascimento'); ?>">
+              <br /><br />
 
               <div style="margin-top: 10px;"><strong>Onde Mora</strong></div>
-              <input type="text" name="cidade_atual" value="<?php print_custom_field('basicacidadeatual'); ?>">
+             <div style="margin-top: 5px;">Estado</div>
              <select name="estado_atual" id="estado_atual" style="width: 243px; height: 35px; margin-bottom: 14px; font-size: 0.9em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
               <option>-- Selecione o estado --</option> 
               <option value="Acre">Acre</option> 
@@ -188,15 +190,19 @@ textarea{
               <option value="São Paulo">São Paulo</option> 
               <option value="Tocantins">Tocantins</option> 
              </select>
-             <br />
+              <div style="margin-top: -10px;">Cidade</div>
+              <input type="text" name="cidade_atual" value="<?php print_custom_field('basicacidadeatual'); ?>">
+              <br><br>
 
               <div style="margin-top: 10px;"><strong>Escolaridade</strong></div>
               <select id="escolaridade" name="escolaridade" style="width: 240px; height: 35px; font-size: 1.00em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: left; margin-top: -2px; ">
                       <option>-- Selecione a escolaridade --</option>
-                      <option value="1o Grau">1o Grau</option>
-                      <option value="2o Grau">2o Grau</option>
-                      <option value="3o Grau">3o Grau</option>
-               </select>  <br />               
+                      <option value="1o Grau">Primeiro Grau</option>
+                      <option value="2o Grau">Segundo Grau</option>
+                      <option value="3o Grau">Terceiro Grau</option>
+                      <option value="Pós-Graduação">Pós-Graduação</option>
+                      <option value="Doutorado">Doutorado</option>
+               </select>  <br />                
 
             <div style="margin-top: 10px;"><br /><strong>Idiomas</strong></div>
             <div class="idiomas_edit">

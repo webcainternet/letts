@@ -138,13 +138,10 @@ global $themify; ?>
                 <span class="post-category">
                   <?php the_content(); ?>
                 </span>
-
-                <div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="674px" data-numposts="5" data-colorscheme="light"></div>
               </p>
-
-
             </div>
           </article>
+                <?php comments_template( 'comments.php',true ); ?> 
         </div>
 
         <div style="margin: 0px; padding: 0px;">
