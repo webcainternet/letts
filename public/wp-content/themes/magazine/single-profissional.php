@@ -126,6 +126,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     	add_post_meta($cur_post_id, 'profissao', $_POST['profissao'], true);	
 		add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
 		add_post_meta($cur_post_id, 'videourl', $_POST['link_video'], true);
+		add_post_meta($cur_post_id, 'Aprovado', 1 , true);
 
 		$tipo_video = explode("/", $_POST['link_video']);
 		$final_tipo = $tipo_video[2];
@@ -578,12 +579,15 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 			<?php if ($_GET["page"] == "sobre") { ?>
 				
+				<?php $conteudo = get_the_content();
+				if ($conteudo == '') { } else { ?>
 				<div style="width: 685px; float: left; margin-left: 50px;">
 				
 				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Minha história</h4>
 				<?php the_content(); ?>
 
 				</div>
+				<?php } ?>
 			<?php } ?>
 
 			<?php if ($_GET["page"] == "" || $_GET["page"] == "news") { ?>

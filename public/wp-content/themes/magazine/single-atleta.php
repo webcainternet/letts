@@ -129,6 +129,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     	add_post_meta($cur_post_id, 'profissao', $_POST['profissao'], true);		
 		add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
 		add_post_meta($cur_post_id, 'videourl', $_POST['link_video'], true);
+		add_post_meta($cur_post_id, 'Aprovado', 1 , true);
 
 		$tipo_video = explode("/", $_POST['link_video']);
 		$final_tipo = $tipo_video[2];
@@ -579,17 +580,29 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 				
 				<div style="width: 685px; float: left; margin-left: 50px;">
 				
+				<?php $conteudo = get_the_content();
+				if ($conteudo == '') { } else { ?>
 				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Minha história</h4>
 				<?php the_content(); ?>
+				<?php } $conteudo = ""; ?>
 
+				<?php $conteudo = get_custom_field('atletapatrocinio');
+				if ($conteudo == '') { } else { ?>
 				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Patrocínio ou apoio que esta procurando</h4>
 				<?php print_custom_field('atletapatrocinio'); ?><br /><br />
+				<?php } $conteudo = ""; ?>
 
+				<?php $conteudo = get_custom_field('atletameusonho');
+				if ($conteudo == '') { } else { ?>
 				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Meu sonho</h4>
 				<?php print_custom_field('atletameusonho'); ?><br /><br />
+				<?php } $conteudo = ""; ?>
 
+				<?php $conteudo = get_custom_field('campeonatospart');
+				if ($conteudo == '') { } else { ?>
 				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Campeonatos que já participei</h4>
 				<?php print_custom_field('campeonatospart'); ?><br /><br />
+				<?php } $conteudo = ""; ?>
 
 				
 
