@@ -141,7 +141,43 @@ global $themify; ?>
               </p>
             </div>
           </article>
-                <?php comments_template( 'comments.php',true ); ?> 
+<?php if ($_SESSION["lettslogin"]) { ?>
+
+    <?php if ($_POST){ ?>
+      <p>Comenário adicionado com sucesso.</p>
+    <?php } ?>
+
+   <form action="" method="post" id="commentform">
+      <fieldset>
+      <h3><span>Deixe seu comentário</span></h3>
+      <ul>
+        <li>
+          <label for="author">Nome: <span>(Obrigatório)</span></label>
+          <input type="text" aria-required="true" tabindex="1" size="22" id="author" name="author" value="" maxlength="100">
+        </li>                           
+        <li>
+          <label for="email">E-mail: <span>(Obrigatório)</span></label>
+          <input type="text" aria-required="true" tabindex="2" size="22" id="email" name="email" value="">
+        </li>                           
+        <li>
+          <label for="url">Website: </label>
+          <input type="text" tabindex="3" size="22" value="" id="url" name="url">
+        </li>
+        <li>
+        <label for="comment">Comentário: </label>
+        <textarea tabindex="4" rows="10" cols="58" id="comment" name="comment"></textarea>
+        <div class="clear"></div>
+        <span>&nbsp;</span>
+        <input type="submit" value="Enviar" tabindex="5" id="submit" class="bt-enviar-comentarios" name="submit">
+        <input type="hidden" name="comment_post_ID" value="<?php the_ID(); ?>" id="comment_post_ID">
+        <input type="hidden" name="comment_parent" id="comment_parent" value="0">
+        </li>                                                        
+      </ul>
+            </fieldset>
+    </form>
+<?php } ?>
+
+
         </div>
 
         <div style="margin: 0px; padding: 0px;">

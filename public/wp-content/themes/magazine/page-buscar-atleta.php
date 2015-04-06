@@ -362,8 +362,8 @@ global $themify; ?>
 						<option>-- Selecione --</option>
 						<option value="1">de 15 a 20</option>
 						<option value="2">de 21 a 25</option>
-						<option value="2">de 26 a 30</option>
-						<option value="2">Maior que 31</option>
+						<option value="3">de 26 a 30</option>
+						<option value="4">Maior que 31</option>
 						</select>
 					</div>
 
@@ -492,6 +492,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     }
 
     ?>
+
     <figure class='small' <?php echo $mostra; ?> style="border: 0px;">
       <a href="/?p=<?php echo $idatleta; ?>">
       	<div style="width: width: 100%; 

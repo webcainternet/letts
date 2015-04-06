@@ -80,7 +80,6 @@ $custom_comment_form = array( 'fields' => apply_filters( 'comment_form_default_f
 
 	<?php endif; // end comments_open() ?>
 
-	<?php themify_comment_end(); //hook ?>
 
 </div>
 <!-- /.commentwrap -->
