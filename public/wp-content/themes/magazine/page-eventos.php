@@ -22,14 +22,14 @@ global $themify; ?>
 
       <div style="float: left; width: 100%; padding-top: 10px; margin-bottom: 10px;">
       
-      <div style="float: left; width: 49%;"> 
+      <div style="float: left; width: 17%;"> 
         <h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">Eventos</h1>
       </div>
 
-      <div style="float: right; width: 51%; text-align: right; margin-bottom: 10px;"> 
+      <div style="float: right; width: 83%; text-align: right; margin-bottom: 10px;"> 
         
         <div class="post-meta" style="display: inline;">
-          <div style="float: left; margin-right: 15px;">
+          <div style="float: left; margin-right: 5px;">
             <form id="formulario" name="form" method="POST" action="/eventos/">
               <span class="post-category" style="margin-right: 102px;"><a href="#">Esporte</a></span><br>
               <select name="esporte" class="selectitens" onchange="ChangeSelect();">
@@ -111,7 +111,7 @@ global $themify; ?>
                     </select>
             </div>        
 
-          <div style="float: left; margin-right: 15px;">
+          <div style="float: left; margin-right: 5px;">
             <span class="post-category" style="margin-right: 84px;"><a href="#">Profissão</a></span><br>
             <select  class="selectitens" id="profissao" name="profissao" onchange="ChangeSelect();">
               <option>-- Selecione --</option>
@@ -139,7 +139,7 @@ global $themify; ?>
                   </select>
           </div>
 
-    <div style="float: left; margin-right: 15px;">
+    <div style="float: left; margin-right: 5px;">
       <span class="post-category" style="margin-right: 125px;"><a href="#">Pais</a></span><br>
       <select class="selectitens" name="pais" onchange="ChangeSelect();">
         <option>-- Selecione --</option>
@@ -381,11 +381,32 @@ global $themify; ?>
         <option value="ZM">Zambia</option>
         <option value="ZW">Zimbabwe</option>
         </select>
-    </div>        
+    </div>
 
-                    </form>
-            </div>
+          <div style="float: left; margin-right: 35px;">
+            <span class="post-category" style="margin-right: 48px;"><a href="#">Tipo de Evento</a></span><br>
+            <select  class="selectitens" id="tipo_evento" name="tipo_evento" onchange="ChangeSelect();">
+              <option>-- Selecione --</option>
+              <option value="Campeonato">Campeonato</option>
+              <option value="Show">Show</option>
+              <option value="Festa">Festa</option>
+              <option value="Empresário">Outros</option>
+                  </select>
+          </div>
+
+
+                       </form>
+
+
+<div style="float: left; margin-right: 5px; margin-top: 25px;">
+        <?php if ($_SESSION["lettslogin"]) { ?> 
+        <div class="bt_acessorios bt_acessorios2">
+          <a class="button" style="color: #FFF;" href="/cadastrar-evento/?id_post=<?php echo $_SESSION["lettslogin"]; ?>">Cadastrar Evento</a>
         </div>
+      <?php } ?>  
+ </div>
+            </div>
+        </div> 
         </div>
 
 
@@ -412,7 +433,12 @@ global $themify; ?>
           'key' => 'profissao',
           'value' => $_POST['profissao'],
           'compare' => 'LIKE'
-        )
+        ),
+        array(
+          'key' => 'eventotipo',
+          'value' => $_POST['tipo_evento'],
+          'compare' => 'LIKE'
+        )        
       )
     ); ?>
 
@@ -450,18 +476,6 @@ global $themify; ?>
         </div>
 
       </div>
-
-        <?php if ($_SESSION["lettslogin"]) { ?> 
-        <div class="bt_acessorios bt_acessorios2">
-          <a class="button" href="/cadastrar-evento/?id_post=<?php echo $_SESSION["lettslogin"]; ?>">Cadastrar Evento</a>
-        </div>
-      <?php } ?>  
-
-
-
-
-    
-
   </div>
 </div>
   <!-- /#contentwrap -->

@@ -319,8 +319,8 @@ global $themify; ?>
 
 					<div style="float: left; margin-right: 15px; margin-left: 25px; margin-top: 8px;">
 						<span class="post-category"><a href="#">Estado</a></span><br>
-						<input name="estado" type="text" id="input_estado">
-						<select  class="selectitens" name="estado" id="select_estado">
+						<input name="estado" type="text" id="input_estado" name="estado">
+						<select  class="selectitens" id="select_estado">
 										<option>-- Selecione --</option>
 										<option>Acre</option>
 						                <option>Alagoas</option>
@@ -468,7 +468,14 @@ global $themify; ?>
 					<a class="button" href="/cadastrar-vagas/?id_post=<?php echo $_SESSION["lettslogin"]; ?>">Cadastrar Vaga</a>
 				</div>
 
-				<?php $body_email = 'http://letts.com.br/?p='.$_SESSION["lettslogin"]; ?>
+				<?php
+					$sql_permalink = mysql_query("SELECT * FROM wp_posts WHERE ID = ".$_SESSION["lettslogin"]);
+					while ($row = mysql_fetch_array($sql_permalink, MYSQL_ASSOC)) {
+						$body_email = 'http://letts.com.br/'.$row['post_name'];
+					}
+
+				 ?>
+
 
 			<?php } ?>	
 
@@ -491,7 +498,7 @@ global $themify; ?>
 					'key' => 'basicaestadoatual',
 					'value' => $_POST['estado'],
 					'compare' => 'LIKE'
-				),
+				),			
 				array(
 					'key' => 'basicapaisatual',
 					'value' => $_POST['pais'],
@@ -561,4 +568,10 @@ function SelectPais(){
   	$('#select_estado').hide();
   }
 }
+
+$('#select_estado').change(function(){
+	var selectestado = $('#select_estado').val();
+	$('#input_estado').val(selectestado);
+})
+
 </script>

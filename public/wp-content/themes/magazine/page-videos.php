@@ -240,6 +240,15 @@ global $themify; ?>
 		
 		</div>
 
+    <?php 
+      $ImgP = explode("http://letts.com.br/wp-content/uploads/", $ImgP);
+      if ($ImgP[1]) {
+        $ImgP = $ImgP[1];
+      }else{
+        $ImgP = $ImgP[0];
+      }
+    ?>
+
 		<div style="float: right; width: 253px;">
 			<section class="module">
 			  <section class="wraper">    
@@ -271,9 +280,9 @@ global $themify; ?>
 		        <a href="/?p=2435">
 		          <strong style="color: #FFFFFF;"><?php echo $NomeU; ?></strong><br>
 		          <span style="color: #FFFFFF;">
-					<a class="videos-link" href="?p=<?php echo $IDLogin; ?>">Mensagem</a> | 
-					<a class="videos-link" href="?p=<?php echo $IDLogin; ?>">Fotos</a> | 
-					<a class="videos-link" href="?p=<?php echo $IDLogin; ?>">Sobre</a>
+					<a class="videos-link" href="?p=<?php echo $IDLogin; ?>&page=mensagem">Mensagem</a> | 
+					<a class="videos-link" href="?p=<?php echo $IDLogin; ?>&page=fotos">Fotos</a> | 
+					<a class="videos-link" href="?p=<?php echo $IDLogin; ?>&page=sobre">Sobre</a>
 		          </span>
 		        </a>
 	        <div>
