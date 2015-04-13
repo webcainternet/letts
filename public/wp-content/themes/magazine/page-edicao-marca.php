@@ -8,6 +8,16 @@
 
 <?php get_header(); ?>
 
+
+<script src="/wp-content/themes/magazine/js/jquery-1.5.2.min.js"></script>
+<script type='text/javascript' src='/wp-content/themes/magazine/js/jquery.maskedinput-1.3.min.js'></script>
+
+<script>
+  $(function($){
+    $("#data_nascimento").mask("99/99/9999");
+  });
+</script>
+
 <?php 
 /** Themify Default Variables
  *  @var object */

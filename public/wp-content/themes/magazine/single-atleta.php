@@ -46,8 +46,8 @@ global $themify; ?>
         update_post_meta($idpost, 'escolaridade', $_POST['escolaridade']);
         update_post_meta($idpost, 'campeonatospart', $_POST['campeonatospart']);
         update_post_meta($idpost, 'idiomas', $_POST['check_idiomas']);
-        update_post_meta($idpost, 'paisesviagem', $_POST['paisesviagem']);        
-        update_post_meta($idpost, 'patrocinio_tive', $_POST['patrocinio_tive']);        
+        update_post_meta($idpost, 'paisesviagem', $_POST['paisesviagem']);  
+        update_post_meta($idpost, 'patrocinio_tive', $_POST['patrocinio_tive']);
 	?>    
     <script type="text/javascript">
       $(document).ready(function(){
@@ -607,6 +607,12 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 				if ($conteudo == '') { } else { ?>
 				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Campeonatos que já participei</h4>
 				<?php print_custom_field('campeonatospart'); ?><br /><br />
+				<?php } $conteudo = ""; ?>
+
+				<?php $conteudo = get_custom_field('paisesviagem');
+				if ($conteudo == '') { } else { ?>
+				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Países que já viajei</h4>
+				<?php print_custom_field('paisesviagem'); ?><br /><br />
 				<?php } $conteudo = ""; ?>
 
 				

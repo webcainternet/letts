@@ -8,6 +8,21 @@
 
 <?php get_header(); ?>
 
+<?php
+function selectedopt($value, $selected){
+    return $value==$selected ? ' selected="selected"' : '';
+}
+?>
+
+<script src="/wp-content/themes/magazine/js/jquery-1.5.2.min.js"></script>
+<script type='text/javascript' src='/wp-content/themes/magazine/js/jquery.maskedinput-1.3.min.js'></script>
+
+<script>
+  $(function($){
+    $("#data_nascimento").mask("99/99/9999");
+  });
+</script>
+
 <?php 
 /** Themify Default Variables
  *  @var object */
@@ -72,30 +87,32 @@ textarea{
     <div style="float: left;
           margin: 0px;
           margin-left: 25px;">
+
+          <?php $vprofissao = get_custom_field('profissao'); ?>
           <div id="text-1017" class="widget widget_text" style="border: 0px; margin: 0px; margin-top: 13px;">
                  <select id="profissao" name="profissao" style="width: 313px; height: 35px; font-size: 0.9em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
                       <option>-- Selecione a profissão --</option>
-                      <option value="Assessor de imprensa">Assessor de imprensa</option>
-                      <option value="Coordenador de eventos">Coordenador de eventos</option>
-                      <option value="Desenhista">Desenhista</option>
-                      <option value="Empresário">Empresário</option>
-                      <option value="Estatístico">Estatístico</option>
-                      <option value="Estilista">Estilista</option>
-                      <option value="Executivo de contas publicitárias">Executivo de contas publicitárias</option>
-                      <option value="Fisioterapeuta">Fisioterapeuta</option>
-                      <option value="Fotografo">Fotografo</option>
-                      <option value="Fotojornalista">Fotojornalista</option>
-                      <option value="Gerente de relações públicas">Gerente de relações públicas</option>
-                      <option value="Gestor desportivo">Gestor desportivo</option>
-                      <option value="Jornalista">Jornalista</option>
-                      <option value="Nutricionista">Nutricionista</option>
-                      <option value="Personal Crossfit">Personal Crossfit</option>
-                      <option value="Personal academia">Personal academia</option>
-                      <option value="Professor de idomas">Professor de idomas</option>
-                      <option value="Psicologo">Psicologo</option>
-                      <option value="Psicólogo esportivo">Psicólogo esportivo</option>
-                      <option value="Técnico">Técnico</option>
-                      <option value="Videomaker">Videomaker</option>
+<option value="Assessor de imprensa" <?php echo selected("Assessor de imprensa", $vprofissao); ?>>Assessor de imprensa</option>
+<option value="Coordenador de eventos" <?php echo selected("Coordenador de ", $vprofissao); ?>>Coordenador de eventos</option>
+<option value="Desenhista" <?php echo selected("Desenhista", $vprofissao); ?>>Desenhista</option>
+<option value="Empresário" <?php echo selected("Empresário", $vprofissao); ?>>Empresário</option>
+<option value="Estatístico" <?php echo selected("Estatístico", $vprofissao); ?>>Estatístico</option>
+<option value="Estilista" <?php echo selected("Estilista", $vprofissao); ?>>Estilista</option>
+<option value="Executivo de contas publicitárias" <?php echo selected("Exec", $vprofissao); ?>>Executivo de contas publicitárias</option>
+<option value="Fisioterapeuta" <?php echo selected("Fisioterapeuta", $vprofissao); ?>>Fisioterapeuta</option>
+<option value="Fotografo" <?php echo selected("Fotografo", $vprofissao); ?>>Fotografo</option>
+<option value="Fotojornalista" <?php echo selected("Fotojornalista", $vprofissao); ?>>Fotojornalista</option>
+<option value="Gerente de relações públicas" <?php echo selected("Gerente de ", $vprofissao); ?>>Gerente de relações públicas</option>
+<option value="Gestor desportivo" <?php echo selected("Gestor desportivo", $vprofissao); ?>>Gestor desportivo</option>
+<option value="Jornalista" <?php echo selected("Jornalista", $vprofissao); ?>>Jornalista</option>
+<option value="Nutricionista" <?php echo selected("Nutricionista", $vprofissao); ?>>Nutricionista</option>
+<option value="Personal Crossfit" <?php echo selected("Personal Crossfit", $vprofissao); ?>>Personal Crossfit</option>
+<option value="Personal academia" <?php echo selected("Personal academia", $vprofissao); ?>>Personal academia</option>
+<option value="Professor de idomas" <?php echo selected("Professor de idomas", $vprofissao); ?>>Professor de idomas</option>
+<option value="Psicologo" <?php echo selected("Psicologo", $vprofissao); ?>>Psicologo</option>
+<option value="Psicólogo esportivo" <?php echo selected("Psicólogo esportivo", $vprofissao); ?>>Psicólogo esportivo</option>
+<option value="Técnico" <?php echo selected("Técnico", $vprofissao); ?>>Técnico</option>
+<option value="Videomaker" <?php echo selected("Videomaker", $vprofissao); ?>>Videomaker</option>
                   </select>    
           </div>
       
@@ -122,86 +139,89 @@ textarea{
               <div style="margin-top: 10px;"><strong>Telefones</strong></div>
               <input type="text" name="telefones" value="<?php print_custom_field('basicatelefones'); ?>"><br />
 
+              <?php $vbasicaestadonascimento = get_custom_field('basicaestadonascimento'); ?>
               <div style="margin-top: 10px;"><strong>Nascimento</strong></div>
               <div style="margin-top: 5px;">Estado</div>
              <select name="estado_nascimento" id="estado_nascimento" style="width: 243px; height: 35px; margin-bottom: 14px; font-size: 0.9em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
               <option>-- Selecione o estado --</option> 
-              <option value="Acre">Acre</option> 
-              <option value="Alagoas">Alagoas</option> 
-              <option value="Amazonas">Amazonas</option> 
-              <option value="Amapá">Amapá</option> 
-              <option value="Bahia">Bahia</option> 
-              <option value="Ceará">Ceará</option> 
-              <option value="Distrito Federal">Distrito Federal</option> 
-              <option value="Espírito Santo">Espírito Santo</option> 
-              <option value="Goiás">Goiás</option> 
-              <option value="Maranhão">Maranhão</option> 
-              <option value="Mato Grosso">Mato Grosso</option> 
-              <option value="Mato Grosso do Sul">Mato Grosso do Sul</option> 
-              <option value="Minas Gerais">Minas Gerais</option> 
-              <option value="Pará">Pará</option> 
-              <option value="Paraíba">Paraíba</option> 
-              <option value="Paraná">Paraná</option> 
-              <option value="Pernambuco">Pernambuco</option> 
-              <option value="Piauí">Piauí</option> 
-              <option value="Rio de Janeiro">Rio de Janeiro</option> 
-              <option value="Rio Grande do Norte">Rio Grande do Norte</option> 
-              <option value="Rondônia">Rondônia</option> 
-              <option value="Rio Grande do Sul">Rio Grande do Sul</option> 
-              <option value="Roraima">Roraima</option> 
-              <option value="Santa Catarina">Santa Catarina</option> 
-              <option value="Sergipe">Sergipe</option> 
-              <option value="São Paulo">São Paulo</option> 
-              <option value="Tocantins">Tocantins</option> 
+<option value="Acre" <?php echo selected("Acre", $vbasicaestadonascimento); ?>>Acre</option> 
+<option value="Alagoas" <?php echo selected("Alagoas", $vbasicaestadonascimento); ?>>Alagoas</option> 
+<option value="Amazonas" <?php echo selected("Amazonas", $vbasicaestadonascimento); ?>>Amazonas</option> 
+<option value="Amapá" <?php echo selected("Amapá", $vbasicaestadonascimento); ?>>Amapá</option> 
+<option value="Bahia" <?php echo selected("Bahia", $vbasicaestadonascimento); ?>>Bahia</option> 
+<option value="Ceará" <?php echo selected("Ceará", $vbasicaestadonascimento); ?>>Ceará</option> 
+<option value="Distrito Federal" <?php echo selected("Distrito Federal", $vbasicaestadonascimento); ?>>Distrito Federal</option> 
+<option value="Espírito Santo" <?php echo selected("Espírito Santo", $vbasicaestadonascimento); ?>>Espírito Santo</option> 
+<option value="Goiás" <?php echo selected("Goiás", $vbasicaestadonascimento); ?>>Goiás</option> 
+<option value="Maranhão" <?php echo selected("Maranhão", $vbasicaestadonascimento); ?>>Maranhão</option> 
+<option value="Mato Grosso" <?php echo selected("Mato Grosso", $vbasicaestadonascimento); ?>>Mato Grosso</option> 
+<option value="Mato Grosso do Sul" <?php echo selected("Mato Grosso do Sul", $vbasicaestadonascimento); ?>>Mato Grosso do Sul</option> 
+<option value="Minas Gerais" <?php echo selected("Minas Gerais", $vbasicaestadonascimento); ?>>Minas Gerais</option> 
+<option value="Pará" <?php echo selected("Pará", $vbasicaestadonascimento); ?>>Pará</option> 
+<option value="Paraíba" <?php echo selected("Paraíba", $vbasicaestadonascimento); ?>>Paraíba</option> 
+<option value="Paraná" <?php echo selected("Paraná", $vbasicaestadonascimento); ?>>Paraná</option> 
+<option value="Pernambuco" <?php echo selected("Pernambuco", $vbasicaestadonascimento); ?>>Pernambuco</option> 
+<option value="Piauí" <?php echo selected("Piauí", $vbasicaestadonascimento); ?>>Piauí</option> 
+<option value="Rio de Janeiro" <?php echo selected("Rio de Janeiro", $vbasicaestadonascimento); ?>>Rio de Janeiro</option> 
+<option value="Rio Grande do Norte" <?php echo selected("Rio Grande do Norte", $vbasicaestadonascimento); ?>>Rio Grande do Norte</option> 
+<option value="Rondônia" <?php echo selected("Rondônia", $vbasicaestadonascimento); ?>>Rondônia</option> 
+<option value="Rio Grande do Sul" <?php echo selected("Rio Grande do Sul", $vbasicaestadonascimento); ?>>Rio Grande do Sul</option> 
+<option value="Roraima" <?php echo selected("Roraima", $vbasicaestadonascimento); ?>>Roraima</option> 
+<option value="Santa Catarina" <?php echo selected("Santa Catarina", $vbasicaestadonascimento); ?>>Santa Catarina</option> 
+<option value="Sergipe" <?php echo selected("Sergipe", $vbasicaestadonascimento); ?>>Sergipe</option> 
+<option value="São Paulo" <?php echo selected("São Paulo", $vbasicaestadonascimento); ?>>São Paulo</option> 
+<option value="Tocantins" <?php echo selected("Tocantins", $vbasicaestadonascimento); ?>>Tocantins</option> 
              </select>              
               <div style="margin-top: -10px;">Cidade</div>
               <input type="text" name="cidade_nascimento" value="<?php print_custom_field('basicacidadenascimento'); ?>">
               <br /><br />
 
+              <?php $vbasicaestadoatual = get_custom_field('basicaestadoatual'); ?>
               <div style="margin-top: 10px;"><strong>Onde Mora</strong></div>
              <div style="margin-top: 5px;">Estado</div>
              <select name="estado_atual" id="estado_atual" style="width: 243px; height: 35px; margin-bottom: 14px; font-size: 0.9em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
               <option>-- Selecione o estado --</option> 
-              <option value="Acre">Acre</option> 
-              <option value="Alagoas">Alagoas</option> 
-              <option value="Amazonas">Amazonas</option> 
-              <option value="Amapá">Amapá</option> 
-              <option value="Bahia">Bahia</option> 
-              <option value="Ceará">Ceará</option> 
-              <option value="Distrito Federal">Distrito Federal</option> 
-              <option value="Espírito Santo">Espírito Santo</option> 
-              <option value="Goiás">Goiás</option> 
-              <option value="Maranhão">Maranhão</option> 
-              <option value="Mato Grosso">Mato Grosso</option> 
-              <option value="Mato Grosso do Sul">Mato Grosso do Sul</option> 
-              <option value="Minas Gerais">Minas Gerais</option> 
-              <option value="Pará">Pará</option> 
-              <option value="Paraíba">Paraíba</option> 
-              <option value="Paraná">Paraná</option> 
-              <option value="Pernambuco">Pernambuco</option> 
-              <option value="Piauí">Piauí</option> 
-              <option value="Rio de Janeiro">Rio de Janeiro</option> 
-              <option value="Rio Grande do Norte">Rio Grande do Norte</option> 
-              <option value="Rondônia">Rondônia</option> 
-              <option value="Rio Grande do Sul">Rio Grande do Sul</option> 
-              <option value="Roraima">Roraima</option> 
-              <option value="Santa Catarina">Santa Catarina</option> 
-              <option value="Sergipe">Sergipe</option> 
-              <option value="São Paulo">São Paulo</option> 
-              <option value="Tocantins">Tocantins</option> 
+<option value="Acre" <?php echo selected("Acre", $vbasicaestadoatual); ?>>Acre</option> 
+<option value="Alagoas" <?php echo selected("Alagoas", $vbasicaestadoatual); ?>>Alagoas</option> 
+<option value="Amazonas" <?php echo selected("Amazonas", $vbasicaestadoatual); ?>>Amazonas</option> 
+<option value="Amapá" <?php echo selected("Amapá", $vbasicaestadoatual); ?>>Amapá</option> 
+<option value="Bahia" <?php echo selected("Bahia", $vbasicaestadoatual); ?>>Bahia</option> 
+<option value="Ceará" <?php echo selected("Ceará", $vbasicaestadoatual); ?>>Ceará</option> 
+<option value="Distrito Federal" <?php echo selected("Distrito Federal", $vbasicaestadoatual); ?>>Distrito Federal</option> 
+<option value="Espírito Santo" <?php echo selected("Espírito Santo", $vbasicaestadoatual); ?>>Espírito Santo</option> 
+<option value="Goiás" <?php echo selected("Goiás", $vbasicaestadoatual); ?>>Goiás</option> 
+<option value="Maranhão" <?php echo selected("Maranhão", $vbasicaestadoatual); ?>>Maranhão</option> 
+<option value="Mato Grosso" <?php echo selected("Mato Grosso", $vbasicaestadoatual); ?>>Mato Grosso</option> 
+<option value="Mato Grosso do Sul" <?php echo selected("Mato Grosso do Sul", $vbasicaestadoatual); ?>>Mato Grosso do Sul</option> 
+<option value="Minas Gerais" <?php echo selected("Minas Gerais", $vbasicaestadoatual); ?>>Minas Gerais</option> 
+<option value="Pará" <?php echo selected("Pará", $vbasicaestadoatual); ?>>Pará</option> 
+<option value="Paraíba" <?php echo selected("Paraíba", $vbasicaestadoatual); ?>>Paraíba</option> 
+<option value="Paraná" <?php echo selected("Paraná", $vbasicaestadoatual); ?>>Paraná</option> 
+<option value="Pernambuco" <?php echo selected("Pernambuco", $vbasicaestadoatual); ?>>Pernambuco</option> 
+<option value="Piauí" <?php echo selected("Piauí", $vbasicaestadoatual); ?>>Piauí</option> 
+<option value="Rio de Janeiro" <?php echo selected("Rio de Janeiro", $vbasicaestadoatual); ?>>Rio de Janeiro</option> 
+<option value="Rio Grande do Norte" <?php echo selected("Rio Grande do Norte", $vbasicaestadoatual); ?>>Rio Grande do Norte</option> 
+<option value="Rondônia" <?php echo selected("Rondônia", $vbasicaestadoatual); ?>>Rondônia</option> 
+<option value="Rio Grande do Sul" <?php echo selected("Rio Grande do Sul", $vbasicaestadoatual); ?>>Rio Grande do Sul</option> 
+<option value="Roraima" <?php echo selected("Roraima", $vbasicaestadoatual); ?>>Roraima</option> 
+<option value="Santa Catarina" <?php echo selected("Santa Catarina", $vbasicaestadoatual); ?>>Santa Catarina</option> 
+<option value="Sergipe" <?php echo selected("Sergipe", $vbasicaestadoatual); ?>>Sergipe</option> 
+<option value="São Paulo" <?php echo selected("São Paulo", $vbasicaestadoatual); ?>>São Paulo</option> 
+<option value="Tocantins" <?php echo selected("Tocantins", $vbasicaestadoatual); ?>>Tocantins</option> 
              </select>
               <div style="margin-top: -10px;">Cidade</div>
               <input type="text" name="cidade_atual" value="<?php print_custom_field('basicacidadeatual'); ?>">
               <br><br>
 
+              <?php $vescolaridade = get_custom_field('escolaridade'); ?>
               <div style="margin-top: 10px;"><strong>Escolaridade</strong></div>
               <select id="escolaridade" name="escolaridade" style="width: 240px; height: 35px; font-size: 1.00em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: left; margin-top: -2px; ">
                       <option>-- Selecione a escolaridade --</option>
-                      <option value="1o Grau">Primeiro Grau</option>
-                      <option value="2o Grau">Segundo Grau</option>
-                      <option value="3o Grau">Terceiro Grau</option>
-                      <option value="Pós-Graduação">Pós-Graduação</option>
-                      <option value="Doutorado">Doutorado</option>
+<option value="Primeiro Grau" <?php echo selected("Primeiro Grau", $vescolaridade); ?>>Primeiro Grau</option>
+<option value="Segundo Grau" <?php echo selected("Segundo Grau", $vescolaridade); ?>>Segundo Grau</option>
+<option value="Terceiro Grau" <?php echo selected("Terceiro Grau", $vescolaridade); ?>>Terceiro Grau</option>
+<option value="Pós-Graduação" <?php echo selected("Pós-Graduação", $vescolaridade); ?>>Pós-Graduação</option>
+<option value="Doutorado" <?php echo selected("Doutorado", $vescolaridade); ?>>Doutorado</option>
                </select>  <br />                
 
             <div style="margin-top: 10px;"><br /><strong>Idiomas</strong></div>
