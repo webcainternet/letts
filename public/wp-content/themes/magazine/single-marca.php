@@ -178,7 +178,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		<!-- content -->
 
 <!-- layout-container -->
-<div id="layout" class="pagewidth clearfix">
+<div id="layout" class="pagewidth clearfix" style="margin-bottom: 40px;">
 
 	
 		
@@ -301,6 +301,8 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 </div>
 <!-- /layout-container -->
+
+<?php include('/wp-content/themes/magazine/banners.php') ?>  
 	
 <?php get_footer(); ?>
 

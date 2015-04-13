@@ -88,6 +88,17 @@ body{
     while (have_posts()): the_post(); ?>
   <div id="mainContent">
     <div id="content">
+<div style="float: right; width: 690px;">
+    <h1 class="entry-title" style="text-transform: uppercase;"><?php the_title(); ?></h1>
+      <div class="entry-content">
+        <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Minha história</h4>
+        <?php the_content(); ?>
+      </div>
+          <div style="margin-top: 10px;"><strong>Link dos vídeos:</strong></div>
+          <?php the_permalink(); ?>?page=videos      
+</div>      
+
+<div style="float: left; width: 210px;">
           <div style="float: left;
           border: 1px #ff8920 solid; 
           width: 180px; 
@@ -98,12 +109,6 @@ body{
           background-position:center;margin-right: 30px;" id="imgbackground">
       &nbsp;
     </div>
-    <h1 class="entry-title" style="text-transform: uppercase;"><?php the_title(); ?></h1>
-      <div class="entry-content">
-        <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Minha história</h4>
-        <?php the_content(); ?>
-      </div>
-
       <div style="margin-top: 10px;"><strong>Data de nascimento</strong></div>
       <?php print_custom_field('basicanascimento'); ?><br />
 
@@ -169,11 +174,8 @@ body{
             <?php print_custom_field('site'); ?>
           <?php } ?>
 
-          <div style="margin-top: 10px;"><strong>Link dos vídeos:</strong></div>
-          <?php the_permalink(); ?>?page=videos
-
-        </div>          
-
+       </div>          
+</div> 
 
     </div>
   </div>

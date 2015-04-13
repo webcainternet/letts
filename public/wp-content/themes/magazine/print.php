@@ -52,10 +52,6 @@ body{
   margin-bottom: 30px;
 }
 
-.entry-content p {
-  width: 935px !important;
-}
-
 .rodape_impressao{
   background: #f8f7f5;
   width: 100%;
@@ -88,16 +84,7 @@ body{
     while (have_posts()): the_post(); ?>
   <div id="mainContent">
     <div id="content">
-          <div style="float: left;
-          border: 1px #ff8920 solid; 
-          width: 180px; 
-          height: 180px; 
-          margin-top: 30px;
-          background-image: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>'); 
-          background-size: 1800px; 
-          background-position:center;margin-right: 30px;" id="imgbackground">
-      &nbsp;
-    </div>
+<div style="float: right; width: 690px;">
     <h1 class="entry-title" style="text-transform: uppercase;"><?php the_title(); ?></h1>
       <div class="entry-content">
         <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Minha história</h4>
@@ -115,7 +102,25 @@ body{
         <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Campeonatos que já participei</h4>
         <?php print_custom_field('campeonatospart'); ?><br /><br />
 
+        <div style="margin-top: 10px;"><strong>Link dos vídeos:</strong></div>
+        <?php the_permalink(); ?>?page=videos
+
       </div>
+</div>      
+
+<div style="float: left; width: 210px;">
+
+
+          <div style="float: left;
+          border: 1px #ff8920 solid; 
+          width: 180px; 
+          height: 180px; 
+          margin-top: 30px;
+          background-image: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>'); 
+          background-size: 1800px; 
+          background-position:center;margin-right: 30px;" id="imgbackground">
+      &nbsp;
+    </div>
 
       <div style="margin-top: 10px;"><strong>Apelido</strong></div>
       <?php print_custom_field('apelido'); ?><br />
@@ -185,8 +190,7 @@ body{
             <?php print_custom_field('site'); ?>
           <?php } ?>
 
-          <div style="margin-top: 10px;"><strong>Link dos vídeos:</strong></div>
-          <?php the_permalink(); ?>?page=videos
+</div>
 
         </div>          
 

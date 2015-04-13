@@ -2817,3 +2817,26 @@ $file-upload-size: 300px;
 	  width: 150px;
 	  font-size: 12px;
 }
+
+#banners{
+	width: 1020px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+	border-top: 1px dotted;
+	padding-top: 30px;
+}
+
+#banners div{
+	margin-right: 53px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#banner3{
+	margin-right: 0px !important;
+}
+
+.banner_lateral{
+	margin-top: 40px;
+	width: 290px;
+}

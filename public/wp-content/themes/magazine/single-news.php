@@ -25,7 +25,8 @@ global $themify; ?>
 <div id="content" class="list-post">
 
       <div style="float: left; width: 674px; padding-top: 10px; min-height: 1000px;">
-      <h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;"><a href="http://letts.com.br/morre-skatista-jay-adams-um-dos-mais-influentes-da-historia/"  style="font-weight: bold;"><?php echo the_title(); ?></a></h1>
+      <h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
+        <span style="font-weight: bold;"><?php echo the_title(); ?></span></h1>
 
         <div class="fb-like" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
 
@@ -126,11 +127,6 @@ global $themify; ?>
               </div>
             </article>
           <?php } ?>
-
-
-
-    
-
 
           <article class="post type-post clearfix">
             <div class="post-content">

@@ -658,12 +658,9 @@ mysql_free_result($resultu);
 				</div>
 			
 			<br>&nbsp;<br>
-
-
-
-	
-
 </div>
 <!-- /layout-container -->
+
+<?php include('/wp-content/themes/magazine/banners.php') ?>  
 	
 <?php get_footer(); ?>
