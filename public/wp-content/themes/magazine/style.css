@@ -2852,3 +2852,13 @@ $file-upload-size: 300px;
 	width: 100%;
 	float: left;
 }
+
+.mensagem_atleta{
+	width: 43%;
+  	padding: 10px 30px 30px;
+  	border: 1px solid #ccc;
+  	border-radius: 0px;
+  	margin: 0 auto;
+  	float: left;
+  	margin-left: 120px;
+}

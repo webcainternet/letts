@@ -946,9 +946,10 @@ $('#share-button').click(function (e){
 			
 			<?php } ?>			
 
-			<?php if ($_GET["page"] == "mensagem") { ?>
+		</div>
+					<?php if ($_GET["page"] == "mensagem") { ?>
 				<div class="formularios profissionais">
-					<div class="mensagem_marca">
+					<div class="mensagem_atleta">
 						<h1 class="post-title entry-title">Envie mensagem para <?php the_title(); ?></h1>
 						<form action="" method="post" id="formulario_mensagem">
 							<input type="text" id="nome_msg" name="nome_msg" placeholder="Seu Nome">
@@ -959,8 +960,7 @@ $('#share-button').click(function (e){
 						</form>
 					</div>	
 				</div>
-			<?php } ?>		
-		</div>
+			<?php } ?>	
 	</div>
 
 
