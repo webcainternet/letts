@@ -788,7 +788,7 @@ $('#share-button').click(function (e){
 			<?php endwhile; ?>
 			<?php wp_reset_query(); ?>
 
-	<?php if ($_SESSION["lettslogin"] && $_SESSION["lettslogin"] != $idpost) { ?>
+	<?php /* if ($_SESSION["lettslogin"] && $_SESSION["lettslogin"] != $idpost) { ?>
 
     <?php if ($_POST['comment']){ ?>
       <p>Comenário adicionado com sucesso.</p>
@@ -822,7 +822,7 @@ $('#share-button').click(function (e){
       </ul>
             </fieldset>
     </form>
-<?php } ?>			
+<?php } */ ?>			
 		</div>
 
 			<?php } ?>
@@ -922,7 +922,11 @@ $('#share-button').click(function (e){
 						</form>
 					</div>	
 				</div>
-			<?php } ?>		
+			<?php } ?>	
+
+			<div style="float: right; width: 652px; margin-right: 40px; margin-top: 30px;">
+				<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+			</div>	
 		</div>
 	</div>
 

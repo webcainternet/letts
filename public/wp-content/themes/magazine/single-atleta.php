@@ -895,7 +895,6 @@ $('#share-button').click(function (e){
 						?>
 					</div>
 					
-					<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
 				</div>	
 
 			<?php } ?>
@@ -942,7 +941,6 @@ $('#share-button').click(function (e){
 			<?php endwhile; ?>
 			<?php wp_reset_query(); ?>
 
-				<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
 			</div>				
 			
 			<?php } ?>			
@@ -962,6 +960,10 @@ $('#share-button').click(function (e){
 					</div>	
 				</div>
 			<?php } ?>	
+
+			<div style="float: right; width: 652px; margin-right: 40px; margin-top: 30px;">
+				<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+			</div>
 	</div>
 
 
