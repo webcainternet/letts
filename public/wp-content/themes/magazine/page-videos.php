@@ -24,7 +24,8 @@ WHERE p.post_type = 'profissional' AND pm.meta_key = 'profissao' AND pm.meta_val
 }
 
 //Obtem email do video aberto
-$resultEmail = mysql_query("select meta_value from wp_postmeta WHERE post_id = '".$idq."' AND meta_key = 'basicaemail'");
+$resultEmail = ("select meta_value from wp_postmeta WHERE post_id = '".$idq."' AND meta_key = 'basicaemail'");
+echo $resultEmail; exit();
 while ($rowEmail = mysql_fetch_array($resultEmail, MYSQL_ASSOC)) {
 	$EmailVideo = $rowEmail["meta_value"];
 }
