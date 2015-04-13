@@ -13,8 +13,7 @@ INNER JOIN wp_postmeta pm2 ON p.id = pm2.post_id
 WHERE p.post_type = 'profissional' AND pm.meta_key = 'profissao' AND pm.meta_value = '".$_POST["profissao"]."' AND pm2.meta_key = 'basicaemail') ) AS t1 order by rand() limit 1");
   } else {
 	   //Randomiza Video ID
-	   $resultIDNull = ("SELECT id FROM (SELECT * FROM wp_posts WHERE post_type = 'video' AND post_status = 'publish' ORDER BY post_modified limit 5) AS t1 order by rand() limit 1");
-      echo $resultIDNull; exit();
+	   $resultIDNull = mysql_query("SELECT id FROM (SELECT * FROM wp_posts WHERE post_type = 'video' AND post_status = 'publish' ORDER BY post_date_gmt limit 5) AS t1 order by rand() limit 1");
   } }
 
   while ($rowIDNull = mysql_fetch_array($resultIDNull, MYSQL_ASSOC)) {
