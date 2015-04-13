@@ -18,6 +18,7 @@ WHERE p.post_type = 'profissional' AND pm.meta_key = 'profissao' AND pm.meta_val
 
   while ($rowIDNull = mysql_fetch_array($resultIDNull, MYSQL_ASSOC)) {
 		$idq = $rowIDNull["id"];
+    echo $idq;exit();
 	}
 } else {
 	$idq = $_GET['vid'];
