@@ -573,6 +573,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 							<?php } ?>	
 					</div>			
 				</div>
+								<?php include('/wp-content/themes/magazine/banner_lateral.php') ?>  
 		</div>
 
 			<?php if ($_GET["page"] == "sobre") { ?>
@@ -614,8 +615,6 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Países que já viajei</h4>
 				<?php print_custom_field('paisesviagem'); ?><br /><br />
 				<?php } $conteudo = ""; ?>
-
-				
 
 				</div>
 			<?php } ?>
@@ -985,3 +984,12 @@ $('.custom-upload input[type=file]').change(function(){
 });
 
 </script>
+
+<style type="text/css">
+.banner_lateral {
+  margin-top: 30px;
+  width: 100%;
+  display: inline-block;
+}
+
+</style>

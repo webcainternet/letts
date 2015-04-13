@@ -573,6 +573,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
               <?php } ?>  							
 					</div>			
 				</div>
+				<?php include('/wp-content/themes/magazine/banner_lateral.php') ?>  
 		</div>
 
 		<div class="fb-like" style="margin-left: 50px;" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
@@ -947,3 +948,12 @@ $('.custom-upload input[type=file]').change(function(){
 });
 
 </script>
+
+<style type="text/css">
+.banner_lateral {
+  margin-top: 30px;
+  width: 100%;
+  display: inline-block;
+}
+
+</style>
