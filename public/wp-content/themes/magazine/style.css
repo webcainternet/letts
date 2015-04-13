@@ -2801,6 +2801,7 @@ $file-upload-size: 300px;
   position: relative;
   height: 35px;
   width: 350px;
+  z-index: 0;
 }
 
 .fotos_adicionais .custom-upload{
@@ -2839,4 +2840,15 @@ $file-upload-size: 300px;
 .banner_lateral{
 	margin-top: 40px;
 	width: 290px;
+}
+
+#share-button{
+	float: left;
+  	margin-top: 5px;
+  	margin-right: 5px;
+}
+
+.redes_sociais{
+	width: 100%;
+	float: left;
 }

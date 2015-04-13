@@ -487,7 +487,35 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			</h1>
 		</a>
 	</div>
+<?php 
+	$imagem_fb = get_custom_field('basicaimagem:to_image_src');
+	$texto_fb = strip_tags(get_the_excerpt(120));
+?>
 
+<script type="text/javascript">
+
+$('#share-button').click(function (e){
+	e.preventDefault();
+	FB.ui({
+		method: 'feed',
+		name: '<?php the_title(); ?>',
+		link: '<?php the_permalink(); ?>',
+		picture: '<?php echo $imagem_fb; ?>',
+		caption: '',
+		description: '<?php echo $texto_fb; ?>',
+	});
+});
+</script>
+
+<meta property="og:image" content="<?php echo $imagem_fb; ?>"/>	
+
+<div class="redes_sociais">
+<a id="share-button" href="#" title="Facebook Share Button">
+	<img src="/wp-content/themes/magazine/images/compartilhar.jpg" alt="Facebook Share Button" title="Facebook Share Button" />
+</a>
+
+<div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div>
+</div>
 	<div>
 		<div style="float: left; width: 325px;">
 				<div class="col3-1" style="width: 100%; margin: 0px; background: #F5E1CD; padding-left: 15px; border-top: 5px #ff8920 solid;">
@@ -990,6 +1018,10 @@ $('.custom-upload input[type=file]').change(function(){
   margin-top: 30px;
   width: 100%;
   display: inline-block;
+}
+
+.fb-like span{
+	width: 450px !important;
 }
 
 </style>
