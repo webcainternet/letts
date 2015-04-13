@@ -489,6 +489,35 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			</h1>
 		</a>
 	</div>
+<div class="redes_sociais">
+<a id="share-button" href="#" title="Facebook Share Button">
+	<img src="/wp-content/themes/magazine/images/compartilhar.jpg" alt="Facebook Share Button" title="Facebook Share Button" />
+</a>
+
+<div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div>
+</div>
+
+<?php 
+	$imagem_fb = get_custom_field('basicaimagem:to_image_src');
+	$texto_fb = strip_tags(get_the_excerpt(120));
+?>
+
+<script type="text/javascript">
+
+$('#share-button').click(function (e){
+	e.preventDefault();
+	FB.ui({
+		method: 'feed',
+		name: '<?php the_title(); ?>',
+		link: '<?php the_permalink(); ?>',
+		picture: '<?php echo $imagem_fb; ?>',
+		caption: '',
+		description: '<?php echo $texto_fb; ?>',
+	});
+});
+</script>
+
+<meta property="og:image" content="<?php echo $imagem_fb; ?>"/>	
 
 	<div>
 		<div style="float: left; width: 325px;">
@@ -575,8 +604,6 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 				</div>
 				<?php include('/wp-content/themes/magazine/banner_lateral.php') ?>  
 		</div>
-
-		<div class="fb-like" style="margin-left: 50px;" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
 
 			<?php if ($_GET["page"] == "sobre") { ?>
 				
@@ -884,7 +911,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 			<?php if ($_GET["page"] == "mensagem") { ?>
 				<div class="formularios profissionais">
-					<div class="mensagem_marca">
+					<div class="mensagem_atleta">
 						<h1 class="post-title entry-title">Envie mensagem para <?php the_title(); ?></h1>
 						<form action="" method="post" id="formulario_mensagem">
 							<input type="text" id="nome_msg" name="nome_msg" placeholder="Seu Nome">
@@ -956,4 +983,7 @@ $('.custom-upload input[type=file]').change(function(){
   display: inline-block;
 }
 
+.fb-like span{
+	width: 450px !important;
+}
 </style>
