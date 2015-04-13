@@ -26,7 +26,7 @@ global $themify; ?>
 
       <div style="float: left; width: 674px; padding-top: 10px; min-height: 1000px;">
       <h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
-        <span style="font-weight: bold;"><?php echo the_title(); ?></span></h1>
+        <span style="font-weight: bold;"><a href="#"><?php echo the_title(); ?></a></span></h1>
 
         <div class="fb-like" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
 
@@ -136,8 +136,12 @@ global $themify; ?>
                 </span>
               </p>
             </div>
+
+            <div>
+              <div class="fb-comments" data-href="http://letts.com.br/<?php echo $_SERVER["REQUEST_URI"]; ?>" data-width="674" data-numposts="5" data-colorscheme="light"></div>
+            </div>
           </article>
-<?php if ($_SESSION["lettslogin"]) { ?>
+<?php /* if ($_SESSION["lettslogin"]) { ?>
 
     <?php if ($_POST){ ?>
       <p>Comenário adicionado com sucesso.</p>
@@ -171,7 +175,7 @@ global $themify; ?>
       </ul>
             </fieldset>
     </form>
-<?php } ?>
+<?php } */ ?>
 
 
         </div>

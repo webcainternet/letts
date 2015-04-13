@@ -53,7 +53,12 @@ global $themify; ?>
 	</div>
 
 	<div class="logo_eventos">&nbsp;<br>
-			<?php if ($_SESSION["lettslogin"] && $_SESSION["lettslogin"] != $idpost) { ?>
+
+		<div>
+          <div class="fb-comments" data-href="http://letts.com.br/<?php echo $_SERVER["REQUEST_URI"]; ?>" data-width="520" data-numposts="5" data-colorscheme="light"></div>
+        </div>
+
+			<?php /* if ($_SESSION["lettslogin"] && $_SESSION["lettslogin"] != $idpost) { ?>
 
     <?php if ($_POST['comment']){ ?>
       <p>Comenário adicionado com sucesso.</p>
@@ -87,7 +92,7 @@ global $themify; ?>
       </ul>
             </fieldset>
     </form>
-<?php } ?>
+<?php } */ ?>
 	</div>
 
 <!--<div class="mensagem_marca" style="margin-top: 30px;">

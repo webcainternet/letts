@@ -269,8 +269,17 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		<!--<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>-->
 
 	<div class="formularios">
+
+		<div style="float: left; width: 43%;
+					  padding: 10px 30px 30px;
+					  border: 0px;
+					  border-radius: 0px;
+					  margin: 0 auto;">
+          <div class="fb-comments" data-href="http://letts.com.br/<?php echo $_SERVER["REQUEST_URI"]; ?>" data-width="458" data-numposts="5" data-colorscheme="light"></div>
+        </div>
+
 		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
-		<div class="convidar_atleta">
+		<div class="convidar_atleta" style="float: left;>
 			<h1 class="post-title entry-title">Convide um Atleta</h1>
 			<form action="" method="post" id="formulario_convite">
 				<input type="text" id="nome" name="nome" placeholder="Seu Nome">
@@ -282,7 +291,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		</div>
 		<?php }else{ ?>
 
-		<div class="mensagem_marca">
+		<div class="mensagem_marca" style="float: left;>
 			<h1 class="post-title entry-title">Envie mensagem para a marca</h1>
 			<form action="" method="post" id="formulario_mensagem">
 				<input type="text" id="nome_msg" name="nome_msg" placeholder="Seu Nome">
