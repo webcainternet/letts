@@ -803,12 +803,20 @@ $('#share-button').click(function (e){
 			      		&nbsp;
   					</div>
 				</div></a>
-				<?php } ?>
+				<?php }else if(get_custom_field('videourl')){
 
-
-				
-
-
+				$video = get_custom_field('videourl'); 
+				$video = explode("/", $video);
+				$url_video = explode("=", $video[3]);
+				if ($url_video[0] == 'watch?v') {
+				 	$imgid = $url_video[1]; ?>
+				 	<iframe width="710" height="350" src="//www.youtube.com/embed/<?php echo $imgid; ?>" frameborder="0" allowfullscreen></iframe>
+				 <?php 	
+				 } else{
+				$imgid = $url_video[0]; ?>
+				<iframe width="710" height="350" src="http://player.vimeo.com/video/<?php echo $imgid; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				<?php } 
+				} ?>
 
 				<article class="post type-post clearfix">
 					<div class="post-content">
