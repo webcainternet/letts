@@ -441,15 +441,15 @@ global $themify; ?>
 					'compare' => 'LIKE'
 				),
 				array(
-					'key' => 'basicaestadoatual',
-					'value' => $_POST['estado'],
-					'compare' => 'LIKE'
-				),			
-				array(
 					'key' => 'basicapaisatual',
 					'value' => $_POST['pais'],
 					'compare' => 'LIKE'
-				),								
+				),
+				array(
+					'key' => 'basicaestadoatual',
+					'value' => $_POST['estado'],
+					'compare' => '='
+				),				
 				array(
 					'key' => 'profissao',
 					'value' => $_POST['profissao'],

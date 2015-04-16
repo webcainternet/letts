@@ -29,7 +29,21 @@ global $themify; ?>
         add_post_meta($post_id, 'link_video', $_POST['link_video'], true);
         add_post_meta($post_id, 'basicaemail', $_POST['email'], true);
         add_post_meta($post_id, 'atletaesporte', $_POST['esporte'], true);
-        add_post_meta($post_id, 'profissao', $_POST['profissao'], true);        
+        add_post_meta($post_id, 'profissao', $_POST['profissao'], true);
+
+      // Create post object
+        $my_post_news = array(
+          'post_title'    => $_POST['titulo_video'],
+          'post_status'   => 'pending',
+          'post_type'     => 'news',
+          'post_author'   => 1
+        );
+
+        $post_id_news = wp_insert_post($my_post_news);
+        add_post_meta($post_id_news, 'videourl', $_POST['link_video'], true);
+        add_post_meta($post_id_news, 'basicaemail', $_POST['email'], true);
+        add_post_meta($post_id_news, 'atletaesporte', $_POST['esporte'], true);
+        add_post_meta($post_id_news, 'profissao', $_POST['profissao'], true);
     ?>
     <script type="text/javascript">
       $(document).ready(function(){

@@ -93,7 +93,6 @@ textarea{
           <div id="text-1017" class="widget widget_text" style="border: 0px; margin: 0px; margin-top: 13px;">
                 <select id="atletaesporte" name="esporte" style="width: 312px; height: 35px; margin-bottom: 14px;font-size: 0.9em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
                         <option>-- Selecione o esporte --</option>
-                        <option>-- Selecione o esporte --</option>
 <option value="Aeromodelismo" <?php echo selectedopt("Aeromodelismo", $vatletaesporte); ?>>Aeromodelismo</option>
 <option value="Alpinismo" <?php echo selectedopt("Alpinismo", $vatletaesporte); ?>>Alpinismo</option>
 <option value="Asa Delta" <?php echo selectedopt("Asa Delta", $vatletaesporte); ?>>Asa Delta</option>
@@ -189,8 +188,19 @@ textarea{
               <div style="margin-top: 10px;"><strong>Data de nascimento</strong></div>
               <input type="text" name="data_nascimento" id="data_nascimento" value="<?php print_custom_field('basicanascimento'); ?>"><br />
 
-              <div style="margin-top: 10px;"><strong>Sexo</strong></div>
-              <input type="text" name="genero" value="<?php print_custom_field('basicagenero'); ?>"><br />
+<?php 
+  $sexo = get_custom_field('basicagenero');
+  if ($sexo == "Feminino") {
+     $feminino = 'checked="checked"';
+   } else if ($sexo == "Masculino") {
+      $masculino = 'checked="checked"';
+   }
+?>
+
+             <div style="margin-top: 10px;"><strong>Sexo</strong></div>
+              <input type="radio" name="genero" id="masculino" value="Masculino" <?php echo $masculino; ?>>Masculino 
+              <input type="radio" name="genero" id="feminino" value="Feminino" <?php echo $feminino; ?>>Feminino<br />
+
 
               <div style="margin-top: 10px;"><strong>Telefones</strong></div>
               <input type="text" name="telefones" value="<?php print_custom_field('basicatelefones'); ?>"><br />
@@ -280,15 +290,23 @@ textarea{
 <option value="Doutorado" <?php echo selected("Doutorado", $vescolaridade); ?>>Doutorado</option>
                </select>  <br />               
 
-            <div style="margin-top: 10px;"><br /><strong>Idiomas</strong></div>
+<?php
+function no_array($valor) {
+  $Array = get_custom_field('idiomas:to_array');
+    if(in_array($valor, $Array)) {
+    return 'checked="checked"';
+  }
+}
+?>
+           <div style="margin-top: 10px;"><br /><strong>Idiomas</strong></div>
             <div class="idiomas_edit">
-              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Português"'>Português<br /></span>
-              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Inglês"'>Inglês<br /></span>
-              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Espanhol"'>Espanhol<br /></span>
-              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Alemão"'>Alemão<br /></span>
-              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Italiano"'>Italiano<br /></span>
-              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Chinês"'>Chinês<br /></span>
-              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Japonês"'>Japonês<br /></span>
+              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Português"' <?php echo no_array('Português'); ?>>Português<br /></span>
+              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Inglês"' <?php echo no_array('Inglês'); ?>>Inglês<br /></span>
+              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Espanhol"' <?php echo no_array('Espanhol'); ?>>Espanhol<br /></span>
+              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Alemão"' <?php echo no_array('Alemão'); ?>>Alemão<br /></span>
+              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Italiano"' <?php echo no_array('Italiano'); ?>>Italiano<br /></span>
+              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Chinês"' <?php echo no_array('Chinês'); ?>>Chinês<br /></span>
+              <span><input type="checkbox" name="cctm_idiomas[]" class="cctm_checkbox_id" value='"Japonês"' <?php echo no_array('Japonês'); ?>>Japonês<br /></span>
               <input type='hidden' id="check_idiomas" name="check_idiomas">
             </div>
             
