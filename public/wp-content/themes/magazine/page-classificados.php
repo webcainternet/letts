@@ -500,7 +500,7 @@ global $themify; ?>
 
 		</div>
 
-			<?php include('/wp-content/themes/magazine/banners.php') ?>
+			<?php include('banners.php') ?>
 
 	</div>
 </div>

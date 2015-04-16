@@ -514,6 +514,6 @@ mysql_free_result($result);
 </div>
 <!-- /layout-container -->
 
-<?php include('/wp-content/themes/magazine/banners.php') ?>  
+<?php include('banners.php') ?>  
 
 <?php get_footer(); ?>

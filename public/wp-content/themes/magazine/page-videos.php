@@ -661,6 +661,6 @@ mysql_free_result($resultu);
 </div>
 <!-- /layout-container -->
 
-<?php include('/wp-content/themes/magazine/banners.php') ?>  
+<?php include('banners.php') ?>  
 	
 <?php get_footer(); ?>

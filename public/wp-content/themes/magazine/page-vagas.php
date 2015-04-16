@@ -422,7 +422,7 @@ global $themify; ?>
 
 			<?php } ?>	
 
-<?php include('/wp-content/themes/magazine/banner_lateral.php') ?>  
+<?php include('banner_lateral.php') ?>  
 
 
 		</div>
@@ -497,7 +497,7 @@ global $themify; ?>
 	<!-- /#contentwrap -->
 
 	
-<?php include('/wp-content/themes/magazine/banners.php') ?>  
+<?php include('banners.php') ?>  
 
 
 </div>

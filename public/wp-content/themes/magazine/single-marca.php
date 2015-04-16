@@ -311,7 +311,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 </div>
 <!-- /layout-container -->
 
-<?php include('/wp-content/themes/magazine/banners.php') ?>  
+<?php include('banners.php') ?>  
 	
 <?php get_footer(); ?>
 

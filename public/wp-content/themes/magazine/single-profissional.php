@@ -602,7 +602,7 @@ $('#share-button').click(function (e){
               <?php } ?>  							
 					</div>			
 				</div>
-				<?php include('/wp-content/themes/magazine/banner_lateral.php') ?>  
+				<?php include('banner_lateral.php') ?>  
 		</div>
 
 			<?php if ($_GET["page"] == "sobre") { ?>
