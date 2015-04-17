@@ -63,7 +63,7 @@ global $themify; ?>
             ?>
 
             <div style="text-align: right;">
-              <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Por: <a href="http://letts.com.br/?p=<?php echo $idatleta; ?>"> <?php echo $emailname; ?></span>
+              <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;">Por: <a href="http://letts.com.br/?p=<?php echo $idatleta; ?>"> <?php echo $emailname; ?></a></span>
             </div>
 
             <?php

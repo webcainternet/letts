@@ -835,7 +835,7 @@ $('#share-button').click(function (e){
 			<?php wp_reset_query(); ?>
 		</div>
 
-	<?php if ($_SESSION["lettslogin"] && $_SESSION["lettslogin"] != $idpost) { ?>
+	<?php /* if ($_SESSION["lettslogin"] && $_SESSION["lettslogin"] != $idpost) { ?>
 
     <?php if ($_POST['comment']){ ?>
       <p>Comenário adicionado com sucesso.</p>
@@ -872,7 +872,7 @@ $('#share-button').click(function (e){
 <?php } ?>
 
 
-			<?php } ?>
+			<?php } */ ?>
 
 			<?php if ($_GET["page"] == "fotos") { ?>
 				<div style="width: 685px; float: left; margin-left: 50px;">

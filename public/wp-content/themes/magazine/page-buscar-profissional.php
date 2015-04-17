@@ -452,7 +452,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
     ?>
     <figure class='small' <?php echo $mostra; ?> style="border: 0px;">
-      <a href="/?p=<?php echo $idatleta; ?>">
+      <a href="/?p=<?php echo $idatleta; ?>&page=sobre">
       	<div style="width: 100%; 
       	height: 200px; 
       	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
@@ -464,7 +464,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
         <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
       </a>
       <figcaption class="transition-050 opacity85">
-        <a href="/?p=<?php echo $idatleta; ?>">
+        <a href="/?p=<?php echo $idatleta; ?>&page=sobre">
           <strong class="text transition-050 title"><?php echo $nome; ?></strong>
           <span class="text transition-050 desc"><?php echo $esporte; ?><br>
           <?php if ($basicacidadeatual != "") { ?>
