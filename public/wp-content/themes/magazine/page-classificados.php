@@ -1,7 +1,7 @@
 <style type="text/css">
 	.classificados {
 		float: left;
-		width: 233px;
+		width: 232px;
 		margin-left: 0px;
 		margin-bottom: 20px;
 		border: solid 1px #FFFFFF;
