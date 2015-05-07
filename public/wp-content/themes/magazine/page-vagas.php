@@ -1,6 +1,7 @@
 <script type="text/javascript">
 	window.location.href = window.location.pathname;
 </script>
+<?php exit; ?>
 
 <meta property="og:image" content="http://letts.com.br/wp-content/uploads/2014/09/letts-logo.png" />
 
