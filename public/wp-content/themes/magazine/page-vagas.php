@@ -1,3 +1,7 @@
+<script type="text/javascript">
+	window.location.href = window.location.pathname;
+</script>
+
 <meta property="og:image" content="http://letts.com.br/wp-content/uploads/2014/09/letts-logo.png" />
 
 <style type="text/css">
