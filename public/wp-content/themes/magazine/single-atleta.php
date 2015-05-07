@@ -8,6 +8,86 @@
 
 <?php get_header(); ?>
 
+<script type="text/javascript">
+	function excluirfoto() {
+		$.ajax({
+		method: "POST",
+		url: "/license.txt",
+		data: { name: "John", location: "Boston" }
+		})
+		.done(function( msg ) {
+			var n = msg.indexOf("welckkome");
+			if (n == -1) {
+				alert('Erro ao excluir imagem');
+			} else {
+				alert('Imagem excluida com sucesso!');
+				window.location.href = window.location.pathname + '?page=fotos';
+			}
+		});
+	}
+
+	function excluirvideo() {
+		$.ajax({
+		method: "POST",
+		url: "/license.txt",
+		data: { name: "John", location: "Boston" }
+		})
+		.done(function( msg ) {
+			var n = msg.indexOf("welckkome");
+			if (n == -1) {
+				alert('Erro ao excluir vídeo');
+			} else {
+				alert('Video excluido com sucesso!');
+				window.location.href = window.location.pathname + '?page=videos';
+			}
+		});
+	}
+</script>
+
+<style type="text/css">
+	.removerbotao {
+		  position: relative;
+		  width: 24px;
+		  height: 20px;
+		  top: 10px;
+		  left: 196px;
+		  border-radius: 20px;
+		  background-color: #FF6666;
+		  color: #FFFFFF;
+		  text-align: center;
+		  font-size: 12px;
+		  margin-top: -25px;
+		  display: none;
+		  padding-bottom: 5px;
+		display: none;
+	}
+
+	.img_profissional:hover .removerbotao {
+		display: block;
+	}
+
+	.removerbotaovideo {
+		  position: relative;
+		  width: 24px;
+		  height: 20px;
+		  top: 10px;
+		  left: 190px;
+		  border-radius: 20px;
+		  background-color: #FF6666;
+		  color: #FFFFFF;
+		  text-align: center;
+		  font-size: 12px;
+		  margin-top: -25px;
+		  display: none;
+		  padding-bottom: 5px;
+		display: none;
+	}
+
+	.video:hover .removerbotaovideo {
+		display: block;
+	}
+</style>
+
 <?php 
 /** Themify Default Variables
  *  @var object */
@@ -476,7 +556,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		<p id="sucesso_edicaoperfil">Dados alterados com sucesso</p>			
 			
 		</div>
-		
+							<a name="fotos"></a>
 	</div>
 
 	<div style="margin-top: 20px; margin-bottom: 20px; width: 100%; float: left;">
@@ -856,7 +936,12 @@ $('#share-button').click(function (e){
 								krsort($arrayArquivos, SORT_STRING);
 
 							foreach($arrayArquivos as $valorArquivos){
-								echo '<div class="img_profissional">
+								$nomearquivofoto = str_replace("wp-content/uploads/users/$idpost/", "", $valorArquivos);
+								echo '<div class="img_profissional">';
+								
+								if ($_SESSION["lettslogin"] == $idpost) { echo '
+								<a style="color: #FFFFFF;" onclick="javascript: excluirfoto()" href="#fotos"><div class="removerbotao">x</div></a>';
+								} echo '
 									<a href="/'.$valorArquivos.'" class="fancybox" rel="gallery">
 										<img src="/'.$valorArquivos.'">
 									</a>
@@ -904,9 +989,16 @@ $('#share-button').click(function (e){
 
 				<div class="video">
 					<h3><?php the_title(); ?></h3>
+
+					<div>
+					<?php if ($_SESSION["lettslogin"] == $idpost) { echo '
+						<a style="color: #FFFFFF;" onclick="javascript: excluirvideo()" href="#videos"><div class="removerbotaovideo">x</div></a>';
+					} ?>
+					
 					<a href="<?php print_custom_field('link_video'); ?>" class="fancybox">
 						<img src="<?php echo $img_video; ?>">
 					</a>
+					</div>
 				</div>
 
 			<?php endwhile; ?>
