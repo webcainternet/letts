@@ -865,6 +865,20 @@ $('#share-button').click(function (e){
 
 			<?php while (have_posts()) : the_post(); ?>
 
+			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
+				<div style="
+				  background-color: #FF6666;
+color: #FFFFFF;
+text-align: center;
+font-size: 12px;
+width: 25px;
+height: 24px;
+border-radius: 12px;
+/* margin-bottom: 0px; */
+position: absolute;
+margin: -10px;"><a style="color: #FFFFFF;">x</a></div>
+			<?php } ?>
+
 			<div class="related-posts news_perfil" style="float: left; width: 100%;">
 				<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
 					if ($imgsizeok) { ?>
