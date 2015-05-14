@@ -25,11 +25,11 @@ global $themify; ?>
 			<div class="related-posts">
 				<h4 class="related-title" style="border: 0px;margin-top: 10px; margin-bottom: 5px;">Filtrar Marcas</h4>
 			</div>
-
     <div class="post-meta" style="display: inline;">
           <div style="float: left; margin-right: 15px;">
+            <form method="post" id="filtroesporte">
             <span class="post-category"><a href="#">Esporte</a></span><br>
-            <select  class="selectitens" name="esporte">
+            <select  class="selectitens" name="esporte" onchange="this.form.submit();">
                     <option>-- Selecione --</option>
                     <option>Aeromodelismo</option>
                     <option>Alpinismo</option>
@@ -103,11 +103,13 @@ global $themify; ?>
                     <option>Windsurf</option>
                     <option>WingWalking</option>
                   </select>
+                </form>  
           </div>
 
           <div style="float: left; margin-right: 15px;">
+            <form method="post" id="filtroprofissao">
             <span class="post-category"><a href="#">Profissão</a></span><br>
-            <select  class="selectitens" name="profissao">
+            <select  class="selectitens" name="profissao" onchange="this.form.submit();">
               <option>-- Selecione --</option>
               <option value="Assessor de imprensa">Assessor de imprensa</option>
               <option value="Coordenador de eventos">Coordenador de eventos</option>
@@ -131,9 +133,10 @@ global $themify; ?>
               <option value="Técnico">Técnico</option>
               <option value="Videomaker">Videomaker</option>
                   </select>
+            </form>        
           </div>		
     </div>
-
+</form>
 			<div style="float: left; width: 100%; padding-top: 10px;">
 				<div class="related-posts" style="float: left; width: 100%; margin-bottom: 30px;">
 

@@ -18,9 +18,10 @@ global $themify; ?>
 
   <div id="contentwrap" style="width: 100%;padding-top: 0px;">
 
-  <?php if( have_posts() ) while ( have_posts() ) : the_post(); ?>
+    
+  <?php 
 
-
+  if( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
 <div id="content" class="list-post">
 
@@ -72,6 +73,12 @@ global $themify; ?>
             while ($rowbasicaimagemurl = mysql_fetch_array($resultbasicaimagemurl, MYSQL_ASSOC)) {
               $basicaimagemurl = $rowbasicaimagemurl["meta_value"];
               if ($basicaimagemurl) {
+                  $basicaimagemurl = explode("http://letts.com.br/wp-content/uploads/users/", $basicaimagemurl);
+                 if ($basicaimagemurl[1]) {
+                   $basicaimagemurl = 'http://letts.com.br/wp-content/uploads/users/'.$basicaimagemurl[1];
+                 }else{
+                    $basicaimagemurl = 'http://letts.com.br/wp-content/uploads/'.$basicaimagemurl[0];
+                 }
               ?>
               <img class="imgnoticias" src="<?php echo $basicaimagemurl; ?>" width="674" style="width: 674px; border-radius: 5px;">
               <?php

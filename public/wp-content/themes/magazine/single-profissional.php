@@ -322,8 +322,16 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
-	<div class="imagem_editar_capa" style="border-top: 5px #ff8920 solid; 
-				background-image: url('<?php print_custom_field('image_profissional'); ?>'); 
+	<?php $imagemdefault = get_custom_field('image_profissional'); 
+			$defaultbg = 'http://letts.com.br/wp-content/uploads/users/defaultbg.jpg';
+	if ($imagemdefault == $defaultbg && $_SESSION["lettslogin"] != $idpost) {
+		$imagemdefault = '';
+	}
+
+	?>
+
+	<div class="imagem_editar_capa" style="border-top: 5px #ff8920 solid;
+				background-image: url('<?php echo $imagemdefault; ?>'); 
 				background-size: 1064px; 
 				background-position:center; 
 				height: 400px;">
