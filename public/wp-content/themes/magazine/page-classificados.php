@@ -51,12 +51,12 @@ global $themify; ?>
 					<form method="post">
 					<div style="float: left; margin-right: -5px; margin-left: 25px;">
 						<span class="post-category"><a href="#">Titulo</a></span><br>
-						<input id="author" name="nome" type="text" value="" size="30" class="required" style="width: 160px; height: 32px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
+						<input id="author" name="titulo" type="text" value="" size="30" class="required" style="width: 160px; height: 32px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
 					</div>
 
 					<div style="float: left; margin-right: 10px;">
 						<span class="post-category"><a href="#">Estado</a></span><br>
-						<select  class="selectitens" name="esporte">
+						<select  class="selectitens" name="estado">
 										<option>-- Selecione --</option>
 										<option>Novo</option>
 										<option>Usado</option>
@@ -66,19 +66,20 @@ global $themify; ?>
 
 					<div style="float: left; margin-right: 0px;">
 						<span class="post-category"><a href="#">De: R$</a></span><br>
-						<input id="author" name="nome" type="text" value="" size="30" class="required" style="width: 100px; height: 32px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
+						<input id="author" name="de" type="text" value="" size="30" class="required" style="width: 100px; height: 32px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
 					</div>
 
 
 					<div style="float: left; margin-right: 0px;">
 						<span class="post-category"><a href="#">Até: R$</a></span><br>
-						<input id="author" name="nome" type="text" value="" size="30" class="required" style="width: 100px; height: 32px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
+						<input id="author" name="ate" type="text" value="" size="30" class="required" style="width: 100px; height: 32px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
 					</div>
 
 					<div style="float: left; margin-right: 10px;">
 						<span class="post-category"><a href="#">Esporte</a></span><br>
-						<select class="selectitens" name="sexo">
+						<select class="selectitens" name="esporte">
 						<option>-- Selecione --</option>
+										<option>Todos</option>
 										<option>Aeromodelismo</option>
 										<option>Alpinismo</option>
 										<option>Asa Delta</option>
@@ -183,7 +184,7 @@ global $themify; ?>
 
 		<div style="float: left; margin-right: 10px;">
 			<span class="post-category"><a href="#">Pais</a></span><br>
-			<select class="selectitens">
+			<select class="selectitens" name="pais">
 				<option>-- Selecione --</option>
 							<option value="Afeganistão">Afeganistão</option>
 							<option value="África do Sul">África do Sul</option>
@@ -396,6 +397,66 @@ global $themify; ?>
 <section class="module">
   <section class="wraper">    
   	<?php 
+
+  		if ($_POST) {
+
+  			if ($_POST['estado'] != '-- Selecione --') {
+  				$querywhere = "AND `testado`.`meta_value` = '".$_POST['estado']."' ";
+  			}
+
+  			if ($_POST['titulo'] != '') {
+  				$querywhere .= "AND `p`.`post_title` = '".$_POST['titulo']."' ";
+  			}
+
+  			if ($_POST['de'] != '') {
+  				$querywhere .= "AND `tvalor`.`meta_value` >= '".$_POST['de']."' ";
+  			}
+
+  			if ($_POST['ate'] != '') {
+  				$querywhere .= "AND `tvalor`.`meta_value` <= '".$_POST['ate']."' ";
+  			}
+
+  			if ($_POST['esporte'] != '-- Selecione --') {
+  				$querywhere .= "AND `tesporte`.`meta_value` = '".$_POST['esporte']."' ";
+  			}
+
+  			if ($_POST['profissao'] != '-- Selecione --') {
+  				$querywhere .= "AND `tprofissao`.`meta_value` = '".$_POST['profissao']."' ";
+  			}
+
+  			if ($_POST['pais'] != '-- Selecione --') {
+  				$querywhere .= "AND `tbasicapaisatual`.`meta_value` = '".$_POST['pais']."' ";
+  			}
+
+  			$result = mysql_query("SELECT distinct `p`.`id`, `p`.`post_date` as post_data, `p`.`post_title` as title, `testado`.`meta_value` as estado, 
+			`tesporte`.`meta_value` as esporte, `tprofissao`.`meta_value` as profissao, `tbasicapaisatual`.`meta_value` as basicapaisatual, 
+			`tfoto`.`meta_value` as idfoto, `tvalor`.`meta_value` as valor, `temail`.`meta_value` as email, `login`.`post_title` as nome, 
+			`login`.`post_id` AS loginid, `ttelefone`.`meta_value` AS telefone
+		FROM wp_posts p
+		INNER JOIN wp_postmeta pm ON `p`.`id` = `pm`.`post_id`
+		INNER JOIN (SELECT meta_value, post_id FROM wp_postmeta estado WHERE `estado`.`meta_key` = 'acessorioestado') AS testado ON `testado`.`post_id` = `p`.`id`
+		INNER JOIN (SELECT meta_value, post_id FROM wp_postmeta esporte WHERE `esporte`.`meta_key` = 'atletaesporte') AS tesporte ON `tesporte`.`post_id` = `p`.`id`
+		INNER JOIN (SELECT meta_value, post_id FROM wp_postmeta profissao WHERE `profissao`.`meta_key` = 'profissao') AS tprofissao ON `tprofissao`.`post_id` = `p`.`id`
+		INNER JOIN (SELECT meta_value, post_id FROM wp_postmeta basicapaisatual WHERE `basicapaisatual`.`meta_key` = 'basicapaisatual') AS tbasicapaisatual ON `tbasicapaisatual`.`post_id` = `p`.`id`
+		INNER JOIN (SELECT meta_value, post_id FROM wp_postmeta foto WHERE `foto`.`meta_key` = 'fotoacessorio') AS tfoto ON `tfoto`.`post_id` = `p`.`id`
+		INNER JOIN (SELECT meta_value, post_id FROM wp_postmeta valor WHERE `valor`.`meta_key` = 'acessoriovalor') AS tvalor ON `tvalor`.`post_id` = `p`.`id`
+		INNER JOIN (SELECT meta_value, post_id FROM wp_postmeta email WHERE `email`.`meta_key` = 'basicaemail') AS temail ON `temail`.`post_id` = `p`.`id`
+		INNER JOIN (
+			SELECT `k`.`post_id`, `k`.`meta_value`, `po`.`post_title` from wp_postmeta k 
+			INNER JOIN wp_posts po ON `po`.`id` = `k`.`post_id`
+			WHERE `k`.`meta_key` = 'basicaemail' 
+			) AS login ON `login`.`meta_value` = `temail`.`meta_value`
+		INNER JOIN (
+			select `k`.`post_id`, `k`.`meta_value` from wp_postmeta k 
+			INNER JOIN wp_posts po ON `po`.`id` = `k`.`post_id`
+			WHERE `k`.`meta_key` = 'basicatelefones'
+			) AS ttelefone ON `ttelefone`.`post_id` = `login`.`post_id` 
+		WHERE `p`.`post_status` = 'publish'"
+		.$querywhere.
+		"ORDER BY `p`.`post_date` DESC");
+
+  		}else{
+
 		$result = mysql_query("SELECT distinct `p`.`id`, `p`.`post_date` as post_data, `p`.`post_title` as title, `testado`.`meta_value` as estado, 
 			`tesporte`.`meta_value` as esporte, `tfoto`.`meta_value` as idfoto, `tvalor`.`meta_value` as valor, 
 			`temail`.`meta_value` as email, `login`.`post_title` as nome, `login`.`post_id` AS loginid, `ttelefone`.`meta_value` AS telefone
@@ -418,6 +479,8 @@ global $themify; ?>
 		) AS ttelefone ON `ttelefone`.`post_id` = `login`.`post_id` 
 			WHERE `p`.`post_status` = 'publish'
 			ORDER BY `p`.`post_date` DESC");
+	}
+
 	?>
 
   	<?php while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) { ?>
