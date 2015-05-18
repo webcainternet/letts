@@ -431,7 +431,7 @@ global $themify; ?>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Empresa: </strong><br /><?php print_custom_field('empresa'); ?></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Contato: </strong><br /> <?php print_custom_field('basicaemail'); ?></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Descrição: </strong><br /> <?php the_content(); ?></div>
-      <div style="margin-top: 10px; color: #666; text-align: right;"><a href="mailto:<?php print_custom_field('basicaemail'); ?>?subject=<?php the_title(); ?>&body=Link do perfil: <?php echo $body_email; ?>"><input type="submit" value="Enviar currículo" style="margin-top: 16px;"></a></div>
+      <div style="margin-top: 10px; color: #666; text-align: right;"><a target="_blank" href="mailto:<?php print_custom_field('basicaemail'); ?>?subject=<?php the_title(); ?>&body=Link do perfil: <?php echo $body_email; ?>"><input type="submit" value="Enviar currículo" style="margin-top: 16px;"></a></div>
 
 	  <?php /* <div class="fb-like" style="margin-top: 30px;" data-href="http://letts.com.br/vagas/" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div> */ ?>
 
