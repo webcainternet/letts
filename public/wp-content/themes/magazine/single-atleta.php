@@ -9,14 +9,14 @@
 <?php get_header(); ?>
 
 <script type="text/javascript">
-	function excluirfoto() {
+	function excluirfoto(nomefoto, idlogin) {
 		$.ajax({
 		method: "POST",
-		url: "/license.txt",
-		data: { name: "John", location: "Boston" }
+		url: "/wp-content/themes/magazine/excluirfoto.php",
+		data: { nomefoto: nomefoto, idlogin: idlogin }
 		})
 		.done(function( msg ) {
-			var n = msg.indexOf("welckkome");
+			var n = msg.indexOf("statusok");
 			if (n == -1) {
 				alert('Erro ao excluir imagem');
 			} else {
@@ -26,19 +26,36 @@
 		});
 	}
 
-	function excluirvideo() {
+	function excluirvideo(idvideo, idlogin) {
 		$.ajax({
 		method: "POST",
-		url: "/license.txt",
-		data: { name: "John", location: "Boston" }
+		url: "/wp-content/themes/magazine/excluirvideo.php",
+		data: { idvideo: idvideo, idlogin: idlogin }
 		})
 		.done(function( msg ) {
-			var n = msg.indexOf("welckkome");
+			var n = msg.indexOf("statusok");
 			if (n == -1) {
 				alert('Erro ao excluir vídeo');
 			} else {
 				alert('Video excluido com sucesso!');
 				window.location.href = window.location.pathname + '?page=videos';
+			}
+		});
+	}
+
+	function excluirnews(idnews, idlogin) {
+		$.ajax({
+		method: "POST",
+		url: "/wp-content/themes/magazine/excluirnews.php",
+		data: { idnews: idnews, idlogin: idlogin }
+		})
+		.done(function( msg ) {
+			var n = msg.indexOf("statusok");
+			if (n == -1) {
+				alert('Erro ao excluir news');
+			} else {
+				alert('News excluida com sucesso!');
+				window.location.href = window.location.pathname;
 			}
 		});
 	}
@@ -893,7 +910,7 @@ $('#share-button').click(function (e){
 
 			<div class="related-posts news_perfil" style="float: left; width: 100%;">
 				<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
-				<div class="deletarnews1"><a style="color: #FFFFFF;">x</a></div>
+				<?php echo '<div onclick="javascript: excluirnews('.get_the_ID().','.$_SESSION["lettslogin"].')" class="deletarnews1"><a href="#" style="color: #FFFFFF;">x</a></div>'; ?>
 				<?php } ?>
 
 				<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
@@ -970,7 +987,7 @@ $('#share-button').click(function (e){
 								echo '<div class="img_profissional">';
 								
 								if ($_SESSION["lettslogin"] == $idpost) { echo '
-								<a style="color: #FFFFFF;" onclick="javascript: excluirfoto()" href="#fotos"><div class="removerbotao">x</div></a>';
+								<a style="color: #FFFFFF;" onclick="javascript: excluirfoto(\''.$valorArquivos.'\','.$_SESSION["lettslogin"].')" href="#fotos"><div class="removerbotao">x</div></a>';
 								} echo '
 									<a href="/'.$valorArquivos.'" class="fancybox" rel="gallery">
 										<img src="/'.$valorArquivos.'">
@@ -1023,7 +1040,7 @@ $('#share-button').click(function (e){
 
 					<div>
 					<?php if ($_SESSION["lettslogin"] == $idpost) { echo '
-						<a style="color: #FFFFFF;" onclick="javascript: excluirvideo()" href="#videos"><div class="removerbotaovideo">x</div></a>';
+						<a style="color: #FFFFFF;" onclick="javascript: excluirvideo('.get_the_ID().','.$_SESSION["lettslogin"].')" href="#videos"><div class="removerbotaovideo">x</div></a>';
 					} ?>
 					
 					<a href="<?php print_custom_field('link_video'); ?>" class="fancybox">
