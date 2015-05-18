@@ -200,8 +200,36 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		</div>
 	<?php } ?>
 
-	<div class="fb-like" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
-		
+
+<div class="redes_sociais">
+<a id="share-button" href="#" title="Facebook Share Button">
+	<img src="/wp-content/themes/magazine/images/compartilhar.jpg" alt="Facebook Share Button" title="Facebook Share Button" />
+</a>
+
+<div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div>
+</div>
+
+<?php 
+	$imagem_fb = get_custom_field('basicaimagem:to_image_src');
+	$texto_fb = strip_tags(get_the_excerpt(120));
+?>
+
+<script type="text/javascript">
+
+$('#share-button').click(function (e){
+	e.preventDefault();
+	FB.ui({
+		method: 'feed',
+		name: '<?php the_title(); ?>',
+		link: '<?php the_permalink(); ?>',
+		picture: '<?php echo $imagem_fb; ?>',
+		caption: '',
+		description: '<?php echo $texto_fb; ?>',
+	});
+});
+</script>
+
+<meta property="og:image" content="<?php echo $imagem_fb; ?>"/>			
 
 		<p id="sucesso_perfil" class="bg_sucesso">Foto alterada com sucesso</p>			
 		<p id="sucesso_capa" class="bg_sucesso">Foto de capa alterada com sucesso</p>

@@ -29,7 +29,33 @@ global $themify; ?>
       <h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
         <span style="font-weight: bold;"><a href="#"><?php echo the_title(); ?></a></span></h1>
 
-        <div class="fb-like" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+<div class="redes_sociais">
+<a id="share-button" href="#" title="Facebook Share Button">
+  <img src="/wp-content/themes/magazine/images/compartilhar.jpg" alt="Facebook Share Button" title="Facebook Share Button" />
+</a>
+
+<div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div>
+</div>
+
+<?php 
+  $imagem_fb = get_custom_field('imgnews:to_image_src');
+  $texto_fb = strip_tags(get_the_excerpt(120));
+?>
+
+<script type="text/javascript">
+
+$('#share-button').click(function (e){
+  e.preventDefault();
+  FB.ui({
+    method: 'feed',
+    name: '<?php the_title(); ?>',
+    link: '<?php the_permalink(); ?>',
+    picture: '<?php echo $imagem_fb; ?>',
+    caption: '',
+    description: '<?php echo $texto_fb; ?>',
+  });
+});
+</script>
 
         <div style="text-align: right;">
           <span style="background-color: #FFF; color: #7A8B8B; width: 100px; font-size: 16px;font-family: Oswald, sans-serif; padding-left: 5px; padding-right: 5px;"><?php echo the_date() ; ?></span>
