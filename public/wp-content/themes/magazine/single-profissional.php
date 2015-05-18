@@ -770,17 +770,17 @@ $('#share-button').click(function (e){
 				<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
 					if ($imgsizeok) { ?>
 				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-					<div class="imgnoticias" style="width: 679px; border-radius: 5px; height: 320px;  margin-bottom: 15px;">
+					<div class="imgnoticias" style="width: 679px; border-radius: 5px; height: 440px;  margin-bottom: 15px;">
 					<?php
 						$imgsizeok = str_replace("letts.com.br/", "", $imgsizeok);
 						$imgsizeok = str_replace("http://", "", $imgsizeok);
 						$imgsizeok = str_replace("https://", "", $imgsizeok);
 					?>
 					<div style="width: 679px; 
-			      	height: 320px; 
+			      	height: 440px; 
 			      	background-image: url('<?php print_custom_field('imgnews:to_image_src'); ?>');
 			      	background-position: center;
-			      	<?php echo calcbackgroundsize($imgsizeok, 685, 320); ?>; ">
+			      	<?php echo calcbackgroundsize($imgsizeok, 685, 440); ?>; ">
 			      		&nbsp;
   					</div>
 				</div></a>
