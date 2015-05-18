@@ -36,8 +36,22 @@
 	top: 50px !important;
 }
 
+.redes_sociais{
+	margin-top: -21px;
+	margin-left: 50px;
+	width: 90%;
+}
+
 </style>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=1540707736203396&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
   </head>
   <body>
@@ -53,7 +67,7 @@
 				<a href="javascript:abrir('<?php print_custom_field('fotoanuncio3'); ?>');"><img src="<?php print_custom_field('fotoanuncio3'); ?>"></a>
 			</div>
 
-<?php endwhile; // end of the loop. ?>
+
 <div class="formularios mensagem_acessorio">
 	<div class="mensagem_marca">
 		<h1 class="post-title entry-title">Envie mensagem para <?php echo $_GET['nome']; ?></h1>
@@ -67,6 +81,39 @@
 		<div id="sucesso" style="text-align: center;">E-mail enviado com sucesso.</div>
 	</div>	
 </div>
+
+<div class="redes_sociais">
+	<a id="share-button" href="#" title="Facebook Share Button">
+		<img src="/wp-content/themes/magazine/images/compartilhar.jpg" alt="Facebook Share Button" title="Facebook Share Button" />
+	</a>
+
+	<div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div>
+</div>
+
+<?php 
+	$imagem_fb = get_custom_field('fotoacessorio:to_image_src');
+	$texto_fb = strip_tags(get_the_excerpt(120));
+?>
+
+<script type="text/javascript">
+
+$('#share-button').click(function (e){
+	e.preventDefault();
+	FB.ui({
+		method: 'feed',
+		name: '<?php the_title(); ?>',
+		link: '<?php the_permalink(); ?>',
+		picture: '<?php echo $imagem_fb; ?>',
+		caption: '',
+		description: '<?php echo $texto_fb; ?>',
+	});
+});
+</script>
+
+
+<meta property="og:image" content="<?php echo $imagem_fb; ?>"/>	
+
+<?php endwhile; // end of the loop. ?>
 </div>
  		
   </body>
