@@ -20,6 +20,10 @@
 	display: none;
 }
 
+#share-button{
+	margin-top: 0px !important;
+}
+
 </style>
 <?php
 /**
@@ -433,7 +437,37 @@ global $themify; ?>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Descrição: </strong><br /> <?php the_content(); ?></div>
       <div style="margin-top: 10px; color: #666; text-align: right;"><a target="_blank" href="mailto:<?php print_custom_field('basicaemail'); ?>?subject=<?php the_title(); ?>&body=Link do perfil: <?php echo $body_email; ?>"><input type="submit" value="Enviar currículo" style="margin-top: 16px;"></a></div>
 
-	  <?php /* <div class="fb-like" style="margin-top: 30px;" data-href="http://letts.com.br/vagas/" data-width="100%" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div> */ ?>
+
+<div class="redes_sociais">
+<a id="share-button" href="#" title="Facebook Share Button">
+	<img src="/wp-content/themes/magazine/images/compartilhar.jpg" alt="Facebook Share Button" title="Facebook Share Button" />
+</a>
+
+<div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div>
+</div>
+
+<?php 
+	$imagem_fb = 'http://letts.com.br/wp-content/uploads/2014/09/letts-logo.png';
+	$texto_fb = strip_tags(get_the_excerpt(120));
+?>
+
+<script type="text/javascript">
+
+$('#share-button').click(function (e){
+	e.preventDefault();
+	FB.ui({
+		method: 'feed',
+		name: '<?php the_title(); ?>',
+		link: '<?php the_permalink(); ?>',
+		picture: '<?php echo $imagem_fb; ?>',
+		caption: '',
+		description: '<?php echo $texto_fb; ?>',
+	});
+});
+</script>
+
+<meta property="og:image" content="<?php echo $imagem_fb; ?>"/>		  
+
 
     </div>
   
