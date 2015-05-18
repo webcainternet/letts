@@ -48,7 +48,8 @@ global $themify; ?>
     <script type="text/javascript">
       $(document).ready(function(){
         $('#sucesso').show();
-      }) 
+          window.location = "http://letts.com.br/?p=<?php echo $_GET['id_post']; ?>&page=videos";
+      }); 
     </script>
   <?php } ?>
 

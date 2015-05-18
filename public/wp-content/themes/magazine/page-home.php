@@ -64,6 +64,7 @@ global $themify; ?>
 				'offset'       		=>  '5',
 			    'orderby'       	=>  'post_date',
 			    'post_type'     	=>  'news',
+			    'post_status'     	=>  'publish',
 			    'order'        		=>  'DESC',
 
 			); 

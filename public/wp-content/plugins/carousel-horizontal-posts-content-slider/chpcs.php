@@ -307,9 +307,9 @@ class CHPCS {
 	$args_custom = array(
 		 	'posts_per_page' => $number_of_posts_to_display,
 		    'post_type' => 'news',
+		    'post_status'  => 'publish',
 		    'order'=> $posts_order, 
 		    'orderby' => $posts_orderby,
-		    'post_status'  => 'publish',
 		    'tax_query' => array(
 		                array(
 		                    'taxonomy' => 'category',
