@@ -127,7 +127,7 @@ global $themify; ?>
 
 									//Background
 									$attach_id2 = "2909";
-									add_post_meta($pid, 'atletaimagembackground', $attach_id2, true);
+									add_post_meta($pid, 'image_profissional', $attach_id2, true);
 								break;
 
 							case 'marca':

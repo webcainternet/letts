@@ -332,12 +332,6 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		$imgsizeheight = '400px';
 		$imgsizetop = '280px';	
 	}
-
-	if ($imagemdefault == "" && $_SESSION["lettslogin"] != $idpost) {
-		$imagemdefault = '';
-		$imgsizeheight = '140px';
-		$imgsizetop = '20px';
-	}
 	?>
 
 	<div class="imagem_editar_capa" style="border-top: 5px #ff8920 solid;
