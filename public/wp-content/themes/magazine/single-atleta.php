@@ -428,15 +428,19 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			$defaultbg = 'http://letts.com.br/wp-content/uploads/users/defaultbg.jpg';
 	if ($imagemdefault == $defaultbg && $_SESSION["lettslogin"] != $idpost) {
 		$imagemdefault = '';
+		$imgsizeheight = '140px';
+		$imgsizetop = '20px';
+	} else {
+		$imgsizeheight = '400px';
+		$imgsizetop = '280px';
 	}
-
 	?>
 
 	<div class="imagem_editar_capa" style="border-top: 5px #ff8920 solid; 
 				background-image: url('<?php echo $imagemdefault; ?>'); 
 				background-size: 1064px; 
 				background-position:center; 
-				height: 400px;">
+				height: <?php echo $imgsizeheight; ?>;">
 
 		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>		
 			<div id="link_editar_capa">
@@ -449,7 +453,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 					border: 1px #ff8920 solid; 
 					width: 180px; 
 					height: 180px; 
-					margin-top: 280px;
+					margin-top: <?php echo $imgsizetop; ?>;
 					background-image: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>'); 
 					background-size: 1800px; 
 					background-position:center; " id="imgbackground">

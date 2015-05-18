@@ -37,17 +37,22 @@ function title_like_posts_where( $where, &$wp_query ) {
     return $where;
 }
 
-function override_pending_post_status() {
-  register_post_status( 'pending', array(
-    'label'       => _x( 'Pending', 'post' ),
-    'protected'   => true,
-    '_builtin'    => true, /* internal use only. */
-    'label_count' => _n_noop( 'Pending <span class="count">(%s)</span>', 'Pending <span class="count">(%s)</span>' ),
-    'public'      => true,
-  ) );
+
+$urlphp = $_SERVER["REQUEST_URI"];
+if ($urlphp != '/') {
+	function override_pending_post_status() {
+	  register_post_status( 'pending', array(
+	    'label'       => _x( 'Pending', 'post' ),
+	    'protected'   => true,
+	    '_builtin'    => true, /* internal use only. */
+	    'label_count' => _n_noop( 'Pending <span class="count">(%s)</span>', 'Pending <span class="count">(%s)</span>' ),
+	    'public'      => true,
+	  ) );
+	}
+
+	add_action( 'init', 'override_pending_post_status' );
 }
 
-add_action( 'init', 'override_pending_post_status' );
 
 /**********************************************************************************************************
  * 
