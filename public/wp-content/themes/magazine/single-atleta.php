@@ -803,8 +803,9 @@ $('#share-button').click(function (e){
 			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
 				<p id="sucesso">Noticia cadastrada com sucesso.</p>
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
-	             <textarea id="idtextareanoticia" class="textarea_noticia" name="content_noticia" placeholder="No que você está pensando..."></textarea>
-		             <input id="idinputnoticia" class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
+            	<input id="idinputnoticia" class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
+	             <textarea id="idtextareanoticia" class="textarea_noticia" name="content_noticia" placeholder="Texto da postagem..."></textarea>
+		             
 		        <p style="margin: 0px 0px 2px;text-align: center;">Selecione apenas uma opção: Esporte ou Profissão</p>   
                 <select id="atletaesporte" name="esporte" style="width: 325px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin: 0px 27px 14px 0px;">
                         <option>-- Selecione o esporte --</option>
