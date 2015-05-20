@@ -14,11 +14,11 @@
 
    $(document).ready(function(){
    		$("#postarnews").click(function(){
-   				if ($( "#idtextareanoticia" ).val() == "") {
-   					alert( "Você deve preencher o que você esta pensando!" ); 
+   				if ($( "#idinputnoticia" ).val() == "") {
+   					alert( "Você deve preencher o titulo da postagem!" );
         		} else {
-        			if ($( "#idinputnoticia" ).val() == "") {
-        				alert( "Você deve preencher o titulo!" );
+        			if ($( "#idtextareanoticia" ).val() == "") {
+        				alert( "Você deve preencher o texto da postagem!" );
     				} else {
 						if ($( "#atletaesporte" ).val() == "-- Selecione o esporte --" && $( "#profissao" ).val() == "-- Selecione a profissão --" ) {
 			        		alert( "Você deve selecionar o esporte ou profissão!" ); 
