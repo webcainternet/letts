@@ -9,6 +9,35 @@
 <?php get_header(); ?>
 
 <script type="text/javascript">
+
+
+
+   $(document).ready(function(){
+   		$("#postarnews").click(function(){
+   				if ($( "#idtextareanoticia" ).val() == "") {
+   					alert( "Você deve preencher o que você esta pensando!" ); 
+        		} else {
+        			if ($( "#idinputnoticia" ).val() == "") {
+        				alert( "Você deve preencher o titulo!" );
+    				} else {
+						if ($( "#atletaesporte" ).val() == "-- Selecione o esporte --" && $( "#profissao" ).val() == "-- Selecione a profissão --" ) {
+			        		alert( "Você deve selecionar o esporte ou profissão!" ); 
+		        		} else {
+		        			$( "#new_post" ).submit();
+		        		}
+        			}
+        		}
+	    });
+   });
+
+
+
+
+	
+
+
+
+
 	function excluirfoto(nomefoto, idlogin) {
 		$.ajax({
 		method: "POST",
@@ -774,8 +803,8 @@ $('#share-button').click(function (e){
 			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
 				<p id="sucesso">Noticia cadastrada com sucesso.</p>
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
-	             <textarea class="textarea_noticia" name="content_noticia" placeholder="No que você está pensando..."></textarea>
-		             <input class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
+	             <textarea id="idtextareanoticia" class="textarea_noticia" name="content_noticia" placeholder="No que você está pensando..."></textarea>
+		             <input id="idinputnoticia" class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
 		        <p style="margin: 0px 0px 2px;text-align: center;">Selecione apenas uma opção: Esporte ou Profissão</p>   
                 <select id="atletaesporte" name="esporte" style="width: 325px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin: 0px 27px 14px 0px;">
                         <option>-- Selecione o esporte --</option>
@@ -886,7 +915,17 @@ $('#share-button').click(function (e){
 		             <input class="input_video" type="text" name="link_video" style="width: 316px !important; max-width: 100%;margin-top: -33px;float: right;margin-right: -1px;" value="" placeholder="Link do Video do Youtube ou Vímeo">
 		             <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
 		             <input type="hidden" value="adicionarnews" name="adicionarnews">
-		             <input type="submit" style="float: right; margin-top: 0px;margin-left: 300px;" value="Publicar">
+		             <input type="button" id="postarnews" style="  background: #ff8920 !important;
+																  color: #fff;
+																  border: none;
+																  padding: 7px 20px;
+																  cursor: pointer;
+																  letter-spacing: .1em;
+																  font-size: 1.125em;
+																  font-family: Oswald, sans-serif;
+																  text-transform: uppercase;
+																  -webkit-appearance: none;
+																  -webkit-border-radius: 0;float: right; margin-top: 0px;margin-left: 300px;" value="Publicar">
             </form> 
             <?php } ?>
 
