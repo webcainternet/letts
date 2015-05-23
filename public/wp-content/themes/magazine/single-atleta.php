@@ -1080,14 +1080,16 @@ $('#share-button').click(function (e){
 				 } ?>
 
 				<div class="video">
-					<h3><?php the_title(); ?></h3>
+				<?php $vid = get_the_ID(); ?>
+					<h3><a href="/videos/?vid=<?php echo $vid; ?>"><?php the_title(); ?></a></h3>
 
 					<div>
 					<?php if ($_SESSION["lettslogin"] == $idpost) { echo '
 						<a style="color: #FFFFFF;" onclick="javascript: excluirvideo('.get_the_ID().','.$_SESSION["lettslogin"].')" href="#videos"><div class="removerbotaovideo">x</div></a>';
 					} ?>
 					
-					<a href="<?php print_custom_field('link_video'); ?>" class="fancybox">
+					<?php /* <a href="<?php print_custom_field('link_video'); ?>" class="fancybox"> */ ?>
+					<a href="/videos/?vid=<?php echo $vid; ?>">
 						<img src="<?php echo $img_video; ?>">
 					</a>
 					</div>
