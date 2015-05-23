@@ -258,7 +258,7 @@ global $themify; ?>
 			      	height: 200px; 
 			      	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $ImgP; ?>');
 			      	background-position: center;
-			      	background-size: 300px;
+              <?php echo calcbackgroundsize("wp-content/uploads/$ImgP".$basicaimagemurl, 250, 200); ?>;
 			      	">
 			      		&nbsp;
 			      	</div>
