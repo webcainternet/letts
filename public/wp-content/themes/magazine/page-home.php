@@ -61,6 +61,7 @@ global $themify; ?>
 
 
 			<?php $args = array(
+				'posts_per_page' => 6,
 				'offset'       		=>  '5',
 			    'orderby'       	=>  'post_date',
 			    'post_type'     	=>  'news',
