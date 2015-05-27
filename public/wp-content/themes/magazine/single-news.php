@@ -16,7 +16,7 @@ global $themify; ?>
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
 
-  <div id="contentwrap" style="width: 100%;padding-top: 0px;">
+  <div id="contentwrap" style="padding-top: 0px;">
 
     
   <?php 
@@ -26,7 +26,7 @@ global $themify; ?>
 <div id="content" class="list-post">
 
       <div style="float: left; width: 674px; padding-top: 10px; min-height: 1000px;">
-      <h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
+      <h1 class="post-title" itemprop="name" style="text-align: center; margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
         <span style="font-weight: bold;"><a href="#"><?php echo the_title(); ?></a></span></h1>
 
 <div class="redes_sociais">
@@ -249,6 +249,8 @@ $('#share-button').click(function (e){
 
 
   <?php endwhile; ?>
+
+<?php get_sidebar("sidebar-alt"); ?>
 
   </div>
   <!-- /#contentwrap -->
