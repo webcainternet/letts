@@ -120,7 +120,7 @@ global $themify; ?>
 			</div>
 			<?php } ?>
 
-			<?php get_sidebar("sidebar-alt"); ?>
+			<?php get_sidebar("sidebar-alt"); ?> 
 
 		</div>
 
