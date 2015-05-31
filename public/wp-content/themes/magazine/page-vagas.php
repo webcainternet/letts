@@ -24,6 +24,9 @@
 	margin-top: 0px !important;
 }
 
+.divconteudo {
+display:inline;
+}
 </style>
 <?php
 /**
@@ -39,6 +42,12 @@
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
+
+<style type="text/css">
+	.selectitens {
+	width: 170px;
+}
+</style>
 
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
@@ -262,6 +271,16 @@ global $themify; ?>
 			          </select>
 				    </div>  
 
+				    <div style="float: left; margin-right: 15px; margin-left: 25px;">
+						<span class="post-category"><a href="#">Cidade</a></span><br>
+						<input id="author" name="cidade" type="text" value="" size="30" class="required" style="width: 190px; height: 30px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
+					</div>
+
+					<div style="float: left; margin-right: 15px; margin-left: 25px;">
+						<span class="post-category"><a href="#">Estado</a></span><br>
+						<input id="author" name="estado" type="text" value="" size="30" class="required" style="width: 190px; height: 30px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
+					</div>
+
 					<div style="float: left; margin-right: 15px; margin-left: 25px; margin-top: 10px;">
 						<span class="post-category"><a href="#">Esporte</a></span><br>
 						<select class="selectitens" name="esporte">
@@ -426,7 +445,10 @@ global $themify; ?>
 		); ?>
 
 	<?php query_posts($args);
-    while (have_posts()): the_post(); ?>
+    while (have_posts()): the_post(); 
+    	$conteudo = get_the_content();
+    	$tamanhoc = strlen($conteudo); 
+    	$iddopost = get_the_ID(); ?>
 
     <div class="vaga">
       <div style="margin-top: 0px; color: #666; font-size: 12px;">Data de postagem: <?php echo mysql2date('j/m/Y', $post->post_date); ?></div>
@@ -434,7 +456,17 @@ global $themify; ?>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;"><center><?php print_custom_field('basicacidadeatual'); ?> - <?php print_custom_field('basicaestadoatual'); ?> - <?php print_custom_field('basicapaisatual'); ?>	</center></strong></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Empresa: </strong><br /><?php print_custom_field('empresa'); ?></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Contato: </strong><br /> <?php print_custom_field('basicaemail'); ?></div>
-      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Descrição: </strong><br /> <?php the_content(); ?></div>
+      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Descrição: </strong><br /> 
+      	<?php
+      		if ($tamanhoc <= 800) {
+				
+				echo $conteudo;
+      		} else {
+      			echo "<span class=\"divconteudo\">" . substr($conteudo,0, 800) . "</span>"; ?>
+				<span  class="divconteudo" id="vermais<?php echo $iddopost; ?>" onclick="document.getElementById('fulltex<?php echo $iddopost; ?>').style.display = 'block'; document.getElementById('vermais<?php echo $iddopost; ?>').style.display = 'none';"><a style="text-decoration: underline;">Ler mais</a></span><?php echo "<span class=\"divconteudo\" id=\"fulltex".$iddopost."\" style=\"display: none;\">".substr($conteudo,800, $tamanhoc)."</span>";
+      		}
+      	  ?>
+  	  </div>
       <div style="margin-top: 10px; color: #666; text-align: right;"><a target="_blank" href="mailto:<?php print_custom_field('basicaemail'); ?>?subject=<?php the_title(); ?>&body=Link do perfil: <?php echo $body_email; ?>"><input type="submit" value="Enviar currículo" style="margin-top: 16px;"></a></div>
 
 
