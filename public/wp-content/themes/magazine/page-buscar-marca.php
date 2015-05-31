@@ -56,9 +56,9 @@ mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
 mysql_select_db(DB_NAME);
 
 if ($_POST["nomemarca"] == "") {
-  $query1 = "select id, post_title from wp_posts where post_type = 'marca' AND post_status = 'publish'";
+  $query1 = "select id, post_title from wp_posts where post_type = 'marca' AND post_status = 'publish' ORDER BY rand()";
 } else {
-  $query1 = "select id, post_title from wp_posts where post_type = 'marca' AND post_status = 'publish' AND post_title like '%".$_POST["nomemarca"]."%'";
+  $query1 = "select id, post_title from wp_posts where post_type = 'marca' AND post_status = 'publish' AND post_title like '%".$_POST["nomemarca"]."%'  ORDER BY rand()";
 }
 $result = mysql_query($query1);
 

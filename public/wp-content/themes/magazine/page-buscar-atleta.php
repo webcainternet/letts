@@ -382,7 +382,7 @@ mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
     die("Could not connect: " . mysql_error());
 mysql_select_db(DB_NAME);
 
-$result = mysql_query("select id, post_title from wp_posts where post_type = 'atleta' AND post_status = 'publish'");
+$result = mysql_query("select id, post_title from wp_posts where post_type = 'atleta' AND post_status = 'publish' ORDER BY rand()");
 
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 	$mostra = "";
