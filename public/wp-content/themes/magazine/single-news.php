@@ -13,6 +13,12 @@
  *  @var object */
 global $themify; ?>
 
+<style type="text/css">
+  .redes_sociais{
+    width: 40%;
+  }
+</style>
+
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
 
