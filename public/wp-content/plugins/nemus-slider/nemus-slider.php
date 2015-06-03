@@ -1163,7 +1163,26 @@ function nemus_slider_shortcode( $atts, $content ){
 								
 
 								<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), apply_filters('nemus-slider-image-size','full',$id)); ?>
-								<?php if($slider_autoheight): ?>
+								
+								<?php 
+									$urldovideo = "";
+									$idimgv = get_the_ID(); 
+									$idimgv = "SELECT * FROM wp_postmeta WHERE meta_key = 'videourl' AND post_id = ".$idimgv;
+
+									mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
+									    die("Could not connect: " . mysql_error());
+									mysql_select_db(DB_NAME);
+
+									$result = mysql_query($idimgv);
+
+									while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+										$urldovideo = $row["meta_value"];
+									}
+
+									if ($urldovideo == "") {
+								
+							//Nao é video
+								if($slider_autoheight): ?>
 									<img src="<?php echo $thumb[0]; ?>" />	
 								<?php else: ?>
 
@@ -1180,6 +1199,49 @@ function nemus_slider_shortcode( $atts, $content ){
 								if (isset($slide['caption_position'])) {
 									if ($slide['caption_position'] != '') $position = $slide['caption_position']; 
 								} 
+
+									}
+							//É Video
+									else {
+
+
+				$video = $urldovideo;
+				$video = explode("/", $video);
+				$url_video = explode("=", $video[3]);
+				if ($url_video[0] == 'watch?v') {
+				 	$imgid = $url_video[1];
+				 	$img_video = 'http://img.youtube.com/vi/'.$imgid.'/0.jpg';
+				 } else{
+				$imgid = $url_video[0];
+				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imgid.php"));
+				$img_video = $hash[0]['thumbnail_medium'];
+
+
+
+				 }
+								
+
+								if($slider_autoheight): ?>
+									<img src="<?php echo $img_video; ?>" />	
+								<?php else: ?>
+
+									<?php
+										$imgslider = str_replace("http://letts.com.br/", "", $thumb[0]);
+										$imgsizesl = calcbackgroundsize($imgslider, 720, 480);
+										$imgsizesl = "background-size: 720px auto;"
+									?>
+
+									<div class="slide-image" style="<?php echo $imgsizesl; ?>; background-image:url(<?php echo $img_video; ?>);height: 440px; width: 720px;margin-bottom: 10px; margin-top: 10px;"></div>
+								<?php endif; ?>
+								<?php
+								$position = 'tl';
+								if (isset($slide['caption_position'])) {
+									if ($slide['caption_position'] != '') $position = $slide['caption_position']; 
+								} 
+
+									}
+
+
 								?>
 
 
