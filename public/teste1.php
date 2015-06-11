@@ -1,5 +1,9 @@
 <?php
 
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
+ini_set('error_reporting', E_ALL);
+
 $urlimg = 'http://letts.com.br/wp-content/uploads/2015/05/maxresdefault.jpg';
 
 function calcbackgroundsize($imagem, $origw, $origh) {
