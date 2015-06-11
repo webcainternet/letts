@@ -60,7 +60,7 @@ global $themify; ?>
 
 				<div class="post-meta" style="display: inline;">
 					<form method="post" action="">
-					<div style="float: left; margin-right: 15px; margin-left: 25px;">
+					<div style="float: left; margin-right: 15px; margin-left: 25px; display: none;">
 						<span class="post-category"><a href="#">Titulo</a></span><br>
 						<input id="author" name="nome" type="text" value="" size="30" class="required" style="width: 190px; height: 30px; background-color: #FFFFFF; border: solid 1px; border-radius: 5px;">
 					</div>
@@ -68,7 +68,7 @@ global $themify; ?>
 				    <div style="float: left; margin-right: 15px; margin-top: -1px; margin-left: 25px;">
 				      <span class="post-category"><a href="#">Pais</a></span><br>
 				      <select class="selectitens" name="pais" id="pais" onchange="SelectPais();">
-				        <option>-- Selecione um pais --</option>
+				        <option value="">-- Selecione um pais --</option>
 							<option value="Afeganistão">Afeganistão</option>
 							<option value="África do Sul">África do Sul</option>
 							<option value="Albânia">Albânia</option>
@@ -284,7 +284,7 @@ global $themify; ?>
 					<div style="float: left; margin-right: 15px; margin-left: 25px; margin-top: 10px;">
 						<span class="post-category"><a href="#">Esporte</a></span><br>
 						<select class="selectitens" name="esporte">
-							<option>-- Selecione --</option>
+							<option value="">-- Selecione --</option>
 	                        <option value="Aeromodelismo">Aeromodelismo</option>
 	                        <option value="Alpinismo">Alpinismo</option>
 	                        <option value="Asa Delta">Asa Delta</option>
@@ -362,7 +362,7 @@ global $themify; ?>
 					<div style="float: left; margin-right: 15px; margin-left: 25px; margin-top: 10px;">
 						<span class="post-category"><a href="#">Profissão</a></span><br>
 						<select class="selectitens" name="profissao">
-				              <option>-- Selecione --</option>
+				              <option value="">-- Selecione --</option>
 				              <option value="Assessor de imprensa">Assessor de imprensa</option>
 				              <option value="Coordenador de eventos">Coordenador de eventos</option>
 				              <option value="Desenhista">Desenhista</option>
@@ -416,33 +416,60 @@ global $themify; ?>
 <div id="vagas" style="float: left; width: 705px; margin-left: 20px;">
 
     <?php 
-		$args = array(
-			'post_type' => 'vagas',
-			'post_title_like' => $_POST['nome'],
-			'meta_query' => array(
-				'relation' => 'OR',
-				array(
-					'key' => 'atletaesporte',
-					'value' => $_POST['esporte'],
-					'compare' => 'LIKE'
-				),
-				array(
-					'key' => 'basicapaisatual',
-					'value' => $_POST['pais'],
-					'compare' => 'LIKE'
-				),
-				array(
-					'key' => 'basicaestadoatual',
-					'value' => $_POST['estado'],
-					'compare' => '='
-				),				
-				array(
-					'key' => 'profissao',
-					'value' => $_POST['profissao'],
-					'compare' => 'LIKE'
+
+
+
+$arraybusca = "";
+    	if ($_POST['esporte'] == "" || $_POST['esporte'] == "-- Selecione --" ) {
+    		//no
+    	} else {
+    		$arraybusca .= "array('key' => 'atletaesporte','value' => ".$_POST['esporte'].",'compare' => 'LIKE'),";
+    	}
+
+
+    	if ($_POST['pais'] == "" || $_POST['pais'] == "-- Selecione um pais --" ) {
+    		//no
+    	} else {
+			$arraybusca .= "array('key' => 'basicapaisatual','value' => ".$_POST['pais'].",'compare' => 'LIKE'),";
+    	}
+
+
+		if ($_POST['estado'] == "") {
+    		//no
+    	} else {
+			$arraybusca .= "array('key' => 'basicaestadoatual','value' => ".$_POST['estado'].",'compare' => 'LIKE'),";
+		}				
+				
+
+		if ($_POST['profissao'] == "" || $_POST['profissao'] == "-- Selecione --" ) {
+    		//no
+    	} else {
+			$arraybusca .= "array('key' => 'profissao','value' => ".$_POST['profissao'].",'compare' => 'LIKE'),";
+		}				
+				
+
+		if ($_POST['cidade'] == "" ) {
+    		//no
+    	} else {
+			$arraybusca .= "array('key' => 'basicacidadeatual','value' => ".$_POST['cidade'].",'compare' => 'LIKE'),";
+		}				
+				
+
+		if ($_POST['estado'] == "" ) {
+    		//no
+    	} else {
+			$arraybusca .= "array('key' => 'basicaestadoatual','value' => ".$_POST['estado'].",'compare' => 'LIKE'),";
+		}				
+
+			$args = array(
+				'post_type' => 'vagas',
+				'post_title_like' => $_POST['nome'],
+				'meta_query' => array(
+					'relation' => 'AND',$arraybusca
 				)
-			)
-		); ?>
+			); 
+		
+		?>
 
 	<?php query_posts($args);
     while (have_posts()): the_post(); 
