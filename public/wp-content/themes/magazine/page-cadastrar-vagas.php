@@ -8,6 +8,47 @@
 
 <?php get_header(); ?>
 
+
+<script type="text/javascript">
+
+
+
+   $(document).ready(function(){
+      $("#cadastrarvaga").click(function(){
+          if ($( "#frmvaga" ).val() == "") {
+            alert( "Você deve preencher o nome da vaga!" );
+          } else {
+            if ($( "#frmempresa" ).val() == "") {
+              alert( "Você deve preencher o nome da empresa!" );
+            } else {
+              if ($( "#frmestado" ).val() == "") {
+                alert( "Você deve preencher o estado!" );
+              } else {
+                if ($( "#frmcidade" ).val() == "") {
+                  alert( "Você deve preencher a cidade!" );
+                } else {
+                  if ($( "#frmpais" ).val() == "-- Selecione um pais --") {
+                    alert( "Você deve selecionar o pais!" );
+                  } else {
+                    if ($( "#atletaesporte" ).val() == "-- Selecione o esporte --" && $( "#profissao" ).val() == "-- Selecione a profissão --" ) {
+                      alert( "Você deve selecionar o esporte ou profissão!" ); 
+                    } else {
+                      if ($( "#descricao_vaga" ).val() == "" ) {
+                        alert( "Você deve preencher a descrição!" ); 
+                      } else {
+                        $( "#new_post" ).submit();
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+      });
+   });
+
+</script>
+
 <?php 
 /** Themify Default Variables
  *  @var object */
@@ -63,12 +104,12 @@ global $themify; ?>
           <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; font-size: 45px; font-weight: bold; margin-bottom: 10px;">Cadastrar Vaga</h4>
           <div class="galeria_profissional">
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
-             <input class="input_video" type="text" name="vaga" value="" placeholder="Vaga Disponível">
-             <input class="input_video" type="text" name="empresa" value="" placeholder="Empresa">
-             <input class="input_video_cidade" type="text" style=" width: 308px; margin-top: 0px; float: right; margin-left: -24px; margin-right: 28px; padding-left: 3px; height: 32px;" name="cidade" value="" placeholder="Cidade">
-             <input class="input_video_cidade" type="text" style=" width: 308px; margin-top: 0px; float: right; margin-left: -24px; margin-right: 28px; padding-left: 3px; height: 32px;" name="estado" id="estado" value="" placeholder="Estado">
+             <input class="input_video" type="text" name="vaga" id="frmvaga" value="" placeholder="Vaga Disponível">
+             <input class="input_video" type="text" name="empresa" id="frmempresa" value="" placeholder="Empresa">
+             <input class="input_video_cidade" type="text" id="frmcidade" style=" width: 308px; margin-top: 0px; float: right; margin-left: -24px; margin-right: 28px; padding-left: 3px; height: 32px;" name="cidade" value="" placeholder="Cidade">
+             <input class="input_video_cidade" type="text" id="frmestado" style=" width: 308px; margin-top: 0px; float: right; margin-left: -24px; margin-right: 28px; padding-left: 3px; height: 32px;" name="estado" id="estado" value="" placeholder="Estado">
 
-              <select id="pais" name="pais" style="width: 629px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: -5px; float: left;margin-left: 29px;">    
+              <select id="frmpais" name="pais" style="width: 629px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: -5px; float: left;margin-left: 29px;">    
               <option>-- Selecione um pais --</option>
               <option value="Afeganistão">Afeganistão</option>
               <option value="África do Sul">África do Sul</option>
@@ -372,9 +413,21 @@ global $themify; ?>
                   </select>      
 
 
-             <textarea class="" name="descricao_vaga" placeholder="Descrição" style="width: 91%; height: 115px;"></textarea>
+             <textarea class="" name="descricao_vaga" id="descricao_vaga" placeholder="Descrição" style="width: 91%; height: 115px;"></textarea>
              <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
-             <input type="submit" value="Enviar Vaga">
+
+             <input type="button" id="cadastrarvaga" style="  background: #ff8920 !important;
+                                  color: #fff;
+                                  border: none;
+                                  padding: 7px 20px;
+                                  cursor: pointer;
+                                  letter-spacing: .1em;
+                                  font-size: 1.125em;
+                                  font-family: Oswald, sans-serif;
+                                  text-transform: uppercase;
+                                  -webkit-appearance: none;
+                                  -webkit-border-radius: 0;float: right; margin-top: 0px;margin-left: 300px;" value="Enviar Vaga">
+
             </form> 
           </div>
         </div>  
