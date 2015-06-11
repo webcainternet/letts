@@ -3,7 +3,12 @@
 $urlimg = 'http://letts.com.br/wp-content/uploads/2015/05/maxresdefault.jpg';
 
 function calcbackgroundsize($imagem, $origw, $origh) {
+
+	
+
 	$imgsize = getimagesize($imagem);
+echo "$imgsize=".$imgsize."<br>";
+	
 	$imgsize = explode("=\"", $imgsize["3"]);
 
 	$imgwidth = explode("\"", $imgsize["1"]);
