@@ -14,6 +14,9 @@ function calcbackgroundsize($imagem, $origw, $origh) {
 
 	if($imgwidth/$imgheight < $origw/$origh) {
 		echo "1<br>";
+		echo "$origw=".$origw."<br>";
+		echo "$imgheight=".$imgheight."<br>";
+		echo "$imgwidth=".$imgwidth."<br>";
 		$widthcalc = "background-size: ".$origw."px ".$imgheight*$origw/$imgwidth."px ";
 	} else {
 		echo "2<br>";
