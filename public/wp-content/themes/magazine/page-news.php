@@ -373,7 +373,9 @@ mysql_free_result($result);
 
       </div>
 
-
+<a href="#" id="criar" style="padding: 10px 255px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px;">
+        Ver mais noticias
+      </a>
 
 
     

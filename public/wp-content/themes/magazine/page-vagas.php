@@ -478,6 +478,17 @@ $arraybusca = "";
     	$iddopost = get_the_ID(); ?>
 
     <div class="vaga">
+
+
+    <?php
+    	$emailvaga = get_custom_field('basicaemail');
+
+     	if ($emailvaga == "fernando.mendes@webca.com.br") { ?>
+     		<div style="float: right;"><a href="#"><img src="/wp-content/themes/magazine/images/remove.png" height="17" style="height: 17px;"></a></div>
+    	<?php }
+    ?>
+    	
+
       <div style="margin-top: 0px; color: #666; font-size: 12px;">Data de postagem: <?php echo mysql2date('j/m/Y', $post->post_date); ?></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;"><center><?php the_title(); ?></center></strong></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;"><center><?php print_custom_field('basicacidadeatual'); ?> - <?php print_custom_field('basicaestadoatual'); ?> - <?php print_custom_field('basicapaisatual'); ?>	</center></strong></div>
