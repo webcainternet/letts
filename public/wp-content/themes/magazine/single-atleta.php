@@ -1118,9 +1118,17 @@ $('#share-button').click(function (e){
 				</div>
 			<?php } ?>	
 
+				<a href="#" id="criar" style="float: right; padding: 10px 255px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px; margin-right: 10px;">
+        Ver mais noticias
+      </a>
+
 			<div style="float: right; width: 652px; margin-right: 40px; margin-top: 30px;">
 				<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
 			</div>
+
+
+
+
 	</div>
 
 
@@ -1130,7 +1138,11 @@ $('#share-button').click(function (e){
 		<!-- /content -->
 		<?php themify_content_after(); // hook ?>
 
+
+
 	<?php endwhile; ?>
+
+
 
 	</div>
 	<!-- /#contentwrap -->

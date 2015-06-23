@@ -1,3 +1,6 @@
+<?php
+exit; 
+?>
 <style type="text/css">
 	.classificados {
 		float: left;
