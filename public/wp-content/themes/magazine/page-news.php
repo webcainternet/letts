@@ -415,6 +415,11 @@ mysql_free_result($result);
 
 <script type="text/javascript">
   
+$.ajax({url: "/wp-content/themes/magazine/page-news-ajax.php", success: function(result){
+        //$("#newsajax").append(result);
+        alert(result);
+    }});
+
   $("#criar").click(function(){
     $.ajax({url: "/wp-content/themes/magazine/page-news-ajax.php", success: function(result){
         $("#newsajax").append(result);
