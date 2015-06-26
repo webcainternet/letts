@@ -1,6 +1,3 @@
-<?php
-exit; 
-?>
 <style type="text/css">
 	.classificados {
 		float: left;
@@ -51,6 +48,27 @@ global $themify; ?>
 	width: 170px;
 }
 </style>
+
+<script type="text/javascript">
+	
+	function excluirvaga(idvaga, idlogin) {
+		$.ajax({
+		method: "POST",
+		url: "/wp-content/themes/magazine/excluirvagas.php",
+		data: { idvaga: idvaga, idlogin: idlogin }
+		})
+		.done(function( msg ) {
+			var n = msg.indexOf("statusok");
+			if (n == -1) {
+				alert('Erro ao excluir vaga');
+			} else {
+				alert('Vaga excluida com sucesso!');
+				window.location.href = window.location.pathname;
+			}
+		});
+	}
+
+</script>
 
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
@@ -487,7 +505,7 @@ $arraybusca = "";
     	$emailvaga = get_custom_field('basicaemail');
 
      	if ($emailvaga == "fernando.mendes@webca.com.br") { ?>
-     		<div style="float: right;"><a href="#"><img src="/wp-content/themes/magazine/images/remove.png" height="17" style="height: 17px;"></a></div>
+     		<div style="float: right;"><a href="#"><img src="/wp-content/themes/magazine/images/remove.png" onclick="javascript: excluirvaga('<?php echo $iddopost; ?>','<?php echo $_SESSION["lettslogin"]; ?>')" height="17" style="height: 17px;"></a></div>
     	<?php }
     ?>
     	
