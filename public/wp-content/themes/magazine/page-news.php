@@ -13,6 +13,7 @@
  *  @var object */
 global $themify; ?>
 
+<?php /*
 <script type="text/javascript">
   newsfiltraesporte() {
     document.forms["filtroesporte"].submit();
@@ -20,8 +21,10 @@ global $themify; ?>
 
   $( ".selectitens" ).change(function() {
     alert( "Handler for .change() called." );
-});
+  });
 </script>
+*/ ?>
+
 
 <style type="text/css">
   .imgnoticias {
