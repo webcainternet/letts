@@ -408,8 +408,7 @@ mysql_free_result($result);
 <!-- /layout-container -->
 
 
-
-<input type="text" name="noticount" id="noticount">
+<input type="text" name="noticount" id="noticount" style="display: none;">
 
 
 <script type="text/javascript">
