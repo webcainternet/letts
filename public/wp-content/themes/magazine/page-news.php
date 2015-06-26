@@ -416,7 +416,7 @@ mysql_free_result($result);
 <script type="text/javascript">
   
   $("#criar").click(function(){
-    $.ajax({url: "http://letts.com.br/wp-content/themes/magazine/page-news-ajax.php", success: function(result){
+    $.ajax({url: "/wp-content/themes/magazine/page-news-ajax.php", success: function(result){
         $("#newsajax").append(result);
         //alert(result);
     }});
