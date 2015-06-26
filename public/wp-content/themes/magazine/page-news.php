@@ -13,7 +13,6 @@
  *  @var object */
 global $themify; ?>
 
-<?php /*
 <script type="text/javascript">
   newsfiltraesporte() {
     document.forms["filtroesporte"].submit();
@@ -23,7 +22,6 @@ global $themify; ?>
     alert( "Handler for .change() called." );
   });
 </script>
-*/ ?>
 
 
 <style type="text/css">
@@ -411,15 +409,29 @@ mysql_free_result($result);
 
 
 
+<input type="text" name="noticount" id="noticount">
 
 
 <script type="text/javascript">
   function carregarmais() {
-    $.ajax({url: "/wp-content/themes/magazine/page-news-ajax.php", success: function(result){
+    //Get
+    var bla = $('#noticount').val();
+    var nova = parseInt(bla) + 1;
+    
+    $('#noticount').val(nova);
+
+
+    $.ajax({url: "/wp-content/themes/magazine/page-news-ajax.php?cont="+bla, success: function(result){
         $("#newsajax").append(result);
         //alert(result);
     }});
+
+
   }
+
+
+  $('#noticount').val('1');
+
 
 </script>
 

@@ -2,6 +2,8 @@
 <?php
 include "../../../wp-config.php";
 
+$vez = 6;
+$vez = $vez + $_GET["cont"] * 4;
 
 mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
     die("Could not connect: " . mysql_error());
@@ -9,12 +11,12 @@ mysql_select_db(DB_NAME);
 
 
   if ($_POST["profissao"]) {
-    $result = mysql_query("select po.id, po.post_title, po.post_content, po.post_date, po.guid, pm.meta_value from wp_posts po INNER JOIN wp_postmeta pm ON pm.post_id = po.id where pm.meta_key = 'profissao' AND po.post_type = 'news' AND po.post_status = 'publish' AND pm.meta_value = '".$_POST["profissao"]."' ORDER BY po.post_date DESC LIMIT 4");
+    $result = mysql_query("select po.id, po.post_title, po.post_content, po.post_date, po.guid, pm.meta_value from wp_posts po INNER JOIN wp_postmeta pm ON pm.post_id = po.id where pm.meta_key = 'profissao' AND po.post_type = 'news' AND po.post_status = 'publish' AND pm.meta_value = '".$_POST["profissao"]."' ORDER BY po.post_date DESC LIMIT ".$vez.", 4");
   } else {
       if ($_POST["slesporte"]) {
-        $result = mysql_query("select po.id, po.post_title, po.post_content, po.post_date, po.guid, pm.meta_value from wp_posts po INNER JOIN wp_postmeta pm ON pm.post_id = po.id where pm.meta_key = 'atletaesporte' AND po.post_type = 'news' AND po.post_status = 'publish' AND pm.meta_value = '".$_POST["slesporte"]."' ORDER BY po.post_date DESC LIMIT 4");
+        $result = mysql_query("select po.id, po.post_title, po.post_content, po.post_date, po.guid, pm.meta_value from wp_posts po INNER JOIN wp_postmeta pm ON pm.post_id = po.id where pm.meta_key = 'atletaesporte' AND po.post_type = 'news' AND po.post_status = 'publish' AND pm.meta_value = '".$_POST["slesporte"]."' ORDER BY po.post_date DESC LIMIT ".$vez.", 4");
       } else {
-        $result = mysql_query("select id, post_title, post_content, post_date, guid from wp_posts where post_type = 'news' AND post_status = 'publish' ORDER BY post_date DESC LIMIT 4");
+        $result = mysql_query("select id, post_title, post_content, post_date, guid from wp_posts where post_type = 'news' AND post_status = 'publish' ORDER BY post_date DESC LIMIT ".$vez.", 4");
       }
   }
 
@@ -186,7 +188,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     
 }
 } else {
-  echo "<div style=\"float: left; margin-top: 20px;\">Nenhuma noticia encontrada!</div>";
+  echo "<div style=\"float: left; margin-top: 20px;\">Nenhuma noticia mais!</div>";
 }
 
 
