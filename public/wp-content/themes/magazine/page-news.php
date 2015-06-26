@@ -182,12 +182,12 @@ mysql_select_db(DB_NAME);
 
 
   if ($_POST["profissao"]) {
-    $result = mysql_query("select po.id, po.post_title, po.post_content, po.post_date, po.guid, pm.meta_value from wp_posts po INNER JOIN wp_postmeta pm ON pm.post_id = po.id where pm.meta_key = 'profissao' AND po.post_type = 'news' AND po.post_status = 'publish' AND pm.meta_value = '".$_POST["profissao"]."' ORDER BY po.post_date DESC");
+    $result = mysql_query("select po.id, po.post_title, po.post_content, po.post_date, po.guid, pm.meta_value from wp_posts po INNER JOIN wp_postmeta pm ON pm.post_id = po.id where pm.meta_key = 'profissao' AND po.post_type = 'news' AND po.post_status = 'publish' AND pm.meta_value = '".$_POST["profissao"]."' ORDER BY po.post_date DESC LIMIT 9");
   } else {
       if ($_POST["slesporte"]) {
-        $result = mysql_query("select po.id, po.post_title, po.post_content, po.post_date, po.guid, pm.meta_value from wp_posts po INNER JOIN wp_postmeta pm ON pm.post_id = po.id where pm.meta_key = 'atletaesporte' AND po.post_type = 'news' AND po.post_status = 'publish' AND pm.meta_value = '".$_POST["slesporte"]."' ORDER BY po.post_date DESC");
+        $result = mysql_query("select po.id, po.post_title, po.post_content, po.post_date, po.guid, pm.meta_value from wp_posts po INNER JOIN wp_postmeta pm ON pm.post_id = po.id where pm.meta_key = 'atletaesporte' AND po.post_type = 'news' AND po.post_status = 'publish' AND pm.meta_value = '".$_POST["slesporte"]."' ORDER BY po.post_date DESC LIMIT 9");
       } else {
-        $result = mysql_query("select id, post_title, post_content, post_date, guid from wp_posts where post_type = 'news' AND post_status = 'publish' ORDER BY post_date DESC");
+        $result = mysql_query("select id, post_title, post_content, post_date, guid from wp_posts where post_type = 'news' AND post_status = 'publish' ORDER BY post_date DESC LIMIT 9");
       }
   }
 
@@ -371,40 +371,56 @@ mysql_free_result($result);
 
         </div>
 
+
+
+
       </div>
 
-<a href="#" id="criar" style="padding: 10px 255px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px;">
-        Ver mais noticias
-      </a>
+
+  <div id="newsajax">
 
 
+    
+
+
+  </div>
+
+
+<div style="float: left; width: 100%;">
+  <div class="pagewidth clearfix">
+        <a id="criar" style="padding: 10px 255px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px;">
+          Ver mais noticias
+        </a>
+  </div>
+</div>
     
 
   </div>
   <?php get_sidebar("sidebar-alt"); ?>
 </div>
   <!-- /#contentwrap -->
+
+
+
+
 </div>
 <!-- /layout-container -->
 
-<div id="vagas" style="display: none;">
-<h1 class="post-title">Vagas de emprego</h1>
-    <?php query_posts('post_type=vagas');
-    while (have_posts()): the_post(); ?>
 
 
-    <div class="vaga">
-      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Vaga: </strong><br /><?php the_title(); ?></div>
-      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Empresa: </strong><?php the_content(); ?></div>
-      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Contato: </strong><br /> <?php print_custom_field('basicaemail'); ?></div>
-    </div>
+
+
+<script type="text/javascript">
   
+  $("#criar").click(function(){
+    $.ajax({url: "http://letts.com.br/wp-content/themes/magazine/page-news-ajax.php", success: function(result){
+        $("#newsajax").append(result);
+        //alert(result);
+    }});
+  });
 
-    <?php endwhile; // end of the loop. ?>
 
-</div>
-
-
+</script>
 
   
 <?php get_footer(); ?>
