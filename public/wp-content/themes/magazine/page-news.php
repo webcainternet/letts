@@ -391,7 +391,7 @@ mysql_free_result($result);
 
 <div style="float: left; width: 100%;">
   <div class="pagewidth clearfix">
-        <a id="criar" style="padding: 10px 255px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px;">
+        <a id="criar" onclick="carregarmais()" style="padding: 10px 255px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px;">
           Ver mais noticias
         </a>
   </div>
@@ -414,16 +414,12 @@ mysql_free_result($result);
 
 
 <script type="text/javascript">
-  
-$.ajax({url: "/wp-content/themes/magazine/page-news-ajax.php", success: function(result){
-        //$("#newsajax").append(result);
-        alert(result);
+  function carregarmais() {
+    $.ajax({url: "/wp-content/themes/magazine/page-news-ajax.php", success: function(result){
+        $("#newsajax").append(result);
+        //alert(result);
     }});
-
-
-$("#criar").click(function(){ alert('dwqdwqd'); });
-
-
+  }
 
 </script>
 
