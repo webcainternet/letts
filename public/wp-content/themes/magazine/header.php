@@ -21,6 +21,12 @@
 
 <title itemprop="name"><?php wp_title( '' ); ?></title>
 
+<style type="text/css">
+	.skiptranslate {
+		display: none;
+	}
+</style>
+
 <?php
 /**
  *  Stylesheets and Javascript files are enqueued in theme-functions.php
