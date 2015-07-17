@@ -1,10 +1,5 @@
 <?php   
 
-echo '<style type="text/css">';
-echo '.goog-text-highlight {display: none !important;}';
-echo '</style>';
-exit;
-
 $glt_css = get_option("googlelanguagetranslator_css");
 
   echo '<style type="text/css">';
