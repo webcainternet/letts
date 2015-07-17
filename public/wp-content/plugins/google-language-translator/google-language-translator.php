@@ -354,7 +354,7 @@ class google_language_translator {
       foreach ($get_flag_choices as $flag_choice_key) {}
 	  
 	if ($floating_widget=='yes' && $get_language_option != 'specific') {
-	  $str.='<div id="glt-translate-trigger"><span class="notranslate">Translate &raquo;</span></div>';
+	  $str.='<div id="glt-translate-trigger"><span class="notranslate">Idioma &raquo;</span></div>';
           $str.='<div id="glt-toolbar"></div>';
 	} //endif $floating_widget
 
