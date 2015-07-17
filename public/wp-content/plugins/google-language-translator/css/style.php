@@ -54,7 +54,7 @@ if (get_option('googlelanguagetranslator_manage_translations') == 0) {
     if(get_option('googlelanguagetranslator_active')==1) {
       echo '.goog-tooltip {display: none !important;}';
       echo '.goog-tooltip:hover {display: none !important;}';
-      echo '.goog-text-highlight {background-color: transparent !important; border: none !important; box-shadow: none !important;}';
+      echo '.goog-text-highlight {}';
     }
 }
 
