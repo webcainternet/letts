@@ -1,3 +1,8 @@
+<div style="margin-bottom: 70px; width: 100%;">
+	<div style="margin: auto; width: 1130px;">
+		<div class="fb-like" data-href="https://www.facebook.com/letts.global" data-width="1130" data-height="300" data-layout="standard" data-colorscheme="light" data-action="like" data-show-faces="true" data-share="true" data-header="false" data-stream="false" data-show-border="false"></div>
+	</div>
+</div>
 <?php
 /**
  * Template for site footer
@@ -14,11 +19,6 @@
     </div>
 	<!-- /body -->
 	
-	<div id="footerwrapface">
-		<footer id="footerface" class="pagewidth clearfix">
-			<div class="fb-like" data-href="https://www.facebook.com/lojavirtual.digital" data-width="1130" data-height="300" data-layout="standard" data-colorscheme="light" data-action="like" data-show-faces="true" data-share="true" data-header="false" data-stream="false" data-show-border="false"></div>
-		</footer>
-	</div>
 
 	<div id="footerwrap">
 
