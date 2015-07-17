@@ -1097,8 +1097,6 @@ function nemus_slider_shortcode( $atts, $content ){
 							<?php
 							$image_url = parse_url($slide['video']);
 
-							echo "---- ".$image_url; exit;
-
 							if (isset($image_url['host'])) {
 								if($image_url['host'] == 'www.youtube.com' || $image_url['host'] == 'youtube.com'){
 									$array = explode("&", $image_url['query']);
