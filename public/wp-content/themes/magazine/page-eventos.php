@@ -140,7 +140,7 @@ global $themify; ?>
           </div>
 
     <div style="float: left; margin-right: 5px;">
-      <span class="post-category" style="margin-right: 125px;"><a href="#">Pais</a></span><br>
+      <span class="post-category" style="margin-right: 125px;"><a href="#">País</a></span><br>
       <select class="selectitens" name="pais" onchange="ChangeSelect();">
         <option>-- Selecione --</option>
               <option value="Afeganistão">Afeganistão</option>

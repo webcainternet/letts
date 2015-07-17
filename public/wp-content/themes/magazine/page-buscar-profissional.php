@@ -83,7 +83,7 @@ function calcula_idade($data_nascimento) {
 
 
 					<div style="float: left; margin-right: 15px;">
-						<span class="post-category"><a href="#">Pais</a></span><br>
+						<span class="post-category"><a href="#">País</a></span><br>
 						<select class="selectitens" name="pais">
 							<option>-- Selecione --</option>
 							<option value="Afeganistão">Afeganistão</option>
