@@ -3,7 +3,7 @@
 $glt_css = get_option("googlelanguagetranslator_css");
 
   echo '<style type="text/css">';
-  echo '.goog-text-highlight {background-color: #ff8920 !important;box-shadow: none !important; border: 0px !important;}';
+  echo '.goog-text-highlight {background: none !important;box-shadow: none !important; border: 0px !important;}';
   echo $glt_css;
 
 if (get_option('googlelanguagetranslator_flags') == 'show_flags') {
