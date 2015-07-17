@@ -1,4 +1,3 @@
-<?php a ?>
 <style type="text/css">
 	.classificados {
 		float: left;
@@ -30,6 +29,7 @@ display:inline;
 }
 </style>
 <?php
+publish
 /**
  * Template for single post view
  * @package themify
