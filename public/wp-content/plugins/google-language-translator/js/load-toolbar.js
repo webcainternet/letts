@@ -7,12 +7,12 @@ jQuery(document).ready(function($) {
 	  $('.tool-rounded').css('position','fixed');
 	  $('.tool-rounded').css('bottom','50px');
 	  $('.tool-rounded').css('top','auto !important');
-	  $('#glt-translate-trigger span').text('Translate « ');
+	  $('#glt-translate-trigger span').text('Idioma « ');
       
     });
   
   $('#glt-translate-trigger').on('toolbarHidden',function(event) {
-	  $('#glt-translate-trigger span').text('Translate » ');
+	  $('#glt-translate-trigger span').text('Idioma » ');
 	  $('.tool-rounded').css('position','absolute');
 	  
   });
