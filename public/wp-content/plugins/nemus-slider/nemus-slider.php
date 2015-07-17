@@ -1215,7 +1215,7 @@ function nemus_slider_shortcode( $atts, $content ){
 				 } else{
 				$imgid = $url_video[0];
 				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imgid.php"));
-				$img_video = $hash[0]['thumbnail_medium'];
+				$img_video = $hash[0]['thumbnail_large'];
 
 
 
