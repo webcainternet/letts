@@ -1,3 +1,4 @@
+<?php a ?>
 <style type="text/css">
 	.classificados {
 		float: left;
@@ -429,7 +430,7 @@ global $themify; ?>
 
 			<?php } ?>	
 
-<?php include('banner_lateral.php') ?>  
+<?php include('banner_lateral.php'); ?>  
 
 
 		</div>
@@ -508,7 +509,6 @@ $arraybusca = "";
      		<div style="float: right;"><a href="#"><img src="/wp-content/themes/magazine/images/remove.png" onclick="javascript: excluirvaga('<?php echo $iddopost; ?>','<?php echo $_SESSION["lettslogin"]; ?>')" height="17" style="height: 17px;"></a></div>
     	<?php }
     ?>
-    	
 
       <div style="margin-top: 0px; color: #666; font-size: 12px;">Data de postagem: <?php echo mysql2date('j/m/Y', $post->post_date); ?></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;"><center><?php the_title(); ?></center></strong></div>
