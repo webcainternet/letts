@@ -29,7 +29,6 @@ display:inline;
 }
 </style>
 <?php
-publish_();
 /**
  * Template for single post view
  * @package themify

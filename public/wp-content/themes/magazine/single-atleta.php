@@ -1122,12 +1122,9 @@ $('#share-button').click(function (e){
         Ver mais noticias
       </a>
 
-			<div style="float: right; width: 652px; margin-right: 40px; margin-top: 30px;">
+			<div style="float: right; width: 652px; margin-right: 40px; margin-top: 30px; height: 150px;">
 				<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
 			</div>
-
-
-
 
 	</div>
 

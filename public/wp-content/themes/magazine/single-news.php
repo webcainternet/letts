@@ -176,7 +176,7 @@ $('#share-button').click(function (e){
               </p>
             </div>
 
-            <div>
+            <div style="height: 192px;">
               <div class="fb-comments" data-href="http://letts.com.br/<?php echo $_SERVER["REQUEST_URI"]; ?>" data-width="674" data-numposts="5" data-colorscheme="light"></div>
             </div>
           </article>
