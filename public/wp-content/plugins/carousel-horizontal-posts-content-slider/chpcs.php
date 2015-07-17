@@ -19,6 +19,7 @@ class CHPCS {
 	'settings' => array(
 		'display_image' => true,
 		'word_limit' => '8',
+		'post_status'  => 'publish',
 		'read_more_text' => 'Read more',
 		'number_of_posts_to_display' => '10',
 		'posts_order' => 'desc',
