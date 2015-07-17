@@ -27,6 +27,17 @@
 	}
 </style>
 
+<!-- Facebook Like box -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.3&appId=805023986191114";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- FIM Facebook Like box -->
+
 <?php
 /**
  *  Stylesheets and Javascript files are enqueued in theme-functions.php
