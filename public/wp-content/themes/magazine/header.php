@@ -25,6 +25,7 @@
 	.skiptranslate {
 		display: none;
 	}
+	#goog-gt-tt { display:none !important; }
 </style>
 
 <!-- Facebook Like box -->
