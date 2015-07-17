@@ -29,7 +29,7 @@ display:inline;
 }
 </style>
 <?php
-publish
+publish_();
 /**
  * Template for single post view
  * @package themify
