@@ -9,10 +9,52 @@
 <?php get_header(); ?>
 
 <script type="text/javascript">
+  function showpostgroup(divnumber) {
+  	$('#showbtn'+divnumber).hide();
+
+  	mostraragora = divnumber+1;
+  	$('#showdiv'+mostraragora).show();
+
+  	mostraragora = mostraragora+1;
+	$('#showdiv'+mostraragora).show();
+
+	mostraragora = mostraragora+1;
+	$('#showdiv'+mostraragora).show();
+
+	mostraragora = mostraragora+1;
+	$('#showdiv'+mostraragora).show();
+
+	mostraragora = mostraragora+1;
+	$('#showdiv'+mostraragora).show();
+
+  	$('#showbtn'+mostraragora).show();
+  }
+
+</script>
+
+<script type="text/javascript">
+	
+</script>
 
 
-
+<script type="text/javascript">
    $(document).ready(function(){
+
+   	$('#showdiv1').show();
+	$('#showbtn1').hide();
+
+	$('#showdiv2').show();
+	$('#showbtn2').hide();
+
+	$('#showdiv3').show();
+	$('#showbtn3').hide();
+
+	$('#showdiv4').show();
+	$('#showbtn4').hide();
+
+	$('#showdiv5').show();
+	$('#showbtn5').show();
+
    		$("#postarnews").click(function(){
    				if ($( "#idinputnoticia" ).val() == "") {
    					alert( "Você deve preencher o titulo da postagem!" );
@@ -950,59 +992,76 @@ $('#share-button').click(function (e){
 			}
 			</style>
 
+			<?php $showpost = 1; ?>
+			<?php $postmostrar = 1; ?>
+
 			<?php while (have_posts()) : the_post(); ?>
+			
+			<div id="showdiv<?php echo $showpost;?>" style="margin: 0px; padding: 0px; display: none;">
 
-			<div class="related-posts news_perfil" style="float: left; width: 100%;">
-				<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
-				<?php echo '<div onclick="javascript: excluirnews('.get_the_ID().','.$_SESSION["lettslogin"].')" class="deletarnews1"><a href="#" style="color: #FFFFFF;">x</a></div>'; ?>
-				<?php } ?>
+				<div class="related-posts news_perfil" style="float: left; width: 100%;">
+					<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
+					<?php echo '<div onclick="javascript: excluirnews('.get_the_ID().','.$_SESSION["lettslogin"].')" class="deletarnews1"><a href="#" style="color: #FFFFFF;">x</a></div>'; ?>
+					<?php } ?>
 
-				<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
-					if ($imgsizeok) { ?>
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-					<div class="imgnoticias" style="width: 679px; border-radius: 5px; height: 440px;  margin-bottom: 15px;">
-					<?php
-						$imgsizeok = str_replace("letts.com.br/", "", $imgsizeok);
-						$imgsizeok = str_replace("http://", "", $imgsizeok);
-						$imgsizeok = str_replace("https://", "", $imgsizeok);
-					?>
-					<div style="width: 679px; 
-			      	height: 440px; 
-			      	background-image: url('<?php print_custom_field('imgnews:to_image_src'); ?>');
-			      	background-position: center;
-			      	<?php echo calcbackgroundsize($imgsizeok, 685, 440); ?>; ">
-			      		&nbsp;
-  					</div>
-				</div></a>
-				<?php }else if(get_custom_field('videourl')){
+					<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
+						if ($imgsizeok) { ?>
+					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+						<div class="imgnoticias" style="width: 679px; border-radius: 5px; height: 440px;  margin-bottom: 15px;">
+						<?php
+							$imgsizeok = str_replace("letts.com.br/", "", $imgsizeok);
+							$imgsizeok = str_replace("http://", "", $imgsizeok);
+							$imgsizeok = str_replace("https://", "", $imgsizeok);
+						?>
+						<div style="width: 679px; 
+				      	height: 440px; 
+				      	background-image: url('<?php print_custom_field('imgnews:to_image_src'); ?>');
+				      	background-position: center;
+				      	<?php echo calcbackgroundsize($imgsizeok, 685, 440); ?>; ">
+				      		&nbsp;
+	  					</div>
+					</div></a>
+					<?php }else if(get_custom_field('videourl')){
 
-				$video = get_custom_field('videourl'); 
-				$video = explode("/", $video);
-				$url_video = explode("=", $video[3]);
-				if ($url_video[0] == 'watch?v') {
-				 	$imgid = $url_video[1]; ?>
-				 	<iframe width="710" height="350" src="//www.youtube.com/embed/<?php echo $imgid; ?>" frameborder="0" allowfullscreen></iframe>
-				 <?php 	
-				 } else{
-				$imgid = $url_video[0]; ?>
-				<iframe width="710" height="350" src="http://player.vimeo.com/video/<?php echo $imgid; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-				<?php } 
-				} ?>
+					$video = get_custom_field('videourl'); 
+					$video = explode("/", $video);
+					$url_video = explode("=", $video[3]);
+					if ($url_video[0] == 'watch?v') {
+					 	$imgid = $url_video[1]; ?>
+					 	<iframe width="710" height="350" src="//www.youtube.com/embed/<?php echo $imgid; ?>" frameborder="0" allowfullscreen></iframe>
+					 <?php 	
+					 } else{
+					$imgid = $url_video[0]; ?>
+					<iframe width="710" height="350" src="http://player.vimeo.com/video/<?php echo $imgid; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					<?php } 
+					} ?>
 
-				<article class="post type-post clearfix">
-					<div class="post-content">
-						<p class="post-meta">
-							<span class="post-category" style="font-weight: bold;font-size: 22px; font-family: Oswald, sans-serif;"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></span>
-						</p>
-						<h1 class="post-title">
-							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_excerpt(30); ?></b></a></a>
-						</h1>
-					</div>
-				</article>
+					<article class="post type-post clearfix">
+						<div class="post-content">
+							<p class="post-meta">
+								<span class="post-category" style="font-weight: bold;font-size: 22px; font-family: Oswald, sans-serif;"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></span>
+							</p>
+							<h1 class="post-title">
+								<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_excerpt(30); ?></b></a></a>
+							</h1>
+						</div>
+					</article>
 
-				<div style="float: left; width: 100%;"><hr style="border: 0px; margin: 0px 0px 30px; border-top: dotted 1px;"></div>
+					<div style="float: left; width: 100%;"><hr style="border: 0px; margin: 0px 0px 30px; border-top: dotted 1px;"></div>
+				</div>
+			
+				<div class="pagewidth clearfix" id="showbtn<?php echo $showpost;?>" style="display: none;">
+				    <a id="criar" onclick="showpostgroup(<?php echo $showpost;?>)" style="padding: 10px 255px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px;">
+				      Ver mais noticias
+				    </a>
+				</div>
+				<?php $showpost = $showpost + 1; ?>
 			</div>
+			
+			<?php $postmostrar = $postmostrar + 1; ?>
 			<?php endwhile; ?>
+
+
 			<?php wp_reset_query(); ?>
 		</div>
 

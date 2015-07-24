@@ -1,3 +1,5 @@
+<?php // var_dump($_POST); exit; ?>
+
 <style type="text/css">
 	.classificados {
 		float: left;
@@ -486,12 +488,38 @@ $arraybusca = "";
 				'post_type' => 'vagas',
 				'post_title_like' => $_POST['nome'],
 				'meta_query' => array(
-					'relation' => 'AND',$arraybusca
+					'relation' => 'AND',
+					array(
+						'key' => 'atletaesporte',
+						'value' => $_POST['esporte'],
+						'compare' => 'LIKE'
+					),
+					array(
+					'key' => 'basicaestadoatual',
+					'value' => $_POST['estado'],
+					'compare' => 'LIKE'
+					),
+					array(
+					'key' => 'basicapaisatual',
+					'value' => $_POST['pais'],
+					'compare' => 'LIKE'
+					),								
+					array(
+						'key' => 'profissao',
+						'value' => $_POST['profissao'],
+						'compare' => 'LIKE'
+					),
+					array(
+						'key' => 'basicacidadeatual',
+						'value' => $_POST['cidade'],
+						'compare' => 'LIKE'
+					)
 				)
 			); 
 		
 		?>
 
+<?php // var_dump($arraybusca); exit; ?>
 	<?php query_posts($args);
     while (have_posts()): the_post(); 
     	$conteudo = get_the_content();
@@ -510,11 +538,11 @@ $arraybusca = "";
     ?>
 
       <div style="margin-top: 0px; color: #666; font-size: 12px;">Data de postagem: <?php echo mysql2date('j/m/Y', $post->post_date); ?></div>
-      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;"><center><?php the_title(); ?></center></strong></div>
+      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;"><center><?php the_title(); ?> (<?php print_custom_field('atletaesporte'); ?>)</center> </strong></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;"><center><?php print_custom_field('basicacidadeatual'); ?> - <?php print_custom_field('basicaestadoatual'); ?> - <?php print_custom_field('basicapaisatual'); ?>	</center></strong></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Empresa: </strong><br /><?php print_custom_field('empresa'); ?></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Contato: </strong><br /> <?php print_custom_field('basicaemail'); ?></div>
-      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Descrição: </strong><br /> 
+      <div style="margin-top: 10px; color: #666; max-height: 200px; overflow: scroll;"><strong style="color: #333;">Descrição: </strong><br /> 
       	<?php
       		if ($tamanhoc <= 800) {
 				
