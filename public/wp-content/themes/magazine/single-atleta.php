@@ -673,7 +673,9 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 	<img src="/wp-content/themes/magazine/images/compartilhar.jpg" alt="Facebook Share Button" title="Facebook Share Button" />
 </a>
 
-<div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div>
+<div style="margin: 0px; padding: 0px; margin-top: -12px;">
+	<div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div>
+	</div>
 </div>
 
 <?php 

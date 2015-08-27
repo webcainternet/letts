@@ -34,7 +34,7 @@
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=805023986191114";
+  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.3&appId=805023986191114";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <!-- FIM Facebook Like box -->
@@ -55,7 +55,7 @@
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1540707736203396&version=v2.0";
+  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=1540707736203396&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -65,19 +65,11 @@
 
 	<div id="headerwrap">
 
-		
-
 		<div id="nav-bar">
 			<div class="pagewidth clearfix">
 				<?php if( has_nav_menu( 'top-nav' ) ) : ?>
 					<a id="menu-icon-top" href="#top-nav"><i class="fa fa-list-ul icon-list-ul"></i></a>
 					<?php if (function_exists('wp_nav_menu')) { ?>
-					
-					
-						<div style="float: left; margin-top: 6px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -116px -264px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div>
-						<div style="float: left; margin-top: 3px; margin-right: 5px; height: 18px; color: #FFFFFF;"><a href="#" id="changelgbr">▾</a></div>
-					</nav>
-
 					<nav id="top-nav-sidr" class="top-nav-sidr">
 						<?php wp_nav_menu(array('theme_location' => 'top-nav' , 'fallback_cb' => '' , 'container'  => '' , 'menu_id' => 'top-nav' , 'menu_class' => 'top-nav')); ?>
 					</nav>
