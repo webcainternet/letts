@@ -49,6 +49,23 @@
 </head>
 
 <body <?php body_class(); ?>>
+
+
+
+<div style="display: none;">
+	<div>
+		<div class="tool-items">
+			<a id="btnTrEnglish" title="English" class="notranslate flag en tool-item gradient">English</a>
+			<a id="btnTrFrench" title="French" class="notranslate flag fr tool-item gradient">French</a>
+			<a id="btnTrPortuguese" title="Portuguese" class="notranslate flag pt tool-item gradient">Portuguese</a>
+			<a id="btnTrSpanish" title="Spanish" class="notranslate flag es tool-item gradient">Spanish</a>
+		</div>
+		<div class="arrow" style="left: auto; right: 67.4062px;"></div>
+	</div>
+</div>
+
+
+
 <!-- Facebook -->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -59,6 +76,43 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+<style type="text/css">
+	.linkidioma {
+	    text-decoration: none;
+		margin-right: 7px;
+		color: #fff;
+		font-size: 0.65em;
+		text-transform: uppercase;
+	}
+	.linkidioma:hover {
+		color: #111;
+	}
+	#baridioma {
+		display: none;
+	}
+	.changelgbr:hover {
+		color: #ff8920;
+	}
+#glt-translate-trigger {
+	display: none;
+}
+
+</style>
+
+<script type="text/javascript">
+	function AlteraIdiomabtnTrPortuguese() {
+		$("#btnTrPortuguese").click();
+	}
+	function AlteraIdiomabtnTrEnglish() {
+		$("#btnTrEnglish").click();
+	}
+	function AlteraIdiomabtnTrSpanish() {
+		$("#btnTrSpanish").click();
+	}
+	function AlteraIdiomabtnTrFrench() {
+		$("#btnTrFrench").click();
+	}
+</script>
 
 <?php themify_body_start(); // hook ?>
 <div id="pagewrap" class="hfeed site">
@@ -74,8 +128,17 @@
 					<?php if (function_exists('wp_nav_menu')) { ?>
 					
 					
-						<div style="float: left; margin-top: 6px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -116px -264px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div>
-						<div style="float: left; margin-top: 3px; margin-right: 5px; height: 18px; color: #FFFFFF;"><a href="#" id="changelgbr">▾</a></div>
+						<div onmouseover="javascript:document.getElementById('baridioma').style.display = 'block';" style="float: left; margin-top: 6px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -116px -264px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div>
+						<div onmouseover="javascript:document.getElementById('baridioma').style.display = 'block';" style="float: left; margin-top: 3px; margin-right: 5px; height: 18px; color: #FFFFFF;"><a href="#" style="color: #FFFFFF;" class="changelgbr">▾</a></div>
+
+						<div onmouseover="javascript:document.getElementById('baridioma').style.display = 'block';" id="baridioma"  style="position: absolute; float: left; top: 30px; margin-left: 30px;z-index: 999; background-color: #ff8920; padding: 0px 0px 5px 5px;">
+							<div onmouseout="javascript:document.getElementById('baridioma').style.display = 'none';" style="padding: 1px;">
+								<a href="#" onclick="javascript:AlteraIdiomabtnTrPortuguese();" class="linkidioma"><div style="float: left; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -116px -264px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div>Português</a><br>
+								<a href="#" onclick="javascript:AlteraIdiomabtnTrEnglish();" class="linkidioma"><div style="float: left; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -116px -351px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div>Inglês</a><br>
+								<a href="#" onclick="javascript:AlteraIdiomabtnTrSpanish();" class="linkidioma"><div style="float: left; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -0px -322px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div>Espanhol</a><br>
+								<a href="#" onclick="javascript:AlteraIdiomabtnTrFrench();" class="linkidioma"><div style="float: left; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -116px -90px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div>Frances</a>
+							</div>
+						</div>
 					</nav>
 
 					<nav id="top-nav-sidr" class="top-nav-sidr">

@@ -784,6 +784,33 @@ $('#share-button').click(function (e){
 							<?php } ?>	
 					</div>			
 				</div>
+
+				<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+				<div class="col3-1" style="width: 100%; margin: 0px; background: #F5E1CD; padding-left: 15px; border-top: 5px #ff8920 solid; margin-top: 30px; margin-bottom: 30px;">
+					<div id="text-1016" class="widget widget_text" style="">
+						<h4 class="widgettitle">Minha conta</h4>	
+						<div class="textwidget" style="margin-bottom: 10px;">
+							<div style="margin-top: 10px;"><a onclick="javascript:document.getElementById('divContaSenha').style.display = 'block';">Alterar senha</a></div>
+							<div style="margin-top: 10px; font-size: 10px; display: none;" id="divContaSenha">
+								Nova Senha:<br>
+								<input class="input_noticia" type="password" name="novasenha" value="" style="width: 290px !important;"><br>
+								Confirmar nova senha<br>
+								<input class="input_noticia" type="password" name="novasenha2" value="" style="width: 290px !important;"><br>
+								<a id="desativar" style="padding: 10px 25px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px; color: #FFFFFF; font-size: 12px;">Alterar</a>
+
+
+							</div>
+							<div style="margin-top: 10px;"><a onclick="javascript:document.getElementById('divContaDesativar').style.display = 'block';">Desativar conta</a></div>
+							<div style="margin-top: 10px; font-size: 10px; display: none;" id="divContaDesativar">
+								Ao desativar sua conta seu perfil não ficará mais disponível para os usuários de nosso site. Tem certeza que deseja desativar sua conta?
+
+								<a id="desativar" style="padding: 10px 25px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px; color: #FFFFFF; font-size: 12px;">Sim</a>
+							</div>
+						</div>		
+					</div>			
+				</div>
+				<?php } ?>
+
 								<?php include('banner_lateral.php') ?>  
 		</div>
 

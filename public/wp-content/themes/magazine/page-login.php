@@ -40,11 +40,53 @@ $_SESSION["lettslogin"] = 1;
 <?php wp_head(); ?>
 
 
+<style type="text/css">
+	
+.goog-te-banner-frame {
+    display: none;
+}
 
+#glt-translate-trigger {
+	display: none;
+}
+
+</style>
+
+
+
+<script type="text/javascript">
+	function AlteraIdiomabtnTrPortuguese() {
+		$("#btnTrPortuguese").click();
+	}
+	function AlteraIdiomabtnTrEnglish() {
+		$("#btnTrEnglish").click();
+	}
+	function AlteraIdiomabtnTrSpanish() {
+		$("#btnTrSpanish").click();
+	}
+	function AlteraIdiomabtnTrFrench() {
+		$("#btnTrFrench").click();
+	}
+</script>
 
 </head>
 
 <body <?php body_class(); ?>>
+
+
+<div style="display: none;">
+	<div>
+		<div class="tool-items">
+			<a id="btnTrEnglish" title="English" class="notranslate flag en tool-item gradient">English</a>
+			<a id="btnTrFrench" title="French" class="notranslate flag fr tool-item gradient">French</a>
+			<a id="btnTrPortuguese" title="Portuguese" class="notranslate flag pt tool-item gradient">Portuguese</a>
+			<a id="btnTrSpanish" title="Spanish" class="notranslate flag es tool-item gradient">Spanish</a>
+		</div>
+		<div class="arrow" style="left: auto; right: 67.4062px;"></div>
+	</div>
+</div>
+
+
 <?php themify_body_start(); // hook ?>
 <div id="pagewrap" class="hfeed site">
 
@@ -1028,7 +1070,18 @@ global $themify; ?>
 			<div class="footer-text clearfix">
 				<?php themify_the_footer_text(); ?>
 				<?php /* themify_the_footer_text('right'); */ ?>Desenvolvido por <a href="http://webca.com.br/" target="_blank">WebCA Internet</a>
+
+				<div style="margin: auto; text-align: center; margin-top: 10px; margin-bottom: 10px;">
+				<a href="#" onclick="javascript:AlteraIdiomabtnTrPortuguese();" class="linkidioma"><div style="display: inline-block; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -116px -264px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div></a>
+				<a href="#" onclick="javascript:AlteraIdiomabtnTrEnglish();" class="linkidioma"><div style="display: inline-block; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -116px -351px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div></a>
+				<a href="#" onclick="javascript:AlteraIdiomabtnTrSpanish();" class="linkidioma"><div style="display: inline-block; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -0px -322px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div></a>
+				<a href="#" onclick="javascript:AlteraIdiomabtnTrFrench();" class="linkidioma"><div style="display: inline-block; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -116px -90px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div></a>
+				</div>
 			</div>
+
+			
+
+
 			<!-- /footer-text --> 
 			<?php themify_footer_end(); // hook ?>
 		</footer>
