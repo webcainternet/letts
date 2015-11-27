@@ -67,6 +67,15 @@ $_SESSION["lettslogin"] = 1;
 	function AlteraIdiomabtnTrFrench() {
 		$("#btnTrFrench").click();
 	}
+	function AlteraIdiomabtnTrDutch() {
+		$("#btnTrDutch").click();
+	}
+	function AlteraIdiomabtnTrGerman() {
+		$("#btnTrGerman").click();
+	}
+	function AlteraIdiomabtnTrItalian() {
+		$("#btnTrItalian").click();
+	}
 </script>
 
 </head>
@@ -81,11 +90,13 @@ $_SESSION["lettslogin"] = 1;
 			<a id="btnTrFrench" title="French" class="notranslate flag fr tool-item gradient">French</a>
 			<a id="btnTrPortuguese" title="Portuguese" class="notranslate flag pt tool-item gradient">Portuguese</a>
 			<a id="btnTrSpanish" title="Spanish" class="notranslate flag es tool-item gradient">Spanish</a>
+			<a id="btnTrDutch" title="Dutch" class="notranslate flag es tool-item gradient">Dutch</a>
+			<a id="btnTrGerman" title="German" class="notranslate flag es tool-item gradient">German</a>
+			<a id="btnTrItalian" title="Italian" class="notranslate flag es tool-item gradient">Italian</a>
 		</div>
 		<div class="arrow" style="left: auto; right: 67.4062px;"></div>
 	</div>
 </div>
-
 
 <?php themify_body_start(); // hook ?>
 <div id="pagewrap" class="hfeed site">
@@ -695,9 +706,9 @@ global $themify; ?>
 <div style="width: 100%; margin-top: 0px; min-width: 1160px;">
 	<!-- Imagens -->
 	<div style="float: left; width: 59%;">
-	<div style="position: absolute; top: 320px; left: 370px; z-index: 100;">
-		<a href="http://letts.com.br/wp-content/themes/magazine/login.php?visitante=1"><input type="submit" value="Acessar como visitante" style="margin-top: 0px;"></a>
-	</div>
+		<div style="position: absolute; z-index: 100; margin-top: 230px; margin-bottom: 25px; margin-left: 200px;">
+			<a href="http://letts.com.br/wp-content/themes/magazine/login.php?visitante=1"><input type="submit" value="Acessar como visitante" style="margin-top: 0px;"></a>
+		</div>
 
 		<!-- Atleta Area -->
 
@@ -1076,6 +1087,9 @@ global $themify; ?>
 				<a href="#" onclick="javascript:AlteraIdiomabtnTrEnglish();" class="linkidioma"><div style="display: inline-block; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -116px -351px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div></a>
 				<a href="#" onclick="javascript:AlteraIdiomabtnTrSpanish();" class="linkidioma"><div style="display: inline-block; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -0px -322px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div></a>
 				<a href="#" onclick="javascript:AlteraIdiomabtnTrFrench();" class="linkidioma"><div style="display: inline-block; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -116px -90px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div></a>
+				<a href="#" onclick="javascript:AlteraIdiomabtnTrDutch();" class="linkidioma"><div style="display: inline-block; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -145px -61px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div></a>
+				<a href="#" onclick="javascript:AlteraIdiomabtnTrGerman();" class="linkidioma"><div style="display: inline-block; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -29px -119px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div></a>
+				<a href="#" onclick="javascript:AlteraIdiomabtnTrItalian();" class="linkidioma"><div style="display: inline-block; margin-top: 4px; margin-right: 5px; background: url('/wp-content/plugins/google-language-translator/images/flags.png') -58px -177px no-repeat; width: 24px; height: 18px; color: #FFFFFF;">&nbsp;</div></a>
 				</div>
 			</div>
 

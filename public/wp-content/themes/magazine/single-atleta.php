@@ -8,6 +8,31 @@
 
 <?php get_header(); ?>
 
+
+<script type="text/javascript">
+   $(document).ready(function(){
+      $("#postarmensagem").click(function(){
+          if ($( "#nome_msg" ).val() == "") {
+            alert( "Você deve preencher o nome!" );
+            } else {
+           		if ($( "#email_msg" ).val() == "") {
+           			alert( "Você deve preencher o e-mail!" );
+       			} else {
+       				if ($( "#assunto" ).val() == "") {
+       					alert( "Você deve preencher o assunto!" );
+       				} else {
+       					if ($( "#mensagem" ).val() == "") {
+	       					alert( "Você deve preencher a mensagem!" );
+	       				} else {
+	       					$( "#formmensagem" ).submit();
+	       				}
+       				}
+       			}
+   			}
+      });
+   });
+ </script>
+
 <script type="text/javascript">
   function showpostgroup(divnumber) {
   	$('#showbtn'+divnumber).hide();
@@ -1195,20 +1220,35 @@ $('#share-button').click(function (e){
 				<div class="formularios profissionais">
 					<div class="mensagem_atleta">
 						<h1 class="post-title entry-title">Envie mensagem para <?php the_title(); ?></h1>
-						<form action="" method="post" id="formulario_mensagem">
+						<form id="formmensagem" action="" method="post" id="formulario_mensagem">
 							<input type="text" id="nome_msg" name="nome_msg" placeholder="Seu Nome">
 							<input type="text" id="email_msg" name="email_msg" placeholder="Seu E-mail">
 							<input type="text" id="assunto" name="assunto" placeholder="Assunto">
 							<textarea id="mensagem" name="mensagem" placeholder="Mensagem para <?php the_title(); ?>"></textarea>
-							<input type="button" id="botao_mensagem" value="Enviar Mensagem">
+
+							
+							<input type="button" id="postarmensagem" style="  background: #ff8920 !important;
+                                  color: #fff;
+                                  border: none;
+                                  padding: 7px 20px;
+                                  cursor: pointer;
+                                  letter-spacing: .1em;
+                                  font-size: 1.125em;
+                                  font-family: Oswald, sans-serif;
+                                  text-transform: uppercase;
+                                  -webkit-appearance: none;
+                                  -webkit-border-radius: 0;float: right; margin-top: 0px;margin-left: 300px;" value="Enviar Mensagem">
+                                  <br>&nbsp;<br>
 						</form>
 					</div>	
 				</div>
 			<?php } ?>	
 			
+			<?php if ($_GET["page"] != 'mensagem') { ?>
 			<div style="float: right; width: 652px; margin-right: 40px; margin-top: 30px; height: 150px;">
 				<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
 			</div>
+			<?php } ?>
 
 	</div>
 

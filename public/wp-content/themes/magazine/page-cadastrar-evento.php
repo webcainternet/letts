@@ -8,6 +8,35 @@
 
 <?php get_header(); ?>
 
+<script type="text/javascript">
+   $(document).ready(function(){
+      $("#postarevento").click(function(){
+          if ($( "#idinputevento" ).val() == "") {
+            alert( "Você deve preencher o nome do evento!" );
+            } else {
+            if ($( "#atletaesporte" ).val() == "-- Selecione o esporte --" && $( "#profissao" ).val() == "-- Selecione a profissão --" ) {
+                alert( "Você deve selecionar o esporte ou profissão para este evento!" ); 
+              } else {
+                if ($( "#idimgdestacada" ).val() == "") {
+                  alert( "Você deve selecionar a imagem!" );
+                } else {
+                  if ($( "#idimgevento" ).val() == "") {
+                    alert( "Você deve selecionar o flyer!" );
+                  } else {
+                    if ($( "#iddescricaoevento" ).val() == "") {
+                      alert( "Você deve preencher a descrição do evento!" );
+                    } else {
+                      $( "#new_post" ).submit();
+                    }
+                  }
+                }                
+              }
+            }
+
+      });
+   });
+ </script>
+
 <?php 
 /** Themify Default Variables
  *  @var object */
@@ -167,7 +196,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
           <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; font-size: 45px; font-weight: bold; margin-bottom: 10px;">Cadastrar Evento</h4>
           <div class="galeria_profissional">
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
-             <input class="input_video" type="text" name="evento" value="" placeholder="Nome do Evento">
+             <input id="idinputevento" class="input_video" type="text" name="evento" value="" placeholder="Nome do Evento">
              <input class="input_video" type="text" name="link" value="" placeholder="Link para comprar ingresso ou para inscrição com http://">
 
              <div class="selects_forms" style="margin-top: -10px;">
@@ -485,7 +514,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
               <div class="foto_principal">
                 <p>Foto principal</p>
                 <div class="custom-upload">
-                    <input type="file" name="img_destacada">
+                    <input type="file" name="img_destacada" id="idimgdestacada">
                     <div class="fake-file">
                         <input disabled="disabled" placeholder="Selecione uma Imagem">
                     </div>
@@ -495,17 +524,29 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
               <div class="foto_principal" style="margin-top: 30px; margin-bottom: 20px;">
                 <p>Flyer</p>
                 <div class="custom-upload">
-                    <input type="file" name="img_evento1">
+                    <input type="file" name="img_evento1" id="idimgevento">
                     <div class="fake-file">
                         <input disabled="disabled" placeholder="Selecione uma Imagem">
                     </div>
                 </div>
               </div>  
 
-              <textarea class="" name="descricao_evento" placeholder="Descrição do evento" style="margin-left: 6px; width: 91%; height: 115px;"></textarea>
+              <textarea id="iddescricaoevento" class="" name="descricao_evento" placeholder="Descrição do evento" style="margin-left: 6px; width: 91%; height: 115px;"></textarea>
 
              <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
-             <input type="submit" value="Enviar Evento">
+
+             <input type="button" id="postarevento" style="  background: #ff8920 !important;
+                                  color: #fff;
+                                  border: none;
+                                  padding: 7px 20px;
+                                  cursor: pointer;
+                                  letter-spacing: .1em;
+                                  font-size: 1.125em;
+                                  font-family: Oswald, sans-serif;
+                                  text-transform: uppercase;
+                                  -webkit-appearance: none;
+                                  -webkit-border-radius: 0;float: right; margin-top: 0px;margin-left: 300px;" value="Enviar Evento">
+                                  <br>&nbsp;<br>
             </form> 
           </div>
         </div>  

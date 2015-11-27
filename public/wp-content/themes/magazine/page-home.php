@@ -78,6 +78,21 @@ global $themify; ?>
 	}
 </style>
 
+<style type="text/css">
+	.likeImage{
+    width: 275px;
+    height: 95px;
+    background-image: url("/themes/magazine/images/rocknroll.png");
+    background-repeat: no-repeat;
+}
+.likeImage iframe{
+    opacity: 0;
+}
+
+</style>
+
+
+
 
 			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; margin-top: 170px; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">News</h1>
 			<?php while (have_posts()) : the_post(); ?>
