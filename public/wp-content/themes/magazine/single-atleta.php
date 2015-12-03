@@ -1245,12 +1245,12 @@ $('#share-button').click(function (e){
 			<?php } ?>	
 			
 			<?php if ($_GET["page"] != 'mensagem') { ?>
-			<div style="float: right; width: 652px; margin-right: 40px; margin-top: 30px; height: 150px;">
-				<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
-			</div>
+				<div style="float: left; margin-left: 50px;">
+				<?php
+					$idpagina = $_SERVER['REQUEST_URI'];;
+					 include "comentarios_ajax.php"; ?>
+				</div>
 			<?php } ?>
-
-	</div>
 
 
 
