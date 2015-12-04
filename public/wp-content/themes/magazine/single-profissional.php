@@ -768,7 +768,7 @@ $('#share-button').click(function (e){
 
 			<?php while (have_posts()) : the_post(); ?>
 
-			<div class="related-posts news_perfil" style="float: left; width: 100%;">
+			<div class="related-posts news_perfil" style="float: left; width: 100%; border: solid 2px #F0f0f0; margin-bottom: 10px; padding: 10px;">
 				<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
 					if ($imgsizeok) { ?>
 				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
@@ -814,6 +814,17 @@ $('#share-button').click(function (e){
 						</h1>
 					</div>
 				</article>
+
+				<?php $urldolink = get_permalink();
+						  $urldolink = str_replace('https://', 'http://', $urldolink);
+						  $urldolink = str_replace('http://letts.com.br', '', $urldolink);
+						  $urldolink = str_replace('http://www.letts.com.br', '', $urldolink);
+						  //$idpagina = $urldolink;
+						  //include "comentarios_ajax.php"; 
+					?>
+					<div>
+						<iframe src="http://letts.com.br/wp-content/themes/magazine/comentarios_withcss.php?idpagina=<?php echo $urldolink; ?>" width="650" height="30" frameborder="0" scrolling="no" noresize></iframe>
+					</div>
 			</div>
 			<?php endwhile; ?>
 			<?php wp_reset_query(); ?>
@@ -885,8 +896,7 @@ $('#share-button').click(function (e){
 
 						?>
 					</div>
-					
-					<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+				
 				</div>	
 
 			<?php } ?>
@@ -933,7 +943,14 @@ $('#share-button').click(function (e){
 			<?php endwhile; ?>
 			<?php wp_reset_query(); ?>
 
-				<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+					<?php if ($_GET["page"] != 'mensagem' && $_GET["page"] != '' && $_GET["page"] != 'news') { ?>
+				<div style="float: left; margin-left: 50px;">
+				<?php
+					$idpagina = $_SERVER['REQUEST_URI'];
+					include "comentarios_ajax.php"; 
+				?>
+				</div>
+			<?php } ?>
 
 			</div>				
 			
@@ -953,10 +970,15 @@ $('#share-button').click(function (e){
 					</div>	
 				</div>
 			<?php } ?>	
-
-			<div style="float: right; width: 652px; margin-right: 40px; margin-top: 30px;">
-				<div class="fb-comments" data-href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI']; ?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
-			</div>	
+	<?php if ($_GET["page"] != 'mensagem' && $_GET["page"] != '' && $_GET["page"] != 'news') { ?>
+				<div style="float: left; margin-left: 50px;">
+				<?php
+					$idpagina = $_SERVER['REQUEST_URI'];
+					include "comentarios_ajax.php"; 
+				?>
+				</div>
+			<?php } ?>
+			
 		</div>
 	</div>
 

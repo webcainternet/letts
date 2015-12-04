@@ -14,6 +14,20 @@
 	}
 </style>
 
+<style type="text/css">
+	.formularios textarea {
+    width: 95%;
+    padding: 10px;
+    height: 53px;
+}
+.comentario-texto {
+    width: 345px;
+}
+.comentario-content {
+    width: 410px;
+}
+</style>
+
 <?php 
 /** Themify Default Variables
  *  @var object */
@@ -67,7 +81,7 @@ $('#share-button').click(function (e){
 		<p>Preço: <?php print_custom_field('basicatelefones'); ?></p>
 		<p>Esporte: <?php print_custom_field('basicatelefones'); ?></p>-->
 
-		<div style="width: 500px;">
+		<div style="width: 500px; padding-right: 15px;">
 			<?php the_content(); ?>
 		</div>
 		<p>Tipo do Evento: <?php print_custom_field('eventotipo'); ?></p>
@@ -82,12 +96,11 @@ $('#share-button').click(function (e){
 
 	<div class="logo_eventos">&nbsp;<br>
 
-		<div>
           <?php
                 $idpagina = $_SERVER['REQUEST_URI'];;
                 include "comentarios_ajax.php"; 
               ?>
-        </div>
+
 
 			<?php /* if ($_SESSION["lettslogin"] && $_SESSION["lettslogin"] != $idpost) { ?>
 

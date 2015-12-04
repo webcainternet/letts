@@ -1053,7 +1053,7 @@ $('#share-button').click(function (e){
 			
 			<div id="showdiv<?php echo $showpost;?>" style="margin: 0px; padding: 0px; display: none;">
 
-				<div class="related-posts news_perfil" style="float: left; width: 100%; background: #F0f0f0; margin-bottom: 10px; padding: 10px;">
+				<div class="related-posts news_perfil" style="float: left; width: 100%; border: solid 2px #F0f0f0; margin-bottom: 10px; padding: 10px;">
 					<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
 					<?php echo '<div onclick="javascript: excluirnews('.get_the_ID().','.$_SESSION["lettslogin"].')" class="deletarnews1"><a href="#" style="color: #FFFFFF;">x</a></div>'; ?>
 					<?php } ?>

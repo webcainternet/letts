@@ -8,6 +8,20 @@
 
 <?php get_header(); ?>
 
+<style type="text/css">
+	.formularios textarea {
+    width: 95%;
+    padding: 10px;
+    height: 53px;
+}
+.comentario-texto {
+    width: 345px;
+}
+.comentario-content {
+    width: 410px;
+}
+</style>
+
 <?php 
 /** Themify Default Variables
  *  @var object */
@@ -305,7 +319,14 @@ $('#share-button').click(function (e){
 					  border: 0px;
 					  border-radius: 0px;
 					  margin: 0 auto;">
-          <div class="fb-comments" data-href="http://letts.com.br/<?php echo $_SERVER["REQUEST_URI"]; ?>" data-width="458" data-numposts="5" data-colorscheme="light"></div>
+          
+
+		  	<?php
+                $idpagina = $_SERVER['REQUEST_URI'];;
+                include "comentarios_ajax.php"; 
+            ?>
+
+
         </div>
 
 		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
