@@ -1053,7 +1053,7 @@ $('#share-button').click(function (e){
 			
 			<div id="showdiv<?php echo $showpost;?>" style="margin: 0px; padding: 0px; display: none;">
 
-				<div class="related-posts news_perfil" style="float: left; width: 100%;">
+				<div class="related-posts news_perfil" style="float: left; width: 100%; background: #F0f0f0; margin-bottom: 10px; padding: 10px;">
 					<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
 					<?php echo '<div onclick="javascript: excluirnews('.get_the_ID().','.$_SESSION["lettslogin"].')" class="deletarnews1"><a href="#" style="color: #FFFFFF;">x</a></div>'; ?>
 					<?php } ?>
@@ -1090,7 +1090,7 @@ $('#share-button').click(function (e){
 					<?php } 
 					} ?>
 
-					<article class="post type-post clearfix">
+					<article class="post type-post clearfix" style="margin-bottom: 0px !important;">
 						<div class="post-content">
 							<p class="post-meta">
 								<span class="post-category" style="font-weight: bold;font-size: 22px; font-family: Oswald, sans-serif;"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></span>
@@ -1108,8 +1108,9 @@ $('#share-button').click(function (e){
 						  //$idpagina = $urldolink;
 						  //include "comentarios_ajax.php"; 
 					?>
-
-					<div style="float: left; width: 100%;"><hr style="border: 0px; margin: 0px 0px 30px; border-top: dotted 1px;"></div>
+					<div>
+						<iframe src="http://letts.com.br/wp-content/themes/magazine/comentarios_withcss.php?idpagina=<?php echo $urldolink; ?>" width="650" height="30" frameborder="0" scrolling="no" noresize></iframe>
+					</div>
 				</div>
 			
 				<div class="pagewidth clearfix" id="showbtn<?php echo $showpost;?>" style="display: none;">
@@ -1252,7 +1253,7 @@ $('#share-button').click(function (e){
 				</div>
 			<?php } ?>	
 			
-			<?php if ($_GET["page"] != 'mensagem' && $_GET["page"] != '') { ?>
+			<?php if ($_GET["page"] != 'mensagem' && $_GET["page"] != '' && $_GET["page"] != 'news') { ?>
 				<div style="float: left; margin-left: 50px;">
 				<?php
 					$idpagina = $_SERVER['REQUEST_URI'];
