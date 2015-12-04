@@ -14,7 +14,7 @@ if (isset($_GET['mensagem']) && isset($_GET['idpagina']) && isset($_SESSION['let
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 
-	$query1 = "INSERT INTO `letts`.`letts_comentarios` (`id`, `idlogin`, `data`, `mensagem`, `idpagina`) VALUES (NULL, '".$_SESSION["lettslogin"]."', CURRENT_TIMESTAMP, '".$_GET["mensagem"]."', '".$_GET["idpagina"]."')";
+	$query1 = "INSERT INTO `letts`.`letts_comentarios` (`idlogin`, `data`, `mensagem`, `idpagina`) VALUES ('".$_SESSION["lettslogin"]."', CURRENT_TIMESTAMP, '".$_GET["mensagem"]."', '".$_GET["idpagina"]."')";
 	$result=mysqli_query($con,$query1);
 
 	// Free result set
