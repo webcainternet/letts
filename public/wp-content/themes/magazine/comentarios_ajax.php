@@ -58,16 +58,43 @@ mysqli_close($con);
 /// FIM - OBTEM QUANTIDADE ///
 ?>
 
+
 <div class="comentario-content">
+
+	<div class="comentario-header"><iframe frameborder="0" width="100%" height="17" scrolling="no" noresize src="http://letts.com.br/wp-content/themes/magazine/like.php?idpagina=<?php echo $_SERVER['REQUEST_URI']; ?>"></iframe></div>
 	<div class="comentario-header"><?php echo $qtd; ?> Comentário<?php if ($qtd != 1) { echo "s"; } ?></div>
+	<div class="comentario-header"><a id="share-button" href="#" title="Facebook Share Button" style="margin-top: 0px;"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Compartilhar no Facebook</a></div>
 
 
 	<div class="comentario-body">
-		<div class="comentario-foto">
-			<a href="#" target="_blank">
-				<img class="_1ci" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xtp1/v/t1.0-1/p40x40/12141696_10206510530059921_6521226772923966991_n.jpg?oh=15602d3ab06936677ee89e1bd6ff7948&amp;oe=56D831FC&amp;__gda__=1458042672_9d06af294364e26c728f86020161239f">
-			</a>
-		</div>
+		<?php if ($_SESSION["lettslogin"] != 1) { ?> 
+			<div class="comentario-foto">
+				<a href="#" target="_blank">
+
+					<?php 
+					$post_usuario = $_SESSION["lettslogin"];
+						if ($post_usuario != 0) { ?>
+
+					<?php query_posts( array('post_type'=>array('profissional','atleta','marca'),'p' => $post_usuario ) ); ?>
+
+					<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+						<?php $imgsize_top = get_custom_field('basicaimagem:to_image_src'); ?>
+						<?php
+							$imgsize_top = str_replace("letts.com.br/", "", $imgsize_top);
+							$imgsize_top = str_replace("http://", "", $imgsize_top);
+							$imgsize_top = str_replace("https://", "", $imgsize_top);
+						?>
+							
+							<div style="margin-top: -5px; width: 40px; height: 40px; 
+							background-image: url(<?php print_custom_field('basicaimagem:to_image_src'); ?>); 
+							background-size: 40px 40px;" id="imgbackgroundtopo">&nbsp;</div>
+							
+						<?php endwhile; endif; ?>
+						<?php wp_reset_query(); ?>
+					<?php } ?>	
+				</a>
+			</div>
+
 
 			<div class="comentario-texto">
 				<div class="areatexta"><textarea name="mensagem" id="mensagem" class="coment-texta" placeholder="Digite seu comentário"></textarea></div>
@@ -87,7 +114,12 @@ mysqli_close($con);
 				
 				</div>
 			</div>
+		<?php } ?>
 	</div>
 
 
 <div id="results"></div>
+
+</div>
+
+<?php $abrirunico = 1; ?>

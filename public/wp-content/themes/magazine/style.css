@@ -2851,6 +2851,7 @@ $file-upload-size: 300px;
 .redes_sociais{
 	width: 100%;
 	float: left;
+	display: none;
 }
 
 .mensagem_atleta{
@@ -2922,6 +2923,11 @@ $file-upload-size: 300px;
 		margin-bottom: 20px;
 		border: solid 1px #e9eaed;
 		border-top: 0px;
+		height: 30px;
+	}
+	.comentario-header {
+		width: 33.3333%;
+		float: left;
 		height: 30px;
 	}
 /* FIM COMENTARIOS */

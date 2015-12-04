@@ -1101,6 +1101,14 @@ $('#share-button').click(function (e){
 						</div>
 					</article>
 
+					<?php $urldolink = get_permalink();
+						  $urldolink = str_replace('https://', 'http://', $urldolink);
+						  $urldolink = str_replace('http://letts.com.br', '', $urldolink);
+						  $urldolink = str_replace('http://www.letts.com.br', '', $urldolink);
+						  //$idpagina = $urldolink;
+						  //include "comentarios_ajax.php"; 
+					?>
+
 					<div style="float: left; width: 100%;"><hr style="border: 0px; margin: 0px 0px 30px; border-top: dotted 1px;"></div>
 				</div>
 			
@@ -1244,10 +1252,10 @@ $('#share-button').click(function (e){
 				</div>
 			<?php } ?>	
 			
-			<?php if ($_GET["page"] != 'mensagem') { ?>
+			<?php if ($_GET["page"] != 'mensagem' && $_GET["page"] != '') { ?>
 				<div style="float: left; margin-left: 50px;">
 				<?php
-					$idpagina = $_SERVER['REQUEST_URI'];;
+					$idpagina = $_SERVER['REQUEST_URI'];
 					include "comentarios_ajax.php"; 
 				?>
 				</div>

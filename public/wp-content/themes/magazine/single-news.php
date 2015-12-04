@@ -35,15 +35,7 @@ global $themify; ?>
       <h1 class="post-title" itemprop="name" style="text-align: center; margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
         <span style="font-weight: bold;"><a href="#"><?php echo the_title(); ?></a></span></h1>
 
-<div class="redes_sociais">
-<a id="share-button" href="#" title="Facebook Share Button">
-  <img src="/wp-content/themes/magazine/images/compartilhar.jpg" alt="Facebook Share Button" title="Facebook Share Button" />
-</a>
-
-<div style="margin: 0px; padding: 0px; margin-top: 5px;">
-  <iframe frameborder="0" width="100" height="50" src="http://letts.com.br/wp-content/themes/magazine/like.php?idpagina=<?php echo $_SERVER['REQUEST_URI']; ?>"></iframe>
-</div>
-</div>
+        
 
 <?php 
   $imagem_fb = get_custom_field('imgnews:to_image_src');

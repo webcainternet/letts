@@ -39,14 +39,6 @@ global $themify; ?>
 		<h1 class="post-title entry-title" itemprop="name">
 				<?php the_title(); ?> <!--<span style="font-size: 18px;">(<?php print_custom_field('eventotipo'); ?>)</span>-->
 		</h1>
-		
-<div class="redes_sociais">
-<a id="share-button" href="#" title="Facebook Share Button">
-	<img src="/wp-content/themes/magazine/images/compartilhar.jpg" alt="Facebook Share Button" title="Facebook Share Button" />
-</a>
-
-<div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div>
-</div>
 
 <?php 
 	$imagem_fb = get_custom_field('eventofoto:to_image_src');

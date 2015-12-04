@@ -38,7 +38,7 @@ if (isset($_GET['mensagem']) && isset($_GET['idpagina']) && isset($_SESSION['let
 				echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			}
 
-			$query1 = "SELECT lc.*, p.post_title FROM letts_comentarios lc  inner join wp_posts p on lc.idlogin = p.id WHERE lc.idpagina = '".$idpagina."' ORDER BY lc.data DESC";
+			$query1 = "SELECT lc.*, p.post_title, lc.idlogin FROM letts_comentarios lc  inner join wp_posts p on lc.idlogin = p.id WHERE lc.idpagina = '".$idpagina."' ORDER BY lc.data DESC";
 
 			$result=mysqli_query($con,$query1);
 
@@ -46,7 +46,29 @@ if (isset($_GET['mensagem']) && isset($_GET['idpagina']) && isset($_SESSION['let
 				<div class="comentario-body">
 					<div class="comentario-foto">
 						<a href="#" target="_blank">
-							<img class="_1ci" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xtp1/v/t1.0-1/p40x40/12141696_10206510530059921_6521226772923966991_n.jpg?oh=15602d3ab06936677ee89e1bd6ff7948&amp;oe=56D831FC&amp;__gda__=1458042672_9d06af294364e26c728f86020161239f">
+
+							<?php 
+								$post_usuario = $row["idlogin"];
+								if ($post_usuario != 0) { ?>
+
+							<?php query_posts( array('post_type'=>array('profissional','atleta','marca'),'p' => $post_usuario ) ); ?>
+
+							<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+								<?php $imgsize_top = get_custom_field('basicaimagem:to_image_src'); ?>
+								<?php
+									$imgsize_top = str_replace("letts.com.br/", "", $imgsize_top);
+									$imgsize_top = str_replace("http://", "", $imgsize_top);
+									$imgsize_top = str_replace("https://", "", $imgsize_top);
+								?>
+									
+									<div style="margin-top: 0px; width: 40px; height: 40px; 
+									background-image: url(<?php print_custom_field('basicaimagem:to_image_src'); ?>); 
+									background-size: 40px 40px;" id="imgbackgroundtopo">&nbsp;</div>
+									
+								<?php endwhile; endif; ?>
+								<?php wp_reset_query(); ?>
+							<?php } ?>	
+
 						</a>
 					</div>
 

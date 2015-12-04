@@ -29,6 +29,9 @@
 .divconteudo {
 display:inline;
 }
+.redes_sociais{
+	display: block;
+}
 </style>
 <?php
 /**
@@ -556,12 +559,12 @@ $arraybusca = "";
       <div style="margin-top: 10px; color: #666; text-align: right;"><a target="_blank" href="mailto:<?php print_custom_field('basicaemail'); ?>?subject=<?php the_title(); ?>&body=Link do perfil: <?php echo $body_email; ?>"><input type="submit" value="Enviar currículo" style="margin-top: 16px;"></a></div>
 
 
-<div class="redes_sociais">
+<div class="redes_sociais" style="display: block;">
 <a id="share-button" href="#" title="Facebook Share Button">
-	<img src="/wp-content/themes/magazine/images/compartilhar.jpg" alt="Facebook Share Button" title="Facebook Share Button" />
+	<a id="share-button" href="#" title="Facebook botão Share" style="margin-top: 0px;"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Compartilhar no Facebook</a>
 </a>
 
-<div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div>
+<!-- <div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div> -->
 </div>
 
 <?php 
