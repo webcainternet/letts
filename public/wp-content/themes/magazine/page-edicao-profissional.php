@@ -131,7 +131,7 @@ textarea{
             <h4 class="widgettitle">Informações básicas</h4>      
             <div class="textwidget">
               <div style="margin-top: 10px;"><strong>Data de nascimento</strong></div>
-              <input type="text" name="data_nascimento" value="<?php print_custom_field('basicanascimento'); ?>"><br />
+              <input type="text" name="data_nascimento" id="data_nascimento" value="<?php print_custom_field('basicanascimento'); ?>"><br />
 <?php 
   $sexo = get_custom_field('basicagenero');
   if ($sexo == "Feminino") {
