@@ -167,7 +167,7 @@ $('#share-button').click(function (e){
 
 
 
-<?php if ($_SESSION['meuemail'] == $meuemail) && $_SESSION['lettslogin'] != 1) { ?>
+<?php if ($_SESSION['meuemail'] == $meuemail && $_SESSION['lettslogin'] != 1) { ?>
 <div>
 	<div style="width: 1024px; margin: auto; border-top: solid 1px #ddd; padding-top: 10px;font-weight: bold;
     font-size: 14px;
