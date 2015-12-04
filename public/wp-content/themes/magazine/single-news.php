@@ -40,9 +40,9 @@ global $themify; ?>
   <img src="/wp-content/themes/magazine/images/compartilhar.jpg" alt="Facebook Share Button" title="Facebook Share Button" />
 </a>
 
-<div style="margin: 0px; padding: 0px; margin-top: -12px;">
-  <div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div>
-  </div>
+<div style="margin: 0px; padding: 0px; margin-top: 5px;">
+  <iframe frameborder="0" width="100" height="50" src="http://letts.com.br/wp-content/themes/magazine/like.php?idpagina=<?php echo $_SERVER['REQUEST_URI']; ?>"></iframe>
+</div>
 </div>
 
 <?php 
@@ -179,7 +179,10 @@ $('#share-button').click(function (e){
             </div>
 
             <div style="height: 192px;">
-              <div class="fb-comments" data-href="http://letts.com.br/<?php echo $_SERVER["REQUEST_URI"]; ?>" data-width="674" data-numposts="5" data-colorscheme="light"></div>
+              <?php
+                $idpagina = $_SERVER['REQUEST_URI'];
+                include "comentarios_ajax.php"; 
+              ?>
             </div>
           </article>
 <?php /* if ($_SESSION["lettslogin"]) { ?>

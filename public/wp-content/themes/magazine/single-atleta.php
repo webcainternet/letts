@@ -1248,7 +1248,8 @@ $('#share-button').click(function (e){
 				<div style="float: left; margin-left: 50px;">
 				<?php
 					$idpagina = $_SERVER['REQUEST_URI'];;
-					 include "comentarios_ajax.php"; ?>
+					include "comentarios_ajax.php"; 
+				?>
 				</div>
 			<?php } ?>
 

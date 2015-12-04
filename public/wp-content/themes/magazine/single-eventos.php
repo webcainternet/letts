@@ -8,6 +8,12 @@
 
 <?php get_header(); ?>
 
+<style type="text/css">
+	#banners {
+		display: none;
+	}
+</style>
+
 <?php 
 /** Themify Default Variables
  *  @var object */
@@ -85,7 +91,10 @@ $('#share-button').click(function (e){
 	<div class="logo_eventos">&nbsp;<br>
 
 		<div>
-          <div class="fb-comments" data-href="http://letts.com.br/<?php echo $_SERVER["REQUEST_URI"]; ?>" data-width="520" data-numposts="5" data-colorscheme="light"></div>
+          <?php
+                $idpagina = $_SERVER['REQUEST_URI'];;
+                include "comentarios_ajax.php"; 
+              ?>
         </div>
 
 			<?php /* if ($_SESSION["lettslogin"] && $_SESSION["lettslogin"] != $idpost) { ?>

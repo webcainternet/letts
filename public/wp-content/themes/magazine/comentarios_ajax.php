@@ -27,6 +27,7 @@ $(document).ready(function(){
 		  .done(function( html ) {
 		    $( "#results" ).empty();
 		    $( "#results" ).append( html );
+		    $("#mensagem").val('');
 		  });        
 
     });
