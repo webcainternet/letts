@@ -173,7 +173,7 @@ $('#share-button').click(function (e){
     font-size: 14px;
     color: #ff8920; margin-bottom: 15px;">Formulário de solicitação de edição</div>
     <div style="width: 1024px; margin: auto; ">
-    	<?php echo do_shortcode( '[contact-form-7 id="3064" title="Alteração de eventos"]' ); ?>
+    	<?php echo do_shortcode( '[contact-form-7 id="3654" title="Alteração de eventos"]' ); ?>
     	
     </div>
 </div>
