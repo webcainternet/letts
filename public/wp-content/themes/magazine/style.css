@@ -207,7 +207,7 @@ STRUCTURE
 #body {
         margin: 0 auto;
         max-width: 100%;
-        padding: 0 0 40px;
+        padding: 0 0 0px;
 }
 
 /* content top space */
@@ -1909,6 +1909,7 @@ FOOTER
 	background: #000;
 	color: #999;
 	font-size: .875em;
+	margin-top: 10px;
 }
 #footer {
 	clear: both;

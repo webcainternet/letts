@@ -158,7 +158,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     if ($actual_name1) {
       add_post_meta($cur_post_id, 'atletaimagembackground', $attach_id1, true);
     }
-    add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
+    add_post_meta($cur_post_id, 'basicaemail', $_SESSION['meuemail'], true);
     add_post_meta($cur_post_id, 'link_ingresso', $_POST['link'], true);
     add_post_meta($cur_post_id, 'atletaesporte', $_POST['esporte'], true);
     add_post_meta($cur_post_id, 'profissao', $_POST['profissao'], true);

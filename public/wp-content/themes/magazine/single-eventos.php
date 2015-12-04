@@ -26,6 +26,9 @@
 .comentario-content {
     width: 410px;
 }
+textarea {
+    height: 200px;
+}
 </style>
 
 <?php 
@@ -92,6 +95,9 @@ $('#share-button').click(function (e){
 			<?php }elseif (get_custom_field('link_ingresso')) { ?>
 				<a href="<?php print_custom_field('link_ingresso'); ?>" target="_blank" class="button">Comprar Ingresso</a>	.
 			<?php } ?>
+
+
+			<?php $meuemail = get_custom_field('basicaemail'); ?>
 	</div>
 
 	<div class="logo_eventos">&nbsp;<br>
@@ -158,6 +164,24 @@ $('#share-button').click(function (e){
 </div>
 <!-- /layout-container -->
 	
+
+
+
+<?php if ($_SESSION['meuemail'] == $meuemail) { ?>
+<div>
+	<div style="width: 1024px; margin: auto; border-top: solid 1px #ddd; padding-top: 10px;font-weight: bold;
+    font-size: 14px;
+    color: #ff8920; margin-bottom: 15px;">Formulário de solicitação de edição</div>
+    <div style="width: 1024px; margin: auto; ">
+    	<?php echo do_shortcode( '[contact-form-7 id="3064" title="Alteração de eventos"]' ); ?>
+    	
+    </div>
+</div>
+<?php } ?>
+
+
+
+
 <?php include('banners.php') ?>  
 	
 <?php get_footer(); ?>

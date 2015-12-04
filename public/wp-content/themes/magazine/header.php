@@ -180,6 +180,7 @@
 
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 					<?php $imgsize_top = get_custom_field('basicaimagem:to_image_src'); ?>
+					<?php $_SESSION['meuemail'] = get_custom_field('basicaemail'); ?>
 					<?php
 						$imgsize_top = str_replace("letts.com.br/", "", $imgsize_top);
 						$imgsize_top = str_replace("http://", "", $imgsize_top);
