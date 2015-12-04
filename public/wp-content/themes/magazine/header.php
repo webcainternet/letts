@@ -224,7 +224,10 @@
 							<div class="related-posts criarcontalink" style="height: 30px;">
 								<div style="text-align: right; padding: 0px 0px;">
 									<a href="/wp-content/themes/magazine/logout.php" id="criar" style="background: #f57300; text-decoration: none; padding: 0px; padding-left: 10px; padding-right: 10px; color: #FFFFFF;">
-										Criar Nova Conta
+										Entrar
+									</a>
+									<a href="/wp-content/themes/magazine/logout.php" id="criar" style="margin-left: 5px;background: #f57300; text-decoration: none; padding: 0px; padding-left: 10px; padding-right: 10px; color: #FFFFFF;">
+										Cadastre-se
 									</a>
 								</div>
 								<br>					
