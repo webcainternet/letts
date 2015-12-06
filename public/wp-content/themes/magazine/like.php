@@ -1,7 +1,7 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet" id="style.css-css" href="//letts.com.br/wp-content/plugins/google-language-translator/css/style.css?ver=4.1.1" type="text/css" media="all">
+<link rel="stylesheet" id="style.css-css" href="/wp-content/plugins/google-language-translator/css/style.css?ver=4.1.1" type="text/css" media="all">
 <link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%7COpen+Sans%7COpen+Sans%3A300&amp;subset=latin%2Clatin-ext&amp;ver=4.1.1" type="text/css" media="all">
 </head>
 
