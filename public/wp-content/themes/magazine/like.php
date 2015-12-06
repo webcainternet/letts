@@ -1,4 +1,10 @@
+<head>
 <meta charset="UTF-8">
+
+<link rel="stylesheet" id="style.css-css" href="//letts.com.br/wp-content/plugins/google-language-translator/css/style.css?ver=4.1.1" type="text/css" media="all">
+<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%7COpen+Sans%7COpen+Sans%3A300&amp;subset=latin%2Clatin-ext&amp;ver=4.1.1" type="text/css" media="all">
+</head>
+
 <?php include "../../../wp-config.php"; ?>
 <?php include "logincheck.php"; ?>
 
@@ -10,6 +16,13 @@ body, a {
     font-weight: bold;
     font-size: 12px;
     color: #888;
+}
+.fontelike {
+	color: #F57300;
+    font-size: 14px;
+    font-family: Oswald, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .05em;
 }
 </style>
 
@@ -80,15 +93,15 @@ if (isset($_GET['addlike']) && isset($_GET['idpagina']) && isset($_SESSION['lett
 	<?php }
 
 	if ($_SESSION["lettslogin"] == 1) { ?>
-		<img src="/wp-content/themes/magazine/images/rocknroll.png" style="height: 22px; -webkit-filter: grayscale(100%); filter: grayscale(100%); float: left;">
-		<div style="float: left; margin: 5px; margin-top: 0px;"><?php echo $totallike1; ?> Irado!!!</div>
+		<img src="/wp-content/themes/magazine/images/rocknroll.png" style="height: 30px; -webkit-filter: grayscale(100%); filter: grayscale(100%); float: left;">
+		<div class="fontelike" style="float: left; margin: 5px; margin-top: 0px;"><?php echo $totallike1; ?> Irado!!!</div>
 	<?php } else {
 		if ($totallike == 1) { ?>
-			<img src="/wp-content/themes/magazine/images/rocknroll.png" style="height: 22px; float: left;">
-			<div style="float: left; margin: 5px; margin-top: 0px;"><?php echo $totallike1; ?> Irado!!!</div>
+			<img src="/wp-content/themes/magazine/images/rocknroll.png" style="height: 30px; float: left;">
+			<div class="fontelike" style="float: left; margin: 5px; margin-top: 0px;"><?php echo $totallike1; ?> Irado!!!</div>
 		<?php } else { ?>
-			<a href="like.php?idpagina=<?php echo $idpagina; ?>&addlike=1"><img src="/wp-content/themes/magazine/images/rocknroll.png" style="height: 22px; -webkit-filter: grayscale(100%); filter: grayscale(100%); float: left;"></a>
-			<div style="float: left; margin: 5px; margin-top: 0px;"><?php echo $totallike1; ?> <a href="like.php?idpagina=<?php echo $idpagina; ?>&addlike=1" style="color: #888;">Irado!!!</a></div>
+			<a href="like.php?idpagina=<?php echo $idpagina; ?>&addlike=1"><img src="/wp-content/themes/magazine/images/rocknroll.png" style="height: 30px; -webkit-filter: grayscale(100%); filter: grayscale(100%); float: left;"></a>
+			<div class="fontelike" style="float: left; margin: 5px; margin-top: 0px;"><?php echo $totallike1; ?> <a href="like.php?idpagina=<?php echo $idpagina; ?>&addlike=1" style="color: #888;">Irado!!!</a></div>
 		<?php }
 	}
 	// Free result set

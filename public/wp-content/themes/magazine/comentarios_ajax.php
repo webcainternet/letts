@@ -61,9 +61,12 @@ mysqli_close($con);
 
 <div class="comentario-content">
 
-	<div class="comentario-header"><iframe frameborder="0" width="100%" height="17" scrolling="no" noresize src="http://letts.com.br/wp-content/themes/magazine/like.php?idpagina=<?php echo $_SERVER['REQUEST_URI']; ?>"></iframe></div>
+	<div class="comentario-header"><iframe frameborder="0" width="100%" height="30" scrolling="no" noresize src="http://letts.com.br/wp-content/themes/magazine/like.php?idpagina=<?php echo $_SERVER['REQUEST_URI']; ?>"></iframe></div>
 	<div class="comentario-header"><?php echo $qtd; ?> Comentário<?php if ($qtd != 1) { echo "s"; } ?></div>
-	<div class="comentario-header"><a id="share-button" href="#" title="Facebook Share Button" style="margin-top: 0px;"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Compartilhar</a></div>
+	<?php /* <div class="comentario-header"><a id="share-button" href="#" title="Facebook Share Button" style="margin-top: 0px;"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Compartilhar</a></div> */ ?>
+	<div class="comentario-header">
+		<?php do_action( 'addthis_widget' ); ?>
+	</div>
 
 
 	<div class="comentario-body">
