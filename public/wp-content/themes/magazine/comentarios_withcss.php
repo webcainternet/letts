@@ -5,6 +5,10 @@
 <head>
 	<link rel='stylesheet' id='theme-style-css'  href='/wp-content/themes/magazine/style.css?ver=1.3.0' type='text/css' media='all' />
 	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%7COpen+Sans%7COpen+Sans%3A300&amp;subset=latin%2Clatin-ext&amp;ver=4.1.1" type="text/css" media="all">
+
+	<style type="text/css">
+		.comentario-header { border-bottom: 0px; }
+	</style>
 </head>
 
 
@@ -36,10 +40,9 @@ mysqli_close($con);
 
 
 <div class="comentario-content" style="border: 0px;">
-
 	<div class="comentario-header" style="border: 0px;"><iframe frameborder="0" width="100%" height="30" scrolling="no" noresize src="http://letts.com.br/wp-content/themes/magazine/like.php?idpagina=<?php echo $_SERVER['REQUEST_URI']; ?>"></iframe></div>
 	<div class="comentario-header" style="border: 0px;"><?php echo $qtd; ?> Comentário<?php if ($qtd != 1) { echo "s"; } ?></div>
-	<div class="comentario-header"><a href="<?php echo $idpagina; ?>">Ver mais</a></div>
+	<div class="comentario-header"><a style="color: color: #F57300; text-decoration: none;"> href="<?php echo $idpagina; ?>">Ver mais</a></div>
 </div>
 
 <div style="width: 615px;">
