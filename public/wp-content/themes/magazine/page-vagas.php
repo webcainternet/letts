@@ -561,7 +561,13 @@ $arraybusca = "";
 
 <div class="redes_sociais" style="display: block;">
 <a id="share-button" href="#" title="Facebook Share Button">
-	<a id="share-button" href="#" title="Facebook botão Share" style="margin-top: 0px;"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Compartilhar no Facebook</a>
+	<?php /* <a id="share-button" href="#" title="Facebook botão Share" style="margin-top: 0px;"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Compartilhar no Facebook</a> */ ?>
+	<div style="margin-top: -27px; float: left;">
+		<?php do_action( 'addthis_widget' ); ?>
+		<?php /*
+		<?php $url = get_permalink(); $title = the_title('','', false); ?><a class="addthis_counter addthis_pill_style" addthis:url="<?php echo $url; ?>" addthis:title="<?php echo $title; ?>"></a>
+		*/ ?>
+	</div>
 </a>
 
 <!-- <div class="fb-like" data-href="<?php the_permalink(); ?>" data-share="false" data-send="true" data-layout="button" data-width="350" data-show-faces="false" data-colorscheme="dark" data-action="like"></div> -->
