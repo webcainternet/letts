@@ -14,22 +14,30 @@
           if ($( "#idinputevento" ).val() == "") {
             alert( "Você deve preencher o nome do evento!" );
             } else {
-            if ($( "#atletaesporte" ).val() == "-- Selecione o esporte --" && $( "#profissao" ).val() == "-- Selecione a profissão --" ) {
+            if ($("#atletaesporte").val() == "" && $( "#profissao" ).val() == "" ) {
                 alert( "Você deve selecionar o esporte ou profissão para este evento!" ); 
               } else {
-                if ($( "#idimgdestacada" ).val() == "") {
-                  alert( "Você deve selecionar a imagem!" );
+                if ($( "#pais" ).val() == "" ) {
+                  alert( "Você deve selecionar o país do evento" ); 
                 } else {
-                  if ($( "#idimgevento" ).val() == "") {
-                    alert( "Você deve selecionar o flyer!" );
+                  if ($( "#tipo_evento" ).val() == "" ) {
+                    alert( "Você deve selecionar o tipo do evento" ); 
                   } else {
-                    if ($( "#iddescricaoevento" ).val() == "") {
-                      alert( "Você deve preencher a descrição do evento!" );
+                    if ($( "#idimgdestacada" ).val() == "") {
+                      alert( "Você deve selecionar a imagem!" );
                     } else {
-                      $( "#new_post" ).submit();
+                      if ($( "#idimgevento" ).val() == "") {
+                        alert( "Você deve selecionar o flyer!" );
+                      } else {
+                        if ($( "#iddescricaoevento" ).val() == "") {
+                          alert( "Você deve preencher a descrição do evento!" );
+                        } else {
+                          $( "#new_post" ).submit();
+                        }
+                      }
                     }
                   }
-                }                
+                }
               }
             }
 
@@ -202,7 +210,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
              <div class="selects_forms" style="margin-top: -10px;">
                 <p style="margin: 10px 0px -10px;">Selecione apenas uma opção: Esporte ou Profissão</p>
                 <select id="atletaesporte" name="esporte" style="width: 310px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: 10px; margin-left: 22px;">
-                        <option>-- Selecione o esporte --</option>
+                        <option value="">-- Selecione o esporte --</option>
                         <option value="Aeromodelismo">Aeromodelismo</option>
                         <option value="Alpinismo">Alpinismo</option>
                         <option value="Asa Delta">Asa Delta</option>
@@ -277,7 +285,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                       </select>
 
                  <select id="profissao" name="profissao" style="width: 310px; margin-bottom: 14px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: right; margin-top: 10px; margin-right: 5px;">
-                      <option>-- Selecione a profissão --</option>
+                      <option value="">-- Selecione a profissão --</option>
                       <option value="Assessor de imprensa">Assessor de imprensa</option>
                       <option value="Coordenador de eventos">Coordenador de eventos</option>
                       <option value="Desenhista">Desenhista</option>
@@ -302,7 +310,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                   </select>             
               </div>
               <select id="pais" name="pais" style="width: 310px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: -5px; float: left;margin-left: 29px;">    
-              <option>-- Selecione um pais --</option>
+              <option value="">-- Selecione um pais --</option>
               <option value="Afeganistão">Afeganistão</option>
               <option value="África do Sul">África do Sul</option>
               <option value="Albânia">Albânia</option>
@@ -504,7 +512,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
               </select> 
 
               <select id="tipo_evento" name="tipo_evento" style="width: 310px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: right; margin-top: -5px; margin-right: 29px;">
-                      <option>-- Selecione o tipo do evento --</option>
+                      <option value="">-- Selecione o tipo do evento --</option>
                       <option value="Campeonato">Campeonato</option>
                       <option value="Show">Show</option>
                       <option value="Festa">Festa</option>
