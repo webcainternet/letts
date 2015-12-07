@@ -114,14 +114,14 @@ if (isset($_GET['rmlike']) && isset($_GET['idpagina']) && isset($_SESSION['letts
 
 	if ($_SESSION["lettslogin"] == 1) { ?>
 		<img src="/wp-content/themes/magazine/images/rocknroll.png" style="height: 30px; -webkit-filter: grayscale(100%); filter: grayscale(100%); float: left;">
-		<div class="fontelike" style="float: left; margin: 5px; margin-top: 0px;"><?php echo $totallike1; ?> Irado!!!</div>
+		<div class="fontelike" style="float: left; margin: 5px; margin-top: 0px;"><?php echo $totallike1; ?> Irado</div>
 	<?php } else {
 		if ($totallike == 1) { ?>
 			<img src="/wp-content/themes/magazine/images/rocknroll.png" style="height: 30px; float: left;">
-			<div class="fontelike" style="float: left; margin: 5px; margin-top: 0px;"><?php echo $totallike1; ?> Irado!!! <a href="like.php?rmlike=1&idpagina=<?php echo $idpagina; ?>&addlike=1" style="font-size: 10px;">Remover</a></div>
+			<div class="fontelike" style="float: left; margin: 5px; margin-top: 0px;"><?php echo $totallike1; ?> Irado <a href="like.php?rmlike=1&idpagina=<?php echo $idpagina; ?>&addlike=1" style="font-size: 10px;">Remover</a></div>
 		<?php } else { ?>
 			<a href="like.php?idpagina=<?php echo $idpagina; ?>&addlike=1"><img src="/wp-content/themes/magazine/images/rocknroll.png" style="height: 30px; -webkit-filter: grayscale(100%); filter: grayscale(100%); float: left;"></a>
-			<div class="fontelike" style="float: left; margin: 5px; margin-top: 0px;"><?php echo $totallike1; ?> <a href="like.php?idpagina=<?php echo $idpagina; ?>&addlike=1" style="color: #888;">Irado!!!</a></div>
+			<div class="fontelike" style="float: left; margin: 5px; margin-top: 0px;"><?php echo $totallike1; ?> <a href="like.php?idpagina=<?php echo $idpagina; ?>&addlike=1" style="color: #888;">Irado</a></div>
 		<?php }
 	}
 	// Free result set
