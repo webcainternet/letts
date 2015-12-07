@@ -33,6 +33,20 @@ $(document).ready(function(){
     });
 });
 
+function removecomentario(idcomentario) {
+	$.ajax({
+	  url: "/wp-content/themes/magazine/comentarios.php",
+	  data: {
+	      idpagina: '<?php echo $idpagina; ?>',
+	      rmcomentario: idcomentario
+	   },
+	  cache: false
+	  })
+	  .done(function( html ) {
+	    $( "#results" ).empty();
+	    $( "#results" ).append( html );
+	});
+}
 </script>
 
 

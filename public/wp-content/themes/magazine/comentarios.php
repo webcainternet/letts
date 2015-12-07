@@ -22,6 +22,24 @@ if (isset($_GET['mensagem']) && isset($_GET['idpagina']) && isset($_SESSION['let
 	mysqli_close($con);
 }
 /// FIM - PUBLICA COMENTARIO ///
+
+/// REMOVE COMENTARIO ///
+if (isset($_GET['rmcomentario']) && isset($_GET['idpagina']) && isset($_SESSION['lettslogin'])){
+	$con=mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	// Check connection
+	if (mysqli_connect_errno())
+	{
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+
+	$query1 = "DELETE FROM `letts`.`letts_comentarios` WHERE idlogin = '".$_SESSION["lettslogin"]."' AND id = '".$_GET["rmcomentario"]."' AND idpagina = '".$_GET["idpagina"]."'";
+	$result=mysqli_query($con,$query1);
+
+	// Free result set
+	mysqli_free_result($result);
+	mysqli_close($con);
+}
+/// FIM - REMOVE COMENTARIO ///
 ?>
 
 
@@ -75,7 +93,10 @@ if (isset($_GET['mensagem']) && isset($_GET['idpagina']) && isset($_SESSION['let
 					<div class="comentario-texto">
 						<div><a href="#" style="color: #ff8920; font-weight: bold; font-size: 14px;" target="_blank"><?php echo $row["post_title"]; ?></a></div>
 						<div><?php echo $row["mensagem"]; ?></div>
-						<div class="comentario-data">Enviado: <?php echo $row["data"]; ?></div><div class="comentario-like"><!-- Curtir --></div>
+						<div><?php if ($post_usuario == $_SESSION["lettslogin"]) { ?>
+						<a style="color: #f57300;" onclick="javascript:removecomentario(<?php echo $row["id"]; ?>);">Remover comentário</a>
+						<?php } ?></div>
+						<div class="comentario-data">Enviado: <?php echo $row["data"]; ?></div><div class="comentario-like"></div>
 					</div>
 				</div>
 			<?php }
