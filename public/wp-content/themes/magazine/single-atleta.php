@@ -899,7 +899,17 @@ $('#share-button').click(function (e){
 			query_posts($args); ?>
 
 			<div style="width: 685px; float: left; margin-left: 50px;">
+			<?php if ($_SESSION["lettslogin"] != $idpost) { ?>
+				<div style="float: right;">
+					<iframe src="http://letts.com.br/wp-content/themes/magazine/visitas.php?idlogin=<?php echo $idpost; ?>" width="1" height="1" frameborder="0" scrolling="no" noresize></iframe>
+				</div>
+			<?php } ?>
+
 			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+				<div style="float: right;">
+					<iframe src="http://letts.com.br/wp-content/themes/magazine/visitas.php?idlogin=<?php echo $idpost; ?>" width="275" height="36" frameborder="0" scrolling="no" noresize></iframe>
+				</div>
+
 				<p id="sucesso">Noticia cadastrada com sucesso.</p>
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
             	<input id="idinputnoticia" class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
