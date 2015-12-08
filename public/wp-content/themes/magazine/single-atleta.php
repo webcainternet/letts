@@ -763,7 +763,7 @@ $('#share-button').click(function (e){
 							<?php print_custom_field('paisesviagem'); ?>
 
 							<div style="margin-top: 10px;"><strong>E-mail</strong></div>
-									<?php print_custom_field('basicaemail'); ?><br />
+									<?php $emailuser = get_custom_field('basicaemail'); echo $emailuser; ?><br />
 						</div>
 			
 						<div class="textwidget icones_sociais">
@@ -1227,6 +1227,62 @@ $('#share-button').click(function (e){
 		</div>
 					<?php if ($_GET["page"] == "mensagem") { ?>
 				<div class="formularios profissionais">
+					<?php if ( isset($_POST['nome_msg']) && isset($_POST['email_msg']) && isset($_POST['assunto']) && isset($_POST['mensagem']) && isset($_SESSION['lettslogin']) ) { 
+						//to: 
+						$to  = $emailuser;
+
+						// subject
+						$subject = 'Letts Mensagem - '.$_POST['nome_msg'];
+
+						// message
+						$message = '
+						<html>
+						<head>
+						  <title>'.$subject.'</title>
+						</head>
+						<body>
+						  <p>Mensagem enviada através do site letts.com.br!</p>
+						  <table>
+						    <tr>
+						      <th>Nome: </th>
+						      <td>'.$_POST['nome_msg'].'</td>
+						    </tr>
+						    <tr>
+						      <th>Email: </th>
+						      <td>'.$_POST['email_msg'].'</td>
+						    </tr>
+						    <tr>
+						      <th>Assunto: </th>
+						      <td>'.$_POST['assunto'].'</td>
+						    </tr>
+						    <tr>
+						      <th>Mensagem: </th>
+						      <td>'.$_POST['mensagem'].'</td>
+						    </tr>
+						  </table>
+						</body>
+						</html>
+						';
+
+						// To send HTML mail, the Content-type header must be set
+						$headers  = 'MIME-Version: 1.0' . "\r\n";
+						$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+						// Additional headers
+						$headers .= 'To: '. $emailuser . "\r\n";
+						$headers .= 'From: Letts Mensagem <noreply@letts.com.br>' . "\r\n";
+						//$headers .= 'Cc: birthdayarchive@example.com' . "\r\n";
+						//$headers .= 'Bcc: birthdaycheck@example.com' . "\r\n";
+
+						// Mail it
+						mail($to, $subject, $message, $headers);
+
+					?>
+					<div class="mensagem_atleta">
+						<h1 class="post-title entry-title" style="padding-top: 25px;">Mensagem enviada com sucesso!</h1>
+					</div>	
+					<?php } else { ?>
+
 					<div class="mensagem_atleta">
 						<h1 class="post-title entry-title">Envie mensagem para <?php the_title(); ?></h1>
 						<form id="formmensagem" action="" method="post" id="formulario_mensagem">
@@ -1250,6 +1306,7 @@ $('#share-button').click(function (e){
                                   <br>&nbsp;<br>
 						</form>
 					</div>	
+					<?php } ?>
 				</div>
 			<?php } ?>	
 			
