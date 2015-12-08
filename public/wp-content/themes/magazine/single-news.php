@@ -86,6 +86,10 @@ $('#share-button').click(function (e){
             while ($rowemailname = mysql_fetch_array($resultemailname, MYSQL_ASSOC)) {
               $emailname = $rowemailname["post_title"];
               $idatleta = $rowemailname["id"];
+
+              if ($_SESSION["lettslogin"] == $idatleta) {
+                $ismypage = 1;
+              }
             }
             ?>
 

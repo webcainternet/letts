@@ -284,6 +284,12 @@ $('#share-button').click(function (e){
 		<p id="sucesso_capa" class="bg_sucesso">Foto de capa alterada com sucesso</p>
 		<p id="sucesso_edicaoperfil" class="bg_sucesso">Dados alterados com sucesso</p>				
 
+<?php 
+	if ($_SESSION["lettslogin"] == $idpost) {
+		$ismypage = 1;
+	}
+?>
+
 	<div style="float: left; margin: 15px 0px; width: 420px;">
 		<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 1.5em; font-family: Oswald, sans-serif; width: 785px;"> 
 			<a href="<?php the_permalink(); ?>" style="font-weight: bold; font-size: 50px" >

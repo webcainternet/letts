@@ -3,7 +3,7 @@
 $.ajax({
   url: "/wp-content/themes/magazine/comentarios.php",
   data: {
-      idpagina: '<?php echo $idpagina; ?>'
+      idpagina: '<?php echo $idpagina; ?>'<?php if ($ismypage == 1) { echo ", m: 1"; }?>
    },
   cache: false
 })

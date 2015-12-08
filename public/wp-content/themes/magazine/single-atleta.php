@@ -687,6 +687,12 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 							<a name="fotos"></a>
 	</div>
 
+<?php 
+	if ($_SESSION["lettslogin"] == $idpost) {
+		$ismypage = 1;
+	}
+?>
+
 	<div style="margin-top: 20px; margin-bottom: 20px; width: 100%; float: left;">
 		<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
 			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; text-align: center; padding: 0; font-size: 1.5em; font-family: Oswald, sans-serif; 
