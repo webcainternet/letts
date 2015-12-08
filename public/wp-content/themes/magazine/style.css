@@ -2307,7 +2307,7 @@ CLEAR & ALIGNMENT
 }
 
 .logo_marcas{
-	background-size: 250px 210px !important;
+	background-size: cover !important;
 	width: 250px;
 	height: 210px;
 	float: left;

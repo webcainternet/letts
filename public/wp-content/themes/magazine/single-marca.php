@@ -35,7 +35,7 @@
       });
    });
  </script>
- 
+
 <style type="text/css">
 	.formularios textarea {
     width: 95%;
@@ -224,10 +224,12 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix" style="margin-bottom: 40px;">
-
+<?php $defaultbg1 = get_custom_field('basicaimagem:to_image_src'); 
+	  $defaultbg1 = str_replace('defaultbg.jpg', 'defaultbgmarcas.jpg' , $defaultbg1);
+?>
 	
 		
-	<div class="img_marcas imagem_editar_capa" style="background: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>') no-repeat; background-size: 1064px; background-position:center; height: 400px;">
+	<div class="img_marcas imagem_editar_capa" style="background: url('<?php echo $defaultbg1; ?>') no-repeat; background-size: 1064px !important; height: 405px; background-position:center;">
 		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>		
 			<div id="link_editar_capa">
 					<a class="fancybox" href="/alterar-foto-de-capa/?id_post=<?php echo $idpost; ?>">Editar Foto de Capa</a>		
