@@ -340,6 +340,18 @@ $('#share-button').click(function (e){
 	</div>
 
 	<div class="description_marcas">
+			<?php if ($_SESSION["lettslogin"] != $idpost) { ?>
+				<div style="float: right;">
+					<iframe src="http://letts.com.br/wp-content/themes/magazine/visitas.php?idlogin=<?php echo $idpost; ?>" width="1" height="1" frameborder="0" scrolling="no" noresize></iframe>
+				</div>
+			<?php } ?>
+
+			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+				<div style="float: right;">
+					<iframe src="http://letts.com.br/wp-content/themes/magazine/visitas.php?idlogin=<?php echo $idpost; ?>" width="275" height="36" frameborder="0" scrolling="no" noresize></iframe>
+				</div>
+			<?php } ?>
+
 		<?php the_content(); ?>
 	</div>
 
