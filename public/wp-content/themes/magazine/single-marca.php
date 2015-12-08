@@ -8,6 +8,34 @@
 
 <?php get_header(); ?>
 
+<script type="text/javascript">
+   $(document).ready(function(){
+      $("#postarmensagem").click(function(){
+          if ($( "#nome_msg" ).val() == "") {
+            alert( "Você deve preencher o nome!" );
+            $( "#nome_msg" ).focus();
+            } else {
+           		if ($( "#email_msg" ).val() == "") {
+           			alert( "Você deve preencher o e-mail!" );
+           			$( "#email_msg" ).focus();
+       			} else {
+       				if ($( "#assunto" ).val() == "") {
+       					alert( "Você deve preencher o assunto!" );
+       					$( "#assunto" ).focus();
+       				} else {
+       					if ($( "#mensagemmail" ).val() == "") {
+	       					alert( "Você deve preencher a mensagem!" );
+	       					$( "#mensagemmail" ).focus();
+	       				} else {
+	       					$( "#formmensagem" ).submit();
+	       				}
+       				}
+       			}
+   			}
+      });
+   });
+ </script>
+ 
 <style type="text/css">
 	.formularios textarea {
     width: 95%;
@@ -19,6 +47,9 @@
 }
 .comentario-content {
     width: 410px;
+}
+.formularios input[type="text"] {
+    max-width: 96%;
 }
 </style>
 
@@ -265,7 +296,7 @@ $('#share-button').click(function (e){
 
 		<?php print_custom_field('endereco:do_shortcode'); ?>
 		<p>Telefones: <?php print_custom_field('basicatelefones'); ?><br />
-		E-mail: <?php print_custom_field('basicaemail'); ?></p>
+		E-mail: <?php $emailuser = get_custom_field('basicaemail'); echo $emailuser; ?></p>
 	</div>
 	<div class="icones_sociais">
 		<?php if (get_custom_field('basicafacebook')) { ?>
@@ -342,16 +373,98 @@ $('#share-button').click(function (e){
 		</div>
 		<?php }else{ ?>
 
-		<div class="mensagem_marca" style="float: left;>
-			<h1 class="post-title entry-title">Envie mensagem para a marca</h1>
-			<form action="" method="post" id="formulario_mensagem">
-				<input type="text" id="nome_msg" name="nome_msg" placeholder="Seu Nome">
-				<input type="text" id="email_msg" name="email_msg" placeholder="Seu E-mail">
-				<input type="text" id="assunto" name="assunto" placeholder="Assunto">
-				<textarea id="mensagem" name="mensagem" placeholder="Mensagem para a Marca"></textarea>
-				<input type="button" id="botao_mensagem" value="Enviar Mensagem">
-			</form>
-		</div>	
+		<?php /* INICIO BLOCO DE ENVIO DE EMAIL */ ?>
+				<div class="formularios profissionais">
+					<?php if ( isset($_POST['nome_msg']) && isset($_POST['email_msg']) && isset($_POST['assunto']) && isset($_POST['mensagem']) && isset($_SESSION['lettslogin']) ) { 
+						//to: 
+						$to  = $emailuser;
+
+						// subject
+						$subject = 'Letts Mensagem - '.$_POST['nome_msg'];
+
+						// message
+						$message = '
+						<html>
+						<head>
+						  <title>'.$subject.'</title>
+						</head>
+						<body>
+						  <p>Mensagem enviada através do site letts.com.br!</p>
+						  <table>
+						    <tr>
+						      <th>Nome: </th>
+						      <td>'.$_POST['nome_msg'].'</td>
+						    </tr>
+						    <tr>
+						      <th>Email: </th>
+						      <td>'.$_POST['email_msg'].'</td>
+						    </tr>
+						    <tr>
+						      <th>Assunto: </th>
+						      <td>'.$_POST['assunto'].'</td>
+						    </tr>
+						    <tr>
+						      <th>Mensagem: </th>
+						      <td>'.$_POST['mensagem'].'</td>
+						    </tr>
+						  </table>
+						</body>
+						</html>
+						';
+
+						// To send HTML mail, the Content-type header must be set
+						$headers  = 'MIME-Version: 1.0' . "\r\n";
+						$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+						// Additional headers
+						$headers .= 'To: '. $emailuser . "\r\n";
+						$headers .= 'From: Letts Mensagem <noreply@letts.com.br>' . "\r\n";
+						//$headers .= 'Cc: birthdayarchive@example.com' . "\r\n";
+						//$headers .= 'Bcc: birthdaycheck@example.com' . "\r\n";
+
+						// Mail it
+						mail($to, $subject, $message, $headers);
+
+					?>
+					<div class="mensagem_atleta" style="width: 37%; margin-left: 0px;">
+						<h1 class="post-title entry-title" style="padding-top: 25px;">Mensagem enviada com sucesso!</h1>
+					</div>	
+					<?php } else {
+						if ($_SESSION['lettslogin'] == 1) { ?>
+							<div class="mensagem_atleta" style="width: 37%; margin-left: 0px;">
+								<h2 class="post-title entry-title" style="padding-top: 25px; font-size: 24px;">Efetue o login para enviar mensagem!</h1>
+							</div>	
+						<?php } else { ?>
+							<div class="mensagem_atleta" style="width: 37%; margin-left: 0px;">
+								<h1 class="post-title entry-title">Envie mensagem para <?php the_title(); ?></h1>
+								<form id="formmensagem" action="" method="post" id="formulario_mensagem">
+									<input type="text" id="nome_msg" name="nome_msg" placeholder="Seu Nome">
+									<input type="text" id="email_msg" name="email_msg" placeholder="Seu E-mail">
+									<input type="text" id="assunto" name="assunto" placeholder="Assunto">
+									<textarea id="mensagemmail" name="mensagem" placeholder="Mensagem para <?php the_title(); ?>"></textarea>
+
+									
+									<input type="button" id="postarmensagem" style="  background: #ff8920 !important;
+		                                  color: #fff;
+		                                  border: none;
+		                                  padding: 7px 20px;
+		                                  cursor: pointer;
+		                                  letter-spacing: .1em;
+		                                  font-size: 1.125em;
+		                                  font-family: Oswald, sans-serif;
+		                                  text-transform: uppercase;
+		                                  -webkit-appearance: none;
+		                                  -webkit-border-radius: 0;float: right; margin-top: 0px;margin-left: 300px;" value="Enviar Mensagem">
+		                                  <br>&nbsp;<br>
+								</form>
+							</div>	
+						<?php } ?>
+					<?php } ?>
+				</div>
+			<?php /* FIM BLOCO DE ENVIO DE EMAIL */ ?>
+
+
+
 		<?php } ?>	
 	</div>
 

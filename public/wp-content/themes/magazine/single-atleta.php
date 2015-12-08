@@ -8,21 +8,24 @@
 
 <?php get_header(); ?>
 
-
 <script type="text/javascript">
    $(document).ready(function(){
       $("#postarmensagem").click(function(){
           if ($( "#nome_msg" ).val() == "") {
             alert( "Você deve preencher o nome!" );
+            $( "#nome_msg" ).focus();
             } else {
            		if ($( "#email_msg" ).val() == "") {
            			alert( "Você deve preencher o e-mail!" );
+           			$( "#email_msg" ).focus();
        			} else {
        				if ($( "#assunto" ).val() == "") {
        					alert( "Você deve preencher o assunto!" );
+       					$( "#assunto" ).focus();
        				} else {
        					if ($( "#mensagem" ).val() == "") {
 	       					alert( "Você deve preencher a mensagem!" );
+	       					$( "#mensagem" ).focus();
 	       				} else {
 	       					$( "#formmensagem" ).submit();
 	       				}
@@ -1225,7 +1228,9 @@ $('#share-button').click(function (e){
 			<?php } ?>			
 
 		</div>
-					<?php if ($_GET["page"] == "mensagem") { ?>
+
+			<?php /* INICIO BLOCO DE ENVIO DE EMAIL */ ?>
+			<?php if ($_GET["page"] == "mensagem") { ?>
 				<div class="formularios profissionais">
 					<?php if ( isset($_POST['nome_msg']) && isset($_POST['email_msg']) && isset($_POST['assunto']) && isset($_POST['mensagem']) && isset($_SESSION['lettslogin']) ) { 
 						//to: 
@@ -1281,34 +1286,40 @@ $('#share-button').click(function (e){
 					<div class="mensagem_atleta">
 						<h1 class="post-title entry-title" style="padding-top: 25px;">Mensagem enviada com sucesso!</h1>
 					</div>	
-					<?php } else { ?>
+					<?php } else {
+						if ($_SESSION['lettslogin'] == 1) { ?>
+							<div class="mensagem_atleta">
+								<h2 class="post-title entry-title" style="padding-top: 25px; font-size: 24px;">Efetue o login para enviar mensagem!</h1>
+							</div>	
+						<?php } else { ?>
+							<div class="mensagem_atleta">
+								<h1 class="post-title entry-title">Envie mensagem para <?php the_title(); ?></h1>
+								<form id="formmensagem" action="" method="post" id="formulario_mensagem">
+									<input type="text" id="nome_msg" name="nome_msg" placeholder="Seu Nome">
+									<input type="text" id="email_msg" name="email_msg" placeholder="Seu E-mail">
+									<input type="text" id="assunto" name="assunto" placeholder="Assunto">
+									<textarea id="mensagem" name="mensagem" placeholder="Mensagem para <?php the_title(); ?>"></textarea>
 
-					<div class="mensagem_atleta">
-						<h1 class="post-title entry-title">Envie mensagem para <?php the_title(); ?></h1>
-						<form id="formmensagem" action="" method="post" id="formulario_mensagem">
-							<input type="text" id="nome_msg" name="nome_msg" placeholder="Seu Nome">
-							<input type="text" id="email_msg" name="email_msg" placeholder="Seu E-mail">
-							<input type="text" id="assunto" name="assunto" placeholder="Assunto">
-							<textarea id="mensagem" name="mensagem" placeholder="Mensagem para <?php the_title(); ?>"></textarea>
-
-							
-							<input type="button" id="postarmensagem" style="  background: #ff8920 !important;
-                                  color: #fff;
-                                  border: none;
-                                  padding: 7px 20px;
-                                  cursor: pointer;
-                                  letter-spacing: .1em;
-                                  font-size: 1.125em;
-                                  font-family: Oswald, sans-serif;
-                                  text-transform: uppercase;
-                                  -webkit-appearance: none;
-                                  -webkit-border-radius: 0;float: right; margin-top: 0px;margin-left: 300px;" value="Enviar Mensagem">
-                                  <br>&nbsp;<br>
-						</form>
-					</div>	
+									
+									<input type="button" id="postarmensagem" style="  background: #ff8920 !important;
+		                                  color: #fff;
+		                                  border: none;
+		                                  padding: 7px 20px;
+		                                  cursor: pointer;
+		                                  letter-spacing: .1em;
+		                                  font-size: 1.125em;
+		                                  font-family: Oswald, sans-serif;
+		                                  text-transform: uppercase;
+		                                  -webkit-appearance: none;
+		                                  -webkit-border-radius: 0;float: right; margin-top: 0px;margin-left: 300px;" value="Enviar Mensagem">
+		                                  <br>&nbsp;<br>
+								</form>
+							</div>	
+						<?php } ?>
 					<?php } ?>
 				</div>
 			<?php } ?>	
+			<?php /* FIM BLOCO DE ENVIO DE EMAIL */ ?>
 			
 			<?php if ($_GET["page"] != 'mensagem' && $_GET["page"] != '' && $_GET["page"] != 'news') { ?>
 				<div style="float: left; margin-left: 50px;">

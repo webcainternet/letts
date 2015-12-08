@@ -13,15 +13,18 @@
       $("#postarevento").click(function(){
           if ($( "#idinputevento" ).val() == "") {
             alert( "Você deve preencher o nome do evento!" );
+            $( "#idinputevento" ).focus();
             } else {
             if ($("#atletaesporte").val() == "" && $( "#profissao" ).val() == "" ) {
                 alert( "Você deve selecionar o esporte ou profissão para este evento!" ); 
               } else {
                 if ($( "#pais" ).val() == "" ) {
                   alert( "Você deve selecionar o país do evento" ); 
+                  $( "#pais" ).focus();
                 } else {
                   if ($( "#tipo_evento" ).val() == "" ) {
                     alert( "Você deve selecionar o tipo do evento" ); 
+                    $( "#tipo_evento" ).focus();
                   } else {
                     if ($( "#idimgdestacada" ).val() == "") {
                       alert( "Você deve selecionar a imagem!" );
@@ -31,6 +34,7 @@
                       } else {
                         if ($( "#iddescricaoevento" ).val() == "") {
                           alert( "Você deve preencher a descrição do evento!" );
+                          $( "#iddescricaoevento" ).focus();
                         } else {
                           $( "#new_post" ).submit();
                         }

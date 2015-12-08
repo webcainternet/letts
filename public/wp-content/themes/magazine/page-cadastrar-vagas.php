@@ -17,24 +17,30 @@
       $("#cadastrarvaga").click(function(){
           if ($( "#frmvaga" ).val() == "") {
             alert( "Você deve preencher o nome da vaga!" );
+            $( "#frmvaga" ).focus();
           } else {
             if ($( "#frmempresa" ).val() == "") {
               alert( "Você deve preencher o nome da empresa!" );
+              $( "#frmempresa" ).focus();
             } else {
               if ($( "#frmestado" ).val() == "") {
                 alert( "Você deve preencher o estado!" );
+                $( "#frmestado" ).focus();
               } else {
                 if ($( "#frmcidade" ).val() == "") {
                   alert( "Você deve preencher a cidade!" );
+                  $( "#frmcidade" ).focus();
                 } else {
-                  if ($( "#frmpais" ).val() == "-- Selecione um pais --") {
+                  if ($( "#frmpais" ).val() == "") {
                     alert( "Você deve selecionar o pais!" );
+                    $( "#frmpais" ).focus();
                   } else {
-                    if ($( "#atletaesporte" ).val() == "-- Selecione o esporte --" && $( "#profissao" ).val() == "-- Selecione a profissão --" ) {
+                    if ($( "#atletaesporte" ).val() == "" && $( "#profissao" ).val() == "" ) {
                       alert( "Você deve selecionar o esporte ou profissão!" ); 
                     } else {
                       if ($( "#descricao_vaga" ).val() == "" ) {
                         alert( "Você deve preencher a descrição!" ); 
+                        $( "#nome_msg" ).focus();
                       } else {
                         $( "#new_post" ).submit();
                       }
@@ -110,7 +116,7 @@ global $themify; ?>
              <input class="input_video_cidade" type="text" id="frmestado" style=" width: 308px; margin-top: 0px; float: right; margin-left: -24px; margin-right: 28px; padding-left: 3px; height: 32px;" name="estado" id="estado" value="" placeholder="Estado">
 
               <select id="frmpais" name="pais" style="width: 629px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: -5px; float: left;margin-left: 29px;">    
-              <option>-- Selecione um pais --</option>
+              <option value="">-- Selecione um pais --</option>
               <option value="Afeganistão">Afeganistão</option>
               <option value="África do Sul">África do Sul</option>
               <option value="Albânia">Albânia</option>
@@ -313,7 +319,7 @@ global $themify; ?>
 
               <p style="margin: -4px 0px 3px;">Selecione apenas uma opção: Esporte ou Profissão</p>
                 <select id="atletaesporte" name="esporte" style="width: 312px; height: 35px; margin-bottom: 14px;font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
-                        <option>-- Selecione o esporte --</option>
+                        <option value="">-- Selecione o esporte --</option>
                         <option value="Aeromodelismo">Aeromodelismo</option>
                         <option value="Alpinismo">Alpinismo</option>
                         <option value="Asa Delta">Asa Delta</option>
@@ -388,7 +394,7 @@ global $themify; ?>
                       </select>
 
                  <select id="profissao" name="profissao" style="width: 313px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
-                      <option>-- Selecione a profissão --</option>
+                      <option value="">-- Selecione a profissão --</option>
                       <option value="Assessor de imprensa">Assessor de imprensa</option>
                       <option value="Coordenador de eventos">Coordenador de eventos</option>
                       <option value="Desenhista">Desenhista</option>
