@@ -1,0 +1,1 @@
+letts.com.br/wp-content/themes/magazine/medias.php

@@ -9,6 +9,14 @@
 <?php get_header(); ?>
 
 <script type="text/javascript">
+$('.fancyframe').fancybox({
+ 'type':'iframe',
+ 'width': 600, //or whatever you want
+ 'height': 300
+});
+</script>
+
+<script type="text/javascript">
    $(document).ready(function(){
       $("#postarmensagem").click(function(){
           if ($( "#nome_msg" ).val() == "") {
@@ -1174,7 +1182,7 @@ $('#share-button').click(function (e){
 								if ($_SESSION["lettslogin"] == $idpost) { echo '
 								<a style="color: #FFFFFF;" onclick="javascript: excluirfoto(\''.$valorArquivos.'\','.$_SESSION["lettslogin"].')" href="#fotos"><div class="removerbotao">x</div></a>';
 								} echo '
-									<a href="/'.$valorArquivos.'" class="fancybox" rel="gallery">
+									<a href="/wp-content/themes/magazine/medias.php?file='.$valorArquivos.'" class="fancyframe" rel="gallery">
 										<img src="/'.$valorArquivos.'">
 									</a>
 								</div>';
