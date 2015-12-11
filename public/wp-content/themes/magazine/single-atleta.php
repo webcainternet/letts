@@ -9,14 +9,6 @@
 <?php get_header(); ?>
 
 <script type="text/javascript">
-$('.fancyframe').fancybox({
- 'type':'iframe',
- 'width': 600, //or whatever you want
- 'height': 300
-});
-</script>
-
-<script type="text/javascript">
    $(document).ready(function(){
       $("#postarmensagem").click(function(){
           if ($( "#nome_msg" ).val() == "") {
