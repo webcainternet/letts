@@ -173,7 +173,7 @@ $('#share-button').click(function (e){
 <div>
 	<div style="width: 1024px; margin: auto; border-top: solid 1px #ddd; padding-top: 10px;font-weight: bold;
     font-size: 14px;
-    color: #ff8920; margin-bottom: 15px;"><a href="/edicao-evento/?id_post=<?php echo $idpost; ?>">Editar evento</a></div>
+    color: #ff8920; margin-bottom: 15px;"><a href="/edicao-evento/?ideventog=<?php echo $idpost; ?>">Editar evento</a></div>
 </div>
 <?php } ?>
 
