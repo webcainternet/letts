@@ -15,8 +15,7 @@
 
 <style type="text/css">
 	.imgmedia {
-		max-width: 500px;
-		max-height: 500px;
+		width: 500px;
 	}	
 	body {
 		margin: 0px;
