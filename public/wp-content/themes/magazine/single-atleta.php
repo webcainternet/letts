@@ -10,6 +10,16 @@
 
 <script type="text/javascript">
    $(document).ready(function(){
+$('.fancyframe').fancybox({
+ 'type':'iframe',
+ 'width': 1152, //or whatever you want
+ 'height': 500
+});
+   });
+ </script>
+
+<script type="text/javascript">
+   $(document).ready(function(){
       $("#postarmensagem").click(function(){
           if ($( "#nome_msg" ).val() == "") {
             alert( "Você deve preencher o nome!" );
@@ -1173,11 +1183,17 @@ $('#share-button').click(function (e){
 								
 								if ($_SESSION["lettslogin"] == $idpost) { echo '
 								<a style="color: #FFFFFF;" onclick="javascript: excluirfoto(\''.$valorArquivos.'\','.$_SESSION["lettslogin"].')" href="#fotos"><div class="removerbotao">x</div></a>';
-								} echo '
-									<a href="/wp-content/themes/magazine/medias.php?file='.$valorArquivos.'" class="fancyframe" rel="gallery">
+								} 
+								 $urlmediastr = str_replace('.', '.._', $valorArquivos);
+								 $urlimgenc = '/wp-content/themes/magazine/medias.php/'.$urlmediastr;
+								 echo '
+									<a class="fancyframe" href="'.$urlimgenc.'">
 										<img src="/'.$valorArquivos.'">
-									</a>
+									</a>								
+
+									
 								</div>';
+								
 							}	
 
 						?>
