@@ -1353,7 +1353,7 @@ $('#share-button').click(function (e){
 			<?php } ?>	
 			<?php /* FIM BLOCO DE ENVIO DE EMAIL */ ?>
 			
-			<?php if ($_GET["page"] != 'mensagem' && $_GET["page"] != '' && $_GET["page"] != 'news') { ?>
+			<?php if ($_GET["page"] != 'mensagem' && $_GET["page"] != '' && $_GET["page"] != 'news' && $_GET["page"] != 'fotos') { ?>
 				<div style="float: left; margin-left: 50px;">
 				<?php
 					$idpagina = $_SERVER['REQUEST_URI'];
