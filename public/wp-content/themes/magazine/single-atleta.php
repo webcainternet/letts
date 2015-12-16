@@ -1245,11 +1245,17 @@ $('#share-button').click(function (e){
 						<a style="color: #FFFFFF;" onclick="javascript: excluirvideo('.get_the_ID().','.$_SESSION["lettslogin"].')" href="#videos"><div class="removerbotaovideo">x</div></a>';
 					} ?>
 					
-					<?php /* <a href="<?php print_custom_field('link_video'); ?>" class="fancybox"> */ ?>
-					<a href="/videos/?vid=<?php echo $vid; ?>">
+					<?php
+						$urlimgenc = '/wp-content/themes/magazine/videos.php/'.$vid;
+					?>
+
+					<a class="fancyframe" href="<?php echo $urlimgenc; ?>">
 						<img src="<?php echo $img_video; ?>">
 					</a>
 					</div>
+
+
+
 				</div>
 
 			<?php endwhile; ?>
