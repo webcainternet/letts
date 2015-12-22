@@ -761,9 +761,6 @@ $('#share-button').click(function (e){
 							<div style="margin-top: 10px;"><strong>Telefones</strong></div>
 							<?php print_custom_field('basicatelefones'); ?><br />
 
-							<div style="margin-top: 10px;"><strong>Nascimento</strong></div>
-							<?php print_custom_field('basicacidadenascimento'); ?>, <?php print_custom_field('basicaestadonascimento'); ?><br />
-
 							<div style="margin-top: 10px;"><strong>Onde Mora</strong></div>
 							<?php print_custom_field('basicacidadeatual'); ?>, <?php print_custom_field('basicaestadoatual'); ?><br />
 
