@@ -205,7 +205,6 @@ mysql_select_db(DB_NAME);
     line-height: 1.5;
 }
 .noticiamedia {
-  background-image: url('http://letts.com.br/wp-content/uploads/users/2939/142682716576bae290b5baf16ef8acfef8e07.JPG');
   background-size: 100%;
   width: 100%;
   height: 220px;

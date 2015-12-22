@@ -64,10 +64,23 @@ if(mysql_num_rows($result) > 0) {
 
   <?php 
     if ($row["video"] != "") { ?>
-      <div class="noticiamedia">video</div>
+      <?php
+        if (strpos($row["video"], 'youtube')) { ?>
+          <div class="noticiamedia">
+            <?php $url_video = explode("=", $row["video"]); ?>           
+            <iframe width="344" height="212" src="//www.youtube.com/embed/<?php echo $url_video[1]; ?>" frameborder="0" allowfullscreen></iframe>
+          </div>
+        <?php } elseif (strpos($row["video"], 'vimeo')) { ?>
+          <div class="noticiamedia">
+            <?php $videourl = str_replace("vimeo.com/", "player.vimeo.com/video/", $row["video"]); ?>
+            <iframe width="344" height="212" src="<?php echo $videourl; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+        <?php } else { ?>
+          <div class="noticiamedia">Erro ao carregar vídeo!</div>
+        <?php } ?>
     <?php } else { ?>
       <?php if ($row["imagem"] != "") { ?>
-        <div class="noticiamedia" style="background-image: url('<?php echo $row["imagem"]; ?>'); <?php echo calcbackgroundsize($row["imagem"], 344, 212); ?>;">Imagem</div>
+        <div class="noticiamedia" style="background-image: url('<?php echo $row["imagem"]; ?>'); <?php echo calcbackgroundsize($row["imagem"], 344, 212); ?>;"></div>
       <?php } ?>
     <?php } ?>
     <div class="noticiatitulo"><?php echo $row["post_title"]; ?></div>
