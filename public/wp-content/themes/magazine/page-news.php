@@ -281,7 +281,7 @@ mysql_select_db(DB_NAME);
       </div>
 
 
-<div style="float: left; width: 100%;">
+<div style="float: left; width: 100%; margin-bottom: 30px;">
   <div class="pagewidth clearfix">
         <a id="criar" onclick="carregarmais()" style="padding: 10px 255px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px;">
           Ver mais noticias
