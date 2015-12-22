@@ -207,7 +207,7 @@ mysql_select_db(DB_NAME);
 .noticiamedia {
   background-size: 100%;
   width: 100%;
-  height: 220px;
+  height: 212px;
   border: solid 2px #FFF;
 }
 .noticiamedia:hover {

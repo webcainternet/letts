@@ -60,6 +60,7 @@ if(mysql_num_rows($result) > 0) {
   while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) { ?>
 
 <div class="noticiaitem">
+<a href="/?post_id=<?php echo $row["id"]; ?>">
   <div class="noticiadata"><?php echo $row["post_date"]; ?></div>
 
   <?php 
@@ -84,6 +85,7 @@ if(mysql_num_rows($result) > 0) {
       <?php } ?>
     <?php } ?>
     <div class="noticiatitulo"><?php echo $row["post_title"]; ?></div>
+</a>
 </div>
 
   <?php }
