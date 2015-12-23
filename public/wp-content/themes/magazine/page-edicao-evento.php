@@ -190,13 +190,13 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
           <div class="galeria_profissional">
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
              <input id="idinputevento" class="input_video" type="text" name="evento" placeholder="Nome do Evento" value="<?php echo $nomeevento; ?>">
-             <input class="input_video" type="text" name="link" value="<?php echo $linkingresso; ?>" placeholder="Link para comprar ingresso ou para inscrição com http://">
+             <br>Link do ingresso: <input class="input_video" type="text" name="link" value="<?php echo $linkingresso; ?>" placeholder="Link para comprar ingresso ou para inscrição com http://">
 
-             <div style="text-align: left; width: 625px; margin: auto; margin-bottom: 10px;">
-             	Tipo do evento: <?php print_custom_field('eventotipo'); ?> (<a href="#" onclick="javascript: document.getElementById('escondealteracoes').style.display='block';">Editar</a>)
+<div style="text-align: left; width: 625px; margin: auto; margin-bottom: 10px;">
+              Esporte/Profissão atual: [Mostrar atual] (<a href="#" onclick="javascript: document.getElementById('janelaesportepro').style.display='block';">Editar</a>)
              </div>
 
-<div style="display: none;border: solid 1px #DDD; height: 65px; padding-top: 10px;" id="escondealteracoes">
+<div style="display: none;border: solid 1px #DDD; height: 65px; padding-top: 10px;" id="janelaesportepro">
 
              <div class="selects_forms" style="margin-top: -10px;">
                 <p style="margin: 10px 0px -10px;">Selecione apenas uma opção: Esporte ou Profissão</p>
@@ -302,7 +302,20 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
               </div>
 </div>
 
-              <select id="pais" name="pais" style="width: 310px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: 10px; float: left;margin-left: 29px;">    
+
+            <div style="text-align: left; width: 625px; margin: auto; margin-top: 10px;">
+              Tipo do evento: <select id="tipo_evento" name="tipo_evento" style="width: 310px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-bottom: 10px; margin-right: 29px;">
+                      <option value="">-- Selecione o tipo do evento --</option>
+                      <option value="Campeonato">Campeonato</option>
+                      <option value="Show">Show</option>
+                      <option value="Festa">Festa</option>
+                      <option value="Outros">Outros</option>
+               </select>   
+             </div>
+
+             <div style="text-align: left; width: 625px; margin: auto; margin-top: 10px;">
+              País:
+              <select id="pais" name="pais" style="width: 310px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: 10px;">    
               <option value="">-- Selecione um pais --</option>
               <option value="Afeganistão">Afeganistão</option>
               <option value="África do Sul">África do Sul</option>
@@ -503,14 +516,8 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
               <option value="Zâmbia">Zâmbia</option>
               <option value="Zimbábue">Zimbábue</option>
               </select> 
+            </div>
 
-              <select id="tipo_evento" name="tipo_evento" style="width: 310px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: right; margin-top: 10px; margin-right: 29px;">
-                      <option value="">-- Selecione o tipo do evento --</option>
-                      <option value="Campeonato">Campeonato</option>
-                      <option value="Show">Show</option>
-                      <option value="Festa">Festa</option>
-                      <option value="Outros">Outros</option>
-               </select>         
 
               <div class="foto_principal">
                 <p>Foto principal</p>
