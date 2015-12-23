@@ -94,7 +94,7 @@ if (isset($_GET['rmcomentario']) && isset($_GET['idpagina']) && isset($_SESSION[
 						<div><a href="#" style="color: #ff8920; font-weight: bold; font-size: 14px;" target="_blank"><?php echo $row["post_title"]; ?></a></div>
 						<div><?php echo $row["mensagem"]; ?></div>
 						<div><?php if ($post_usuario == $_SESSION["lettslogin"] || $_GET['m'] == 1) { ?>
-						<a style="color: #f57300;" onclick="javascript:removecomentario(<?php echo $row["id"]; ?>);">Remover comentário</a>
+						<a style="color: #f57300;" onclick="javascript:removecomentario(<?php echo $row["id"]; ?>);"><div style="cursor: pointer;">Remover comentário</div></a>
 						<?php } ?></div>
 						<div class="comentario-data">Enviado: <?php echo $row["data"]; ?></div><div class="comentario-like"></div>
 					</div>
