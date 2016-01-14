@@ -7,10 +7,6 @@
 ?>
 
 <?php
-  EstruturaGetEstato();
-?>
-
-<?php
 function selectedopt($value, $selected){
     return $value==$selected ? ' selected="selected"' : '';
 }
@@ -209,7 +205,6 @@ textarea{
               <div style="margin-top: 10px;"><strong>Telefones</strong></div>
               <input type="text" name="telefones" value="<?php print_custom_field('basicatelefones'); ?>"><br />
 
-<?php /*
               <?php $vbasicaestadonascimento = get_custom_field('basicaestadonascimento'); ?>
               <div style="margin-top: 10px;"><strong>Nascimento</strong></div>
               <div style="margin-top: 5px;">Estado</div>
@@ -246,20 +241,10 @@ textarea{
               <div style="margin-top: -10px;">Cidade</div>
               <input type="text" name="cidade_nascimento" value="<?php print_custom_field('basicacidadenascimento'); ?>">
               <br /><br />
-              */ ?>
 
               <?php $vbasicaestadoatual = get_custom_field('basicaestadoatual'); ?>
               <div style="margin-top: 10px;"><strong>Onde Mora</strong></div>
-              <div style="margin-top: 5px;">País</div>
-              <select id="country" name="country" style="width: 243px; height: 35px; margin-bottom: 14px; font-size: 0.9em; font-family: 'Open Sans', sans-serif; font-weight: 100;"></select>
-              
-
-              <div style="margin-top: 5px;">Estado</div>
-              <select name="state" id="state"></select>
-              <script language="javascript">
-                populateCountries("country", "state");
-              </script>
-<?php /*
+             <div style="margin-top: 5px;">Estado</div>
              <select name="estado_atual" id="estado_atual" style="width: 243px; height: 35px; margin-bottom: 14px; font-size: 0.9em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
               <option>-- Selecione o estado --</option> 
 <option value="Acre" <?php echo selected("Acre", $vbasicaestadoatual); ?>>Acre</option> 
@@ -289,16 +274,15 @@ textarea{
 <option value="Sergipe" <?php echo selected("Sergipe", $vbasicaestadoatual); ?>>Sergipe</option> 
 <option value="São Paulo" <?php echo selected("São Paulo", $vbasicaestadoatual); ?>>São Paulo</option> 
 <option value="Tocantins" <?php echo selected("Tocantins", $vbasicaestadoatual); ?>>Tocantins</option> 
-             </select> */ ?>
-             <br>
-              <div style="margin-top: 10px;">Cidade</div>
+             </select>
+              <div style="margin-top: -10px;">Cidade</div>
               <input type="text" name="cidade_atual" value="<?php print_custom_field('basicacidadeatual'); ?>">
               <br><br>
 
               <?php $vescolaridade = get_custom_field('escolaridade'); ?>
               <div style="margin-top: 10px;"><strong>Escolaridade</strong></div>
               <select id="escolaridade" name="escolaridade" style="width: 240px; height: 35px; font-size: 1.00em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: left; margin-top: -2px; ">
-                      <option value="">-- Selecione a escolaridade --</option>
+                      <option>-- Selecione a escolaridade --</option>
 <option value="Primeiro Grau" <?php echo selected("Primeiro Grau", $vescolaridade); ?>>Primeiro Grau</option>
 <option value="Segundo Grau" <?php echo selected("Segundo Grau", $vescolaridade); ?>>Segundo Grau</option>
 <option value="Terceiro Grau" <?php echo selected("Terceiro Grau", $vescolaridade); ?>>Terceiro Grau</option>

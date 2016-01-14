@@ -6,10 +6,6 @@
  */
 ?>
 
-<?php
-  EstruturaGetEstato();
-?>
-
 <?php get_header(); ?>
 
 <?php
