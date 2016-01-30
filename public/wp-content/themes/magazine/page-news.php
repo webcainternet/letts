@@ -31,9 +31,6 @@ global $themify; ?>
   .related-posts {
     float: left; width: 336px; margin-left: 0px; margin-right: 20px; margin-bottom: 0px;
   }
-  .redes_sociais{
-    width: 40%;
-  }
 </style>
 
 <!-- layout-container -->
