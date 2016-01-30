@@ -29,7 +29,10 @@ global $themify; ?>
     width: 330px; border-radius: 5px; height: 180px; background-size: 336px; background-position: center;
   }
   .related-posts {
-    float: left; width: 336px; margin-left: 0px; margin-right: 20px; margin-bottom: 0px;
+    float: left; width: 236px; margin-left: 0px; margin-right: 20px; margin-bottom: 0px;
+  }
+  .redes_sociais{
+    width: 40%;
   }
 </style>
 
