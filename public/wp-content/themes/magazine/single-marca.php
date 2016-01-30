@@ -224,7 +224,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix" style="margin-bottom: 40px;">
-<?php $defaultbg1 = get_custom_field('basicaimagem:to_image_src'); 
+<?php $defaultbg1 = get_custom_field('logo:to_image_src'); 
 	  $defaultbg1 = str_replace('defaultbg.jpg', 'defaultbgmarcas.jpg' , $defaultbg1);
 ?>
 	
@@ -238,7 +238,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 	</div>
 
 	<?php if (get_custom_field('logo:to_image_src')	) { ?>
-		<div class="logo_marcas imagem_editar" style="background: url('<?php print_custom_field('logo:to_image_src'); ?>') no-repeat; margin-right: 25px;">
+		<div class="logo_marcas imagem_editar" style="background: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>') no-repeat; margin-right: 25px;">
 			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
 			<div id="link_editar">
 				<a class="fancybox" href="/alterar-foto/?id_post=<?php echo $idpost; ?>">Editar Foto</a>		
