@@ -41,7 +41,7 @@ $_SESSION["lettslogin"] = 1;
 
 
 <style type="text/css">
-	
+
 .goog-te-banner-frame {
     display: none;
 }
@@ -138,7 +138,7 @@ $_SESSION["lettslogin"] = 1;
 			</div>
 		</div>
 		<!-- /#nav-bar -->
-    
+
 		<?php themify_header_before(); // hook ?>
 
 		<header id="header" class="pagewidth clearfix">
@@ -155,23 +155,23 @@ $_SESSION["lettslogin"] = 1;
 				<div style="float: right; width: 500px;">
 					<div style="float: left; width: 200px;">
 						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #FFF; font-weight: bold;">E-mail</div>
-						<div style="font-size: 10px; margin: 0px; padding: 0px;"><input name="loginemail" type="text" style="margin: 0px; border-radius: 0px;"></div>
+						<div style="font-size: 10px; margin: 0px; padding: 0px;"><input tabindex="10" name="loginemail" type="text" style="margin: 0px; border-radius: 0px;"></div>
 						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #ffca9a;"><input type="checkbox" value="1" checked="1">Manter-me conectado</div>
 					</div>
 					<div style="float: left; width: 200px;">
 						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #FFF; font-weight: bold;">Senha</div>
-						<div style="font-size: 10px; margin: 0px; padding: 0px;"><input name="loginsenha" type="password" style="width: 240px; max-width: 90%;margin: 0px; border-radius: 0px;"></div>
+						<div style="font-size: 10px; margin: 0px; padding: 0px;"><input tabindex="11" name="loginsenha" type="password" style="width: 240px; max-width: 90%;margin: 0px; border-radius: 0px;"></div>
 						<div style="font-size: 10px; margin: 0px; padding: 0px; color: #ffca9a;"><a href="/recuperar-senha/" style="color: #ffca9a;">Esqueci minha senha</a></div>
 					</div>
 					<div style="float: left; width: 50px;">
-						<input type="submit" value="Entrar" style="margin-top: 25px;">
+						<input type="submit"  tabindex="12" value="Entrar" style="margin-top: 25px;">
 					</div>
 				</div>
 			</form>
 
 			<nav id="sidr"  style="display: none;">
 				<?php themify_theme_main_menu(); ?>
-				<!-- /#main-nav --> 
+				<!-- /#main-nav -->
 			</nav>
 
 			<?php themify_header_end(); // hook ?>
@@ -180,7 +180,7 @@ $_SESSION["lettslogin"] = 1;
 		<!-- /#header -->
 
         <?php themify_header_after(); // hook ?>
-				
+
 	</div>
 	<!-- /#headerwrap -->
 
@@ -192,13 +192,13 @@ $_SESSION["lettslogin"] = 1;
 	<?php /* if( '' != themify_get('setting-breaking_news') ) : ?>
 		<?php get_template_part( 'includes/breaking-news'); ?>
 	<?php endif; // end breaking news */ ?>
-	
+
 	<div id="body" class="clearfix"  style="padding: 0px;">
 
     <?php themify_layout_before(); //hook ?>
 
 
-    
+
 <script type="text/javascript">
 	function nowblock() {
 		alert('Area não liberada!');
@@ -208,7 +208,7 @@ $_SESSION["lettslogin"] = 1;
 	}
 	function goprofissional() {
 		window.location = "http://letts.com.br/nenhum-profissional-cadastrado/";
-	}	
+	}
 </script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -444,12 +444,12 @@ $(document).ready(function(){
     $("#imagematleta07").fadeOut(fadetime);
     $("#imagematleta03").delay(fadedelay).fadeIn(fadetime);
     fadetime = fadetime + 5000;
-    
+
 
 
 
   });
-});	
+});
 
 
 $(document).ready(function(){
@@ -487,7 +487,7 @@ $(document).ready(function(){
 	$("#dadosmarca").show();
     $("#imagensmarca").delay(1000).fadeIn(1000);
   });
-});	
+});
 
 
 </script>
@@ -505,8 +505,8 @@ function checkMail(mail){
     if(typeof(mail) == "string"){
 		if(er.test(mail)){ return true; }
     }else if(typeof(mail) == "object"){
-            if(er.test(mail.value)){ 
-    			return true; 
+            if(er.test(mail.value)){
+    			return true;
     		}
     }else{
             return false;
@@ -531,7 +531,7 @@ $(document).ready(function(){
 			txtemail=$('#basicaemail').val();
 		    $.ajax({
 		      type: 'POST',
-		      data: { 
+		      data: {
 		        email:txtemail
 		    	},
 		      	url:'/wp-content/themes/magazine/email_check.php',
@@ -564,7 +564,7 @@ $(document).ready(function(){
 									alert( "Selecione o esporte" );
 						  			$( "#atletaesporte" ).focus();
 					  			} else {
-			  						
+
 			  						//Termos
 			  						if ($('#termos1').is(':checked') == false) {
 										alert( "Você deve aceitar os termos de uso para continuar" );
@@ -576,7 +576,7 @@ $(document).ready(function(){
 				  		}
 			  		}
 		    	} }
-		    });	
+		    });
   		}
 	  }
 	});
@@ -619,7 +619,7 @@ $(document).ready(function(){
 							alert( "Selecione a profissão" );
 				  			$( "#profissao" ).focus();
 			  			} else {
-	  						
+
 	  						//Termos
 	  						if ($('#termos2').is(':checked') == false) {
 								alert( "Você deve aceitar os termos de uso para continuar" );
@@ -668,7 +668,7 @@ $(document).ready(function(){
 						alert( "A senha deve ser digitada duas vezes iguais!" );
 			  			$( "#senha2" ).focus();
 		  			} else {
-	  						
+
   						//Termos
   						if ($('#termos3').is(':checked') == false) {
 							alert( "Você deve aceitar os termos de uso para continuar" );
@@ -684,7 +684,7 @@ $(document).ready(function(){
 
 
 
-});	
+});
 </script>
 
 
@@ -692,7 +692,7 @@ $(document).ready(function(){
 
 <?php // ******************* Fim Header ******************* ?>
 
-<?php 
+<?php
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
@@ -797,7 +797,7 @@ global $themify; ?>
 				<div id="perfilmarca" style="display: none;">Perfil: Marca</div>
 			</h1>
 				<div class="related-posts" style="float: left; width: 400px; margin-bottom: 30px;">
-					
+
 
 					<article class="post type-post clearfix">
 						<div class="post-content">
@@ -849,7 +849,7 @@ global $themify; ?>
 											<span class="post-category"><a href="#">Nome completo:</a></span>
 										</p>
 										<h1 class="post-title" style="margin-left: 25px;">
-											<input id="nomecompleto" name="nomecompleto" type="text" value="" size="30" class="required">
+											<input  tabindex="30" id="nomecompleto" name="nomecompleto" type="text" value="" size="30" class="required">
 										</h1>
 									</div>
 
@@ -858,7 +858,7 @@ global $themify; ?>
 											<span class="post-category"><a href="#">E-mail:</a></span>
 										</p>
 										<h1 class="post-title" style="margin-left: 25px;">
-											<input id="basicaemail" name="basicaemail" type="text" value="" size="30" class="required">
+											<input  tabindex="31" id="basicaemail" name="basicaemail" type="text" value="" size="30" class="required">
 										</h1>
 									</div>
 
@@ -867,11 +867,11 @@ global $themify; ?>
 											<span class="post-category"><a href="#">Senha:</a></span>
 										</p>
 										<h1 class="post-title" style="margin-left: 25px;">
-											<input id="senha" name="senha" type="password" value="" size="20" class="required">
+											<input  tabindex="32" id="senha" name="senha" type="password" value="" size="20" class="required">
 										</h1>
 
 										<h1 class="post-title" style="margin-left: 25px;">
-											<input id="senha2" name="senha2" type="password" value="" size="20" class="required"><label style="font-size: 10px;"> * Confirme a senha</label>
+											<input  tabindex="33" id="senha2" name="senha2" type="password" value="" size="20" class="required"><label style="font-size: 10px;"> * Confirme a senha</label>
 										</h1>
 									</div>
 
@@ -882,7 +882,7 @@ global $themify; ?>
 												<span class="post-category"><a href="#">Esporte:</a></span>
 											</p>
 											<h1 class="post-title" style="margin-left: 25px;">
-												<select id="atletaesporte" name="atletaesporte" style="font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
+												<select  tabindex="34" id="atletaesporte" name="atletaesporte" style="font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100;">
 												<option>-- Selecione o esporte --</option>
 												<option>Aeromodelismo</option>
 												<option>Alpinismo</option>
@@ -960,11 +960,11 @@ global $themify; ?>
 										</div>
 										<div style="text-align: center; margin-top: 0px; text-align: left;">
 											<h1 class="post-title" style="margin-left: 25px;">
-												<input type="checkbox" name="termos1" id="termos1" value="termos">Li e aceito as <a target="_blank" href="http://letts.com.br/politicas-de-privacidade/">políticas de uso</a>
+												<input  tabindex="35" type="checkbox" name="termos1" id="termos1" value="termos">Li e aceito as <a target="_blank" href="http://letts.com.br/politicas-de-privacidade/">políticas de uso</a>
 											</h1>
 										</div>
 										<div style="text-align: right; margin-right: 25px; margin-top: 0px;">
-											<input name="criarAtleta" type="button" id="criarAtleta" value="Criar Conta">
+											<input  tabindex="36" name="criarAtleta" type="button" id="criarAtleta" value="Criar Conta">
 										</div>
 									</div>
 									<!-- Fim Atleta Area -->
@@ -1041,7 +1041,7 @@ global $themify; ?>
 </div></div></div>
 
 <!-- /layout-container -->
-	
+
 <?php // ******************** Footer *************************** ?>
 <?php
 /**
@@ -1058,9 +1058,9 @@ global $themify; ?>
 	<?php themify_layout_after(); //hook ?>
     </div>
 	<!-- /body -->
-		
+
 	<div id="footerwrap">
-    
+
     	<?php themify_footer_before(); // hook ?>
 		<footer id="footer" class="pagewidth clearfix">
 			<?php themify_footer_start(); // hook ?>
@@ -1077,7 +1077,7 @@ global $themify; ?>
 					<li id="menu-item-2685" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2685"><a href="http://letts.com.br/politicas-de-privacidade/?visitante=1">Políticas de Privacidade</a></li>
 				</ul>
 			</div>
-	
+
 			<div class="footer-text clearfix">
 				<?php themify_the_footer_text(); ?>
 				<?php /* themify_the_footer_text('right'); */ ?>Desenvolvido por <a href="http://webca.com.br/" target="_blank">WebCA Internet</a>
@@ -1093,17 +1093,17 @@ global $themify; ?>
 				</div>
 			</div>
 
-			
 
 
-			<!-- /footer-text --> 
+
+			<!-- /footer-text -->
 			<?php themify_footer_end(); // hook ?>
 		</footer>
-		<!-- /#footer --> 
+		<!-- /#footer -->
         <?php themify_footer_after(); // hook ?>
 	</div>
 	<!-- /#footerwrap -->
-	
+
 </div>
 <!-- /#pagewrap -->
 

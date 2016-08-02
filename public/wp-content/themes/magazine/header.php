@@ -129,17 +129,19 @@
 <?php themify_body_start(); // hook ?>
 <div id="pagewrap" class="hfeed site">
 
-	<div id="headerwrap">
+<div style="width: 100%; height: 117px;">&nbsp;</div>
 
-		
+	<div id="headerwrap" style="position: fixed; left: 0px; top: 0px; width: 100%; z-index: 9999;">
+
+
 
 		<div id="nav-bar">
 			<div class="pagewidth clearfix">
 				<?php if( has_nav_menu( 'top-nav' ) ) : ?>
 					<a id="menu-icon-top" href="#top-nav"><i class="fa fa-list-ul icon-list-ul"></i></a>
 					<?php if (function_exists('wp_nav_menu')) { ?>
-					
-					
+
+
 						<div onmouseover="javascript:document.getElementById('baridioma').style.display = 'block';" style="float: left; margin-top: 3px; margin-right: 5px; height: 18px; color: #FFFFFF;"><a href="#" style="color: #fff; font-size: 0.75em;text-transform: uppercase;" class="changelgbr">Idioma ▾</a></div>
 
 						<div onmouseover="javascript:document.getElementById('baridioma').style.display = 'block';" id="baridioma"  style="position: absolute; float: left; top: 30px; margin-left: 30px;z-index: 999; background-color: #ff8920; padding: 0px 0px 5px 5px;">
@@ -166,13 +168,13 @@
 				<?php endif; ?>
 
 
-				
+
 
 
 
 				<div class="social-widget" style="margin-top: 4px;">
 
-				<?php 
+				<?php
 				$post_usuario = $_SESSION["lettslogin"];
 					if ($post_usuario != 0) { ?>
 
@@ -186,29 +188,32 @@
 						$imgsize_top = str_replace("http://", "", $imgsize_top);
 						$imgsize_top = str_replace("https://", "", $imgsize_top);
 					?>
-						
-						<div style="float: left; margin-right: 7px; border: 0px solid rgb(255, 137, 32); 
-						border-radius: 2px; width: 22px; height: 22px; 
-						background-image: url(<?php print_custom_field('basicaimagem:to_image_src'); ?>); 
+
+						<div style="float: left; margin-right: 7px; border: 0px solid rgb(255, 137, 32);
+						border-radius: 2px; width: 22px; height: 22px;
+						background-image: url(<?php print_custom_field('basicaimagem:to_image_src'); ?>);
 						<?php echo calcbackgroundsize($imgsize_top, 22, 22); ?>" id="imgbackgroundtopo">&nbsp;</div>
-						
+
 					<?php endwhile; endif; ?>
 					<?php wp_reset_query(); ?>
-				<?php } ?>	
+				<?php } ?>
 
-
+					<?php if ($letts_nome != "VISITANTE") { ?>
 					<a href="/?p=<?php echo $_SESSION["lettslogin"]; ?>" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;">
 						<?php // echo $letts_nome; ?>
 						<?php
 						$pos = strpos($letts_nome." ", ' ');
-						echo substr($letts_nome, 0,$pos); 
+						echo substr($letts_nome, 0,$pos);
 						?>
 					</a>
+					<?php } ?>
+
 					|&nbsp;
+					
 					<a href="/" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;">
 						Página inicial
 					</a>
-					
+
 
 					<?php if ($letts_nome != "VISITANTE") { ?>
 					<a href="/wp-content/themes/magazine/logout.php" style="text-decoration: none;margin-right: 7px;color: #fff;font-size: 0.75em;text-transform: uppercase;">
@@ -220,7 +225,7 @@
 							color: #FFFFFF !important;
 						}
 						</style>
-						
+
 						<div style="float: right;">
 							<div class="related-posts criarcontalink" style="height: 30px;">
 								<div style="text-align: right; padding: 0px 0px;">
@@ -231,7 +236,7 @@
 										Cadastre-se
 									</a>
 								</div>
-								<br>					
+								<br>
 							</div>
 						</div>
 
@@ -266,7 +271,7 @@
 			</div>
 		</div>
 		<!-- /#nav-bar -->
-    
+
 		<?php themify_header_before(); // hook ?>
 
 		<header id="header" class="pagewidth clearfix">
@@ -280,7 +285,7 @@
 			<a id="menu-icon" href="#sidr"><i class="fa fa-list-ul icon-list-ul"></i></a>
 			<nav id="sidr">
 				<?php themify_theme_main_menu(); ?>
-				<!-- /#main-nav --> 
+				<!-- /#main-nav -->
 			</nav>
 
 			<?php themify_header_end(); // hook ?>
@@ -289,7 +294,7 @@
 		<!-- /#header -->
 
         <?php themify_header_after(); // hook ?>
-				
+
 	</div>
 	<!-- /#headerwrap -->
 
@@ -301,13 +306,13 @@
 	<?php /* if( '' != themify_get('setting-breaking_news') ) : ?>
 		<?php get_template_part( 'includes/breaking-news'); ?>
 	<?php endif; // end breaking news */ ?>
-	
+
 	<div id="body" class="clearfix">
 
     <?php themify_layout_before(); //hook ?>
 
 
-    
+
 <script type="text/javascript">
 	function nowblock() {
 		alert('Area não liberada!');
@@ -317,7 +322,7 @@
 	}
 	function goprofissional() {
 		window.location = "http://letts.com.br/nenhum-profissional-cadastrado/";
-	}	
+	}
 </script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -424,9 +429,9 @@ $(document).ready(function(){
 	  -o-transition: 0.50s;
 	  transition: 0.50s;
 	}
-	.opacity85{ 
-	  opacity: 0.85; 
-	  filter: alpha(opacity=85); 
+	.opacity85{
+	  opacity: 0.85;
+	  filter: alpha(opacity=85);
 	}
 	.module { max-width: 100%; margin:auto; }
 	.module figure {
@@ -465,7 +470,7 @@ $(document).ready(function(){
 	.module .title {
 	  display: inline-block;
 	  padding: 5px;
-	  text-transform:uppercase;  
+	  text-transform:uppercase;
 	}
 	.module .desc {
 	  display: block;

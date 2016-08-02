@@ -61,7 +61,7 @@ if(mysql_num_rows($result) > 0) {
 
 <div class="noticiaitem">
 <a href="/?p=<?php echo $row["id"]; ?>">
-  <div class="noticiadata"><?php echo $row["post_date"]; ?></div>
+  <div class="noticiadata"><?php echo date('d-m-Y', strtotime($row["post_date"])); ?></div>
 
   <?php 
     if ($row["video"] != "") { ?>

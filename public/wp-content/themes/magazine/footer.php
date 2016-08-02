@@ -1,3 +1,70 @@
+
+<!-- POP INFO -->
+<style type="text/css">
+  .orctext {
+    padding: 15px;
+    color: #555;
+    font-size: 14px;
+    border-radius: 5px;
+    border: solid 1px #DDD;
+  }
+
+  .orcpop {
+    background-color: #eee;
+    border: solid 5px #f57300;
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    padding: 20px;
+    color: #333;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    z-index: 99999;
+    font-size: 16px;
+    /* display: none; */
+  }
+  .orcpoperro {
+    background-color: #eee;
+    border: solid 5px #cc0000;
+    position: fixed;
+    bottom: 115px;
+    left: 15px;
+    padding: 20px;
+    color: #333;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    z-index: 99999;
+    font-size: 13px;
+    /* display: none; */
+  }
+</style>
+<?php if ($_GET['msgsucess'] == 1) { ?> 
+<div id="orcpop" class="orcpop"> <span style="font-weight: bold;">Sucesso!</span><br>
+Cadastro realizado!
+</div>
+
+<script>
+  $( document ).ready(function() {
+    $("#orcpop").fadeIn(1000);
+    $("#orcpop").delay(5000).fadeOut(1000);
+  });
+ </script>
+ <?php } ?>
+
+ <?php if ($_GET['msgsucess'] == 2) { ?> 
+<div id="orcpop" class="orcpop"> <span style="font-weight: bold;">Sucesso!</span><br>
+Alterações salvas!
+</div>
+
+<script>
+  $( document ).ready(function() {
+    $("#orcpop").fadeIn(1000);
+    $("#orcpop").delay(5000).fadeOut(1000);
+  });
+ </script>
+ <?php } ?>
+ <!-- FIM POP INFO -->
+
 <?php /* <div style="margin-bottom: 70px; width: 100%; margin: auto; float: left;margin-top: -90px;">
 	<div style="margin: auto; width: 1130px;">
 		<div class="fb-like" data-href="https://www.facebook.com/letts.global" data-width="1130" data-height="300" data-layout="standard" data-colorscheme="light" data-action="like" data-show-faces="true" data-share="true" data-header="false" data-stream="false" data-show-border="false"></div>

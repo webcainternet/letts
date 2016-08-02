@@ -357,6 +357,7 @@ function calcula_idade($data_nascimento) {
 						</select>
 					</div>
 
+
 					<div style="float: left; margin-right: 15px;">
 						<input type="submit" value="Buscar" style="margin-top: 16px;">
 					</div>
@@ -382,9 +383,21 @@ mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
     die("Could not connect: " . mysql_error());
 mysql_select_db(DB_NAME);
 
-$result = mysql_query("select id, post_title from wp_posts where post_type = 'atleta' AND post_status = 'publish' ORDER BY rand()");
 
+$consultapagina = $_GET["pagina"];
+if ($consultapagina == "") { 
+	$consultapagina = 1; $vermaisqtos = 50; 
+	$result = mysql_query("select id, post_title from wp_posts where post_type = 'atleta' AND post_status = 'publish' ORDER BY rand() LIMIT ".$vermaisqtos);
+} else { 
+	$consultapagina = $consultapagina+1; $vermaisqtos = 50 * $consultapagina;
+	$result = mysql_query("select id, post_title from wp_posts where post_type = 'atleta' AND post_status = 'publish' ORDER BY id DESC LIMIT ".$vermaisqtos);
+}
+
+
+
+$qtositens = 0;
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+	$qtositens = $qtositens + 1;
 	$mostra = "";
 	$nome = $row["post_title"];
 	$idatleta = $row["id"];
@@ -400,11 +413,12 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 		}
 	}
 
-	$resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key = 'atletaesporte' AND post_id = ".$row["id"]);
+$resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key = 'atletaesporte' AND post_id = ".$row["id"]);
     while ($rowesporte = mysql_fetch_array($resultesporte, MYSQL_ASSOC)) {
     	$esporte = $rowesporte["meta_value"];
     }
-    //filtro esporte
+
+   //filtro esporte
 	if ($_POST["esporte"] != "-- Selecione --") {
 		if ($_POST["esporte"] != "") {
 			$mystring = strtoupper($esporte);
@@ -416,6 +430,8 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 			}
 		}
 	}
+
+    
 
 	$resultbasicapaisnascimento = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicapaisnascimento' AND post_id = ".$row["id"]);
     while ($rowbasicapaisnascimento = mysql_fetch_array($resultbasicapaisnascimento, MYSQL_ASSOC)) {
@@ -512,18 +528,33 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
       		&nbsp;
       	</div>
         <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-      </a>
+      </a>	
+	<style type="text/css">
+		.text transition-050 title {
+			font-size: 5px;
+		}
+	</style>
       <figcaption class="transition-050 opacity85">
         <a href="/?p=<?php echo $idatleta; ?>">
-          <strong class="text transition-050 title"><?php echo $nome; ?>  </strong>
-          <span class="text transition-050 desc"><?php echo $esporte; ?><br>
+	  <strong class="text transition-050 title"><?php echo $nome; ?>  </strong>
+	  <span class="text transition-050 desc"><?php echo $esporte; ?><br>
+	  <?php if ($anos != "") { ?>
+	  <b>Idade: </b><?php echo $anos; ?><br>
+	  <?php } ?>
+	  <?php if ($basicapaisnascimento != "") { ?>
+	  <b>País: </b><?php echo $basicapaisnascimento; ?><br>
+	  <?php } ?>
+	  <?php if ($basicagenero != "") { ?>
+	  <b>Sexo: </b><?php echo $basicagenero; ?><br>
+          <?php } ?>
           <?php if ($basicacidadeatual != "") { ?>
-          <b>Mora em: </b><?php echo $basicacidadeatual; ?>
+          <!-- <b>Mora em: </b> --> <?php // echo $basicacidadeatual; ?>
           <?php } ?>
           </span>
         </a>
-      </figcaption>
+      </figcaption> 
     </figure>
+	 	
     <?php
 
 
@@ -541,10 +572,20 @@ mysql_free_result($result);
 
 							</div>
 
+<?php if ($qtositens % 50 == 0) { ?>
+<div>
+	<div style="float: right;">
+		<a href="?pagina=<?php echo $consultapagina; ?>"><input type="submit" value="Ver mais" style="margin-top: 16px;"></a>
+	</div>
+	&nbsp;
+</div>
+<?php } ?>
+
 
 						</div>
 
 				</div>
+
 
 <div style="width: 100%; background-color: #FFFFFF; height: 130px;">				
 
@@ -565,7 +606,5 @@ mysql_free_result($result);
 
 </div>
 <!-- /layout-container -->
-
-<?php include('banners.php') ?>  
 
 <?php get_footer(); ?>

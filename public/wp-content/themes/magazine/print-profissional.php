@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
 /**
  * Template Name: Print Profissional
  *
@@ -17,6 +17,7 @@
 ?>
 
 <link rel="stylesheet" id="theme-style-css" href="http://letts.com.br/wp-content/themes/magazine/style.css?ver=1.3.0" type="text/css" media="all">
+<link rel="stylesheet" id="themify-icon-font-css" href="http://letts.com.br/wp-content/themes/magazine/themify/fontawesome/css/font-awesome.min.css?ver=1.8.9" type="text/css" media="all">
 
 <style type="text/css">
 body{
@@ -52,10 +53,6 @@ body{
   margin-bottom: 30px;
 }
 
-.entry-content p {
-  width: 935px !important;
-}
-
 .rodape_impressao{
   background: #f8f7f5;
   width: 100%;
@@ -81,7 +78,7 @@ body{
 <script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.8.3'></script>
   </head>
   <body>
-    <?php 
+    <?php
       $postid = $_GET['post_id'];
     ?>
 		<?php query_posts('p='. $postid.'&limit=1&post_type=profissional');
@@ -95,17 +92,43 @@ body{
         <?php the_content(); ?>
       </div>
           <div style="margin-top: 10px;"><strong>Link dos vídeos:</strong></div>
-          <?php the_permalink(); ?>?page=videos      
-</div>      
+          <?php the_permalink(); ?>?page=videos
+
+          <div style="padding-top: 40px;">
+          <?php if (get_custom_field('basicafacebook')) { ?>
+            <div style="padding: 10px; float: right;"><i class="fa fa-facebook" aria-hidden="true"></i> <?php print_custom_field('basicafacebook'); ?></div>
+          <?php } ?>
+
+          <?php if (get_custom_field('instagram')) { ?>
+            <div style="padding: 10px; float: right;"><i class="fa fa-instagram" aria-hidden="true"></i> <?php print_custom_field('instagram'); ?></div>
+          <?php } ?>
+
+          <?php if (get_custom_field('twitter')) { ?>
+            <div style="padding: 10px; float: right;"><i class="fa fa-twitter" aria-hidden="true"></i> <?php print_custom_field('twitter'); ?></div>
+          <?php } ?>
+
+          <?php if (get_custom_field('linkedin')) { ?>
+            <div style="padding: 10px; float: right;"><i class="fa fa-linkedin" aria-hidden="true"></i> <?php print_custom_field('linkedin'); ?></div>
+          <?php } ?>
+
+          <?php if (get_custom_field('blog')) { ?>
+            <div style="padding: 10px; float: right;"><i class="fa fa-rss" aria-hidden="true"></i> <?php print_custom_field('blog'); ?></div>
+          <?php } ?>
+
+          <?php if (get_custom_field('site')) { ?>
+            <div style="padding: 10px; float: right;"><i class="fa fa-link" aria-hidden="true"></i> <?php print_custom_field('site'); ?></div>
+          <?php } ?>
+          </div>
+</div>
 
 <div style="float: left; width: 210px;">
           <div style="float: left;
-          border: 1px #ff8920 solid; 
-          width: 180px; 
-          height: 180px; 
+          border: 1px #ff8920 solid;
+          width: 180px;
+          height: 180px;
           margin-top: 30px;
-          background-image: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>'); 
-          background-size: 1800px; 
+          background-image: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>');
+          background-size: 1800px;
           background-position:center;margin-right: 30px;" id="imgbackground">
       &nbsp;
     </div>
@@ -116,66 +139,22 @@ body{
       <?php print_custom_field('basicagenero'); ?><br />
 
       <div style="margin-top: 10px;"><strong>Telefones</strong></div>
-      <?php print_custom_field('basicatelefones'); ?><br />
+      <?php print_custom_field('basicaddi'); ?> <?php print_custom_field('basicatelefones'); ?><br />
 
-      <div style="margin-top: 10px;"><strong>Nascimento</strong></div>
-      <?php print_custom_field('basicacidadenascimento'); ?>, <?php print_custom_field('basicaestadonascimento'); ?><br />
+      <div style="margin-top: 10px;"><strong>País</strong></div>
+      <?php print_custom_field('basicapaisatual'); ?><br />
 
-      <div style="margin-top: 10px;"><strong>Atual</strong></div>
-      <?php print_custom_field('basicacidadeatual'); ?>, <?php print_custom_field('basicaestadoatual'); ?><br />
+      <div style="margin-top: 10px;"><strong>Estado</strong></div>
+      <?php print_custom_field('basicaestadoatual'); ?><br />
+
+      <div style="margin-top: 10px;"><strong>Cidade</strong></div>
+      <?php print_custom_field('basicacidadeatual'); ?><br />
 
       <div style="margin-top: 10px;"><strong>E-mail</strong></div>
           <?php print_custom_field('basicaemail'); ?><br />
 
-      <div style="margin-top: 10px;"><strong>Escolaridade</strong></div>
-      <?php print_custom_field('escolaridade'); ?><br />
-
-      <div style="margin-top: 10px;"><strong>Idiomas</strong></div>
-      <?php 
-        $my_array = get_custom_field('idiomas:to_array');
-        foreach ($my_array as $item) {
-          print $item.'<br />'; 
-        }
-      ?>
-
-      <?php if (get_custom_field('paisesviagem')) { ?>
-      <div style="margin-top: 10px;"><strong>Paises que já viajou</strong></div>
-      <?php print_custom_field('paisesviagem');
-      } ?>                
-
-      <div style="margin-top: 10px;"><strong>Outros Contatos</strong></div>
-          <?php if (get_custom_field('basicafacebook')) { ?>
-            <div style="margin-top: 10px;"><strong>Facebook</strong></div>
-            <?php print_custom_field('basicafacebook'); ?>
-          <?php } ?>
-
-          <?php if (get_custom_field('instagram')) { ?>
-            <div style="margin-top: 10px;"><strong>Instagram</strong></div>
-            <?php print_custom_field('instagram'); ?>
-          <?php } ?>
-
-          <?php if (get_custom_field('twitter')) { ?>
-            <div style="margin-top: 10px;"><strong>Twitter</strong></div>
-            <?php print_custom_field('twitter'); ?>
-          <?php } ?>
-
-          <?php if (get_custom_field('linkedin')) { ?>
-            <div style="margin-top: 10px;"><strong>Linkedin</strong></div>
-            <?php print_custom_field('linkedin'); ?>
-          <?php } ?>
-
-          <?php if (get_custom_field('blog')) { ?>
-            <div style="margin-top: 10px;"><strong>Blog</strong></div>
-            <?php print_custom_field('blog'); ?>
-          <?php } ?>                
-
-          <?php if (get_custom_field('site')) { ?>
-            <div style="margin-top: 10px;"><strong>Site</strong></div>
-            <?php print_custom_field('site'); ?>
-          <?php } ?>
-
-       </div>          
-</div> 
+       </div>
+</div>
 
     </div>
   </div>
@@ -196,8 +175,8 @@ body{
     } else {
       var sizeimg = 180 * (this.height / this.width);
       document.getElementById("imgbackground").style.backgroundSize = "180px "+sizeimg+"px";
-    }  
-    
+    }
+
   }
-  img.src = "<?php print_custom_field('basicaimagem:to_image_src'); ?>";  
+  img.src = "<?php print_custom_field('basicaimagem:to_image_src'); ?>";
 </script>

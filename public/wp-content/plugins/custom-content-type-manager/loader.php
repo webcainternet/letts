@@ -34,6 +34,7 @@ CCTM::load_file('/config/lang/dictionaries.php');
 // Get admin ready, print any CCTMtests::$errors in the admin dashboard
 add_action( 'admin_notices', 'CCTM::print_notices');
 
+
 if (empty(CCTM::$errors)) {
 	// Load up the CCTM data from wp_options, populates CCTM::$data
 	CCTM::load_data();
@@ -111,15 +112,15 @@ if (empty(CCTM::$errors)) {
 				// Forces custom post types to sort correctly
 				add_filter('posts_orderby', 'CCTM::order_posts');
 				add_filter('posts_join', 'CCTM::posts_join');
-				
+
 			}
 		}
-		
+
         add_filter('media_upload_tabs', 'CCTM::customize_upload_tabs');
 	}
 
 	// Enable archives for custom post types
-	add_filter('request', 'CCTM::request_filter');
+	//add_filter('request', 'CCTM::request_filter');
 
 
 	// Modifies the "Right Now" widget
@@ -130,7 +131,8 @@ if (empty(CCTM::$errors)) {
 
 	// Needs to be first in priority (before WP) so we can look for any slashes indicating hierarchical post-types
 	add_filter('sanitize_title', 'CCTM::filter_sanitize_title', 1, 3);
-}
 
+
+}
 
 /*EOF*/

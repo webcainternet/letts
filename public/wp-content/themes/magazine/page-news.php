@@ -8,7 +8,7 @@
 
 <?php get_header(); ?>
 
-<?php 
+<?php
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
@@ -44,13 +44,13 @@ global $themify; ?>
     <div id="content" class="list-post" style="width: 67%; float: left;">
 
       <div style="float: left; width: 100%; padding-top: 10px; margin-bottom: 10px;">
-      
-      <div style="float: left; width: 49%;"> 
+
+      <div style="float: left; width: 49%;">
         <h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;" style="font-weight: bold;">Notícias</h1>
       </div>
 
-     <div style="float: right; width: 60%; text-align: right; margin-bottom: 10px;margin-top: -45px;margin-right: 7px;"> 
-        
+     <div style="float: right; width: 60%; text-align: right; margin-bottom: 10px;margin-top: -45px;margin-right: 7px;">
+
         <div class="post-meta" style="display: inline;">
           <div style="float: right; margin-right: 15px;">
               <form method="post" id="filtroesporte">
@@ -173,7 +173,7 @@ global $themify; ?>
 
 
 
-    
+
 
 <?php
 
@@ -182,10 +182,10 @@ mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
 mysql_select_db(DB_NAME);
 
 ?>
-  
+
 
 <style type="text/css">
-.noticiaitem {     
+.noticiaitem {
     float: left;
     width: 338px;
     margin-right: 15px;
@@ -233,7 +233,7 @@ mysql_select_db(DB_NAME);
 
 
 <div id="newsajax" style="float: left; width: 100%;">
-  
+
 
 
 
@@ -250,7 +250,7 @@ mysql_select_db(DB_NAME);
     //Get
     var bla = $('#noticount').val();
     var nova = parseInt(bla) + 1;
-    
+
     $('#noticount').val(nova);
 
 
@@ -283,12 +283,12 @@ mysql_select_db(DB_NAME);
 
 <div style="float: left; width: 100%; margin-bottom: 30px;">
   <div class="pagewidth clearfix">
-        <a id="criar" onclick="carregarmais()" style="padding: 10px 255px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px;">
-          Ver mais noticias
+        <a id="criar" onclick="carregarmais()" style="padding: 10px; width: 677px; text-align: center; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px;">
+          Ver mais
         </a>
   </div>
 </div>
-    
+
 
   </div>
   <?php get_sidebar("sidebar-alt"); ?>

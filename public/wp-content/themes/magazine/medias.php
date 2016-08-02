@@ -33,6 +33,7 @@
 	<div style="float: left; width: 515px; position: fixed;">
 		<img src="<?php echo $urlimg; ?>" class="imgmedia">
 	</div>
+	
 
 	<div style="    float: left;
     width: 600;

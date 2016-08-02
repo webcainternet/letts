@@ -63,13 +63,14 @@ class ExportToHtmlTemplate extends ExportBase implements CFDBExport {
             return;
         }
 
-        if ($this->isFromShortCode) {
-            ob_start();
-        }
-
         // Get the data
         $submitTimeKeyName = 'Submit_Time_Key';
         $this->setDataIterator($formName, $submitTimeKeyName);
+        //$this->clearAllOutputBuffers(); // will mess up admin view of single entry
+
+        if ($this->isFromShortCode) {
+            ob_start();
+        }
 
         $options['content'] = $this->modifyContent($options['content']);
 
@@ -163,6 +164,8 @@ class ExportToHtmlTemplate extends ExportBase implements CFDBExport {
                                             '">' .
                                             htmlentities($this->dataIterator->row[$aCol], null, 'UTF-8') .
                                             '</a>';
+                                } else {
+                                    $replacements[] = '';
                                 }
                                 break;
                             case 'image':
@@ -174,6 +177,8 @@ class ExportToHtmlTemplate extends ExportBase implements CFDBExport {
                                             '" alt="' .
                                             htmlentities($this->dataIterator->row[$aCol], null, 'UTF-8') .
                                             '" />';
+                                } else {
+                                    $replacements[] = '';
                                 }
                                 break;
                             case 'name':
@@ -185,6 +190,8 @@ class ExportToHtmlTemplate extends ExportBase implements CFDBExport {
                     } else {
                         if (isset($this->dataIterator->row[$aCol])) {
                             $replacements[] = htmlentities($this->dataIterator->row[$aCol], null, 'UTF-8');
+                        } else {
+                            $replacements[] = '';
                         }
                     }
                 }

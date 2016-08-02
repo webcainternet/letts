@@ -5,12 +5,12 @@
  * @since 1.0.0
  */
 ?>
- 
+
 <?php get_header(); ?>
 
-	
+
 <style type="text/css">
-	
+
 	.sliderleft {
 		float: left; background-color: #E6E6E6; padding-top: 230px; text-align: center; font-size: 12px; width: 20px; margin-right: 5px; height: 244px; margin-top: 3px; color: #303030;
 	}
@@ -25,7 +25,7 @@
 
 	.sliderright:hover {
 		background-color: #ff8920; color: #FFFFFF;
-	} 
+	}
 
 	.slideritemselect {
 		float: left;
@@ -41,7 +41,7 @@
 </style>
 
 
-<?php 
+<?php
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
@@ -68,7 +68,7 @@ global $themify; ?>
 			    'post_status'     	=>  'publish',
 			    'order'        		=>  'DESC',
 
-			); 
+			);
 			query_posts($args); ?>
 			<?php //$primeira_noticia = -1; ?>
 
@@ -123,8 +123,8 @@ global $themify; ?>
 
 			<?php endwhile; ?>
 
-			<a href="/news" id="criar" style="padding: 10px 255px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px;">
-				Ver todas as Noticias
+			<a href="/news" id="criar" style="padding: 10px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px; width: 687px; text-align: center;">
+				Ver mais
 			</a>
 			</div>
 
@@ -135,7 +135,7 @@ global $themify; ?>
 			</div>
 			<?php } ?>
 
-			<?php get_sidebar("sidebar-alt"); ?> 
+			<?php get_sidebar("sidebar-alt"); ?>
 
 		</div>
 
@@ -146,10 +146,10 @@ global $themify; ?>
 				<div class="related-posts" style="float: left; width: 100%;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
-							
-															
+
+
 <section class="module">
-  <section class="wraper">    
+  <section class="wraper">
 
 
 <?php
@@ -185,15 +185,15 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     		$basicaimagemurl = $basicaimagemurl[1];
     	}else{
     		$basicaimagemurl = $basicaimagemurl[0];
-    	}    	
+    	}
     }
 
 
     ?>
     <figure class='small' style="border: 0px;">
       <a href="/?p=<?php echo $idatleta; ?>">
-      	<div style="width: 250px; 
-      	height: 200px; 
+      	<div style="width: 250px;
+      	height: 200px;
       	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
       	background-position: center;
       	<?php echo calcbackgroundsize("wp-content/uploads/".$basicaimagemurl, 300, 200); ?>;
@@ -243,7 +243,7 @@ mysql_free_result($result);
 				<div class="related-posts" style="float: left; width: 100%;">
 					<article class="post type-post clearfix">
 						<div class="post-content">
-							
+
 							<div class="wcalogos">
 								<img class="wcsimglogos" src="http://letts.com.br/wp-content/uploads/2014/09/letts-logo.png">
 							</div>
@@ -281,9 +281,9 @@ mysql_free_result($result);
 </div>
 	<!-- /#contentwrap -->
 
-	
+
 
 </div>
 <!-- /layout-container -->
-	
+
 <?php get_footer(); ?>

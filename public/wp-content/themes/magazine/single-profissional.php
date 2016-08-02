@@ -36,12 +36,67 @@
    });
  </script>
 
-<?php 
+<?php
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
 
 	<?php $idpost = get_the_ID(); ?>
+
+  <?php /* *** Redireciona se desabilitado */
+  $idpost = get_the_ID();
+  $host = DB_HOST;
+  $user = DB_USER;
+  $pass = DB_PASSWORD;
+  $sql="SELECT p.id FROM wp_posts p WHERE post_status = 'publish' AND p.id = ".$idpost;
+  $con = new mysqli($host, $user, $pass, DB_NAME);
+  if (mysqli_connect_errno()) {
+      printf("Connect failed: %s\n", mysqli_connect_error());
+    echo 'Falha ao desativar conta';
+    exit();
+  }
+  if ($result=mysqli_query($con,$sql))
+    {
+    // Return the number of rows in result set
+    $rowcount=mysqli_num_rows($result);
+    //var_dump($sql); echo $rowcount; exit;
+    if ($rowcount == 0) {
+      header('Location: http://letts.com.br/');
+    ?>
+      <br>
+      <center>Conta desabilitada
+
+      <?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+        <div id="newsajax" style="float: left; width: 100%;"></div>
+        <script type="text/javascript">
+          function reativarconta(contaid) {
+            $.ajax({method: "post",url: "/wp-content/themes/magazine/ativarconta.php",data: { contaid: contaid }, success: function(result){
+              alert(result);
+              window.location="?p=<?php echo $idpost; ?>";
+              //$("#newsajax").append(result);
+              //alert(result);
+            }});
+          }
+        </script>
+        <script>
+        $(document).ready(function(){
+          $("#reativar").on("click", function(){
+            reativarconta(<?php echo $idpost; ?>);
+
+          });
+        });
+        </script>
+  			<a id="reativar" style="padding: 10px 25px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px; color: #FFFFFF; font-size: 12px; cursor: pointer;">Re-ativar conta</a>
+  		<?php } ?>
+      </center>
+    <?php
+      exit;
+    }
+    // Free result set
+    mysqli_free_result($result);
+    }
+  mysqli_close($con);
+   /* FIM *** Redireciona se desabilitado */ ?>
 
 <?php $atualizar_perfil = $_POST['atualizar_perfil'];
     if ($atualizar_perfil == 'atualizar_perfil'){
@@ -55,13 +110,13 @@ global $themify; ?>
         wp_update_post($my_post);
 
         update_post_meta($idpost, 'profissao', $_POST['profissao']);
-        update_post_meta($idpost, 'basicanascimento', $_POST['data_nascimento']);
+        update_post_meta($idpost, 'basicanascimento', $_POST['data_nascimento_mes'].'/'.$_POST['data_nascimento_dia'].'/'.$_POST['data_nascimento_ano']);
         update_post_meta($idpost, 'basicagenero', $_POST['genero']);
         update_post_meta($idpost, 'basicatelefones', $_POST['telefones']);
-        update_post_meta($idpost, 'basicacidadenascimento', $_POST['cidade_nascimento']);
-        update_post_meta($idpost, 'basicaestadonascimento', $_POST['estado_nascimento']);
+        update_post_meta($idpost, 'basicaddi', $_POST['basicaddi']);
         update_post_meta($idpost, 'basicacidadeatual', $_POST['cidade_atual']);
         update_post_meta($idpost, 'basicaestadoatual', $_POST['estado_atual']);
+        update_post_meta($idpost, 'basicapaisatual', $_POST['pais_atual']);
         update_post_meta($idpost, 'basicafacebook', $_POST['facebook']);
         update_post_meta($idpost, 'instagram', $_POST['instagram']);
         update_post_meta($idpost, 'twitter', $_POST['twitter']);
@@ -75,15 +130,15 @@ global $themify; ?>
     <script type="text/javascript">
       $(document).ready(function(){
         $('#sucesso_edicaoperfil').show();
-      }) 
+      })
     </script>
   <?php } ?>
-  
 
-	
+
+
   <?php $publicar_news = $_POST['adicionarnews'];
     if ($publicar_news == 'adicionarnews'){ ?>
-	  <?php 
+	  <?php
       // Create post object
         $my_post = array(
           'post_title'    => $_POST['titulo_noticia'],
@@ -94,7 +149,7 @@ global $themify; ?>
         );
 
 mkdir('C:\xampp\htdocs\letts\public\wp-content\uploads\users\\'.$idpost);
-$path = "wp-content/uploads/users/".$idpost."/"; 
+$path = "wp-content/uploads/users/".$idpost."/";
 
 $valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
 if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
@@ -121,13 +176,13 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 							$response['response']="Arquivo OK";
 						}
 					else
-						$response['response']="Falhou"; 
+						$response['response']="Falhou";
 				}
 				else
-				$response['response']="Arquivo tem mais de 4MB"; 
+				$response['response']="Arquivo tem mais de 4MB";
 				}
 				else
-				$response['response']="Formato Inválido"; 
+				$response['response']="Formato Inválido";
 		}
 	else
 		$response['response']="Selecione um arquivo";
@@ -149,9 +204,9 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		add_post_meta($cur_post_id, 'post_image', $filename, true);
 		if ($actual_name) {
 			add_post_meta($cur_post_id, 'imgnews', $attach_id, true);
-		}    	
+		}
     	add_post_meta($cur_post_id, 'atletaesporte', $_POST['esporte'], true);
-    	add_post_meta($cur_post_id, 'profissao', $_POST['profissao'], true);	
+    	add_post_meta($cur_post_id, 'profissao', $_POST['profissao'], true);
 		add_post_meta($cur_post_id, 'basicaemail', $_POST['email'], true);
 		add_post_meta($cur_post_id, 'videourl', $_POST['link_video'], true);
 		add_post_meta($cur_post_id, 'Aprovado', 1 , true);
@@ -164,27 +219,27 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			$final_tipo = 'vimeo';
 		}
 
-		add_post_meta($cur_post_id, 'slvideo', $final_tipo, true);		
+		add_post_meta($cur_post_id, 'slvideo', $final_tipo, true);
 
-	    $destinatario = "renato.botani@letts.com.br";  
+	    $destinatario = "renato.botani@letts.com.br";
 
 	    $headers = "From: $destinatario \r\n";
 	    $headers.= "Content-Type: text/html; charset=ISO-8859-1 ";
-	    $headers.= "MIME-Version: 1.0 ";    
+	    $headers.= "MIME-Version: 1.0 ";
 
 	    $html = 'Você tem uma nova postagem de News para aprovação';
 
 	    mail($destinatario,"Nova postagem pendente",$html,$headers);
-		
+
     ?>
     <script type="text/javascript">
       $(document).ready(function(){
         $('#sucesso').show();
-      }) 
+      })
     </script>
   <?php } ?>
 
-  <?php 
+  <?php
   if ($_POST['link_video']) {
   	    $my_post_video = array(
           'post_title'    => $_POST['titulo_noticia'],
@@ -197,15 +252,15 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
         add_post_meta($post_id_video, 'link_video', $_POST['link_video'], true);
         add_post_meta($post_id_video, 'basicaemail', $_POST['email'], true);
         add_post_meta($post_id_video, 'atletaesporte', $_POST['esporte'], true);
-        add_post_meta($post_id_video, 'profissao', $_POST['profissao'], true); 
+        add_post_meta($post_id_video, 'profissao', $_POST['profissao'], true);
   }
   ?>
 
-    <?php 
+    <?php
     $alterarfoto = $_POST['alterarfoto'];
     if ($alterarfoto == 'alterar'){ ?>
 
-<?php $path = "wp-content/uploads/users/perfil/"; 
+<?php $path = "wp-content/uploads/users/perfil/";
 
 $valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
 if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
@@ -232,13 +287,13 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 							$response['response']="Arquivo OK";
 						}
 					else
-						$response['response']="Falhou"; 
+						$response['response']="Falhou";
 				}
 				else
-				$response['response']="Arquivo tem mais de 4MB"; 
+				$response['response']="Arquivo tem mais de 4MB";
 				}
 				else
-				$response['response']="Formato Inválido"; 
+				$response['response']="Formato Inválido";
 		}
 	else
 		$response['response']="Selecione um arquivo";
@@ -246,7 +301,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 		$cur_post_id = $idpost;
 
-	
+
 		$filename = 'http://letts.com.br/wp-content/uploads/users/perfil/'.$actual_name;
 
 		$wp_filetype = wp_check_filetype(basename($filename), null );
@@ -263,15 +318,15 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     <script type="text/javascript">
       $(document).ready(function(){
         $('#sucesso_perfil').show();
-      }) 
+      })
     </script>
-  <?php } ?> 
+  <?php } ?>
 
-    <?php 
+    <?php
     $alterarfotocapa = $_POST['alterarfotocapa'];
     if ($alterarfotocapa == 'alterar'){ ?>
 
-<?php $path = "wp-content/uploads/users/capa/"; 
+<?php $path = "wp-content/uploads/users/capa/";
 
 $valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
 if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
@@ -298,13 +353,13 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 							$response['response']="Arquivo OK";
 						}
 					else
-						$response['response']="Falhou"; 
+						$response['response']="Falhou";
 				}
 				else
-				$response['response']="Arquivo tem mais de 4MB"; 
+				$response['response']="Arquivo tem mais de 4MB";
 				}
 				else
-				$response['response']="Formato Inválido"; 
+				$response['response']="Formato Inválido";
 		}
 	else
 		$response['response']="Selecione um arquivo";
@@ -312,7 +367,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 		$cur_post_id = $idpost;
 
-	
+
 		$filename = 'http://letts.com.br/wp-content/uploads/users/capa/'.$actual_name;
 
 		$wp_filetype = wp_check_filetype(basename($filename), null );
@@ -329,9 +384,9 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     <script type="text/javascript">
       $(document).ready(function(){
         $('#sucesso_capa').show();
-      }) 
+      })
     </script>
-  <?php } ?> 
+  <?php } ?>
 
 	<?php if( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
@@ -350,44 +405,44 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 <!-- layout-container -->
 <div id="layout" class="pagewidth clearfix">
-	<?php $imagemdefault = get_custom_field('image_profissional'); 
+	<?php $imagemdefault = get_custom_field('image_profissional');
 			$defaultbg = 'http://letts.com.br/wp-content/uploads/users/defaultbg.jpg';
 	if ($imagemdefault == $defaultbg && $_SESSION["lettslogin"] != $idpost) {
-		$imagemdefault = '';
+		$imagemdefault = 'http://letts.com.br/wp-content/uploads/users/defaultbg.jpg';
 		$imgsizeheight = '140px';
 		$imgsizetop = '20px';
 	} else {
 		$imgsizeheight = '400px';
-		$imgsizetop = '280px';	
+		$imgsizetop = '280px';
 	}
 	?>
 
 	<div class="imagem_editar_capa" style="border-top: 5px #ff8920 solid;
-				background-image: url('<?php echo $imagemdefault; ?>'); 
-				background-size: 1064px; 
-				background-position:center; 
+				background-image: url('<?php echo $imagemdefault; ?>');
+				background-size: 1064px;
+				background-position:center;
 				height: <?php echo $imgsizeheight; ?>;">
 
-		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>		
+		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
 			<div id="link_editar_capa">
-					<a class="fancybox" href="/alterar-foto-de-capa/?id_post=<?php echo $idpost; ?>">Editar Foto de Capa</a>		
-			</div>			
-		<?php } ?>			
+					<a class="fancybox" href="/alterar-foto-de-capa/?id_post=<?php echo $idpost; ?>" style="font-weight: bold; color: #111; padding: 0px 5px; text-decoration: underline; font-size: 14px;">Editar Foto de Capa</a>
+			</div>
+		<?php } ?>
 
 		<div class="imagem_editar" style="float: left;
-					margin-left: 30px; 
-					border: 1px #ff8920 solid; 
-					width: 180px; 
-					height: 180px; 
+					margin-left: 30px;
+					border: 1px #ff8920 solid;
+					width: 180px;
+					height: 180px;
 					margin-top: <?php echo $imgsizetop; ?>;
-					background-image: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>'); 
-					background-size: 1800px; 
+					background-image: url('<?php print_custom_field('basicaimagem:to_image_src'); ?>');
+					background-size: 1800px;
 					background-position:center; " id="imgbackground">
-		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>	
+		<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
 			<div id="link_editar">
-				<a class="fancybox" href="/alterar-foto/?id_post=<?php echo $idpost; ?>">Editar Foto</a>		
+				<a class="fancybox" href="/alterar-foto/?id_post=<?php echo $idpost; ?>" style="font-weight: bold; color: #111; padding: 0px 5px; text-decoration: underline; font-size: 14px;">Editar Foto</a>
 			</div>
-			<?php } ?>			
+			<?php } ?>
 			&nbsp;
 		</div>
 
@@ -402,7 +457,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
     	$('.imagem_editar_capa').hover(function(){
     		$('#link_editar_capa').toggle();
-    	})    	
+    	})
 	});
 </script>
 
@@ -415,24 +470,24 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 	  } else {
 	  	var sizeimg = 180 * (this.height / this.width);
 	  	document.getElementById("imgbackground").style.backgroundSize = "180px "+sizeimg+"px";
-	  }  
-	  
+	  }
+
 	}
-	img.src = "<?php print_custom_field('basicaimagem:to_image_src'); ?>";	
+	img.src = "<?php print_custom_field('basicaimagem:to_image_src'); ?>";
 </script>
-			
 
 
 
 
 
 
-	<div style="background-size: 1064px; 
-				background-position:center; 
+
+	<div style="background-size: 1064px;
+				background-position:center;
 				height: 62px;background-color: #EEE;">
 
-		<?php if ($_SESSION["lettslogin"] != $idpost) { ?>			
-		<div style="float: right; 
+		<?php if ($_SESSION["lettslogin"] != $idpost) { ?>
+		<div style="float: right;
 					margin-top: 25px;
 					/* border-bottom: 2px #ff8920 solid; */
 					font-weight: bold;
@@ -445,9 +500,9 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 					font-size: 12px;">
 			<a style="text-decoration: none;" href="?page=mensagem">Mensagem</a>
 		</div>
-		<?php } ?>	
+		<?php } ?>
 
-		<div style="float: right; 
+		<div style="float: right;
 					margin-top: 25px;
 					/* border-bottom: 2px #ff8920 solid; */
 					font-weight: bold;
@@ -461,7 +516,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			<a style="text-decoration: none;" href="?page=videos">Vídeos</a>
 		</div>
 
-		<div style="float: right; 
+		<div style="float: right;
 					margin-top: 25px;
 					/* border-bottom: 2px #ff8920 solid; */
 					font-weight: bold;
@@ -475,7 +530,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			<a style="text-decoration: none;" href="?page=fotos">Fotos</a>
 		</div>
 
-		<div style="float: right; 
+		<div style="float: right;
 					margin-top: 25px;
 					/* border-bottom: 2px #ff8920 solid; */
 					font-weight: bold;
@@ -489,7 +544,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 			<a style="text-decoration: none;" href="?page=sobre">Sobre</a>
 		</div>
 
-		<div style="float: right; 
+		<div style="float: right;
 					margin-top: 25px;
 					/* border-bottom: 2px #ff8920 solid; */
 					font-weight: bold;
@@ -509,26 +564,26 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 					<div id="text-1017" class="widget widget_text" style="border: 0px; margin: 0px;">
 						<h4 class="widgettitle" style="border: 0px;"><?php print_custom_field('profissao'); ?></h4>
 						<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
-			              <a class="editar_perfil" href="/edicao-profissional/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>  
+			              <a class="editar_perfil" href="/edicao-profissional/?id_post=<?php echo $idpost; ?>">Editar Perfil</a>
 			            <?php } ?>
 					</div>
 
-		<p id="sucesso_perfil">Foto alterada com sucesso</p>			
+		<p id="sucesso_perfil">Foto alterada com sucesso</p>
 		<p id="sucesso_capa">Foto de capa alterada com sucesso</p>
-		<p id="sucesso_edicaoperfil">Dados alterados com sucesso</p>		
+		<p id="sucesso_edicaoperfil">Dados alterados com sucesso</p>
 
 		</div>
-		
+
 	</div>
 
-<?php 
+<?php
 	if ($_SESSION["lettslogin"] == $idpost) {
 		$ismypage = 1;
 	}
 ?>
 	<div style="margin-top: 20px; margin-bottom: 20px; width: 100%; float: left;">
 		<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; text-align: center; padding: 0; font-size: 1.5em; font-family: Oswald, sans-serif; 
+			<h1 class="post-title" itemprop="name" style="margin: 10px 0 10px 0; text-align: center; padding: 0; font-size: 1.5em; font-family: Oswald, sans-serif;
 			text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
 				<a href="<?php the_permalink(); ?>" style="font-weight: bold; font-size: 50px;"><?php the_title(); ?></a>
 			</h1>
@@ -544,7 +599,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 	</div>
 </div>
 
-<?php 
+<?php
 	$imagem_fb = get_custom_field('basicaimagem:to_image_src');
 	$texto_fb = strip_tags(get_the_excerpt(120));
 ?>
@@ -564,13 +619,13 @@ $('#share-button').click(function (e){
 });
 </script>
 
-<meta property="og:image" content="<?php echo $imagem_fb; ?>"/>	
+<meta property="og:image" content="<?php echo $imagem_fb; ?>"/>
 
 	<div>
 		<div style="float: left; width: 325px;">
 				<div class="col3-1" style="width: 100%; margin: 0px; background: #EFEFEF; padding-left: 15px; border-top: 5px #ff8920 solid;">
 					<div id="text-1016" class="widget widget_text" style="">
-						<h4 class="widgettitle">Informações básicas</h4>			
+						<h4 class="widgettitle">Informações básicas</h4>
 						<div class="textwidget">
 							<div style="margin-top: 10px;"><strong>Data de nascimento</strong></div>
 							<?php print_custom_field('basicanascimento'); ?><br />
@@ -578,36 +633,33 @@ $('#share-button').click(function (e){
 							<div style="margin-top: 10px;"><strong>Sexo</strong></div>
 							<?php print_custom_field('basicagenero'); ?><br />
 
-							<div style="margin-top: 10px;"><strong>Telefones</strong></div>
-							<?php print_custom_field('basicatelefones'); ?><br />
+              <div style="margin-top: 10px;"><strong>Telefones</strong></div>
+              <?php
+                $ddistring = get_custom_field('basicaddi');
+                $ddistart  = strpos(get_custom_field('basicaddi'),'(');
+                $ddifim  = strpos(get_custom_field('basicaddi'),')');
+                $ddilen  = strlen(get_custom_field('basicaddi'));
+                $ddiutil = $ddifim - $ddistart - 1;
+                $ddivalor = substr($ddistring, $ddistart + 1, $ddiutil);
+              ?>
+              <?php echo $ddivalor . " "; print_custom_field('basicatelefones'); ?><br />
 
-							<div style="margin-top: 10px;"><strong>Nascimento</strong></div>
-							<?php print_custom_field('basicacidadenascimento'); ?>, <?php print_custom_field('basicaestadonascimento'); ?><br />
+							<div style="margin-top: 10px;"><strong>Pais</strong></div>
+							<?php print_custom_field('basicapaisatual'); ?><br>
 
-							<div style="margin-top: 10px;"><strong>Onde Mora</strong></div>
-							<?php print_custom_field('basicacidadeatual'); ?>, <?php print_custom_field('basicaestadoatual'); ?><br />	
+							<div style="margin-top: 10px;"><strong>Estado</strong></div>
+							<?php print_custom_field('basicaestadoatual'); ?><br>
+
+							<div style="margin-top: 10px;"><strong>Cidade</strong></div>
+							<?php print_custom_field('basicacidadeatual'); ?><br>
 
 							<div style="margin-top: 10px;"><strong>E-mail</strong></div>
 							<?php $emailuser = get_custom_field('basicaemail'); echo $emailuser; ?><br />
-							
-							<div style="margin-top: 10px;"><strong>Escolaridade</strong></div>
-							<?php print_custom_field('escolaridade'); ?><br />
-
-							<div style="margin-top: 10px;"><strong>Idiomas</strong></div>
-							<?php 
-								$my_array = get_custom_field('idiomas:to_array');
-								foreach ($my_array as $item) {
-									print $item.'<br />'; 
-								}
-							?>
-
-							<div style="margin-top: 10px;"><strong>Paises que já viajou</strong></div>
-							<?php print_custom_field('paisesviagem'); ?>
 
 						</div>
-			
+
 						<div class="textwidget icones_sociais">
-							<div style="margin-top: 10px;"><strong>Contatos</strong></div>
+							<div style="margin-top: 10px;"><strong>Redes sociais</strong></div>
 								<?php if (get_custom_field('basicafacebook')) { ?>
 									<a href="<?php print_custom_field('basicafacebook'); ?>" target="_blank">
 										<img src="/wp-content/themes/magazine/images/facebook.png">
@@ -636,7 +688,7 @@ $('#share-button').click(function (e){
 									<a href="<?php print_custom_field('blog'); ?>" target="_blank">
 										<img src="/wp-content/themes/magazine/images/rss.png">
 									</a>
-								<?php } ?>								
+								<?php } ?>
 
 								<?php if (get_custom_field('site')) { ?>
 									<a href="<?php print_custom_field('site'); ?>" target="_blank">
@@ -645,19 +697,106 @@ $('#share-button').click(function (e){
 								<?php } ?>
 							</div>
               <?php if ($_SESSION["lettslogin"] == $idpost) { ?>
-                <a href="/print-profissional?post_id=<?php echo get_the_ID(); ?>" target="_blank">Imprimir Currículo</a>
-              <?php } ?>  							
-					</div>			
+                <div style="margin-top: 25px; margin-bottom: 10px;">
+				          <a href="/print-profissional?post_id=<?php echo get_the_ID(); ?>" target="_blank"><i class="fa fa-file-text-o" aria-hidden="true"></i> Imprimir Currículo</a>
+                </div>
+							<?php } ?>
+					</div>
 				</div>
-				<?php include('banner_lateral.php') ?>  
+
+
+
+        				<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
+
+
+
+        <div id="newsajax" style="float: left; width: 100%;"></div>
+
+        <script type="text/javascript">
+          function trocasenha(senha) {
+            $.ajax({method: "post",url: "/wp-content/themes/magazine/alterarsenha.php", data: { senha: senha }, success: function(result){
+              document.getElementById('divContaSenha').style.display = 'none'
+              $( "#novasenha" ).val('');
+              $( "#novasenha2" ).val('');
+              alert(result);
+              //$("#newsajax").append(result);
+              //alert(result);
+            }});
+          }
+
+          function desativaconta(contaid) {
+            $.ajax({method: "post",url: "/wp-content/themes/magazine/desativarconta.php",data: { contaid: contaid }, success: function(result){
+              document.getElementById('divContaDesativar').style.display = 'none'
+              alert(result);
+              window.location="/wp-content/themes/magazine/logout.php";
+              //$("#newsajax").append(result);
+              //alert(result);
+            }});
+          }
+        </script>
+
+        <script>
+        $(document).ready(function(){
+          $("#desativar").on("click", function(){
+            if ($( "#novasenha" ).val() == "") {
+              alert('Não é permitido senha em branco!');
+              $( "#novasenha" ).focus();
+            } else {
+              if ($( "#novasenha2" ).val() == "") {
+                alert('Preencha a confirmação de senha!');
+                $( "#novasenha2" ).focus();
+              } else {
+                if ($( "#novasenha" ).val() != $( "#novasenha2" ).val()) {
+                  alert('A senha deve ser digitada duas vezes iguais!');
+                  $( "#novasenha2" ).focus();
+                } else {
+                  trocasenha($( "#novasenha" ).val());
+                  //alert($( "#novasenha" ).val());
+                }
+              }
+            }
+          });
+
+          $("#desativar2").on("click", function(){
+            desativaconta(<?php echo $idpost; ?>);
+          });
+        });
+        </script>
+
+        				<div class="col3-1" style="width: 100%; margin: 0px; background: #efefef; padding-left: 15px; border-top: 5px #ff8920 solid; margin-top: 30px; margin-bottom: 30px;">
+        					<div id="text-1016" class="widget widget_text" style="">
+        						<h4 class="widgettitle">Minha conta</h4>
+        						<div class="textwidget" style="margin-bottom: 10px;">
+        							<div style="margin-top: 10px; cursor: pointer;"><a onclick="javascript:document.getElementById('divContaSenha').style.display = 'block'; document.getElementById('divContaDesativar').style.display = 'none';"><i class="fa fa-key" aria-hidden="true"></i> Alterar senha</a></div>
+        							<div style="margin-top: 10px; font-size: 10px; display: none;" id="divContaSenha">
+        								Nova Senha:<br>
+        								<input class="input_noticia" type="password" id="novasenha" name="novasenha" value="" style="width: 290px !important;"><br>
+        								Confirmar nova senha<br>
+        								<input class="input_noticia" type="password" id="novasenha2" name="novasenha2" value="" style="width: 290px !important;"><br>
+        								<a id="desativar" style="padding: 10px 25px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px; color: #FFFFFF; font-size: 12px; cursor: pointer;">Alterar</a>
+
+
+        							</div>
+        							<div style="margin-top: 10px; cursor: pointer;"><a onclick="javascript:document.getElementById('divContaDesativar').style.display = 'block'; document.getElementById('divContaSenha').style.display = 'none';"><i class="fa fa-minus-circle" aria-hidden="true"></i> Desativar conta</a></div>
+        							<div style="margin-top: 10px; font-size: 10px; display: none;" id="divContaDesativar">
+        								Ao desativar sua conta seu perfil não ficará mais disponível para os usuários de nosso site. Tem certeza que deseja desativar sua conta?
+
+        								<a id="desativar2" style="padding: 10px 25px; background: #f57300; text-decoration: none; display: inline-block; margin-top: 20px; color: #FFFFFF; font-size: 12px; cursor: pointer;">Sim</a>
+        							</div>
+        						</div>
+        					</div>
+        				</div>
+        				<?php } ?>
+
+				<?php include('banner_lateral.php') ?>
 		</div>
 
 			<?php if ($_GET["page"] == "sobre") { ?>
-				
+
 				<?php $conteudo = get_the_content();
 				if ($conteudo == '') { } else { ?>
 				<div style="width: 685px; float: left; margin-left: 50px;">
-				
+
 				<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Minha história</h4>
 				<?php the_content(); ?>
 
@@ -666,16 +805,16 @@ $('#share-button').click(function (e){
 			<?php } ?>
 
 			<?php if ($_GET["page"] == "" || $_GET["page"] == "news") { ?>
-			<?php 
+			<?php
 			$email_user = get_custom_field('basicaemail'); ?>
 			<?php $args = array(
 			    'orderby'       	=>  'post_date',
 			    'post_type'     	=>  'news',
 			    'meta_key'     		=>  'basicaemail',
-			    'meta_value'     	=>  $email_user,			    
+			    'meta_value'     	=>  $email_user,
 			    'order'        		=>  'DESC',
 			    'post_status'		=> 	array('pending', 'publish')
-			); 
+			);
 			query_posts($args); ?>
 
 			<div style="width: 685px; float: left; margin-left: 50px;">
@@ -693,7 +832,7 @@ $('#share-button').click(function (e){
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
 		             <textarea class="textarea_noticia" name="content_noticia" placeholder="No que você está pensando..."></textarea>
 		             <input class="input_noticia" type="text" name="titulo_noticia" value="" placeholder="Título da Postagem">
-		        <p style="margin: 0px 0px 2px;text-align: center;">Selecione apenas uma opção: Esporte ou Profissão</p>     
+		        <p style="margin: 0px 0px 2px;text-align: center;">Selecione apenas uma opção: Esporte ou Profissão</p>
                 <select id="atletaesporte" name="esporte" style="width: 325px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin: 0px 27px 14px 0px;">
                         <option>-- Selecione o esporte --</option>
                         <option value="Aeromodelismo">Aeromodelismo</option>
@@ -792,7 +931,7 @@ $('#share-button').click(function (e){
                       <option value="Psicólogo esportivo">Psicólogo esportivo</option>
                       <option value="Técnico">Técnico</option>
                       <option value="Videomaker">Videomaker</option>
-                  </select> 				             
+                  </select>
 					<div class="custom-upload">
 					    <input type="file" name="img_destacada">
 					    <div class="fake-file">
@@ -804,14 +943,14 @@ $('#share-button').click(function (e){
 		             <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
 		             <input type="hidden" value="adicionarnews" name="adicionarnews">
 		             <input type="submit" style="float: right; margin-top: 0px;margin-left: 300px;" value="Publicar">
-            </form> 
-            <?php } ?>				
+            </form>
+            <?php } ?>
 			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px; margin-top: 45px;">News</h4>
 
 			<?php while (have_posts()) : the_post(); ?>
 
 			<div class="related-posts news_perfil" style="float: left; width: 100%; border: solid 2px #F0f0f0; margin-bottom: 10px; padding: 10px;">
-				<?php $imgsizeok = get_custom_field('imgnews:to_image_src'); 
+				<?php $imgsizeok = get_custom_field('imgnews:to_image_src');
 					if ($imgsizeok) { ?>
 				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
 					<div class="imgnoticias" style="width: 679px; border-radius: 5px; height: 440px;  margin-bottom: 15px;">
@@ -820,8 +959,8 @@ $('#share-button').click(function (e){
 						$imgsizeok = str_replace("http://", "", $imgsizeok);
 						$imgsizeok = str_replace("https://", "", $imgsizeok);
 					?>
-					<div style="width: 679px; 
-			      	height: 440px; 
+					<div style="width: 679px;
+			      	height: 440px;
 			      	background-image: url('<?php print_custom_field('imgnews:to_image_src'); ?>');
 			      	background-position: center;
 			      	<?php echo calcbackgroundsize($imgsizeok, 685, 440); ?>; ">
@@ -830,17 +969,17 @@ $('#share-button').click(function (e){
 				</div></a>
 				<?php }else if(get_custom_field('videourl')){
 
-				$video = get_custom_field('videourl'); 
+				$video = get_custom_field('videourl');
 				$video = explode("/", $video);
 				$url_video = explode("=", $video[3]);
 				if ($url_video[0] == 'watch?v') {
 				 	$imgid = $url_video[1]; ?>
 				 	<iframe width="710" height="350" src="//www.youtube.com/embed/<?php echo $imgid; ?>" frameborder="0" allowfullscreen></iframe>
-				 <?php 	
+				 <?php
 				 } else{
 				$imgid = $url_video[0]; ?>
 				<iframe width="710" height="350" src="http://player.vimeo.com/video/<?php echo $imgid; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-				<?php } 
+				<?php }
 				} ?>
 
 
@@ -862,7 +1001,7 @@ $('#share-button').click(function (e){
 						  $urldolink = str_replace('http://letts.com.br', '', $urldolink);
 						  $urldolink = str_replace('http://www.letts.com.br', '', $urldolink);
 						  //$idpagina = $urldolink;
-						  //include "comentarios_ajax.php"; 
+						  //include "comentarios_ajax.php";
 					?>
 					<div>
 						<iframe src="http://letts.com.br/wp-content/themes/magazine/comentarios_withcss.php?idpagina=<?php echo $urldolink; ?>" width="650" height="30" frameborder="0" scrolling="no" noresize></iframe>
@@ -884,11 +1023,11 @@ $('#share-button').click(function (e){
         <li>
           <label for="author">Nome: <span>(Obrigatório)</span></label>
           <input type="text" aria-required="true" tabindex="1" size="22" id="author" name="author" value="" maxlength="100">
-        </li>                           
+        </li>
         <li>
           <label for="email">E-mail: <span>(Obrigatório)</span></label>
           <input type="text" aria-required="true" tabindex="2" size="22" id="email" name="email" value="">
-        </li>                           
+        </li>
         <li>
           <label for="url">Website: </label>
           <input type="text" tabindex="3" size="22" value="" id="url" name="url">
@@ -901,11 +1040,11 @@ $('#share-button').click(function (e){
         <input type="submit" value="Enviar" tabindex="5" id="submit" class="bt-enviar-comentarios" name="submit">
         <input type="hidden" name="comment_post_ID" value="<?php the_ID(); ?>" id="comment_post_ID">
         <input type="hidden" name="comment_parent" id="comment_parent" value="0">
-        </li>                                                        
+        </li>
       </ul>
             </fieldset>
     </form>
-<?php } */ ?>			
+<?php } */ ?>
 		</div>
 
 			<?php } ?>
@@ -915,16 +1054,16 @@ $('#share-button').click(function (e){
 					<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Fotos</h4>
 					<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
 						<a class="button link_botao" href="/add-fotos-profissional/?id_post=<?php echo $idpost; ?>">+ Fotos</a>
-					<?php } ?>						
+					<?php } ?>
 					<div class="galeria_profissional">
-						<?php $pasta = "wp-content/uploads/users/$idpost/"; 
+						<?php $pasta = "wp-content/uploads/users/$idpost/";
 							$diretorio = dir($pasta);
-								while($arquivo = $diretorio -> read()){ 
+								while($arquivo = $diretorio -> read()){
 									if($arquivo != '..' && $arquivo != '.'){
 										$arrayArquivos[date('Y/m/d H:i:s', filemtime($pasta.$arquivo))] = $pasta.$arquivo;
 									}
-								} 
-								$diretorio -> close();	 
+								}
+								$diretorio -> close();
 
 								krsort($arrayArquivos, SORT_STRING);
 
@@ -934,36 +1073,36 @@ $('#share-button').click(function (e){
 										<img src="/'.$valorArquivos.'">
 									</a>
 								</div>';
-							}	
+							}
 
 						?>
 					</div>
-				
-				</div>	
+
+				</div>
 
 			<?php } ?>
 
 			<?php if ($_GET["page"] == "videos") { ?>
-				<?php 
+				<?php
 				$email_user = get_custom_field('basicaemail'); ?>
 				<?php $args = array(
 				    'orderby'       	=>  'post_date',
 				    'post_type'     	=>  'video',
 				    'meta_key'     		=>  'basicaemail',
-				    'meta_value'     	=>  $email_user,			    
+				    'meta_value'     	=>  $email_user,
 				    'order'        		=>  'ASC'
-				); 
+				);
 				query_posts($args); ?>
 
 			<div style="width: 685px; float: left; margin-left: 50px;">
 			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px;">Vídeos</h4>
 			<?php if ($_SESSION["lettslogin"] == $idpost) { ?>
 				<a class="button link_botao" href="/add-videos-profissional/?id_post=<?php echo $idpost; ?>">+ Vídeos</a>
-			<?php } ?>	
+			<?php } ?>
 
 			<?php while (have_posts()) : the_post(); ?>
 
-			<?php $video = get_custom_field('link_video'); 
+			<?php $video = get_custom_field('link_video');
 				$video = explode("/", $video);
 				$url_video = explode("=", $video[3]);
 				if ($url_video[0] == 'watch?v') {
@@ -989,20 +1128,20 @@ $('#share-button').click(function (e){
 				<div style="float: left; margin-left: 50px;">
 				<?php
 					$idpagina = $_SERVER['REQUEST_URI'];
-					include "comentarios_ajax.php"; 
+					include "comentarios_ajax.php";
 				?>
 				</div>
 			<?php } ?>
 
-			</div>				
-			
-			<?php } ?>			
+			</div>
+
+			<?php } ?>
 
 			<?php /* INICIO BLOCO DE ENVIO DE EMAIL */ ?>
 			<?php if ($_GET["page"] == "mensagem") { ?>
 				<div class="formularios profissionais">
-					<?php if ( isset($_POST['nome_msg']) && isset($_POST['email_msg']) && isset($_POST['assunto']) && isset($_POST['mensagem']) && isset($_SESSION['lettslogin']) ) { 
-						//to: 
+					<?php if ( isset($_POST['nome_msg']) && isset($_POST['email_msg']) && isset($_POST['assunto']) && isset($_POST['mensagem']) && isset($_SESSION['lettslogin']) ) {
+						//to:
 						$to  = $emailuser;
 
 						// subject
@@ -1054,12 +1193,12 @@ $('#share-button').click(function (e){
 					?>
 					<div class="mensagem_atleta">
 						<h1 class="post-title entry-title" style="padding-top: 25px;">Mensagem enviada com sucesso!</h1>
-					</div>	
+					</div>
 					<?php } else {
 						if ($_SESSION['lettslogin'] == 1) { ?>
 							<div class="mensagem_atleta">
 								<h2 class="post-title entry-title" style="padding-top: 25px; font-size: 24px;">Efetue o login para enviar mensagem!</h1>
-							</div>	
+							</div>
 						<?php } else { ?>
 							<div class="mensagem_atleta">
 								<h1 class="post-title entry-title">Envie mensagem para <?php the_title(); ?></h1>
@@ -1069,7 +1208,7 @@ $('#share-button').click(function (e){
 									<input type="text" id="assunto" name="assunto" placeholder="Assunto">
 									<textarea id="mensagem" name="mensagem" placeholder="Mensagem para <?php the_title(); ?>"></textarea>
 
-									
+
 									<input type="button" id="postarmensagem" style="  background: #ff8920 !important;
 		                                  color: #fff;
 		                                  border: none;
@@ -1083,28 +1222,52 @@ $('#share-button').click(function (e){
 		                                  -webkit-border-radius: 0;float: right; margin-top: 0px;margin-left: 300px;" value="Enviar Mensagem">
 		                                  <br>&nbsp;<br>
 								</form>
-							</div>	
+
+                <?php
+      						if ($_SESSION['lettslogin'] > 1 ) {
+      							$email = $_SESSION['meuemail'];
+
+      							//Conecta bd
+      							$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+      							if (mysqli_connect_errno()) {
+      						    	printf("Connect failed: %s\n", mysqli_connect_error());
+      								exit();
+      							}
+
+      							$sql = 'SELECT p.ID, p.post_title, pmtelefone.meta_value AS telefone, pmddi.meta_value AS ddi FROM wp_posts p INNER JOIN wp_postmeta pmtelefone ON (p.id = pmtelefone.post_id) INNER JOIN wp_postmeta pmddi ON (p.id = pmddi.post_id) WHERE p.ID = '.$_SESSION["lettslogin"].' AND pmtelefone.meta_key = \'basicatelefones\' AND pmddi.meta_key = \'basicaddi\'';
+
+      							//Busca username
+      							$obj = $mysqli->query($sql)->fetch_object();
+      							$letts_nome = $obj->post_title;
+      						}
+      					?>
+
+      					<script type="text/javascript">
+      						$("input[name=nome_msg]").val('<?php echo $letts_nome; ?>');
+      						$("input[name=email_msg]").val('<?php echo $email; ?>');
+      					</script>
+							</div>
 						<?php } ?>
 					<?php } ?>
 				</div>
-			<?php } ?>	
+			<?php } ?>
 			<?php /* FIM BLOCO DE ENVIO DE EMAIL */ ?>
 	<?php if ($_GET["page"] != 'mensagem' && $_GET["page"] != '' && $_GET["page"] != 'news') { ?>
 				<div style="float: left; margin-left: 50px;">
 				<?php
 					$idpagina = $_SERVER['REQUEST_URI'];
-					include "comentarios_ajax.php"; 
+					include "comentarios_ajax.php";
 				?>
 				</div>
 			<?php } ?>
-			
+
 		</div>
 	</div>
 
 
 
 	<div id="contentwrap">
-	
+
 		<!-- /content -->
 		<?php themify_content_after(); // hook ?>
 
@@ -1121,7 +1284,7 @@ $('#share-button').click(function (e){
 
 </div>
 <!-- /layout-container -->
-	
+
 <?php get_footer(); ?>
 
 <script type="text/javascript">
@@ -1138,12 +1301,12 @@ $(document).ready(function() {
 $("#atletaesporte").change(function() {
   $("#profissao").hide();
   $("#atletaesporte").css('width','684px');
-}) 
+})
 
 $("#profissao").change(function() {
   $("#atletaesporte").hide();
   $("#profissao").css('width','684px');
-}) 
+})
 
 $('.custom-upload input[type=file]').change(function(){
     $(this).next().find('input').val($(this).val());

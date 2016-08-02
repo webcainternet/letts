@@ -69,7 +69,7 @@ global $themify; ?>
 </style>
 
 <div style="width: 100%; background-image: url('http://letts.com.br/wp-content/uploads/2014/09/abstract_wallpaper_for_mac_by_pimpyourscreen-d6nnlut.jpg');
-			background-position: center; height: 504px;">
+			background-position: center; height: 512px;">
 
 <?php
 			mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or

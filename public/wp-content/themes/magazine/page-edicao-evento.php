@@ -8,6 +8,7 @@
 
 <?php get_header(); ?>
 
+
 <script type="text/javascript">
    $(document).ready(function(){
       $("#postarevento").click(function(){
@@ -15,35 +16,93 @@
             alert( "Você deve preencher o nome do evento!" );
             $( "#idinputevento" ).focus();
             } else {
-	            if ($( "#iddescricaoevento" ).val() == "") {
-	              alert( "Você deve preencher a descrição do evento!" );
-	              $( "#iddescricaoevento" ).focus();
-	            } else {
-	              $( "#new_post" ).submit();
-	            }
-            }
+              if ($("#countryId").val() == "") {
+                alert("Você deve preencher o pais do evento" );
+                $( "#countryId" ).focus();
+              } else {
+                if ($("#stateId").val() == "") {
+                  alert("Você deve preencher o estado do evento" );
+                  $( "#stateId" ).focus();
+                } else {
+                  if ($("#frmcidade").val() == "") {
+                    alert("Você deve preencher a cidade do evento" );
+                    $( "#frmcidade" ).focus();
+                  } else {
+                    if ($( "#idimgdestacada" ).val() == "" && $("#fotoadd0").attr("src") == "/wp-content/uploads/2016/07/blankpix.jpg" ) {
+                      alert( "Você deve selecionar a imagem!" );
+                    } else {
+                      if ($( "#idimgevento" ).val() == "" && $("#fotoadd1").attr("src") == "/wp-content/uploads/2016/07/blankpix.jpg" ) {
+                        alert( "Você deve selecionar pelo menos uma foto adicional" );
+                      } else {
+          	            if ($( "#iddescricaoevento" ).val() == "") {
+          	              alert( "Você deve preencher a descrição do evento!" );
+          	              $( "#iddescricaoevento" ).focus();
+          	            } else {
+          	              $( "#new_post" ).submit();
+          		              //var novaURL = "http://letts.com.br/eventos/";
+          		              //$(window.document.location).attr('href',novaURL);
+          	            }
+                      }
+                    }
+                  }
+                }
+              }
 
+		}
       });
+
+      $("#removerfoto0").click(function(){ excluircustomf(<?php echo $_GET['ideventog']; ?>,'atletaimagembackground'); });
+      $("#removerfoto1").click(function(){ excluircustomf(<?php echo $_GET['ideventog']; ?>,'eventofoto'); });
    });
+
+   function excluircustomf(idpost, customname) {
+ 		var txt;
+ 		var r = confirm("Tem certeza que deseja remover a foto?");
+ 		if (r == true) {
+ 					$.ajax({
+ 					method: "POST",
+ 					url: "/wp-content/themes/magazine/excluircustomf.php",
+ 					data: { idpost: idpost, customname: customname }
+ 					})
+ 					.done(function( msg ) {
+ 						var n = msg.indexOf("statusok");
+ 						if (n == -1) {
+ 							alert('Erro ao excluir a foto do evento');
+ 						} else {
+ 							//alert('Acessório excluido com sucesso!');
+ 							//window.location.href = window.location.pathname;
+              if (customname == 'atletaimagembackground') { $('#fotoadd0').hide(); $('#removerimg0').hide(); }
+              if (customname == 'eventofoto') { $('#fotoadd1').hide(); $('#removerimg1').hide(); }
+ 						}
+ 					});
+     		}
+     	}
  </script>
 
-<?php 
+<?php
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
 
-  <?php if ($_POST){ /* ?>
-    <?php 
-      // Create post object
-        $my_post = array(
+<?php
+if ($_GET['ideventog'] == "") {
+  echo "<h3 style='text-align: center; padding: 15px;'>Erro: Não foi selecionado o evento para edição!</h3>"; exit;
+}
+?>
+
+  <?php if ($_POST){
+
+
+    $my_post = array(
+          'ID' => $_GET['ideventog'],
           'post_title'    => $_POST['evento'],
-          'post_content'  => $_POST['descricao_evento'],
-          'post_status'   => 'pending',
-          'post_type'     => 'eventos',
-          'post_author'   => 1
+          'post_content'  => $_POST['descricao_evento']
         );
 
-$path = "wp-content/uploads/eventos/"; 
+
+
+
+$path = "wp-content/uploads/eventos/";
 
 $valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
 if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
@@ -70,13 +129,13 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
               $response['response']="Arquivo OK";
             }
           else
-            $response['response']="Falhou"; 
+            $response['response']="Falhou";
         }
         else
-        $response['response']="Arquivo tem mais de 4MB"; 
+        $response['response']="Arquivo tem mais de 4MB";
         }
         else
-        $response['response']="Formato Inválido"; 
+        $response['response']="Formato Inválido";
     }
   else
     $response['response']="Selecione um arquivo";
@@ -102,13 +161,168 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
               $response['response']="Arquivo OK";
             }
           else
-            $response['response']="Falhou"; 
+            $response['response']="Falhou";
         }
         else
-        $response['response']="Arquivo tem mais de 4MB"; 
+        $response['response']="Arquivo tem mais de 4MB";
         }
         else
-        $response['response']="Formato Inválido"; 
+        $response['response']="Formato Inválido";
+    }
+  else
+    $response['response']="Selecione um arquivo";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    $cur_post_id = wp_update_post($my_post);
+
+    $filename  = 'http://letts.com.br/wp-content/uploads/eventos/'.$actual_name1;
+    $filename1 = 'http://letts.com.br/wp-content/uploads/eventos/'.$actual_name;
+
+    if ($actual_name != "") {
+      //Img Destacada
+      $wp_filetype = wp_check_filetype(basename($filename), null );
+      $attachment = array(
+        'post_mime_type' => $wp_filetype['type'],
+        'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
+        'post_content' => '',
+        'post_status' => 'inherit'
+      );
+      $attach_id = wp_insert_attachment($attachment, $filename, $cur_post_id);
+      update_post_meta($cur_post_id, 'eventofoto', $attach_id);
+    }
+
+    if ($actual_name != "") {
+      //Img Evento 1
+      $wp_filetype1 = wp_check_filetype(basename($filename1), null );
+      $attachment1 = array(
+        'post_mime_type' => $wp_filetype1['type'],
+        'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename1)),
+        'post_content' => '',
+        'post_status' => 'inherit'
+      );
+      $attach_id1 = wp_insert_attachment($attachment1, $filename1, $cur_post_id);
+      update_post_meta($cur_post_id, 'atletaimagembackground', $attach_id1);
+    }
+
+    update_post_meta($cur_post_id, 'link_ingresso', $_POST['link']);
+    update_post_meta($cur_post_id, 'dataevento', $_POST['dataevento_mes'].'/'.$_POST['dataevento_dia'].'/'.$_POST['dataevento_ano']);
+    update_post_meta($cur_post_id, 'basicapaisatual', $_POST['pais']);
+    update_post_meta($cur_post_id, 'basicaestadoatual', $_POST['estado']);
+    update_post_meta($cur_post_id, 'basicacidadeatual', $_POST['cidade']);
+    update_post_meta($cur_post_id, 'eventotipo', $_POST['tipo_evento']);
+    update_post_meta($cur_post_id, 'atletaesporte', $_POST['esporte']);
+    update_post_meta($cur_post_id, 'profissao', $_POST['profissao']);
+
+    ?>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        //$('#sucesso').show();
+        window.location='/eventos/?msgsucess=2';
+      })
+    </script>
+
+    <?php exit;
+    //echo "<h1>UPDATE EFETUADO ".$cur_post_id.'</h1> ';
+
+
+
+
+
+
+
+
+
+
+  /* ?>
+    <?php
+      // Create post object
+        $my_post = array(
+          'post_title'    => $_POST['evento'],
+          'post_content'  => $_POST['descricao_evento'],
+          'post_status'   => 'pending',
+          'post_type'     => 'eventos',
+          'post_author'   => 1
+        );
+
+
+$path = "wp-content/uploads/eventos/";
+
+$valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
+if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+{
+
+  //Arquivo Catálogo
+  $name = $_FILES['img_destacada']['name'];
+  $size = $_FILES['img_destacada']['size'];
+
+  $file_info = pathinfo($name);
+  $name = md5($name) .'.'. $file_info['extension'];
+
+  if(strlen($name))
+    {
+      list($txt, $ext) = explode(".", $name);
+      if(in_array($ext,$valid_formats))
+      {
+      if($size<(10240*10240))
+        {
+          $actual_name = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
+          $tmp = $_FILES['img_destacada']['tmp_name'];
+          if(move_uploaded_file($tmp, $path.$actual_name))
+            {
+              $response['response']="Arquivo OK";
+            }
+          else
+            $response['response']="Falhou";
+        }
+        else
+        $response['response']="Arquivo tem mais de 4MB";
+        }
+        else
+        $response['response']="Formato Inválido";
+    }
+  else
+    $response['response']="Selecione um arquivo";
+
+  //Arquivo Evento 1
+  $name1 = $_FILES['img_evento1']['name'];
+  $size1 = $_FILES['img_evento1']['size'];
+
+  $file_info = pathinfo($name1);
+  $name1 = md5($name1) .'.'. $file_info['extension'];
+
+  if(strlen($name1))
+    {
+      list($txt, $ext) = explode(".", $name1);
+      if(in_array($ext,$valid_formats))
+      {
+      if($size1<(10240*10240))
+        {
+          $actual_name1 = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
+          $tmp = $_FILES['img_evento1']['tmp_name'];
+          if(move_uploaded_file($tmp, $path.$actual_name1))
+            {
+              $response['response']="Arquivo OK";
+            }
+          else
+            $response['response']="Falhou";
+        }
+        else
+        $response['response']="Arquivo tem mais de 4MB";
+        }
+        else
+        $response['response']="Formato Inválido";
     }
   else
     $response['response']="Selecione um arquivo";
@@ -128,7 +342,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
       'post_status' => 'inherit'
     );
     $attach_id = wp_insert_attachment($attachment, $filename, $cur_post_id);
-    
+
     //Img Evento 1
     $wp_filetype1 = wp_check_filetype(basename($filename1), null );
     $attachment1 = array(
@@ -141,13 +355,15 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
     if ($actual_name) {
       add_post_meta($cur_post_id, 'eventofoto', $attach_id, true);
-    }  
-    
+    }
+
       add_post_meta($cur_post_id, 'post_image', $filename, true);
 
     if ($actual_name1) {
       add_post_meta($cur_post_id, 'atletaimagembackground', $attach_id1, true);
     }
+
+
     add_post_meta($cur_post_id, 'basicaemail', $_SESSION['meuemail'], true);
     add_post_meta($cur_post_id, 'link_ingresso', $_POST['link'], true);
     add_post_meta($cur_post_id, 'atletaesporte', $_POST['esporte'], true);
@@ -155,11 +371,11 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     add_post_meta($cur_post_id, 'basicapaisatual', $_POST['pais'], true);
     add_post_meta($cur_post_id, 'eventotipo', $_POST['tipo_evento'], true);
 
-    $destinatario = "renato.botani@letts.com.br";  
+    $destinatario = "renato.botani@letts.com.br";
 
     $headers = "From: $destinatario \r\n";
     $headers.= "Content-Type: text/html; charset=ISO-8859-1 ";
-    $headers.= "MIME-Version: 1.0 ";    
+    $headers.= "MIME-Version: 1.0 ";
 
     $html = 'Você tem uma nova postagem de Evento para aprovação';
 
@@ -169,39 +385,133 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
     <script type="text/javascript">
       $(document).ready(function(){
-        $('#sucesso').show();
-      }) 
+        //$('#sucesso').show();
+        //window.location='/eventos/?msgsucess=1';
+      })
     </script>
   <?php } ?>
 
 
-  <?php 
-    query_posts( array('p' => $_GET['ideventog'], 'post_type'=>array('eventos')) );
+  <?php
+   query_posts( array('p' => $_GET['ideventog'], 'post_type'=>array('eventos')) );
     while ( have_posts() ) : the_post();
   ?>
 <?php
-	$nomeevento = get_the_title(); 
+	$nomeevento = get_the_title();
 	$linkingresso = get_custom_field('link_ingresso');
+  $dataevento = get_custom_field('dataevento');
+
+	$atletaesporte = get_custom_field('atletaesporte');
+	$profissao = get_custom_field('profissao');
+	$eventotipo = get_custom_field('eventotipo');
+	$basicapaisatual = get_custom_field('basicapaisatual');
+  $basicacidadeatual = get_custom_field('basicacidadeatual');
+  $basicaestadoatual = get_custom_field('basicaestadoatual');
+
+	$custom_fields = get_post_custom(3835);
+  	// $my_custom_field = $custom_fields['tipo_evento'];
+
+
 ?>
 
-        <div style="width: 685px; margin: 0 auto; text-align: center; padding: 40px 0px;">
+        <div style="width: 685px; margin: 0 auto; text-align: center; padding: 40px 0px;" >
           <p id="sucesso">Evento salvo com sucesso.</p>
           <h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; font-size: 45px; font-weight: bold; margin-bottom: 10px;">Editar Evento</h4>
           <div class="galeria_profissional">
             <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
-             <input id="idinputevento" class="input_video" type="text" name="evento" placeholder="Nome do Evento" value="<?php echo $nomeevento; ?>">
-             <br>Link do ingresso: <input class="input_video" type="text" name="link" value="<?php echo $linkingresso; ?>" placeholder="Link para comprar ingresso ou para inscrição com http://">
 
-<div style="text-align: left; width: 625px; margin: auto; margin-bottom: 10px;">
-              Esporte/Profissão atual: [Mostrar atual] (<a href="#" onclick="javascript: document.getElementById('janelaesportepro').style.display='block';">Editar</a>)
-             </div>
+<div style="text-align: left; margin-left: 27px;">
+
+  <div style="float: left; width: 418px;">Titulo:
+               <input id="idinputevento" class="input_video" type="text" name="evento" value="<?php echo $nomeevento; ?>">
+  </div>
+
+  <div style="float: left; width: 210px;">Data do evento:
+
+
+<?php
+  $datanas1 = get_custom_field('dataevento');
+  $datanas1d = date("d",strtotime($datanas1));
+  $datanas1m = date("m",strtotime($datanas1));
+  $datanas1y = date("Y",strtotime($datanas1));
+?>
+<div>
+<select id="dataevento_mes" name="dataevento_mes" style="width: 85px; float: left;">
+  <option value="01" <?php if ($datanas1m == '01') { echo 'selected="selected"'; } ?>>01-Jan</option>
+  <option value="02" <?php if ($datanas1m == '02') { echo 'selected="selected"'; } ?>>02-Feb</option>
+  <option value="03" <?php if ($datanas1m == '03') { echo 'selected="selected"'; } ?>>03-Mar</option>
+  <option value="04" <?php if ($datanas1m == '04') { echo 'selected="selected"'; } ?>>04-Apr</option>
+  <option value="05" <?php if ($datanas1m == '05') { echo 'selected="selected"'; } ?>>05-May</option>
+  <option value="06" <?php if ($datanas1m == '06') { echo 'selected="selected"'; } ?>>06-Jun</option>
+  <option value="07" <?php if ($datanas1m == '07') { echo 'selected="selected"'; } ?>>07-Jul</option>
+  <option value="08" <?php if ($datanas1m == '08') { echo 'selected="selected"'; } ?>>08-Aug</option>
+  <option value="09" <?php if ($datanas1m == '09') { echo 'selected="selected"'; } ?>>09-Sep</option>
+  <option value="10" <?php if ($datanas1m == '10') { echo 'selected="selected"'; } ?>>10-Oct</option>
+  <option value="11" <?php if ($datanas1m == '11') { echo 'selected="selected"'; } ?>>11-Nov</option>
+  <option value="12" <?php if ($datanas1m == '12') { echo 'selected="selected"'; } ?>>12-Dec</option>
+</select>
+
+
+<select id="dataevento_dia" name="dataevento_dia" style="width: 60px; float: left; margin-left: 2px;">
+  <option value="01" <?php if ($datanas1d == '01') { echo 'selected="selected"'; } ?>>01</option>
+  <option value="02" <?php if ($datanas1d == '02') { echo 'selected="selected"'; } ?>>02</option>
+  <option value="03" <?php if ($datanas1d == '03') { echo 'selected="selected"'; } ?>>03</option>
+  <option value="04" <?php if ($datanas1d == '04') { echo 'selected="selected"'; } ?>>04</option>
+  <option value="05" <?php if ($datanas1d == '05') { echo 'selected="selected"'; } ?>>05</option>
+  <option value="06" <?php if ($datanas1d == '06') { echo 'selected="selected"'; } ?>>06</option>
+  <option value="07" <?php if ($datanas1d == '07') { echo 'selected="selected"'; } ?>>07</option>
+  <option value="08" <?php if ($datanas1d == '08') { echo 'selected="selected"'; } ?>>08</option>
+  <option value="09" <?php if ($datanas1d == '09') { echo 'selected="selected"'; } ?>>09</option>
+  <option value="10" <?php if ($datanas1d == '10') { echo 'selected="selected"'; } ?>>10</option>
+  <option value="11" <?php if ($datanas1d == '11') { echo 'selected="selected"'; } ?>>11</option>
+  <option value="12" <?php if ($datanas1d == '12') { echo 'selected="selected"'; } ?>>12</option>
+  <option value="13" <?php if ($datanas1d == '13') { echo 'selected="selected"'; } ?>>13</option>
+  <option value="14" <?php if ($datanas1d == '14') { echo 'selected="selected"'; } ?>>14</option>
+  <option value="15" <?php if ($datanas1d == '15') { echo 'selected="selected"'; } ?>>15</option>
+  <option value="16" <?php if ($datanas1d == '16') { echo 'selected="selected"'; } ?>>16</option>
+  <option value="17" <?php if ($datanas1d == '17') { echo 'selected="selected"'; } ?>>17</option>
+  <option value="18" <?php if ($datanas1d == '18') { echo 'selected="selected"'; } ?>>18</option>
+  <option value="19" <?php if ($datanas1d == '19') { echo 'selected="selected"'; } ?>>19</option>
+  <option value="20" <?php if ($datanas1d == '20') { echo 'selected="selected"'; } ?>>20</option>
+  <option value="21" <?php if ($datanas1d == '21') { echo 'selected="selected"'; } ?>>21</option>
+  <option value="22" <?php if ($datanas1d == '22') { echo 'selected="selected"'; } ?>>22</option>
+  <option value="23" <?php if ($datanas1d == '23') { echo 'selected="selected"'; } ?>>23</option>
+  <option value="24" <?php if ($datanas1d == '24') { echo 'selected="selected"'; } ?>>24</option>
+  <option value="25" <?php if ($datanas1d == '25') { echo 'selected="selected"'; } ?>>25</option>
+  <option value="26" <?php if ($datanas1d == '26') { echo 'selected="selected"'; } ?>>26</option>
+  <option value="27" <?php if ($datanas1d == '27') { echo 'selected="selected"'; } ?>>27</option>
+  <option value="28" <?php if ($datanas1d == '28') { echo 'selected="selected"'; } ?>>28</option>
+  <option value="29" <?php if ($datanas1d == '29') { echo 'selected="selected"'; } ?>>29</option>
+  <option value="30" <?php if ($datanas1d == '30') { echo 'selected="selected"'; } ?>>30</option>
+  <option value="31" <?php if ($datanas1d == '31') { echo 'selected="selected"'; } ?>>31</option>
+</select>
+
+<select id="dataevento_ano" name="dataevento_ano" style="width: 60px; float: left; margin-left: 2px;">
+  <option value="2016" <?php if ($datanas1y == '2016') { echo 'selected="selected"'; } ?>>2016</option>
+  <option value="2017" <?php if ($datanas1y == '2017') { echo 'selected="selected"'; } ?>>2017</option>
+  <option value="2018" <?php if ($datanas1y == '2018') { echo 'selected="selected"'; } ?>>2018</option>
+  <option value="2019" <?php if ($datanas1y == '2019') { echo 'selected="selected"'; } ?>>2019</option>
+  <option value="2020" <?php if ($datanas1y == '2020') { echo 'selected="selected"'; } ?>>2020</option>
+  <option value="2021" <?php if ($datanas1y == '2021') { echo 'selected="selected"'; } ?>>2021</option>
+  <option value="2022" <?php if ($datanas1y == '2022') { echo 'selected="selected"'; } ?>>2022</option>
+</select>
+
+  </div>
+</div>
+
+  <div style="float: left; width: 100%;">
+               Link do ingresso: <input class="input_video" type="text" name="link" value="<?php echo $linkingresso; ?>" style="width: 615px !important; max-width: 100%;" >
+   </div>
+
+</div>
+
 
 <div style="display: none;border: solid 1px #DDD; height: 65px; padding-top: 10px;" id="janelaesportepro">
 
              <div class="selects_forms" style="margin-top: -10px;">
-                <p style="margin: 10px 0px -10px;">Selecione apenas uma opção: Esporte ou Profissão</p>
+                <p style="margin: 10px 0px -10px; text-align: left; margin-left: 30px;">Selecione apenas uma opção: Esporte ou Profissão</p>
                 <select id="atletaesporte" name="esporte" style="width: 310px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: 10px; margin-left: 22px;">
-                        <option value="">-- Selecione o esporte --</option>
+                        <option value="<?php echo $atletaesporte; ?>"><?php echo $atletaesporte; ?></option>
                         <option value="Aeromodelismo">Aeromodelismo</option>
                         <option value="Alpinismo">Alpinismo</option>
                         <option value="Asa Delta">Asa Delta</option>
@@ -276,7 +586,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                       </select>
 
                  <select id="profissao" name="profissao" style="width: 310px; margin-bottom: 14px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; float: right; margin-top: 10px; margin-right: 5px;">
-                      <option value="">-- Selecione a profissão --</option>
+                      <option value="<?php echo $profissao; ?>"><?php echo $profissao; ?></option>
                       <option value="Assessor de imprensa">Assessor de imprensa</option>
                       <option value="Coordenador de eventos">Coordenador de eventos</option>
                       <option value="Desenhista">Desenhista</option>
@@ -298,256 +608,123 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                       <option value="Psicólogo esportivo">Psicólogo esportivo</option>
                       <option value="Técnico">Técnico</option>
                       <option value="Videomaker">Videomaker</option>
-                  </select>             
+                  </select>
               </div>
 </div>
 
 
-            <div style="text-align: left; width: 625px; margin: auto; margin-top: 10px;">
-              Tipo do evento: <select id="tipo_evento" name="tipo_evento" style="width: 310px; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-bottom: 10px; margin-right: 29px;">
-                      <option value="">-- Selecione o tipo do evento --</option>
-                      <option value="Campeonato">Campeonato</option>
-                      <option value="Show">Show</option>
-                      <option value="Festa">Festa</option>
-                      <option value="Outros">Outros</option>
-               </select>   
-             </div>
-
-             <div style="text-align: left; width: 625px; margin: auto; margin-top: 10px;">
-              País:
-              <select id="pais" name="pais" style="width: 310px; height: 35px; margin-bottom: 14px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-top: 10px;">    
-              <option value="">-- Selecione um pais --</option>
-              <option value="Afeganistão">Afeganistão</option>
-              <option value="África do Sul">África do Sul</option>
-              <option value="Albânia">Albânia</option>
-              <option value="Alemanha">Alemanha</option>
-              <option value="Andorra">Andorra</option>
-              <option value="Angola">Angola</option>
-              <option value="Antigua e Barbuda">Antigua e Barbuda</option>
-              <option value="Arábia Saudita">Arábia Saudita</option>
-              <option value="Argélia">Argélia</option>
-              <option value="Argentina">Argentina</option>
-              <option value="Armênia">Armênia</option>
-              <option value="Austrália">Austrália</option>
-              <option value="Áustria">Áustria</option>
-              <option value="Azerbaijão">Azerbaijão</option>
-              <option value="Bahamas">Bahamas</option>
-              <option value="Bangladesh">Bangladesh</option>
-              <option value="Barbados">Barbados</option>
-              <option value="Bahrein">Bahrein</option>
-              <option value="Bélgica">Bélgica</option>
-              <option value="Belize">Belize</option>
-              <option value="Benin">Benin</option>
-              <option value="Bielorrússia )">Bielorrússia</option>
-              <option value="Bolívia">Bolívia</option>
-              <option value="Bósnia Herzegóvina">Bósnia Herzegóvina</option>
-              <option value="Botsuana">Botsuana</option>
-              <option value="Brasil">Brasil</option>
-              <option value="Brunei">Brunei</option>
-              <option value="Bulgária">Bulgária</option>
-              <option value="Burkina-Fasso">Burkina-Fasso</option>
-              <option value="Burundi">Burundi</option>
-              <option value="Butão">Butão</option>
-              <option value="Cabo Verde">Cabo Verde</option>
-              <option value="Camarões">Camarões</option>
-              <option value="Camboja">Camboja</option>
-              <option value="Canadá">Canadá</option>
-              <option value="Catar">Catar</option>
-              <option value="Cazaquistão">Cazaquistão</option>
-              <option value="Chade">Chade</option>
-              <option value="Chile">Chile</option>
-              <option value="China">China</option>
-              <option value="Chipre">Chipre</option>
-              <option value="Cingapura">Cingapura</option>
-              <option value="Colômbia">Colômbia</option>
-              <option value="Congo">Congo</option>
-              <option value="Comores">Comores</option>
-              <option value="Coréia do Norte">Coréia do Norte</option>
-              <option value="Coréia do Sul">Coréia do Sul</option>
-              <option value="Costa do Marfim">Costa do Marfim</option>
-              <option value="Costa Rica">Costa Rica</option>
-              <option value="Croácia">Croácia</option>
-              <option value="Cuba">Cuba</option>
-              <option value="Dinamarca">Dinamarca</option>
-              <option value="Djibuti">Djibuti</option>
-              <option value="Dominica">Dominica</option>
-              <option value="Egito">Egito</option>
-              <option value="El Salvador">El Salvador</option>
-              <option value="Emirados Árabes Unidos">Emirados Árabes Unidos</option>
-              <option value="Equador">Equador</option>
-              <option value="Eritréia">Eritréia</option>
-              <option value="Escócia">Escócia</option>
-              <option value="Eslováquia">Eslováquia</option>
-              <option value="Eslovênia">Eslovênia</option>
-              <option value="Espanha">Espanha</option>
-              <option value="Estados Unidos">Estados Unidos</option>
-              <option value="Estônia">Estônia</option>
-              <option value="Etiópia">Etiópia</option>
-              <option value="Federação Russa">Federação Russa</option>
-              <option value="Fiji">Fiji</option>
-              <option value="Filipinas">Filipinas</option>
-              <option value="Finlândia">Finlândia</option>
-              <option value="Formosa )">Formosa )</option>
-              <option value="França">França</option>
-              <option value="Gabão">Gabão</option>
-              <option value="Gâmbia">Gâmbia</option>
-              <option value="Gana">Gana</option>
-              <option value="Geórgia">Geórgia</option>
-              <option value="Grã-Bretanha ">Grã-Bretanha </option>
-              <option value="Granada">Granada</option>
-              <option value="Grécia">Grécia</option>
-              <option value="Groenlândia ">Groenlândia </option>
-              <option value="Guatemala">Guatemala</option>
-              <option value="Guiana">Guiana</option>
-              <option value="Guiana Francesa ">Guiana Francesa </option>
-              <option value="Guiné">Guiné</option>
-              <option value="Guiné Bissau">Guiné Bissau</option>
-              <option value="Guiné Equatorial">Guiné Equatorial</option>
-              <option value="Haiti">Haiti</option>
-              <option value="Holanda">Holanda</option>
-              <option value="Honduras">Honduras</option>
-              <option value="Hungria">Hungria</option>
-              <option value="Iêmen">Iêmen</option>
-              <option value="Ilhas Marshall">Ilhas Marshall</option>
-              <option value="Ilhas Salomão">Ilhas Salomão</option>
-              <option value="Índia">Índia</option>
-              <option value="Indonésia">Indonésia</option>
-              <option value="Irã">Irã</option>
-              <option value="Iraque">Iraque</option>
-              <option value="Irlanda">Irlanda</option>
-              <option value="Irlanda do Norte ">Irlanda do Norte </option>
-              <option value="Islândia">Islândia</option>
-              <option value="Israel">Israel</option>
-              <option value="Itália">Itália</option>
-              <option value="Jamaica">Jamaica</option>
-              <option value="Japão">Japão</option>
-              <option value="Jordânia">Jordânia</option>
-              <option value="Kiribati">Kiribati</option>
-              <option value="Kuweit">Kuweit</option>
-              <option value="Laos">Laos</option>
-              <option value="Lesoto">Lesoto</option>
-              <option value="Letônia">Letônia</option>
-              <option value="Líbano">Líbano</option>
-              <option value="Libéria">Libéria</option>
-              <option value="Líbia">Líbia</option>
-              <option value="Liechtenstein">Liechtenstein</option>
-              <option value="Lituânia">Lituânia</option>
-              <option value="Luxemburgo">Luxemburgo</option>
-              <option value="Macedônia">Macedônia</option>
-              <option value="Madagascar">Madagascar</option>
-              <option value="Malásia">Malásia</option>
-              <option value="Malauí">Malauí</option>
-              <option value="Maldivas">Maldivas</option>
-              <option value="Mali">Mali</option>
-              <option value="Malta">Malta</option>
-              <option value="Marrocos">Marrocos</option>
-              <option value="Maurício">Maurício</option>
-              <option value="Mauritânia">Mauritânia</option>
-              <option value="México">México</option>
-              <option value="Mianmar">Mianmar</option>
-              <option value="Micronésia">Micronésia</option>
-              <option value="Moçambique">Moçambique</option>
-              <option value="Moldávia">Moldávia</option>
-              <option value="Mônaco">Mônaco</option>
-              <option value="Mongólia">Mongólia</option>
-              <option value="Namíbia">Namíbia</option>
-              <option value="Nauru">Nauru</option>
-              <option value="Nepal">Nepal</option>
-              <option value="Nicarágua">Nicarágua</option>
-              <option value="Niger">Niger</option>
-              <option value="Nigéria">Nigéria</option>
-              <option value="Noruega">Noruega</option>
-              <option value="Nova Zelândia">Nova Zelândia</option>
-              <option value="Omã">Omã</option>
-              <option value="Panamá">Panamá</option>
-              <option value="Palau">Palau</option>
-              <option value="Papua Nova Guiné">Papua Nova Guiné</option>
-              <option value="Paquistão">Paquistão</option>
-              <option value="Paraguai">Paraguai</option>
-              <option value="Peru">Peru</option>
-              <option value="Polônia">Polônia</option>
-              <option value="Porto Rico ">Porto Rico </option>
-              <option value="Portugal">Portugal</option>
-              <option value="Quênia">Quênia</option>
-              <option value="Quirguistão">Quirguistão</option>
-              <option value="Reino Unido">Reino Unido</option>
-              <option value="Rep. Centro-Africana">Rep. Centro-Africana</option>
-              <option value="Rep. Dominicana">Rep. Dominicana</option>
-              <option value="República Tcheca">República Tcheca</option>
-              <option value="Romênia">Romênia</option>
-              <option value="Ruanda">Ruanda</option>
-              <option value="Samoa">Samoa</option>
-              <option value="San Marino">San Marino</option>
-              <option value="Santa Lúcia">Santa Lúcia</option>
-              <option value="São Cristóvão e Névis">São Cristóvão e Névis</option>
-              <option value="São Tomé e Príncipe">São Tomé e Príncipe</option>
-              <option value="São Vicente e Granadinas">São Vicente e Granadinas</option>
-              <option value="Seicheles">Seicheles</option>
-              <option value="Senegal">Senegal</option>
-              <option value="Serra Leoa">Serra Leoa</option>
-              <option value="Sérvia e Montenegro">Sérvia e Montenegro</option>
-              <option value="Síria">Síria</option>
-              <option value="Somália">Somália</option>
-              <option value="Sri Lanka">Sri Lanka</option>
-              <option value="Suazilândia">Suazilândia</option>
-              <option value="Sudão">Sudão</option>
-              <option value="Suécia">Suécia</option>
-              <option value="Suíça">Suíça</option>
-              <option value="Suriname">Suriname</option>
-              <option value="Tadjiquistão">Tadjiquistão</option>
-              <option value="Tailândia">Tailândia</option>
-              <option value="Tanzânia">Tanzânia</option>
-              <option value="Togo">Togo</option>
-              <option value="Tonga">Tonga</option>
-              <option value="Trinidad e Tobago">Trinidad e Tobago</option>
-              <option value="Tunísia">Tunísia</option>
-              <option value="Turcomenistão">Turcomenistão</option>
-              <option value="Turquia">Turquia</option>
-              <option value="Tuvalu">Tuvalu</option>
-              <option value="Ucrânia">Ucrânia</option>
-              <option value="Uganda">Uganda</option>
-              <option value="Uruguai">Uruguai</option>
-              <option value="Uzbequistão">Uzbequistão</option>
-              <option value="Vanuatu">Vanuatu</option>
-              <option value="Vaticano">Vaticano</option>
-              <option value="Venezuela">Venezuela</option>
-              <option value="Vietnã">Vietnã</option>
-              <option value="Zaire ">Zaire </option>
-              <option value="Zâmbia">Zâmbia</option>
-              <option value="Zimbábue">Zimbábue</option>
-              </select> 
-            </div>
 
 
-              <div class="foto_principal">
-                <p>Foto principal</p>
-                <div>
-                	<span style="font-size: 12px;">Atual:</span> <br>
-                	<img src="<?php print_custom_field('atletaimagembackground:to_image_src'); ?>" width="50">
+                           <div style="float: left; width: 210px;text-align: left; height: 78px; margin-left: 28px;">
+                             <div style="margin-right: 5px;">
+                           		<?php /* <form action="#" role="form" class="form-horizontal" id="location" method="post" accept-charset="utf-8"> */ ?>
+                           		<div class="form-group">
+                           		<div class="col-sm-4">
+                           		<div style="margin-bottom: 5px;">País:</div>
+                           		<select name="pais" class="form-control countries" id="countryId" style="width: 100%;">
+                           		<option value="">Selecionar Pais</option>
+                           		</select>
+                           		</div>
+                           		</div>
+                             </div>
+                           </div>
+
+                           <div style="float: left; width: 210px;text-align: left; height: 78px;">
+                             <div style="margin-left: 0px; margin-right: 7px;">
+                           		<div class="form-group">
+                           		<div class="col-sm-4">
+                           		<div style="margin-bottom: 5px;">Estado:</div>
+
+                           		<select name="estado" class="form-control states" id="stateId" style="width: 100%;">
+                           		<option value="">Selecionar Estado</option>
+                           		</select>
+                           		</div>
+                           		</div>
+                             </div>
+                           </div>
+
+                           <div style="float: left; width: 225px;text-align: left; height: 78px;">
+                             <div style="margin-left: 0px; margin-right: 7px;">
+                           		<div class="form-group">
+                           		<div class="col-sm-4">
+                           		<div style="margin-bottom: 5px;">Cidade:</div>
+                               <input class="input_video" type="text" name="cidade" id="frmcidade" value="<?php echo $basicacidadeatual; ?>">
+                           		</div>
+                           		</div>
+                             </div>
+                           </div>
+
+                           <script src="http://letts.com.br/wp-content/themes/magazine/country/js/location.js"></script>
+
+
+
+                                       <div style="text-align: left; width: 625px; margin: auto; margin-top: 10px;">
+                                         Tipo do evento: <br><select id="tipo_evento" name="tipo_evento" style="width: 100%; height: 35px; font-size: 1.12em; font-family: 'Open Sans', sans-serif; font-weight: 100; margin-bottom: 10px; margin-right: 29px;">
+                                                 <option value="<?php echo $eventotipo;?>"><?php echo $eventotipo;?></option>
+                           		      <option value="Campeonato">Campeonato</option>
+                                                 <option value="Show">Show</option>
+                                                 <option value="Festa">Festa</option>
+                                                 <option value="Outros">Outros</option>
+
+                                          </select>
+                                        </div>
+
+
+              <style type="text/css">
+              .removerimg {
+                position: absolute;
+                margin-left: 50px;
+                margin-top: -15px;
+                color: #F00;
+                text-align: center;
+              }
+              .removerimg a {
+                color: #F00;
+              }
+              </style>
+
+              <div class="foto_principal" style="margin-top: 10px; margin-bottom: 0px; margin-left: 30px;">
+                <p>Foto principal:</p>
+                <div style="float: left; margin-bottom: 0px; min-height: 65px; border-bottom: dashed 0px #666; padding: 0px;">
+                  <?php if (get_custom_field('atletaimagembackground:to_image_src') == '') { echo "<div style='float: left; width: 50px; margin-right: 10px;'>&nbsp;</div>";  } else { ?>
+                  <div id="removerimg0" class="removerimg"><a href="#" id="removerfoto0"><i class="fa fa-minus-circle" aria-hidden="true"></i></a></div>
+                  <div id="dvupload0" style="float: left; margin-right: 10px; max-height: 40px; overflow: hidden;">
+                    <img id="fotoadd0" src="<?php print_custom_field('atletaimagembackground:to_image_src'); ?>" width="50">
+                  </div>
+                  <?php } ?>
+                  &nbsp;
                 </div>
                 <div class="custom-upload">
-                    <input type="file" name="img_destacada" id="idimgdestacada">
+                    <input id="idimgdestacada" type="file" name="img_destacada">
                     <div class="fake-file">
-                        <input disabled="disabled" placeholder="Selecione uma Imagem">
+                        <input disabled="disabled">
                     </div>
-                </div>      
+                </div>
+                &nbsp;
               </div>
 
-              <div class="foto_principal" style="margin-top: 30px; margin-bottom: 20px;">
-                <p>Flyer</p>
-                <div>
-                	<span style="font-size: 12px;">Atual:</span> <br>
-                	<img src="<?php print_custom_field('eventofoto:to_image_src'); ?>" width="50">
+              <div class="foto_principal" style="margin-top: 0px; margin-bottom: 0px; margin-left: 30px;">
+                <p>Foto Flyer:</p>
+                <div style="float: left; margin-bottom: 10px; min-height: 65px; border-bottom: dashed 0px #666; padding: 0px;">
+                  <?php if (get_custom_field('eventofoto:to_image_src') == '') { echo "<div style='float: left; width: 50px; margin-right: 10px;'>&nbsp;</div>";  } else { ?>
+                  <div id="removerimg1" class="removerimg"><a href="#" id="removerfoto1"><i class="fa fa-minus-circle" aria-hidden="true"></i></a></div>
+                  <div id="dvupload1" style="float: left; margin-right: 10px; max-height: 40px; overflow: hidden;">
+                    <img id="fotoadd1" src="<?php print_custom_field('eventofoto:to_image_src'); ?>" width="50">
+                  </div>
+                  <?php } ?>
+                  &nbsp;
                 </div>
                 <div class="custom-upload">
                     <input type="file" name="img_evento1" id="idimgevento">
                     <div class="fake-file">
-                        <input disabled="disabled" placeholder="Selecione uma Imagem">
+                        <input disabled="disabled">
                     </div>
                 </div>
-              </div>  
+                &nbsp;
+              </div>
 
-              <textarea id="iddescricaoevento" class="" name="descricao_evento" placeholder="Descrição do evento" value="<?php the_content(); ?>" style="margin-left: 6px; width: 91%; height: 115px;"></textarea>
+              <div style="margin-left: 30px; text-align: left; float: left; width: 100%;">Descrição do evento:</div>
+              <textarea id="iddescricaoevento" class="" name="descricao_evento" style="margin-left: 6px; width: 91%; height: 115px;"><?php echo get_the_content(); ?></textarea>
 
              <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
 
@@ -561,52 +738,46 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                                   font-family: Oswald, sans-serif;
                                   text-transform: uppercase;
                                   -webkit-appearance: none;
-                                  -webkit-border-radius: 0;float: right; margin-top: 0px;margin-left: 300px;" value="Salvar Evento">
+                                  -webkit-border-radius: 0;float: right; margin-top: 0px;margin-left: 300px; margin-right: 29px;" value="Salvar Evento">
                                   <br>&nbsp;<br>
-            </form> 
+            </form>
           </div>
 
-         
- <div>
-		<div style="width: 1024px; margin: auto; padding-top: 10px;font-weight: bold;
-	    font-size: 14px;
-	    color: #ff8920; margin-bottom: 15px;"><a href="/?post_type=eventos&p=<?php echo $_GET['ideventog']; ?>">Voltar para o evento</a></div>
-	</div>
-</div>  
+
+</div>
 
   <div id="contentwrap">
-  
+
     <!-- /content -->
     <?php themify_content_after(); // hook ?>
 
   <?php endwhile ?>
 
-    <?php 
+    <?php
       $ideventog = $_GET['ideventog'];
         if ($ideventog == 1) { ?>
             <div class="div_semcad">
                 <h1 style="text-transform: uppercase; margin-bottom: -13px; font-weight: bold;">Área Restrita</h1>
                 <p style="margin: 4px 0px 20px;">Para realizar esta ação é necessario ser cadastrado.</p>
-                <a href="/wp-content/themes/magazine/logout.php" id="criar" style="background: #f57300; text-decoration: none; padding: 5px 20px; color: #FFFFFF;">Criar Nova Conta.</a> 
-          </div>  
+                <a href="/wp-content/themes/magazine/logout.php" id="criar" style="background: #f57300; text-decoration: none; padding: 5px 20px; color: #FFFFFF;">Criar Nova Conta.</a>
+          </div>
     <?php } ?>
-  
+
 <?php get_footer(); ?>
 
 <script type="text/javascript">
 $("#atletaesporte").change(function() {
   $("#profissao").hide();
   $("#atletaesporte").css('width','629px');
-}) 
+})
 
 $("#profissao").change(function() {
   $("#atletaesporte").hide();
   $("#profissao").css('width','629px');
-}) 
+})
 
 $('.custom-upload input[type=file]').change(function(){
     $(this).next().find('input').val($(this).val());
 });
 
 </script>
-

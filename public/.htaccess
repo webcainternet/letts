@@ -3,7 +3,6 @@ AuthType Basic
 AuthName "Restrito"
 Require valid-user
 
-DirectoryIndex index_.php index.php
 
 # BEGIN WordPress
 <IfModule mod_rewrite.c>

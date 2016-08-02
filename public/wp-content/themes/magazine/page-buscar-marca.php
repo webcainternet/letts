@@ -10,7 +10,7 @@
 
 
 
-<?php 
+<?php
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
@@ -34,9 +34,9 @@ global $themify; ?>
             <div style="float: left; margin-top: 0px;">
               <input type="submit" value="Buscar" style="">
             </div>
-                </form>  
+                </form>
           </div>
-	
+
     </div>
 </form>
 			<div style="float: left; width: 100%; padding-top: 10px;">
@@ -45,9 +45,9 @@ global $themify; ?>
 
 
 							<div style="">
-								
+
 <section class="module">
-  <section class="wraper">    
+  <section class="wraper">
 
 
 <?php
@@ -55,43 +55,60 @@ mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or
     die("Could not connect: " . mysql_error());
 mysql_select_db(DB_NAME);
 
-if ($_POST["nomemarca"] == "") {
-  $query1 = "select id, post_title from wp_posts where post_type = 'marca' AND post_status = 'publish' ORDER BY rand()";
+$consultapagina = $_GET["pagina"];
+if ($consultapagina == "") {
+  $consultapagina = 1; $vermaisqtos = 50;
+  if ($_POST["nomemarca"] == "") {
+    $query1 = "select id, post_title from wp_posts where post_type = 'marca' AND post_status = 'publish' ORDER BY rand() LIMIT ".$vermaisqtos;
+  } else {
+    $query1 = "select id, post_title from wp_posts where post_type = 'marca' AND post_status = 'publish' AND post_title like '%".$_POST["nomemarca"]."%'  ORDER BY rand() LIMIT ".$vermaisqtos;
+  }
 } else {
-  $query1 = "select id, post_title from wp_posts where post_type = 'marca' AND post_status = 'publish' AND post_title like '%".$_POST["nomemarca"]."%'  ORDER BY rand()";
+  $consultapagina = $consultapagina+1; $vermaisqtos = 50 * $consultapagina;
+  if ($_POST["nomemarca"] == "") {
+    $query1 = "select id, post_title from wp_posts where post_type = 'marca' AND post_status = 'publish' ORDER BY id DESC LIMIT ".$vermaisqtos;
+  } else {
+    $query1 = "select id, post_title from wp_posts where post_type = 'marca' AND post_status = 'publish' AND post_title like '%".$_POST["nomemarca"]."%'  ORDER BY id DESC LIMIT ".$vermaisqtos;
+  }
 }
+
+
+
+//echo "<h1>".$query1."</h1>";
 $result = mysql_query($query1);
 
+$qtositens = 0;
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+  $qtositens = $qtositens + 1;
 	$nome = $row["post_title"];
 	$idatleta = $row["id"];
 
 
-    $resultbasicaimagem = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicaimagem' AND post_id = ".$row["id"]);
-    while ($rowbasicaimagem = mysql_fetch_array($resultbasicaimagem, MYSQL_ASSOC)) {
-    	$basicaimagem = $rowbasicaimagem["meta_value"];
+    $resultlogo = mysql_query("select meta_value from wp_postmeta where meta_key = 'logo' AND post_id = ".$row["id"]);
+    while ($rowlogo = mysql_fetch_array($resultlogo, MYSQL_ASSOC)) {
+    	$logo = $rowlogo["meta_value"];
     }
-	$resultbasicaimagemurl = mysql_query("select meta_value from wp_postmeta where meta_key = '_wp_attached_file' AND post_id = ".$basicaimagem);
-    while ($rowbasicaimagemurl = mysql_fetch_array($resultbasicaimagemurl, MYSQL_ASSOC)) {
-    	$basicaimagemurl = $rowbasicaimagemurl["meta_value"];
-        $basicaimagemurl = explode("http://letts.com.br/wp-content/uploads/", $basicaimagemurl);
-        if ($basicaimagemurl[1]) {
-            $basicaimagemurl = $basicaimagemurl[1];
+	$resultlogourl = mysql_query("select meta_value from wp_postmeta where meta_key = '_wp_attached_file' AND post_id = ".$logo);
+    while ($rowlogourl = mysql_fetch_array($resultlogourl, MYSQL_ASSOC)) {
+    	$logourl = $rowlogourl["meta_value"];
+        $logourl = explode("http://letts.com.br/wp-content/uploads/", $logourl);
+        if ($logourl[1]) {
+            $logourl = $logourl[1];
         }else{
-            $basicaimagemurl = $basicaimagemurl[0];
-        }        
+            $logourl = $logourl[0];
+        }
     }
     ?>
 
       <figure class='small' style="border: 0px;">
-      
+
       <a href="/?p=<?php echo $idatleta; ?>">
-      	<div style="width: 250px; 
-      	height: 200px; 
-      	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
+      	<div style="width: 212.8px;
+      	height: 200px;
+      	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $logourl; ?>');
       	background-position: center;
         background-repeat: no-repeat;
-      	<?php echo calcbackgroundsize("wp-content/uploads/".$basicaimagemurl, 250, 200); ?>;
+      	<?php echo calcbackgroundsize("wp-content/uploads/".$logourl, 212, 200); ?>;
       	">
       		&nbsp;
       	</div>
@@ -119,6 +136,15 @@ mysql_free_result($result);
 
 							</div>
 
+<?php if ($qtositens % 50 == 0) { ?>
+<div>
+  <div style="float: right;">
+    <a href="?pagina=<?php echo $consultapagina; ?>"><input type="submit" value="Ver mais" style="margin-top: 16px;"></a>
+  </div>
+  &nbsp;
+</div>
+<?php } ?>
+
 
 						</div>
 
@@ -137,11 +163,11 @@ mysql_free_result($result);
 </div>
 	<!-- /#contentwrap -->
 
-	
+
 
 </div>
 <!-- /layout-container -->
 
-<?php include('banners.php') ?>  
+<?php include('banners.php') ?>
 
 <?php get_footer(); ?>

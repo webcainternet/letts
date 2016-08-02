@@ -5,7 +5,7 @@ if (!current_user_can('administrator')) exit('Admins only.');
 * Edit a custom field.  
 *
 * @param string $field_type identifies the type of field we're editing
-* @param string $field_name	uniquely identifies this field inside this post_type
+* @param string $field_name	uniquely identifies this field inside this post_type (comes from $_GET)
 
 ------------------------------------------------------------------------------*/
 // Make sure the field exists
@@ -36,7 +36,10 @@ $displayable_types = CCTM::get_post_types();
 	
 $field_type = self::$data['custom_field_defs'][$field_name]['type'];
 $field_data = self::$data['custom_field_defs'][$field_name]; // Data object we will save
-
+//print '<pre>';
+//print 'Field Name: '. $field_name.'<br/>'; exit;
+//print '<pre>';
+//print_r(self::$data); exit;
 if(!$FieldObj = CCTM::load_object($field_type, 'fields')) {
 	die('Field not found.');
 }
@@ -50,6 +53,11 @@ $data['change_field_type'] = '<br/><a href="?page=cctm_fields&a=change_field_typ
 
 // Save if submitted...
 if ( !empty($_POST) && check_admin_referer($data['action_name'], $data['nonce_name']) ) {
+//    print_r('SUBMITTED!<pre>');
+//    print 'POST:';
+//    print_r($_POST);
+//    print 'GET';
+//    print_r($_GET);
 	// A little cleanup before we handoff to save_definition_filter
 	unset($_POST[ $data['nonce_name'] ]);
 	unset($_POST['_wp_http_referer']);
@@ -69,7 +77,7 @@ if ( !empty($_POST) && check_admin_referer($data['action_name'], $data['nonce_na
 			if (is_array($def['custom_fields']) && in_array($field_name, $def['custom_fields'])) {
 				$revised_custom_fields = array();
 				foreach ($def['custom_fields'] as $cf) {
-					if ( $cf != $field_name ) {
+					if ( $cf != $field_name && $cf != $_POST['name']) {
 						$revised_custom_fields[] = $cf;
 					}
 				}
@@ -86,11 +94,22 @@ if ( !empty($_POST) && check_admin_referer($data['action_name'], $data['nonce_na
 			
 			// Add the association
 			if (in_array($pt, $_POST['post_types'])) {
-				if (!isset($def['custom_fields']) 
-					|| !is_array($def['custom_fields'])
-					|| !in_array($field_name, $def['custom_fields'])) {
-					$def['custom_fields'][] = $field_name;
-					CCTM::$data['post_type_defs'][$pt]['custom_fields'] = $def['custom_fields'];
+                if (!is_array($def['custom_fields']) || !isset($def['custom_fields'])){
+                    CCTM::$data['post_type_defs'][$pt]['custom_fields'] = array($_POST['name']);
+                }
+				else {
+
+					$def['custom_fields'][] = $_POST['name'];
+                    // this can end up w both old and new names added... so we may need to purge the old name
+                    if ($field_name != $_POST['name']) {
+                        foreach ($def['custom_fields'] as $k => $v) {
+                            if ($v == $field_name) {
+                                print 'UNSETTING ' . $k . ' ' . $v;
+                                unset($def['custom_fields'][$k]); // remove the old name
+                            }
+                        }
+                    }
+					CCTM::$data['post_type_defs'][$pt]['custom_fields'] = array_unique($def['custom_fields']);
 				}
 			}
 			// Remove the association
@@ -98,7 +117,7 @@ if ( !empty($_POST) && check_admin_referer($data['action_name'], $data['nonce_na
 				$revised_custom_fields = array();
 				if (isset($def['custom_fields'])) {
 					foreach ($def['custom_fields'] as $cf) {
-						if ( $cf != $field_name ) {
+						if ( $cf != $field_name && $c != $_POST['name']) {
 							$revised_custom_fields[] = $cf;
 						}
 					}
@@ -107,6 +126,7 @@ if ( !empty($_POST) && check_admin_referer($data['action_name'], $data['nonce_na
 			}
 		}
 	}
+
 	// Clear this up... the rest of the data is for the field definition.
 	unset($_POST['post_types']);
 
@@ -122,12 +142,12 @@ if ( !empty($_POST) && check_admin_referer($data['action_name'], $data['nonce_na
 	}
 	// Save;
 	else {
-		// die(print_r($field_data,true));
-		// Unset the old field if the name changed ($field_name is passed via $_GET)
+
+		// Did the field name change? Unset the old field name ($field_name is passed via $_GET)
 		if ($field_name != $field_data['name']) {
 			unset(self::$data['custom_field_defs'][$field_name]);
-			// update database... but what if the new name is taken?
 		}
+
 		self::$data['custom_field_defs'][ $field_data['name'] ] = $field_data;
 		update_option( self::db_key, self::$data );
 		$continue_editing = CCTM::get_value($_POST, 'continue_editing');
