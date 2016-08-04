@@ -534,9 +534,17 @@ textarea{
 <div class="form-group">
     <div class="col-sm-4">
               <div style="margin-top: -10px;">País</div>
-        <select name="pais_atual" class="form-control countries" id="countryId">
-            <option value="">Selecionar Pais</option>
-        </select>
+
+              <script>
+                showCountry(<?php print_custom_field('basicapaisatual'); ?>, 'txtcountry');
+              </script>
+              <span id="txtcountry"></span> <span>[editar]</span>
+
+              <div style="display: none;">
+                <select name="pais_atual" class="form-control countries" id="countryId">
+                    <option value="">Selecionar Pais</option>
+                </select>
+              </div>
 
 
     </div>
@@ -545,9 +553,16 @@ textarea{
     <div class="col-sm-4">
               <div style="margin-top: 5px;">Estado</div>
 
-        <select name="estado_atual" class="form-control states" id="stateId">
-            <option value="">Selecionar Estado</option>
-        </select>
+              <script>
+                showState(<?php print_custom_field('basicaestadoatual'); ?>, 'txtstate');
+              </script>
+              <span id="txtstate"></span> <span>[editar]</span>
+
+              <div style="display: none;">
+                <select name="estado_atual" class="form-control states" id="stateId">
+                  <option value="">Selecionar Estado</option>
+                </select>
+              </div>
     </div>
 </div>
 
