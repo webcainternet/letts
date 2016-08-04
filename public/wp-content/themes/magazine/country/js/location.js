@@ -159,9 +159,9 @@ function showState(stateId) {
              if (msg) {
                   //$('#label-state').text(msg['state']);
                   //alert(msg['state']);
-                  document.getElementById("txtstate").innerHTML = msg['state']+"1";
+                  document.getElementById("txtstate").innerHTML = msg['state'];
              } else {
-              document.getElementById("txtstate").innerHTML = "Erro ao coletar estado!"+"1";
+              document.getElementById("txtstate").innerHTML = "Erro ao coletar estado!";
              }
          },
          data: sendInfo
@@ -184,9 +184,9 @@ function showCountry(countryId, nomeelemento) {
          dataType: "json",
          success: function (msg) {
              if (msg) {
-                 document.getElementById(nomeelemento).innerHTML = msg['country']+"1";
+                 document.getElementById(nomeelemento).innerHTML = msg['country'];
              } else {
-                 document.getElementById(nomeelemento).innerHTML = "Erro ao coletar pais!"+"1";
+                 document.getElementById(nomeelemento).innerHTML = "Erro ao coletar pais!";
              }
          },
          data: sendInfo
@@ -210,9 +210,9 @@ function showState(stateId, nomeelemento) {
              if (msg) {
                   //$('#label-state').text(msg['state']);
                   //alert(msg['state']);
-                  document.getElementById(nomeelemento).innerHTML = msg['state']+"1";
+                  document.getElementById(nomeelemento).innerHTML = msg['state'];
              } else {
-                  document.getElementById(nomeelemento).innerHTML = "Erro ao coletar estado!"+"1";
+                  document.getElementById(nomeelemento).innerHTML = "Erro ao coletar estado!";
              }
          },
          data: sendInfo
