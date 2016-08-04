@@ -25,7 +25,7 @@
         }
 
 function locationInfo() {
-    var rootUrl = "http://lab.iamrohit.in/php_ajax_country_state_city_dropdown/api.php";
+    var rootUrl = "http://alfabetoauto.webca.com.br/php_ajax_country_state_city_dropdown/api.php";
     var call = new ajaxCall();
     this.getCities = function(id) {
         $(".cities option:gt(0)").remove();
@@ -129,7 +129,7 @@ function showCountry(countryId) {
 
      $.ajax({
          type: "GET",
-         url: "http://lab.iamrohit.in/php_ajax_country_state_city_dropdown/api.php",
+         url: "http://alfabetoauto.webca.com.br/php_ajax_country_state_city_dropdown/api.php",
          dataType: "json",
          success: function (msg) {
              if (msg) {
@@ -153,7 +153,7 @@ function showState(stateId) {
 
      $.ajax({
          type: "GET",
-         url: "http://lab.iamrohit.in/php_ajax_country_state_city_dropdown/api.php",
+         url: "http://alfabetoauto.webca.com.br/php_ajax_country_state_city_dropdown/api.php",
          dataType: "json",
          success: function (msg) {
              if (msg) {
@@ -180,7 +180,7 @@ function showCountry(countryId, nomeelemento) {
 
      $.ajax({
          type: "GET",
-         url: "http://lab.iamrohit.in/php_ajax_country_state_city_dropdown/api.php",
+         url: "http://alfabetoauto.webca.com.br/php_ajax_country_state_city_dropdown/api.php",
          dataType: "json",
          success: function (msg) {
              if (msg) {
@@ -204,7 +204,7 @@ function showState(stateId, nomeelemento) {
 
      $.ajax({
          type: "GET",
-         url: "http://lab.iamrohit.in/php_ajax_country_state_city_dropdown/api.php",
+         url: "http://alfabetoauto.webca.com.br/php_ajax_country_state_city_dropdown/api.php",
          dataType: "json",
          success: function (msg) {
              if (msg) {
