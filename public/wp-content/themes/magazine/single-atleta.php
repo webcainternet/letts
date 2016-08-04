@@ -296,8 +296,13 @@ global $themify; ?>
         update_post_meta($idpost, 'basicatelefones', $_POST['telefones']);
         update_post_meta($idpost, 'basicaddi', $_POST['basicaddi']);
         update_post_meta($idpost, 'basicacidadeatual', $_POST['cidade_atual']);
-        update_post_meta($idpost, 'basicaestadoatual', $_POST['estado_atual']);
-        update_post_meta($idpost, 'basicapaisatual', $_POST['pais_atual']);
+        if ($_POST['estado_atual'] != '') {
+          update_post_meta($idpost, 'basicaestadoatual', $_POST['estado_atual']);
+        }
+
+        if ($_POST['pais_atual'] != '') {
+          update_post_meta($idpost, 'basicapaisatual', $_POST['pais_atual']);
+        }
         update_post_meta($idpost, 'basicafacebook', $_POST['facebook']);
         update_post_meta($idpost, 'instagram', $_POST['instagram']);
         update_post_meta($idpost, 'twitter', $_POST['twitter']);
