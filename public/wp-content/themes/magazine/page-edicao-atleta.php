@@ -537,6 +537,7 @@ textarea{
 
               <script>
                 showCountry(<?php print_custom_field('basicapaisatual'); ?>, 'txtcountry');
+                alert('1');
               </script>
               <span id="txtcountry"></span> <span>[editar]</span>
 
@@ -574,7 +575,7 @@ textarea{
 
 <?php /* </form> */ ?>
 
-<script src="http://letts.com.br/wp-content/themes/magazine/country/js/location.js"></script>
+<script src="http://alfabetoauto.webca.com.br/wp-content/themes/magazine/country/js/location.js"></script>
 
 <?php // include('banners.php') ?>
 
