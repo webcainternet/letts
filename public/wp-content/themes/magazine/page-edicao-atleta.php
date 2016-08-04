@@ -575,7 +575,7 @@ textarea{
 
 <?php /* </form> */ ?>
 
-<script src="http://alfabetoauto.webca.com.br/wp-content/themes/magazine/country/js/location.js"></script>
+<script src="http://alfabetoauto.webca.com.br/country/js/location.js"></script>
 
 <?php // include('banners.php') ?>
 
