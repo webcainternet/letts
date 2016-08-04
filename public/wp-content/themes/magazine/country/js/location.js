@@ -50,8 +50,8 @@ function locationInfo() {
     };
 
     this.getStates = function(id) {
-        $(".states option:gt(0)").remove(); 
-        $(".cities option:gt(0)").remove(); 
+        $(".states option:gt(0)").remove();
+        $(".cities option:gt(0)").remove();
         var url = rootUrl+'?type=getStates&countryId=' + id;
         var method = "post";
         var data = {};
@@ -69,7 +69,7 @@ function locationInfo() {
             else{
                 alert(data.msg);
             }
-        }); 
+        });
     };
 
     this.getCountries = function() {
@@ -91,9 +91,8 @@ function locationInfo() {
             else{
                 alert(data.msg);
             }
-        }); 
+        });
     };
-
 }
 
 $(function() {
@@ -119,4 +118,103 @@ loc.getCountries();
     });
 });
 
+function showCountry(countryId) {
+     var retorno = '';
+     var country = countryId;
 
+     var sendInfo = {
+         type: 'showCountry',
+         countryId: country
+     };
+
+     $.ajax({
+         type: "GET",
+         url: "/php_ajax_country_state_city_dropdown/api.php",
+         dataType: "json",
+         success: function (msg) {
+             if (msg) {
+                 document.getElementById("txtcountry").innerHTML = msg['country'];
+             } else {
+                 document.getElementById("txtcountry").innerHTML = "Erro ao coletar pais!";
+             }
+         },
+         data: sendInfo
+     });
+}
+
+function showState(stateId) {
+     var retorno = '';
+     var state = stateId;
+
+     var sendInfo = {
+         type: 'showState',
+         stateId: state
+     };
+
+     $.ajax({
+         type: "GET",
+         url: "/php_ajax_country_state_city_dropdown/api.php",
+         dataType: "json",
+         success: function (msg) {
+             if (msg) {
+                  //$('#label-state').text(msg['state']);
+                  //alert(msg['state']);
+                  document.getElementById("txtstate").innerHTML = msg['state']+"1";
+             } else {
+              document.getElementById("txtstate").innerHTML = "Erro ao coletar estado!"+"1";
+             }
+         },
+         data: sendInfo
+     });
+}
+
+
+function showCountry(countryId, nomeelemento) {
+     var retorno = '';
+     var country = countryId;
+
+     var sendInfo = {
+         type: 'showCountry',
+         countryId: country
+     };
+
+     $.ajax({
+         type: "GET",
+         url: "/php_ajax_country_state_city_dropdown/api.php",
+         dataType: "json",
+         success: function (msg) {
+             if (msg) {
+                 document.getElementById(nomeelemento).innerHTML = msg['country']+"1";
+             } else {
+                 document.getElementById(nomeelemento).innerHTML = "Erro ao coletar pais!"+"1";
+             }
+         },
+         data: sendInfo
+     });
+}
+
+function showState(stateId, nomeelemento) {
+     var retorno = '';
+     var state = stateId;
+
+     var sendInfo = {
+         type: 'showState',
+         stateId: state
+     };
+
+     $.ajax({
+         type: "GET",
+         url: "/php_ajax_country_state_city_dropdown/api.php",
+         dataType: "json",
+         success: function (msg) {
+             if (msg) {
+                  //$('#label-state').text(msg['state']);
+                  //alert(msg['state']);
+                  document.getElementById(nomeelemento).innerHTML = msg['state']+"1";
+             } else {
+                  document.getElementById(nomeelemento).innerHTML = "Erro ao coletar estado!"+"1";
+             }
+         },
+         data: sendInfo
+     });
+}

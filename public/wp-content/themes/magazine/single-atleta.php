@@ -8,6 +8,8 @@
 
 <?php get_header(); ?>
 
+<script src="http://letts.com.br/wp-content/themes/magazine/country/js/location.js"></script>
+
 <script type="text/javascript">
    $(document).ready(function(){
 /*
@@ -823,10 +825,17 @@ $('#share-button').click(function (e){
               <?php echo $ddivalor . " "; print_custom_field('basicatelefones'); ?><br />
 
 							<div style="margin-top: 10px;"><strong>Pais</strong></div>
-							<?php print_custom_field('basicapaisatual'); ?><br>
+							<script>
+                showCountry(<?php print_custom_field('basicapaisatual'); ?>, 'txtcountry');
+              </script>
+              <span id="txtcountry"></span>
+
 
 							<div style="margin-top: 10px;"><strong>Estado</strong></div>
-							<?php print_custom_field('basicaestadoatual'); ?><br>
+              <script>
+                showState(<?php print_custom_field('basicaestadoatual'); ?>, 'txtstate');
+              </script>
+              <p id="txtstate"></p>
 
 							<div style="margin-top: 10px;"><strong>Cidade</strong></div>
 							<?php print_custom_field('basicacidadeatual'); ?><br>

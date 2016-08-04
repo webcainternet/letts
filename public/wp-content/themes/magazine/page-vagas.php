@@ -411,14 +411,40 @@ $arraybusca = "";
     ?>
 
 		<?php $titulovaga = get_the_title(); ?>
-      <div style="margin-top: 0px; color: #333; font-size: 14px; font-family: Oswald, sans-serif;"><?php echo mysql2date('d-m-Y', $post->post_date); ?></div>
+		<?php
+			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+			/* check connection */
+			if ($mysqli->connect_errno) {
+				printf("Connect failed: %s\n", $mysqli->connect_error);
+				exit();
+			}
+
+			$idstate = get_custom_field('basicaestadoatual');
+			$query = "SELECT name FROM states WHERE id=" . $idstate;
+			$result = $mysqli->query($query);
+
+			/* numeric array */
+			$row = $result->fetch_array(MYSQLI_NUM);
+			$estadotxt = $row[0];
+
+			/* free result set */
+			$result->free();
+
+			/* close connection */
+			$mysqli->close();
+?>
+
+	    <div style="margin-top: 0px; color: #333; font-size: 14px; font-family: Oswald, sans-serif;"><?php echo mysql2date('d-m-Y', $post->post_date); ?></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #f57300;"><center><?php echo substr($titulovaga,0, 145); ?> (<?php print_custom_field('atletaesporte'); ?><?php print_custom_field('profissao'); ?>)</center> </strong></div>
-      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;"><center><?php echo substr(get_custom_field('basicacidadeatual'),0,35); ?> - <?php print_custom_field('basicaestadoatual'); ?> - <?php print_custom_field('basicapaisatual'); ?>	</center></strong></div>
+      <div style="margin-top: 10px; color: #666;"><strong style="color: #333;"><center><?php echo substr(get_custom_field('basicacidadeatual'),0,35); ?> - <?php echo $estadotxt; ?> - <?php echo $paistxt; ?></center></strong></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Empresa: </strong><br /><?php echo substr(get_custom_field('empresa'),0,70); ?></div>
       <div style="margin-top: 10px; color: #666;"><strong style="color: #333;">Contato: </strong><br /> <?php print_custom_field('basicaemail'); ?></div>
       <div style="margin-top: 10px; color: #666; max-height: 160px; overflow: scroll;"><strong style="color: #333;">Descrição: </strong><br />
       	<?php echo $conteudo; ?>
   	  </div>
+
+
 
 
 <?php

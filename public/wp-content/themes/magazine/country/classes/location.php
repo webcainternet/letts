@@ -9,13 +9,13 @@
 */
 require_once("dbconfig.php");
 class location extends dbconfig {
-   
+
    public static $data;
 
    function __construct() {
      parent::__construct();
    }
- 
+
  // Fetch all countries list
    public static function getCountries() {
      try {
@@ -74,7 +74,51 @@ class location extends dbconfig {
      } finally {
         return $data;
      }
-   }   
+   }
+
+
+   // Mostra nome do Pais em texto
+   public static function showCountry($countryId) {
+      try {
+        $query = "SELECT name FROM countries WHERE id=".$countryId;
+        $result = dbconfig::run($query);
+        if(!$result) {
+          throw new exception("Country not found.");
+        }
+        $res = array();
+        while($resultSet = mysqli_fetch_assoc($result)) {
+         $res[$resultSet['id']] = $resultSet['name'];
+         $txtCountry = $resultSet['name'];
+        }
+        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Country fetched successfully.", 'country'=>$txtCountry, 'result'=>$res);
+      } catch (Exception $e) {
+        $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+      } finally {
+         return $data;
+      }
+    }
+
+
+    // Mostra nome do Estado em texto
+    public static function showState($stateId) {
+       try {
+         $query = "SELECT name FROM states WHERE id=".$stateId;
+         $result = dbconfig::run($query);
+         if(!$result) {
+           throw new exception("State not found.");
+         }
+         $res = array();
+         while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$resultSet['id']] = $resultSet['name'];
+          $txtState = $resultSet['name'];
+         }
+         $data = array('status'=>'success', 'tp'=>1, 'msg'=>"States fetched successfully.", 'state'=>$txtState, 'result'=>$res);
+       } catch (Exception $e) {
+         $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+       } finally {
+          return $data;
+       }
+     }
 
 
 }

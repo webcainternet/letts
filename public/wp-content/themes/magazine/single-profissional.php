@@ -644,11 +644,18 @@ $('#share-button').click(function (e){
               ?>
               <?php echo $ddivalor . " "; print_custom_field('basicatelefones'); ?><br />
 
-							<div style="margin-top: 10px;"><strong>Pais</strong></div>
-							<?php print_custom_field('basicapaisatual'); ?><br>
+              <div style="margin-top: 10px;"><strong>Pais</strong></div>
+							<script>
+                showCountry(<?php print_custom_field('basicapaisatual'); ?>);
+              </script>
+              <p id="txtcountry"></p>
+
 
 							<div style="margin-top: 10px;"><strong>Estado</strong></div>
-							<?php print_custom_field('basicaestadoatual'); ?><br>
+              <script>
+                showState(<?php print_custom_field('basicaestadoatual'); ?>);
+              </script>
+              <p id="txtstate"></p>
 
 							<div style="margin-top: 10px;"><strong>Cidade</strong></div>
 							<?php print_custom_field('basicacidadeatual'); ?><br>
