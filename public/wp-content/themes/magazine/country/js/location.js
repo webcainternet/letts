@@ -129,7 +129,7 @@ function showCountry(countryId) {
 
      $.ajax({
          type: "GET",
-         url: "/php_ajax_country_state_city_dropdown/api.php",
+         url: "http://lab.iamrohit.in/php_ajax_country_state_city_dropdown/api.php",
          dataType: "json",
          success: function (msg) {
              if (msg) {
@@ -153,7 +153,7 @@ function showState(stateId) {
 
      $.ajax({
          type: "GET",
-         url: "/php_ajax_country_state_city_dropdown/api.php",
+         url: "http://lab.iamrohit.in/php_ajax_country_state_city_dropdown/api.php",
          dataType: "json",
          success: function (msg) {
              if (msg) {
@@ -180,7 +180,7 @@ function showCountry(countryId, nomeelemento) {
 
      $.ajax({
          type: "GET",
-         url: "/php_ajax_country_state_city_dropdown/api.php",
+         url: "http://lab.iamrohit.in/php_ajax_country_state_city_dropdown/api.php",
          dataType: "json",
          success: function (msg) {
              if (msg) {
@@ -204,7 +204,7 @@ function showState(stateId, nomeelemento) {
 
      $.ajax({
          type: "GET",
-         url: "/php_ajax_country_state_city_dropdown/api.php",
+         url: "http://lab.iamrohit.in/php_ajax_country_state_city_dropdown/api.php",
          dataType: "json",
          success: function (msg) {
              if (msg) {

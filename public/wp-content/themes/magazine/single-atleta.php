@@ -828,7 +828,7 @@ $('#share-button').click(function (e){
 							<script>
                 showCountry(<?php print_custom_field('basicapaisatual'); ?>, 'txtcountry');
               </script>
-              <span id="txtcountry"></span>
+              <p id="txtcountry"></p>
 
 
 							<div style="margin-top: 10px;"><strong>Estado</strong></div>
