@@ -1,7 +1,7 @@
-AuthUserFile /srv/httpd/letts.com.br/public/.htpasswd
-AuthType Basic
-AuthName "Restrito"
-Require valid-user
+#AuthUserFile /srv/httpd/letts.com.br/public/.htpasswd
+#AuthType Basic
+#AuthName "Restrito"
+#Require valid-user
 
 
 # BEGIN WordPress

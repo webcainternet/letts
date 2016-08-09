@@ -53,3 +53,7 @@
 {"user_id":1,"user_login":"admin","user_remoteaddr":"189.40.51.177","user_hostname":"backup01-sd","user_lastlogin":"2016-07-22 20:46:44"}
 {"user_id":1,"user_login":"admin","user_remoteaddr":"189.29.132.82","user_hostname":"bd1d8452.virtua.com.br","user_lastlogin":"2016-07-29 00:00:15"}
 {"user_id":1,"user_login":"admin","user_remoteaddr":"189.29.132.82","user_hostname":"bd1d8452.virtua.com.br","user_lastlogin":"2016-08-02 22:46:24"}
+{"user_id":1,"user_login":"admin","user_remoteaddr":"186.204.168.156","user_hostname":"bacca89c.virtua.com.br","user_lastlogin":"2016-08-04 23:16:50"}
+{"user_id":1,"user_login":"admin","user_remoteaddr":"177.148.158.109","user_hostname":"109.158.148.177.isp.timbrasil.com.br","user_lastlogin":"2016-08-05 00:17:28"}
+{"user_id":1,"user_login":"admin","user_remoteaddr":"186.204.168.156","user_hostname":"bacca89c.virtua.com.br","user_lastlogin":"2016-08-08 23:48:51"}
+{"user_id":1,"user_login":"admin","user_remoteaddr":"189.40.55.247","user_hostname":"backup01-sd","user_lastlogin":"2016-08-09 00:03:43"}

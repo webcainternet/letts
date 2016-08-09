@@ -16,7 +16,7 @@
 <style type="text/css">
 	.imgmedia {
 		width: 500px;
-	}	
+	}
 	body {
 		margin: 0px;
 		padding: 0px;
@@ -33,14 +33,14 @@
 	<div style="float: left; width: 515px; position: fixed;">
 		<img src="<?php echo $urlimg; ?>" class="imgmedia">
 	</div>
-	
+
 
 	<div style="    float: left;
     width: 600;
     margin-left: 525px;">
 		<?php
 			$idpagina = $urlimg;
-			include "comentarios_ajax.php"; 
+			include "comentarios_ajax.php";
 		?>
 		</div>
 	</div>

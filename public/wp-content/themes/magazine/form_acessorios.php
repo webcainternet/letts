@@ -258,8 +258,8 @@ body {
 , pmestadoc.meta_value as estado1
 , pmvalor.meta_value as valor
 , pmmoeda.meta_value as moeda
-, pmpais.meta_value as pais
-, pmestado.meta_value as estado
+, c.name as pais
+, s.name as estado
 , pmcidade.meta_value as cidade
 , pmemail1.meta_value as email
 , vendedor.post_title as vendedor
@@ -282,14 +282,17 @@ where pmtelefone.`meta_key` = 'basicatelefones'
 AND pmemail.`meta_key` = 'basicaemail'
 ) vendedor ON (vendedor.email = pmemail1.meta_value)
 
+INNER JOIN countries c ON (c.id = pmpais.meta_value)
+INNER JOIN states s ON (s.id = pmestado.meta_value)
+
 WHERE post_type = 'acessorios'
 
 AND pmestadoc.`meta_key` = 'acessorioestado'
 AND pmvalor.`meta_key` = 'acessoriovalor'
 AND pmmoeda.`meta_key` = 'moeda'
 AND pmpais.`meta_key` = 'basicapaisatual'
-AND pmestado.`meta_key` = 'basicacidadeatual'
-AND pmcidade.`meta_key` = 'basicaestadoatual'
+AND pmestado.`meta_key` = 'basicaestadoatual'
+AND pmcidade.`meta_key` = 'basicacidadeatual'
 AND pmemail1.`meta_key` = 'basicaemail'
 AND p.id = ".$_GET["post_id"];
       //AND p.post_status = 'publish' AND pdata.meta_value  > '07/03/2016'
@@ -329,7 +332,7 @@ AND p.id = ".$_GET["post_id"];
       </div>
 
       <div style="float: left; width: 100%; margin-top: 15px; text-align: center;">
-        <div><?php echo $resultpais; ?> - <?php echo $resultcidade; ?> - <?php echo $resultestado; ?></div>
+        <div><?php echo $resultpais; ?> - <?php echo $resultestado; ?> - <?php echo $resultcidade; ?></div>
       </div>
 
       <div style="float: left; width: 100%; margin-top: 15px; background-color: #DDD;padding: 15px;">

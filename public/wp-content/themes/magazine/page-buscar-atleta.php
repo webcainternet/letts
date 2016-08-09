@@ -10,28 +10,28 @@
 
 
 
-<?php 
+<?php
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
 
-<?php 
+<?php
 function calcula_idade($data_nascimento) {
     $data_nasc = explode('/', $data_nascimento);
     $data = date('d/m/Y');
     $data = explode("/", $data);
     $anos = $data[2] - $data_nasc[2];
-    
+
     if ($data_nasc[1] >= $data[1]){
         if ($data_nasc[0] <= $data[0]){
             return $anos; break;
         } else {
             return $anos-1;
             break;
-        } 
+        }
     } else {
         return $anos;
-    } 
+    }
 }
 
  ?>
@@ -365,7 +365,7 @@ function calcula_idade($data_nascimento) {
 			</div>
 		</div>
 
-		
+
 
 			<div style="float: left; width: 100%; padding-top: 10px;">
 				<div class="related-posts" style="float: left; width: 100%; margin-bottom: 30px;">
@@ -373,9 +373,9 @@ function calcula_idade($data_nascimento) {
 
 
 							<div style="">
-								
+
 <section class="module">
-  <section class="wraper">    
+  <section class="wraper">
 
 
 <?php
@@ -385,10 +385,10 @@ mysql_select_db(DB_NAME);
 
 
 $consultapagina = $_GET["pagina"];
-if ($consultapagina == "") { 
-	$consultapagina = 1; $vermaisqtos = 50; 
+if ($consultapagina == "") {
+	$consultapagina = 1; $vermaisqtos = 50;
 	$result = mysql_query("select id, post_title from wp_posts where post_type = 'atleta' AND post_status = 'publish' ORDER BY rand() LIMIT ".$vermaisqtos);
-} else { 
+} else {
 	$consultapagina = $consultapagina+1; $vermaisqtos = 50 * $consultapagina;
 	$result = mysql_query("select id, post_title from wp_posts where post_type = 'atleta' AND post_status = 'publish' ORDER BY id DESC LIMIT ".$vermaisqtos);
 }
@@ -431,9 +431,9 @@ $resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key 
 		}
 	}
 
-    
 
-	$resultbasicapaisnascimento = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicapaisnascimento' AND post_id = ".$row["id"]);
+
+	$resultbasicapaisnascimento = mysql_query("select c.name as meta_value from wp_postmeta pm INNER JOIN countries c ON pm.`meta_value` = c.`id` where meta_key = 'basicapaisatual' AND post_id =".$row["id"]);
     while ($rowbasicapaisnascimento = mysql_fetch_array($resultbasicapaisnascimento, MYSQL_ASSOC)) {
     	$basicapaisnascimento = $rowbasicapaisnascimento["meta_value"];
     }
@@ -474,7 +474,7 @@ $resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key 
 			if ($anos < 30) {
 				$mostra = " style=\"display: none;\" ";
 			}
-		}		
+		}
 	}
 
     $resultbasicagenero = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicagenero' AND post_id = ".$row["id"]);
@@ -495,11 +495,6 @@ $resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key 
 		}
 	}
 
-    $resultbasicacidadeatual = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicacidadeatual' AND post_id = ".$row["id"]);
-    while ($rowbasicacidadeatual = mysql_fetch_array($resultbasicacidadeatual, MYSQL_ASSOC)) {
-    	$basicacidadeatual = $rowbasicacidadeatual["meta_value"];
-    }
-
     $resultbasicaimagem = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicaimagem' AND post_id = ".$row["id"]);
     while ($rowbasicaimagem = mysql_fetch_array($resultbasicaimagem, MYSQL_ASSOC)) {
     	$basicaimagem = $rowbasicaimagem["meta_value"];
@@ -519,8 +514,8 @@ $resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key 
 
     <figure class='small' <?php echo $mostra; ?> style="border: 0px;">
       <a href="/?p=<?php echo $idatleta; ?>">
-      	<div style="width: width: 100%; 
-      	height: 200px; 
+      	<div style="width: width: 100%;
+      	height: 200px;
       	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
       	background-position: center;
       	<?php echo calcbackgroundsize("wp-content/uploads/".$basicaimagemurl, 300, 200); ?>;
@@ -528,7 +523,7 @@ $resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key 
       		&nbsp;
       	</div>
         <!-- <img src="http://fakeimg.pl/250x250/" alt=""> -->
-      </a>	
+      </a>
 	<style type="text/css">
 		.text transition-050 title {
 			font-size: 5px;
@@ -536,25 +531,22 @@ $resultesporte = mysql_query("select meta_value from wp_postmeta where meta_key 
 	</style>
       <figcaption class="transition-050 opacity85">
         <a href="/?p=<?php echo $idatleta; ?>">
-	  <strong class="text transition-050 title"><?php echo $nome; ?>  </strong>
-	  <span class="text transition-050 desc"><?php echo $esporte; ?><br>
+	  <strong class="text transition-050 title"><?php echo $nome; $nome = ''; ?>  </strong>
+	  <span class="text transition-050 desc"><?php echo $esporte; $esporte = ''; ?><br>
 	  <?php if ($anos != "") { ?>
-	  <b>Idade: </b><?php echo $anos; ?><br>
+	  <b>Idade: </b><?php echo $anos; $anos = ''; ?><br>
 	  <?php } ?>
 	  <?php if ($basicapaisnascimento != "") { ?>
-	  <b>País: </b><?php echo $basicapaisnascimento; ?><br>
+	  <b>País: </b><?php echo $basicapaisnascimento; $basicapaisnascimento = ''; ?><br>
 	  <?php } ?>
 	  <?php if ($basicagenero != "") { ?>
-	  <b>Sexo: </b><?php echo $basicagenero; ?><br>
-          <?php } ?>
-          <?php if ($basicacidadeatual != "") { ?>
-          <!-- <b>Mora em: </b> --> <?php // echo $basicacidadeatual; ?>
+	  <b>Sexo: </b><?php echo $basicagenero; $basicagenero = ''; ?><br>
           <?php } ?>
           </span>
         </a>
-      </figcaption> 
+      </figcaption>
     </figure>
-	 	
+
     <?php
 
 
@@ -587,7 +579,7 @@ mysql_free_result($result);
 				</div>
 
 
-<div style="width: 100%; background-color: #FFFFFF; height: 130px;">				
+<div style="width: 100%; background-color: #FFFFFF; height: 130px;">
 
 			</div>
 
@@ -602,7 +594,7 @@ mysql_free_result($result);
 </div>
 	<!-- /#contentwrap -->
 
-	
+
 
 </div>
 <!-- /layout-container -->

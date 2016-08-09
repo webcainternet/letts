@@ -10,29 +10,29 @@
 
 
 
-<?php 
+<?php
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
 
 
-<?php 
+<?php
 function calcula_idade($data_nascimento) {
     $data_nasc = explode('/', $data_nascimento);
     $data = date('d/m/Y');
     $data = explode("/", $data);
     $anos = $data[2] - $data_nasc[2];
-    
+
     if ($data_nasc[1] >= $data[1]){
         if ($data_nasc[0] <= $data[0]){
             return $anos; break;
         } else {
             return $anos-1;
             break;
-        } 
+        }
     } else {
         return $anos;
-    } 
+    }
 }
 
  ?>
@@ -323,9 +323,9 @@ function calcula_idade($data_nascimento) {
 
 
 							<div style="">
-								
+
 <section class="module">
-  <section class="wraper">     
+  <section class="wraper">
 
 
 <?php
@@ -336,9 +336,9 @@ mysql_select_db(DB_NAME);
 
 $consultapagina = $_GET["pagina"];
 if ($consultapagina == "") {
-	$consultapagina = 1; $vermaisqtos = 50; 
+	$consultapagina = 1; $vermaisqtos = 50;
 	$result = mysql_query("select id, post_title from wp_posts where post_type = 'profissional' AND post_status = 'publish' ORDER BY rand() LIMIT ".$vermaisqtos);
-} else { 
+} else {
 	$consultapagina = $consultapagina+1; $vermaisqtos = 50 * $consultapagina;
 	$result = mysql_query("select id, post_title from wp_posts where post_type = 'profissional' AND post_status = 'publish' ORDER BY id DESC LIMIT ".$vermaisqtos);
 }
@@ -380,7 +380,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 		}
 	}
 
-	$resultbasicapaisnascimento = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicapaisnascimento' AND post_id = ".$row["id"]);
+  $resultbasicapaisnascimento = mysql_query("select c.name as meta_value from wp_postmeta pm INNER JOIN countries c ON pm.`meta_value` = c.`id` where meta_key = 'basicapaisatual' AND post_id =".$row["id"]);
     while ($rowbasicapaisnascimento = mysql_fetch_array($resultbasicapaisnascimento, MYSQL_ASSOC)) {
     	$basicapaisnascimento = $rowbasicapaisnascimento["meta_value"];
     }
@@ -421,13 +421,8 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 			if ($anos < 30) {
 				$mostra = " style=\"display: none;\" ";
 			}
-		}		
-	}	
-
-    $resultbasicacidadeatual = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicacidadeatual' AND post_id = ".$row["id"]);
-    while ($rowbasicacidadeatual = mysql_fetch_array($resultbasicacidadeatual, MYSQL_ASSOC)) {
-    	$basicacidadeatual = $rowbasicacidadeatual["meta_value"];
-    }
+		}
+	}
 
     $resultbasicaimagem = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicaimagem' AND post_id = ".$row["id"]);
     while ($rowbasicaimagem = mysql_fetch_array($resultbasicaimagem, MYSQL_ASSOC)) {
@@ -441,7 +436,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     		$basicaimagemurl = $basicaimagemurl[1];
     	}else{
     		$basicaimagemurl = $basicaimagemurl[0];
-    	}    	
+    	}
     }
 
 	$resultbasicagenero = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicagenero' AND post_id = ".$row["id"]);
@@ -465,8 +460,8 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     ?>
     <figure class='small' <?php echo $mostra; ?> style="border: 0px;">
       <a href="/?p=<?php echo $idatleta; ?>">
-      	<div style="width: 100%; 
-      	height: 200px; 
+      	<div style="width: 100%;
+      	height: 200px;
       	background-image: url('http://letts.com.br/wp-content/uploads/<?php echo $basicaimagemurl; ?>');
       	background-position: center;
       	<?php echo calcbackgroundsize("wp-content/uploads/".$basicaimagemurl, 300, 200); ?>;
@@ -479,11 +474,13 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
         <a href="/?p=<?php echo $idatleta; ?>">
           <strong class="text transition-050 title"><?php echo $nome; ?></strong>
           <span class="text transition-050 desc"><?php echo $esporte; ?><br>
-	  <?php if ($basicagenero != "") { ?>
+
+            <?php if ($basicapaisnascimento != "") { ?>
+            <b>País: </b><?php echo $basicapaisnascimento; $basicapaisnascimento = ''; ?><br>
+            <?php } ?>
+            
+    <?php if ($basicagenero != "") { ?>
 	  <b>Sexo: </b><?php echo $basicagenero; ?><br>
-          <?php } ?>
-          <?php if ($basicacidadeatual != "") { ?>
-          <b>Mora em: </b><?php echo $basicacidadeatual; ?>
           <?php } ?>
           </span>
         </a>
@@ -517,7 +514,7 @@ mysql_free_result($result);
 
 				</div>
 
-<div style="width: 100%; background-color: #FFFFFF; height: 130px;">				
+<div style="width: 100%; background-color: #FFFFFF; height: 130px;">
 
 			</div>
 
@@ -532,11 +529,11 @@ mysql_free_result($result);
 </div>
 	<!-- /#contentwrap -->
 
-	
+
 
 </div>
 <!-- /layout-container -->
 
-<?php include('banners.php') ?>  
+<?php include('banners.php') ?>
 
 <?php get_footer(); ?>

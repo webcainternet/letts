@@ -8,6 +8,8 @@
 
 <?php get_header(); ?>
 
+<script src="http://letts.com.br/wp-content/themes/magazine/country/js/location.js"></script>
+
 <style type="text/css">
   #salvaform {
     background: #ff8920 !important;
@@ -476,59 +478,79 @@ textarea{
 
 
 <?php /* <form action="#" role="form" class="form-horizontal" id="location" method="post" accept-charset="utf-8"> */ ?>
-<div class="form-group">
-    <div class="col-sm-4">
-              <div style="margin-top: -10px;">País</div>
-        <select name="pais_atual" class="form-control countries" id="countryId">
-            <option value="">Selecionar Pais</option>
-        </select>
+  <div class="form-group">
+      <div class="col-sm-4">
+                <div style="margin-top: -10px;">País</div>
+
+                <script>
+                  showCountry(<?php print_custom_field('basicapaisatual'); ?>, 'txtcountry');
+                </script>
+                <div id="spanpais" style="background-color: #FFF;
+                                          width: 234px;
+                                          padding: 3px;
+                                          border: solid 1px #888888;" >
+                  <span id="txtcountry" style="color: #999; font-size: 14px;"></span> <a><span onclick="document.getElementById('editarpais').style.display = 'block';document.getElementById('editarestado').style.display = 'block';document.getElementById('spanpais').style.display = 'none';document.getElementById('spanestado').style.display = 'none';"><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                </div>
+
+                <div style="display: none;" id="editarpais">
+                  <select name="pais_atual" class="form-control countries" id="countryId">
+                      <option value="">Selecionar Pais</option>
+                  </select>
+                </div>
 
 
-    </div>
-</div>
- <div class="form-group">
-    <div class="col-sm-4">
-              <div style="margin-top: 5px;">Estado</div>
+      </div>
+  </div>
+   <div class="form-group">
+      <div class="col-sm-4">
+                <div style="margin-top: 5px;">Estado</div>
 
-        <select name="estado_atual" class="form-control states" id="stateId">
-            <option value="">Selecionar Estado</option>
-        </select>
-    </div>
-</div>
+                <script>
+                  showState(<?php print_custom_field('basicaestadoatual'); ?>, 'txtstate');
+                </script>
+                <div id="spanestado" style="background-color: #FFF;
+                                          width: 234px;
+                                          padding: 3px;
+                                          border: solid 1px #888888;" >
+                  <span id="txtstate" style="color: #999; font-size: 14px;"></span> <a><span onclick="document.getElementById('editarpais').style.display = 'block';document.getElementById('editarestado').style.display = 'block';document.getElementById('spanpais').style.display = 'none';document.getElementById('spanestado').style.display = 'none';"><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                </div>
+
+                <div style="display: none;" id="editarestado">
+                  <select name="estado_atual" class="form-control states" id="stateId">
+                    <option value="">Selecionar Estado</option>
+                  </select>
+                </div>
+      </div>
+  </div>
+
 
 
               <div style="margin-top: 10px;">Cidade</div>
               <input type="text" name="cidade_atual" value="<?php print_custom_field('basicacidadeatual'); ?>">
-              <br /><br />
+              <br />
 
-
-<?php /* </form> */ ?>
-
-<script src="http://letts.com.br/wp-content/themes/magazine/country/js/location.js"></script>
-
-<?php // include('banners.php') ?>
             </div>
 
             <div class="textwidget icones_sociais">
               <div style="margin-top: 10px;"><strong>Redes Sociais</strong></div>
 
-            <div style="margin-top: 10px;"><strong>Facebook</strong></div>
-              <input type="text" name="facebook" value="<?php print_custom_field('basicafacebook'); ?>"><br />
+              <div style="margin-top: 10px;"><strong>Facebook</strong></div>
+                http://facebook.com/<input style="width: 115px;" type="text" name="facebook" value="<?php print_custom_field('basicafacebook'); ?>"><br />
 
-            <div style="margin-top: 10px;"><strong>Instagram</strong></div>
-              <input type="text" name="instagram" value="<?php print_custom_field('instagram'); ?>"><br />
+              <div style="margin-top: 10px;"><strong>Instagram</strong></div>
+                http://instagram.com/<input style="width: 110px;" type="text" name="instagram" value="<?php print_custom_field('instagram'); ?>"><br />
 
-            <div style="margin-top: 10px;"><strong>Twitter</strong></div>
-              <input type="text" name="twitter" value="<?php print_custom_field('twitter'); ?>"><br />
+              <div style="margin-top: 10px;"><strong>Twitter</strong></div>
+                http://twitter.com/<input style="width: 140px;" type="text" name="twitter" value="<?php print_custom_field('twitter'); ?>"><br />
 
-            <div style="margin-top: 10px;"><strong>Linkedin</strong></div>
-              <input type="text" name="linkedin" value="<?php print_custom_field('linkedin'); ?>"><br />
+              <div style="margin-top: 10px;"><strong>Linkedin</strong></div>
+                http://www.linkedin.com/in/<input style="width: 72px;" type="text" name="linkedin" value="<?php print_custom_field('linkedin'); ?>"><br />
 
-            <div style="margin-top: 10px;"><strong>Blog</strong></div>
-              <input type="text" name="blog" value="<?php print_custom_field('blog'); ?>"><br />
+              <div style="margin-top: 10px;"><strong>Blog</strong></div>
+                http://<input style="width: 220px;" type="text" name="blog" value="<?php print_custom_field('blog'); ?>"><br />
 
-            <div style="margin-top: 10px;"><strong>Site</strong></div>
-              <input type="text" name="site" value="<?php print_custom_field('site'); ?>"><br />
+              <div style="margin-top: 10px;"><strong>Site</strong></div>
+                http://<input style="width: 220px;" type="text" name="site" value="<?php print_custom_field('site'); ?>"><br />
               <input type="hidden" name="atualizar_perfil" value="atualizar_perfil"><br />
 
               </div>

@@ -8,6 +8,8 @@
 
 <?php get_header(); ?>
 
+<script src="http://alfabetoauto.webca.com.br/country/js/location.js"></script>
+
 <script type="text/javascript">
    $(document).ready(function(){
      $("#salvaacessorio").click(function(){
@@ -23,11 +25,11 @@
                alert("Você deve preencher o valor do acessório" );
                $( "#valor" ).focus();
              } else {
-               if ($("#countryId").val() == "") {
+               if ($("#countryId").val() == "" && $("#txtcountry").text() == "" ) {
                  alert("Você deve preencher o pais do acessório" );
                  $( "#countryId" ).focus();
                } else {
-                 if ($("#stateId").val() == "") {
+                 if ($("#stateId").val() == "" && $("#txtstate").text() == "" ) {
                    alert("Você deve preencher o estado do acessório" );
                    $( "#stateId" ).focus();
                  } else {
@@ -529,9 +531,21 @@ function selectedopt($value, $selected){
                             		<div class="form-group">
                             		<div class="col-sm-4">
                             		<div style="margin-bottom: 5px;">País:</div>
-                            		<select name="pais" class="form-control countries" id="countryId" style="width: 100%;">
-                            		<option value="">Selecionar Pais</option>
-                            		</select>
+                                <script>
+                                  showCountry(<?php print_custom_field('basicapaisatual'); ?>, 'txtcountry');
+                                </script>
+                                <div id="spanpais" style="background-color: #FFF;
+                                                          width: 197px;
+                                                          padding: 3px;
+                                                          border: solid 1px #888888;" >
+                                  <span id="txtcountry" style="color: #999; font-size: 14px;"></span> <a><span onclick="document.getElementById('editarpais').style.display = 'block';document.getElementById('editarestado').style.display = 'block';document.getElementById('spanpais').style.display = 'none';document.getElementById('spanestado').style.display = 'none';"><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                </div>
+
+                                <div style="display: none;" id="editarpais">
+                                  <select name="pais" class="form-control countries" id="countryId" style="width: 100%;">
+                               		   <option value="">Selecionar Pais</option>
+                               		</select>
+                                </div>
                             		</div>
                             		</div>
                               </div>
@@ -542,10 +556,21 @@ function selectedopt($value, $selected){
                             		<div class="form-group">
                             		<div class="col-sm-4">
                             		<div style="margin-bottom: 5px;">Estado:</div>
+                                <script>
+                                  showState(<?php print_custom_field('basicaestadoatual'); ?>, 'txtstate');
+                                </script>
+                                <div id="spanestado" style="background-color: #FFF;
+                                                          width: 197px;
+                                                          padding: 3px;
+                                                          border: solid 1px #888888;" >
+                                  <span id="txtstate" style="color: #999; font-size: 14px;"></span> <a><span onclick="document.getElementById('editarpais').style.display = 'block';document.getElementById('editarestado').style.display = 'block';document.getElementById('spanpais').style.display = 'none';document.getElementById('spanestado').style.display = 'none';"><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                </div>
 
-                            		<select name="estado" class="form-control states" id="stateId" style="width: 100%;">
-                            		<option value="">Selecionar Estado</option>
-                            		</select>
+                                <div style="display: none;" id="editarestado">
+                                  <select name="estado" class="form-control states" id="stateId" style="width: 100%;">
+                               		<option value="">Selecionar Estado</option>
+                               		</select>
+                                </div>
                             		</div>
                             		</div>
                               </div>
@@ -562,7 +587,7 @@ function selectedopt($value, $selected){
                               </div>
                             </div>
 
-                            <script src="http://letts.com.br/wp-content/themes/magazine/country/js/location.js"></script>
+
 
 
 

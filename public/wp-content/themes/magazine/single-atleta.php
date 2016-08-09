@@ -805,7 +805,7 @@ $('#share-button').click(function (e){
 <meta property="og:image" content="<?php echo $imagem_fb; ?>"/>
 	<div>
 		<div style="float: left; width: 325px;">
-				<div class="col3-1" style="width: 100%; margin: 0px; background: #F5E1CD; padding-left: 15px; border-top: 5px #ff8920 solid;">
+				<div class="col3-1" style="width: 100%; margin: 0px; background: #F5E1CD; padding-left: 15px; border-top: 5px #ff8920 solid; padding-bottom: 30px;">
 					<div id="text-1016" class="widget widget_text" style="">
 						<h4 class="widgettitle">Informações básicas</h4>
 						<div class="textwidget">
@@ -1149,7 +1149,7 @@ $(document).ready(function(){
 					    </div>
 					</div>
 
-		             <input class="input_video" type="text" name="link_video" style="width: 316px !important; max-width: 100%;margin-top: -33px;float: right;margin-right: -1px;" value="" placeholder="Link do Video do Youtube ou Vímeo">
+		             <input class="input_video" type="text" name="link_video" style="width: 316px !important; max-width: 100%; float: right;margin-right: -1px;" value="" placeholder="Link do Video do Youtube ou Vímeo">
 		             <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
 		             <input type="hidden" value="adicionarnews" name="adicionarnews">
 		             <input type="button" id="postarnews" style="  background: #ff8920 !important;
@@ -1162,11 +1162,12 @@ $(document).ready(function(){
 																  font-family: Oswald, sans-serif;
 																  text-transform: uppercase;
 																  -webkit-appearance: none;
+                                      margin-bottom: 15px;
 																  -webkit-border-radius: 0;float: right; margin-top: 0px;margin-left: 300px;" value="Publicar">
             </form>
             <?php } ?>
 
-			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin-top: 20px; margin-bottom: 10px;">News</h4>
+			<div>&nbsp;</div>
 
 			<style type="text/css">
 			.deletarnews1 {

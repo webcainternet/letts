@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	
+
 $.ajax({
   url: "/wp-content/themes/magazine/comentarios.php",
   data: {
@@ -28,7 +28,7 @@ $(document).ready(function(){
 		    $( "#results" ).empty();
 		    $( "#results" ).append( html );
 		    $("#mensagem").val('');
-		  });        
+		  });
 
     });
 });
@@ -78,17 +78,18 @@ mysqli_close($con);
 	<div class="comentario-header"><iframe frameborder="0" width="100%" height="30" scrolling="no" noresize src="http://letts.com.br/wp-content/themes/magazine/like.php?idpagina=<?php echo $_SERVER['REQUEST_URI']; ?>"></iframe></div>
 	<div class="comentario-header"><?php echo $qtd; ?> Comentário<?php if ($qtd != 1) { echo "s"; } ?></div>
 	<?php /* <div class="comentario-header"><a id="share-button" href="#" title="Facebook Share Button" style="margin-top: 0px;"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Compartilhar</a></div> */ ?>
+111
 	<div class="comentario-header">
 		<?php do_action( 'addthis_widget' ); ?>
 	</div>
-
+2222
 
 	<div class="comentario-body">
-		<?php if ($_SESSION["lettslogin"] != 1) { ?> 
+		<?php if ($_SESSION["lettslogin"] != 1) { ?>
 			<div class="comentario-foto">
 				<a href="#" target="_blank">
 
-					<?php 
+					<?php
 					$post_usuario = $_SESSION["lettslogin"];
 						if ($post_usuario != 0) { ?>
 
@@ -101,14 +102,14 @@ mysqli_close($con);
 							$imgsize_top = str_replace("http://", "", $imgsize_top);
 							$imgsize_top = str_replace("https://", "", $imgsize_top);
 						?>
-							
-							<div style="margin-top: -5px; width: 40px; height: 40px; 
-							background-image: url(<?php print_custom_field('basicaimagem:to_image_src'); ?>); 
+
+							<div style="margin-top: -5px; width: 40px; height: 40px;
+							background-image: url(<?php print_custom_field('basicaimagem:to_image_src'); ?>);
 							background-size: 40px 40px;" id="imgbackgroundtopo">&nbsp;</div>
-							
+
 						<?php endwhile; endif; ?>
 						<?php wp_reset_query(); ?>
-					<?php } ?>	
+					<?php } ?>
 				</a>
 			</div>
 
@@ -128,7 +129,7 @@ mysqli_close($con);
 												  text-transform: uppercase;
 												  -webkit-appearance: none;
 												  -webkit-border-radius: 0;float: right; margin-top: 0px;margin-left: 300px;" value="Publicar">
-				
+
 				</div>
 			</div>
 		<?php } ?>

@@ -8,6 +8,7 @@
 
 <?php get_header(); ?>
 
+<script src="http://alfabetoauto.webca.com.br/country/js/location.js"></script>
 
 <script type="text/javascript">
    $(document).ready(function(){
@@ -16,11 +17,11 @@
             alert( "Você deve preencher o nome do evento!" );
             $( "#idinputevento" ).focus();
             } else {
-              if ($("#countryId").val() == "") {
+              if ($("#countryId").val() == "" && $("#txtcountry").text() == "" ) {
                 alert("Você deve preencher o pais do evento" );
                 $( "#countryId" ).focus();
               } else {
-                if ($("#stateId").val() == "") {
+                if ($("#stateId").val() == "" && $("#txtstate").text() == "" ) {
                   alert("Você deve preencher o estado do evento" );
                   $( "#stateId" ).focus();
                 } else {
@@ -28,19 +29,23 @@
                     alert("Você deve preencher a cidade do evento" );
                     $( "#frmcidade" ).focus();
                   } else {
-                    if ($( "#idimgdestacada" ).val() == "" && $("#fotoadd0").attr("src") == "/wp-content/uploads/2016/07/blankpix.jpg" ) {
+                    var varcheck0 = 0;
+                    if ($("#fotoadd0").val() == '') { varcheck0 = 1;}
+                    if ($( "#idimgdestacada" ).val() != '') { varcheck0 = 1;}
+                    if (varcheck0 == 0) {
                       alert( "Você deve selecionar a imagem!" );
                     } else {
-                      if ($( "#idimgevento" ).val() == "" && $("#fotoadd1").attr("src") == "/wp-content/uploads/2016/07/blankpix.jpg" ) {
+                      var varcheck1 = 0;
+                      if ($("#fotoadd1").val() == '') { varcheck1 = 1;}
+                      if ($( "#img_evento1" ).val() != '') { varcheck1 = 1;}
+                      if (varcheck1 == 0) {
                         alert( "Você deve selecionar pelo menos uma foto adicional" );
                       } else {
-          	            if ($( "#iddescricaoevento" ).val() == "") {
+                        if ($( "#iddescricaoevento" ).val() == "") {
           	              alert( "Você deve preencher a descrição do evento!" );
           	              $( "#iddescricaoevento" ).focus();
-          	            } else {
-          	              $( "#new_post" ).submit();
-          		              //var novaURL = "http://letts.com.br/eventos/";
-          		              //$(window.document.location).attr('href',novaURL);
+                        } else {
+                          $( "#new_post" ).submit();
           	            }
                       }
                     }
@@ -233,155 +238,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
       })
     </script>
 
-    <?php exit;
-    //echo "<h1>UPDATE EFETUADO ".$cur_post_id.'</h1> ';
-
-
-
-
-
-
-
-
-
-
-  /* ?>
-    <?php
-      // Create post object
-        $my_post = array(
-          'post_title'    => $_POST['evento'],
-          'post_content'  => $_POST['descricao_evento'],
-          'post_status'   => 'pending',
-          'post_type'     => 'eventos',
-          'post_author'   => 1
-        );
-
-
-$path = "wp-content/uploads/eventos/";
-
-$valid_formats = array("jpg", "gif", "png", "tif", "jpeg", "JPG", "GIF", "PNG", "TIF", "JPEG");
-if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
-{
-
-  //Arquivo Catálogo
-  $name = $_FILES['img_destacada']['name'];
-  $size = $_FILES['img_destacada']['size'];
-
-  $file_info = pathinfo($name);
-  $name = md5($name) .'.'. $file_info['extension'];
-
-  if(strlen($name))
-    {
-      list($txt, $ext) = explode(".", $name);
-      if(in_array($ext,$valid_formats))
-      {
-      if($size<(10240*10240))
-        {
-          $actual_name = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
-          $tmp = $_FILES['img_destacada']['tmp_name'];
-          if(move_uploaded_file($tmp, $path.$actual_name))
-            {
-              $response['response']="Arquivo OK";
-            }
-          else
-            $response['response']="Falhou";
-        }
-        else
-        $response['response']="Arquivo tem mais de 4MB";
-        }
-        else
-        $response['response']="Formato Inválido";
-    }
-  else
-    $response['response']="Selecione um arquivo";
-
-  //Arquivo Evento 1
-  $name1 = $_FILES['img_evento1']['name'];
-  $size1 = $_FILES['img_evento1']['size'];
-
-  $file_info = pathinfo($name1);
-  $name1 = md5($name1) .'.'. $file_info['extension'];
-
-  if(strlen($name1))
-    {
-      list($txt, $ext) = explode(".", $name1);
-      if(in_array($ext,$valid_formats))
-      {
-      if($size1<(10240*10240))
-        {
-          $actual_name1 = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
-          $tmp = $_FILES['img_evento1']['tmp_name'];
-          if(move_uploaded_file($tmp, $path.$actual_name1))
-            {
-              $response['response']="Arquivo OK";
-            }
-          else
-            $response['response']="Falhou";
-        }
-        else
-        $response['response']="Arquivo tem mais de 4MB";
-        }
-        else
-        $response['response']="Formato Inválido";
-    }
-  else
-    $response['response']="Selecione um arquivo";
-}
-
-    $cur_post_id = wp_insert_post($my_post);
-
-    $filename  = 'http://letts.com.br/wp-content/uploads/eventos/'.$actual_name;
-    $filename1 = 'http://letts.com.br/wp-content/uploads/eventos/'.$actual_name1;
-
-    //Img Destacada
-    $wp_filetype = wp_check_filetype(basename($filename), null );
-    $attachment = array(
-      'post_mime_type' => $wp_filetype['type'],
-      'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
-      'post_content' => '',
-      'post_status' => 'inherit'
-    );
-    $attach_id = wp_insert_attachment($attachment, $filename, $cur_post_id);
-
-    //Img Evento 1
-    $wp_filetype1 = wp_check_filetype(basename($filename1), null );
-    $attachment1 = array(
-      'post_mime_type' => $wp_filetype1['type'],
-      'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename1)),
-      'post_content' => '',
-      'post_status' => 'inherit'
-    );
-    $attach_id1 = wp_insert_attachment($attachment1, $filename1, $cur_post_id);
-
-    if ($actual_name) {
-      add_post_meta($cur_post_id, 'eventofoto', $attach_id, true);
-    }
-
-      add_post_meta($cur_post_id, 'post_image', $filename, true);
-
-    if ($actual_name1) {
-      add_post_meta($cur_post_id, 'atletaimagembackground', $attach_id1, true);
-    }
-
-
-    add_post_meta($cur_post_id, 'basicaemail', $_SESSION['meuemail'], true);
-    add_post_meta($cur_post_id, 'link_ingresso', $_POST['link'], true);
-    add_post_meta($cur_post_id, 'atletaesporte', $_POST['esporte'], true);
-    add_post_meta($cur_post_id, 'profissao', $_POST['profissao'], true);
-    add_post_meta($cur_post_id, 'basicapaisatual', $_POST['pais'], true);
-    add_post_meta($cur_post_id, 'eventotipo', $_POST['tipo_evento'], true);
-
-    $destinatario = "renato.botani@letts.com.br";
-
-    $headers = "From: $destinatario \r\n";
-    $headers.= "Content-Type: text/html; charset=ISO-8859-1 ";
-    $headers.= "MIME-Version: 1.0 ";
-
-    $html = 'Você tem uma nova postagem de Evento para aprovação';
-
-    mail($destinatario,"Nova postagem pendente",$html,$headers);
-
-    */ ?>
+    <?php exit; ?>
 
     <script type="text/javascript">
       $(document).ready(function(){
@@ -621,9 +478,23 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                            		<div class="form-group">
                            		<div class="col-sm-4">
                            		<div style="margin-bottom: 5px;">País:</div>
-                           		<select name="pais" class="form-control countries" id="countryId" style="width: 100%;">
-                           		<option value="">Selecionar Pais</option>
-                           		</select>
+                              <script>
+                                showCountry(<?php print_custom_field('basicapaisatual'); ?>, 'txtcountry');
+                              </script>
+                              <div id="spanpais" style="background-color: #FFF;
+                                                        width: 197px;
+                                                        padding: 3px;
+                                                        border: solid 1px #888888;" >
+                                <span id="txtcountry" style="color: #999; font-size: 14px;"></span> <a><span onclick="document.getElementById('editarpais').style.display = 'block';document.getElementById('editarestado').style.display = 'block';document.getElementById('spanpais').style.display = 'none';document.getElementById('spanestado').style.display = 'none';"><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                              </div>
+
+                              <div style="display: none;" id="editarpais">
+                                <select name="pais" class="form-control countries" id="countryId" style="width: 100%;">
+                             		   <option value="">Selecionar Pais</option>
+                             		</select>
+                              </div>
+
+
                            		</div>
                            		</div>
                              </div>
@@ -634,10 +505,23 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                            		<div class="form-group">
                            		<div class="col-sm-4">
                            		<div style="margin-bottom: 5px;">Estado:</div>
+                              <script>
+                                showState(<?php print_custom_field('basicaestadoatual'); ?>, 'txtstate');
+                              </script>
+                              <div id="spanestado" style="background-color: #FFF;
+                                                        width: 197px;
+                                                        padding: 3px;
+                                                        border: solid 1px #888888;" >
+                                <span id="txtstate" style="color: #999; font-size: 14px;"></span> <a><span onclick="document.getElementById('editarpais').style.display = 'block';document.getElementById('editarestado').style.display = 'block';document.getElementById('spanpais').style.display = 'none';document.getElementById('spanestado').style.display = 'none';"><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                              </div>
 
-                           		<select name="estado" class="form-control states" id="stateId" style="width: 100%;">
-                           		<option value="">Selecionar Estado</option>
-                           		</select>
+                              <div style="display: none;" id="editarestado">
+                                <select name="estado" class="form-control states" id="stateId" style="width: 100%;">
+                             		<option value="">Selecionar Estado</option>
+                             		</select>
+                              </div>
+
+
                            		</div>
                            		</div>
                              </div>
@@ -654,7 +538,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                              </div>
                            </div>
 
-                           <script src="http://letts.com.br/wp-content/themes/magazine/country/js/location.js"></script>
+
 
 
 
@@ -715,7 +599,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
                   &nbsp;
                 </div>
                 <div class="custom-upload">
-                    <input type="file" name="img_evento1" id="idimgevento">
+                    <input type="file" name="img_evento1" id="img_evento1">
                     <div class="fake-file">
                         <input disabled="disabled">
                     </div>

@@ -16,7 +16,7 @@
 <style type="text/css">
 	.imgmedia {
 		width: 500px;
-	}	
+	}
 	body {
 		margin: 0px;
 		padding: 0px;
@@ -28,7 +28,7 @@
 
 <body>
 
-<?php 
+<?php
 $idvideo =  str_replace('/', '', $_SERVER['PATH_INFO']);
 
 //Obtem link do video aberto
@@ -41,7 +41,7 @@ while ($rowEmail = mysql_fetch_array($resultEmail, MYSQL_ASSOC)) {
 <div style="margin: auto; min-width: 1137px;">
 
 	<div style="float: left; width: 515px; position: fixed;">
-		
+
 	<?php
 		$video = explode("/", $VideoURL);
 		$url_video = explode("=", $video[3]);
@@ -54,7 +54,7 @@ while ($rowEmail = mysql_fetch_array($resultEmail, MYSQL_ASSOC)) {
 		$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imgid.php"));
 		$img_video = $hash[0]['thumbnail_medium'];
 			?> <iframe width="500" height="375" src="//player.vimeo.com/video/<?php echo $imgid; ?>?badge=0&autoplay=1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <?php
-		 } 
+		 }
 	?>
 
 	</div>
@@ -64,7 +64,8 @@ while ($rowEmail = mysql_fetch_array($resultEmail, MYSQL_ASSOC)) {
     margin-left: 525px;">
 		<?php
 			$idpagina = '/videos/?vid='.$idvideo;
-			include "comentarios_ajax.php"; 
+			$idpagina = 'http://letts.com.br/wp-content/themes/magazine/videos.php/3550';
+			include "comentarios_ajax.php";
 		?>
 		</div>
 	</div>

@@ -8,6 +8,8 @@
 
 <?php get_header(); ?>
 
+<script src="http://letts.com.br/wp-content/themes/magazine/country/js/location.js"></script>
+
 <script type="text/javascript">
    $(document).ready(function(){
       $("#postarmensagem").click(function(){
@@ -628,7 +630,7 @@ $('#share-button').click(function (e){
 
 	<div>
 		<div style="float: left; width: 325px;">
-				<div class="col3-1" style="width: 100%; margin: 0px; background: #EFEFEF; padding-left: 15px; border-top: 5px #ff8920 solid;">
+				<div class="col3-1" style="width: 100%; margin: 0px; background: #EFEFEF; padding-left: 15px; border-top: 5px #ff8920 solid; padding-bottom: 30px;">
 					<div id="text-1016" class="widget widget_text" style="">
 						<h4 class="widgettitle">Informações básicas</h4>
 						<div class="textwidget">
@@ -651,14 +653,14 @@ $('#share-button').click(function (e){
 
               <div style="margin-top: 10px;"><strong>Pais</strong></div>
 							<script>
-                showCountry(<?php print_custom_field('basicapaisatual'); ?>);
+                showCountry(<?php print_custom_field('basicapaisatual'); ?>, 'txtcountry');
               </script>
               <p id="txtcountry"></p>
 
 
 							<div style="margin-top: 10px;"><strong>Estado</strong></div>
               <script>
-                showState(<?php print_custom_field('basicaestadoatual'); ?>);
+                showState(<?php print_custom_field('basicaestadoatual'); ?>, 'txtstate');
               </script>
               <p id="txtstate"></p>
 
@@ -951,13 +953,14 @@ $('#share-button').click(function (e){
 					    </div>
 					</div>
 
-		             <input class="input_video" type="text" name="link_video" style="width: 316px !important; max-width: 100%;margin-top: -33px;float: right;margin-right: -1px;" value="" placeholder="Link do Video do Youtube ou Vímeo">
+		             <input class="input_video" type="text" name="link_video" style="width: 316px !important; max-width: 100%; float: right;margin-right: -1px;" value="" placeholder="Link do Video do Youtube ou Vímeo">
 		             <input type="hidden" value="<?php print_custom_field('basicaemail'); ?>" name="email">
 		             <input type="hidden" value="adicionarnews" name="adicionarnews">
-		             <input type="submit" style="float: right; margin-top: 0px;margin-left: 300px;" value="Publicar">
+		             <input type="submit" style="float: right; margin-top: 0px; margin-bottom: 15px; margin-left: 300px;" value="Publicar">
             </form>
             <?php } ?>
-			<h4 class="widgettitle" style="border: 0px; padding: 0px; margin: 0px; margin-bottom: 10px; margin-top: 45px;">News</h4>
+
+      <div>&nbsp;</div>
 
 			<?php while (have_posts()) : the_post(); ?>
 

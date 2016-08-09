@@ -8,7 +8,10 @@
 
 <?php get_header(); ?>
 
-<?php 
+<meta property="og:image" content="http://alfabetoauto.com.br/image/data/logo277x68.png"/>
+<meta property="og:image:secure_url" content="https://alfabetoauto.com.br/image/data/logo277x68.png" />
+
+<?php
 /** Themify Default Variables
  *  @var object */
 global $themify; ?>
@@ -24,8 +27,8 @@ global $themify; ?>
 
   <div id="contentwrap" style="padding-top: 0px;">
 
-    
-  <?php 
+
+  <?php
 
   if( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
@@ -35,9 +38,9 @@ global $themify; ?>
       <h1 class="post-title" itemprop="name" style="text-align: center; margin: 10px 0 10px 0; padding: 0; font-size: 2em; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #000; line-height: 110%;">
         <span style="font-weight: bold;"><a href="#"><?php echo the_title(); ?></a></span></h1>
 
-        
 
-<?php 
+
+<?php
   $imagem_fb = get_custom_field('imgnews:to_image_src');
   $texto_fb = strip_tags(get_the_excerpt(120));
 ?>
@@ -62,9 +65,9 @@ $('#share-button').click(function (e){
         </div>
 
         <div class="related-posts" style="float: left; width: 674px; margin-bottom: 10px;">
-        
 
-          
+
+
 
           <?php
 
@@ -72,15 +75,15 @@ $('#share-button').click(function (e){
                 die("Could not connect: " . mysql_error());
             mysql_select_db(DB_NAME);
 
-            $idpost = get_the_ID();  
+            $idpost = get_the_ID();
 
 
             $resultbasicaemail = mysql_query("select meta_value from wp_postmeta where meta_key = 'basicaemail' AND post_id = ".$idpost);
             while ($rowbasicaemail = mysql_fetch_array($resultbasicaemail, MYSQL_ASSOC)) {
               $basicaemail = $rowbasicaemail["meta_value"];
             }
-            
-            
+
+
             $squery = "select id, post_title from wp_posts where id = (select m.post_id from wp_postmeta m inner join wp_posts p on m.post_id = p.id where m.meta_value = '".$basicaemail."' AND m.meta_key = 'basicaemail' AND p.post_status = 'publish' AND post_type = 'atleta')";
             $resultemailname = mysql_query($squery);
             while ($rowemailname = mysql_fetch_array($resultemailname, MYSQL_ASSOC)) {
@@ -118,7 +121,7 @@ $('#share-button').click(function (e){
           ?>
 
 
-          <?php 
+          <?php
             $resultslvideo = mysql_query("select meta_value from wp_postmeta where meta_key = 'slvideo' AND post_id = ".$idpost);
             while ($rowslvideo = mysql_fetch_array($resultslvideo, MYSQL_ASSOC)) {
               $slvideo = $rowslvideo["meta_value"];
@@ -132,11 +135,11 @@ $('#share-button').click(function (e){
 
           <?php if ($slvideo == "youtube") { ?>
             <div style="width: 674px; border-radius: 5px; height: 390px; background-size: 312px; background-position: center; background-image: url('http://letts.com.br/wp-content/uploads/<?php echo utf8_encode($basicaimagemurl); ?>');">
-          <?php 
-            $url_video = explode("=", $videourl);            
+          <?php
+            $url_video = explode("=", $videourl);
           ?>
           <iframe width="674" height="390" src="//www.youtube.com/embed/<?php echo $url_video[1]; ?>" frameborder="0" allowfullscreen></iframe>
-        
+
             </div>
             <article class="post type-post clearfix">
               <div class="post-content">
@@ -148,7 +151,7 @@ $('#share-button').click(function (e){
             </article>
           <?php } ?>
 
-          <?php if ($slvideo == "vimeo") { 
+          <?php if ($slvideo == "vimeo") {
             $videourl = str_replace("vimeo.com/", "player.vimeo.com/video/", $videourl)
 
             ?>
@@ -177,7 +180,7 @@ $('#share-button').click(function (e){
             <div style="height: 192px;">
               <?php
                 $idpagina = $_SERVER['REQUEST_URI'];
-                include "comentarios_ajax.php"; 
+                include "comentarios_ajax.php";
               ?>
             </div>
           </article>
@@ -194,11 +197,11 @@ $('#share-button').click(function (e){
         <li>
           <label for="author">Nome: <span>(Obrigatório)</span></label>
           <input type="text" aria-required="true" tabindex="1" size="22" id="author" name="author" value="" maxlength="100">
-        </li>                           
+        </li>
         <li>
           <label for="email">E-mail: <span>(Obrigatório)</span></label>
           <input type="text" aria-required="true" tabindex="2" size="22" id="email" name="email" value="">
-        </li>                           
+        </li>
         <li>
           <label for="url">Website: </label>
           <input type="text" tabindex="3" size="22" value="" id="url" name="url">
@@ -211,7 +214,7 @@ $('#share-button').click(function (e){
         <input type="submit" value="Enviar" tabindex="5" id="submit" class="bt-enviar-comentarios" name="submit">
         <input type="hidden" name="comment_post_ID" value="<?php the_ID(); ?>" id="comment_post_ID">
         <input type="hidden" name="comment_parent" id="comment_parent" value="0">
-        </li>                                                        
+        </li>
       </ul>
             </fieldset>
     </form>
@@ -264,5 +267,5 @@ $('#share-button').click(function (e){
 
 </div>
 <!-- /layout-container -->
-  
+
 <?php get_footer(); ?>
